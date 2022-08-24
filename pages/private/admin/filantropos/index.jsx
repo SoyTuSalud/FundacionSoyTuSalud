@@ -3,23 +3,22 @@ import NewPrivateLayout from '../../../../components/layouts/NewPrivateLayout/Ne
 import { client } from '../../../../graphql/initClientSide'
 import { filantropos } from '../../../../graphql/filantropos/queries'
 
-const FilantroposPage = ({data}) => {
+const FilantroposPage = ({ data }) => {
   return (
     <NewPrivateLayout>
-        <div>index</div>
+      <div>index</div>
     </NewPrivateLayout>
   )
 }
 
-
 export const getServerSideProps = async (ctx) => {
-  const {data} = await client.query({
-    query: filantropos
+  const { data } = await client.query({
+    query: filantropos,
   })
   return {
-      props: {
-          data
-      }
+    props: {
+      data,
+    },
   }
 }
 

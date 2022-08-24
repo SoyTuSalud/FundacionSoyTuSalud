@@ -1,32 +1,29 @@
-import {  gql } from 'apollo-server-micro'
-
+import { gql } from 'apollo-server-micro'
 
 export const typesFilantropo = gql`
-    type Filantropo{
-        uid: ID!
-        tipoDocumento: String!
-        identificacion:String!
-        nombre: String!
-        celular:String!
-        direccion:String!
-        correo: String!
-    }
-    type Query{
-        Filantropos: [Filantropo]
-        Filantropo(uid: String!): Filantropo
-    }
+  type Filantropo {
+    uid: ID!
+    tipoDocumento: String!
+    identificacion: String!
+    nombre: String!
+    celular: String!
+    direccion: String!
+    correo: String!
+  }
+  type Query {
+    Filantropos: [Filantropo]
+    Filantropo(uid: String!): Filantropo
+  }
 
-    type Mutation {
+  type Mutation {
     crearFilantropo(
-        uid: ID!
-        tipoDocumento: String!
-        identificacion:String!
-        nombre: String!
-        celular:String!
-        direccion:String!
-        correo: String!
-    
-    ):Filantropo
-    }
-
+      uid: ID!
+      tipoDocumento: String!
+      identificacion: String!
+      nombre: String!
+      celular: String!
+      direccion: String!
+      correo: String!
+    ): Filantropo
+  }
 `

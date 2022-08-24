@@ -1,3 +1,2 @@
-export * from "./LayoutMain"
-export * from "./PrivateLayout"
-
+export * from './LayoutMain'
+export * from './PrivateLayout'

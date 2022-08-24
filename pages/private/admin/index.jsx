@@ -2,9 +2,9 @@ import NewPrivateLayout from '../../../components/layouts/NewPrivateLayout/NewPr
 
 const index = () => {
   return (
-      <NewPrivateLayout>
-          <div>index</div>
-      </NewPrivateLayout>
+    <NewPrivateLayout>
+      <div>index</div>
+    </NewPrivateLayout>
   )
 }
 

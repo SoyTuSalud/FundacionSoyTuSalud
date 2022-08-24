@@ -1,33 +1,32 @@
-import {gql} from '@apollo/client';
+import { gql } from '@apollo/client'
 
 export const usuariosTablas = gql`
-query Query {
-  UsuariosTabla {
-    identificacion
-    nombre
-    apellidos
-    correo
-    tipoDocumento
-    formularioTuHistoria
-    foto
+  query Query {
+    UsuariosTabla {
+      identificacion
+      nombre
+      apellidos
+      correo
+      tipoDocumento
+      formularioTuHistoria
+      foto
+    }
   }
-}
- 
-`;
+`
 
 export const pacientesTablaTuHistoria = gql`
-query Query {
-  UsuariosTablaTuHistoria {
-    uid
-    nombre
-    apellidos
-    comunidad
-    fechaSolicitud
-    grupoPoblacional
-    foto
+  query Query {
+    UsuariosTablaTuHistoria {
+      uid
+      nombre
+      apellidos
+      comunidad
+      fechaSolicitud
+      grupoPoblacional
+      foto
+    }
   }
-}
-`;
+`
 
 export const authUser = gql`
   query AuthUser($uid: String!) {
@@ -43,7 +42,6 @@ export const authUser = gql`
     }
   }
 `
-
 
 export const userData = gql`
   query Usuario($uid: String!) {
@@ -79,6 +77,6 @@ export const userData = gql`
       recopilacionDatos
       comunidad
       fechaSolicitud
+    }
   }
-}
 `

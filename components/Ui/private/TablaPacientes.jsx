@@ -1,23 +1,21 @@
-import { Table ,TableBody , TableCell } from '@mui/material';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import { Table, TableBody, TableCell } from '@mui/material'
+import TableContainer from '@mui/material/TableContainer'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
+import Paper from '@mui/material/Paper'
 
-
-const TablaPacientes = ({data}) => {
-
+const TablaPacientes = ({ data }) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="datos pacientes">
-        <TableHead sx={{backgroundColor:"#0a0b0b" }}>
+        <TableHead sx={{ backgroundColor: '#0a0b0b' }}>
           <TableRow>
-            <TableCell  sx={{color:"white"}}>Nombres</TableCell>
-            <TableCell  sx={{color:"white"}}>Apellidos</TableCell>
-            <TableCell  sx={{color:"white"}}>CC</TableCell>
-            <TableCell  sx={{color:"white"}}>Grupo Poblacional</TableCell>
-            <TableCell  sx={{color:"white"}}>Fecha Solicitud</TableCell>
-            <TableCell  sx={{color:"white"}}>Comunidad</TableCell>
+            <TableCell sx={{ color: 'white' }}>Nombres</TableCell>
+            <TableCell sx={{ color: 'white' }}>Apellidos</TableCell>
+            <TableCell sx={{ color: 'white' }}>CC</TableCell>
+            <TableCell sx={{ color: 'white' }}>Grupo Poblacional</TableCell>
+            <TableCell sx={{ color: 'white' }}>Fecha Solicitud</TableCell>
+            <TableCell sx={{ color: 'white' }}>Comunidad</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -33,12 +31,12 @@ const TablaPacientes = ({data}) => {
               <TableCell>{row.identificacion}</TableCell>
               <TableCell>{row.grupoPoblacional}</TableCell>
               <TableCell>fecha solicitud</TableCell>
-              <TableCell>{row.comunidad?row.comunidad:"No"}</TableCell>
+              <TableCell>{row.comunidad ? row.comunidad : 'No'}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
-  );
+  )
 }
 export default TablaPacientes

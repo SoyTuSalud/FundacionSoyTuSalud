@@ -7,9 +7,14 @@ import { Box } from '@mui/material';
 import React from 'react'
 import { DashboardNavbar } from '../../NewStyles/dashboard-navbar';
 import { DashboardSidebar } from '../../NewStyles/dashboard-sidebar';
+import { useEffect } from 'react';
 
 const NewPrivateLayout = ({children}) => {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
+
+  useEffect(() => {
+    
+  },[])
 
   return (
       <>

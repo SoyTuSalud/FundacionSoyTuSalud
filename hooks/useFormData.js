@@ -1,24 +1,23 @@
-import { useRef, useState } from 'react';
+import { useRef, useState } from 'react'
 
 const useFormData = (initial) => {
-    const form = useRef(initial);
-    const [formData, setFormData] = useState({});
+  const form = useRef(initial)
+  const [formData, setFormData] = useState({})
 
-        
-    const getFormData = () => { 
-    const fd = new FormData(form.current);
-    const obj = {};
+  const getFormData = () => {
+    const fd = new FormData(form.current)
+    const obj = {}
     fd.forEach((value, key) => {
-        obj[key] = value;
-    });
+      obj[key] = value
+    })
 
-    return obj;
-    };
-    
-    const updateFormData = () => {
-    setFormData(getFormData());
-    };
-    return { form, formData, updateFormData };
-};
+    return obj
+  }
 
-export default useFormData;
+  const updateFormData = () => {
+    setFormData(getFormData())
+  }
+  return { form, formData, updateFormData }
+}
+
+export default useFormData

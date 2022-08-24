@@ -1,61 +1,67 @@
-import { useEffect } from 'react';
-import Link from 'next/link';
-import Image from'next/image'
-import { useRouter } from 'next/router';
-import PropTypes from 'prop-types';
-import { Box, Button, Divider, Drawer, Typography, useMediaQuery } from '@mui/material';
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import { ChartBar as ChartBarIcon } from '../icons/chart-bar';
-import { ShoppingBag as ShoppingBagIcon } from '../icons/shopping-bag';
-import { User as UserIcon } from '../icons/user';
-import { Users as UsersIcon } from '../icons/users';
-import { NavItem } from './nav-item';
-
+import { useEffect } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import PropTypes from 'prop-types'
+import {
+  Box,
+  Button,
+  Divider,
+  Drawer,
+  Typography,
+  useMediaQuery,
+} from '@mui/material'
+import OpenInNewIcon from '@mui/icons-material/OpenInNew'
+import { ChartBar as ChartBarIcon } from '../icons/chart-bar'
+import { ShoppingBag as ShoppingBagIcon } from '../icons/shopping-bag'
+import { User as UserIcon } from '../icons/user'
+import { Users as UsersIcon } from '../icons/users'
+import { NavItem } from './nav-item'
 
 const items = [
   {
     href: '/private/admin/',
-    icon: (<ChartBarIcon fontSize="small" />),
-    title: 'Dashboard'
+    icon: <ChartBarIcon fontSize="small" />,
+    title: 'Dashboard',
   },
   {
     href: '/private/admin/pacientes',
-    icon: (<UsersIcon fontSize="small" />),
-    title: 'Pacientes'
+    icon: <UsersIcon fontSize="small" />,
+    title: 'Pacientes',
   },
   {
     href: '/private/admin/servicios',
-    icon: (<ShoppingBagIcon fontSize="small" />),
-    title: 'Servicios'
+    icon: <ShoppingBagIcon fontSize="small" />,
+    title: 'Servicios',
   },
   {
     href: '/private/admin/filantropos',
-    icon: (<UserIcon fontSize="small" />),
-    title: 'Filantropos'
+    icon: <UserIcon fontSize="small" />,
+    title: 'Filantropos',
   },
-];
+]
 
 export const DashboardSidebar = (props) => {
-  const { open, onClose } = props;
-  const router = useRouter();
+  const { open, onClose } = props
+  const router = useRouter()
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'), {
     defaultMatches: true,
-    noSsr: false
-  });
+    noSsr: false,
+  })
 
   useEffect(
     () => {
       if (!router.isReady) {
-        return;
+        return
       }
 
       if (open) {
-        onClose?.();
+        onClose?.()
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [router.asPath]
-  );
+    [router.asPath],
+  )
 
   const content = (
     <>
@@ -63,17 +69,20 @@ export const DashboardSidebar = (props) => {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          height: '100%'
+          height: '100%',
         }}
       >
         <div>
           <Box sx={{ p: 6 }}>
-            <Link
-              href="/"
-              passHref
-            >
+            <Link href="/" passHref>
               <a>
-                <Image src={"/logo_vertical-white.png"} alt="soyTuLogo" width={156.25} height={156.25} quality={"100"} />
+                <Image
+                  src={'/logo_vertical-white.png'}
+                  alt="soyTuLogo"
+                  width={156.25}
+                  height={156.25}
+                  quality={'100'}
+                />
               </a>
             </Link>
           </Box>
@@ -81,7 +90,7 @@ export const DashboardSidebar = (props) => {
         <Divider
           sx={{
             borderColor: '#2D3748',
-            my: 3
+            my: 3,
           }}
         />
         <Box sx={{ flexGrow: 1 }}>
@@ -98,23 +107,23 @@ export const DashboardSidebar = (props) => {
         <Box
           sx={{
             px: 2,
-            py: 3
+            py: 3,
           }}
         >
-            <Button
-              color="secondary"
-              component="a"
-              endIcon={(<OpenInNewIcon />)}
-              fullWidth
-              sx={{ mt: 2 }}
-              variant="contained"
-            >
-              Cerrar sesión
-            </Button>
+          <Button
+            color="secondary"
+            component="a"
+            endIcon={<OpenInNewIcon />}
+            fullWidth
+            sx={{ mt: 2 }}
+            variant="contained"
+          >
+            Cerrar sesión
+          </Button>
         </Box>
       </Box>
     </>
-  );
+  )
 
   if (lgUp) {
     return (
@@ -125,14 +134,14 @@ export const DashboardSidebar = (props) => {
           sx: {
             backgroundColor: 'neutral.900',
             color: '#FFFFFF',
-            width: 280
-          }
+            width: 280,
+          },
         }}
         variant="permanent"
       >
         {content}
       </Drawer>
-    );
+    )
   }
 
   return (
@@ -144,18 +153,18 @@ export const DashboardSidebar = (props) => {
         sx: {
           backgroundColor: 'neutral.900',
           color: '#FFFFFF',
-          width: 280
-        }
+          width: 280,
+        },
       }}
       sx={{ zIndex: (theme) => theme.zIndex.appBar + 100 }}
       variant="temporary"
     >
       {content}
     </Drawer>
-  );
-};
+  )
+}
 
 DashboardSidebar.propTypes = {
   onClose: PropTypes.func,
-  open: PropTypes.bool
-};
+  open: PropTypes.bool,
+}

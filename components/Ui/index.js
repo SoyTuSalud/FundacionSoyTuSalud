@@ -1,3 +1,2 @@
-export * from "./MenuHead"
-export * from "./public/MenuFooter"
-
+export * from './MenuHead'
+export * from './public/MenuFooter'

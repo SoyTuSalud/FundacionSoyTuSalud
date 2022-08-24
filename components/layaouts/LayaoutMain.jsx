@@ -1,12 +1,11 @@
+import { MenuHead, MenuFooter } from '../Ui'
 
-import { MenuHead,MenuFooter } from "../Ui"
-
-export const LayaoutMain = ({children}) => {
+export const LayaoutMain = ({ children }) => {
   return (
     <div className="template flex flex-col">
-        <MenuHead></MenuHead>
-        {children}
-        <MenuFooter></MenuFooter>
+      <MenuHead></MenuHead>
+      {children}
+      <MenuFooter></MenuFooter>
     </div>
   )
 }

@@ -3,9 +3,9 @@ import NewPrivateLayout from '../../../../../components/layouts/NewPrivateLayout
 
 const DetalleFilantropo = () => {
   return (
-      <NewPrivateLayout>
-          <div>oe</div>
-      </NewPrivateLayout>
+    <NewPrivateLayout>
+      <div>oe</div>
+    </NewPrivateLayout>
   )
 }
 

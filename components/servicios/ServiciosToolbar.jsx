@@ -1,19 +1,18 @@
-import { useState } from 'react';
+import { useState } from 'react'
 import {
-    Box,
-    Button,
-    Card,
-    CardContent,
-    TextField,
-    InputAdornment,
-    SvgIcon, Typography
-  } from '@mui/material';
-  import { Search as SearchIcon } from '../icons/search';
-  
-  export const ServiciosToolbar = (props) => {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  TextField,
+  InputAdornment,
+  SvgIcon,
+  Typography,
+} from '@mui/material'
+import { Search as SearchIcon } from '../icons/search'
 
-    
-    return(
+export const ServiciosToolbar = (props) => {
+  return (
     <Box {...props}>
       <Box
         sx={{
@@ -21,20 +20,13 @@ import {
           display: 'flex',
           justifyContent: 'space-between',
           flexWrap: 'wrap',
-          m: -1
+          m: -1,
         }}
       >
-        <Typography
-          sx={{ m: 1 }}
-          variant="h4"
-        >
+        <Typography sx={{ m: 1 }} variant="h4">
           Servicios
         </Typography>
-        <Button
-          color="primary"
-        >
-          Agregar servicio
-        </Button>
+        <Button color="primary">Agregar servicio</Button>
       </Box>
 
       <Box sx={{ mt: 3 }}>
@@ -46,14 +38,11 @@ import {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <SvgIcon
-                        color="action"
-                        fontSize="small"
-                      >
+                      <SvgIcon color="action" fontSize="small">
                         <SearchIcon />
                       </SvgIcon>
                     </InputAdornment>
-                  )
+                  ),
                 }}
                 placeholder="Buscar Servicio"
                 variant="standard"
@@ -65,4 +54,3 @@ import {
     </Box>
   )
 }
-  

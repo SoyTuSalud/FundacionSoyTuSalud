@@ -4,7 +4,7 @@ import NewPrivateLayout from '../../../../components/layouts/NewPrivateLayout/Ne
 const Index = () => {
   return (
     <NewPrivateLayout>
-        <div>Index</div>
+      <div>Index</div>
     </NewPrivateLayout>
   )
 }
