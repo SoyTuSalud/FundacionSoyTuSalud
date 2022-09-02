@@ -5,8 +5,9 @@ import { ApolloProvider } from '@apollo/client'
 import { AuthContext } from '../context/useAuth'
 import { ThemeProvider } from '@mui/material/styles'
 import { lightTheme } from '../components/Ui/themes/lightTheme'
+import { AppProps } from 'next/app'
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps ) {
   const [authUser, setAuthUser] = useState({})
   return (
     <ApolloProvider client={client}>

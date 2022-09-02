@@ -12,7 +12,7 @@ import {
 
 export const resolversUsuario = {
   Query: {
-    UsuariosTabla: async (parent, args) => {
+    UsuariosTabla: async (parent : any  , args: any ) => {
       const querySnapshot = await getDocs(collection(db, 'users'))
       let usuarios = []
       querySnapshot.forEach((doc) => {
@@ -20,7 +20,7 @@ export const resolversUsuario = {
       })
       return usuarios
     },
-    UsuariosTablaTuHistoria: async (parent, args) => {
+    UsuariosTablaTuHistoria: async (parent : any , args : any ) => {
       const q = await query(
         collection(db, 'users'),
         where('formularioTuHistoria', '==', true),
@@ -32,14 +32,14 @@ export const resolversUsuario = {
       })
       return usuarios
     },
-    Usuario: async (parent, args) => {
+    Usuario: async (parent : any , args : any ) => {
       const docRef = doc(db, 'users', args.uid)
       const docSnap = await getDoc(docRef)
       return docSnap.data()
     },
   },
   Mutation: {
-    crearUsuario: async (parent, args) => {
+    crearUsuario: async (parent : any , args : any ) => {
       const usersRef = collection(db, 'users')
       const usuarioCreado = {
         nombre: args.nombre,
@@ -55,7 +55,7 @@ export const resolversUsuario = {
       await setDoc(doc(usersRef, args.uid), usuarioCreado)
       return usuarioCreado
     },
-    tuHistoria: async (parent, args) => {
+    tuHistoria: async (parent: any , args : any) => {
       const usersRef = collection(db, 'users')
       let dataUserUpdate = {
         genero: args.genero,
