@@ -1,19 +1,9 @@
-import { db } from '../../firebase/initConfig'
-import {
-  collection,
-  getDocs,
-  getDoc,
-  setDoc,
-  doc,
-  updateDoc,
-  where,
-  query,
-} from 'firebase/firestore'
+import { db } from '../../firebase/initBack'
 
 export const resolversUsuario = {
   Query: {
     UsuariosTabla: async (parent, args) => {
-      const querySnapshot = await getDocs(collection(db, 'users'))
+      const querySnapshot = await db.collection('users').get()
       let usuarios = []
       querySnapshot.forEach((doc) => {
         usuarios.push(doc.data())
@@ -21,11 +11,11 @@ export const resolversUsuario = {
       return usuarios
     },
     UsuariosTablaTuHistoria: async (parent, args) => {
-      const q = await query(
-        collection(db, 'users'),
-        where('formularioTuHistoria', '==', true),
-      )
-      const querySnapshot = await getDocs(q)
+      const querySnapshot = await db
+        .collection('users')
+        .where('formularioTuHistoria', '==', true)
+        .get()
+
       let usuarios = []
       querySnapshot.forEach((doc) => {
         usuarios.push(doc.data())
@@ -33,14 +23,16 @@ export const resolversUsuario = {
       return usuarios
     },
     Usuario: async (parent, args) => {
-      const docRef = doc(db, 'users', args.uid)
-      const docSnap = await getDoc(docRef)
-      return docSnap.data()
+      const querySnapshot = db
+        .collection('users')
+        .where('uid', '==', args.uid)
+        .get()
+      return (await querySnapshot).docs[0].data()
     },
   },
   Mutation: {
     crearUsuario: async (parent, args) => {
-      const usersRef = collection(db, 'users')
+      const usersRef = db.collection('users').doc()
       const usuarioCreado = {
         nombre: args.nombre,
         uid: args.uid,
@@ -52,7 +44,15 @@ export const resolversUsuario = {
         formularioTuHistoria: false,
         comunidad: '',
       }
-      await setDoc(doc(usersRef, args.uid), usuarioCreado)
+      // await setDoc(doc(usersRef, args.uid), usuarioCreado)
+      await usersRef
+        .create(usersRef)
+        .then((e) => {
+          console.log(e.writeTime)
+        })
+        .catch((err) => {
+          console.log(`error creando el dato ${err}`)
+        })
       return usuarioCreado
     },
     tuHistoria: async (parent, args) => {

@@ -1,4 +1,4 @@
-import { db } from '../../firebase/initConfig'
+import { db } from '../../firebase/initBack'
 import {
   addDoc,
   collection,

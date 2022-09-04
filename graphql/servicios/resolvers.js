@@ -1,4 +1,4 @@
-import { db } from '../../firebase/initConfig'
+import { db } from '../../firebase/initBack'
 import {
   collection,
   getDocs,
@@ -6,7 +6,7 @@ import {
   setDoc,
   doc,
   updateDoc,
-} from 'firebase/firestore'
+} from 'firebase-admin/firestore'
 
 export const resolversServicios = {
   Query: {
@@ -16,6 +16,7 @@ export const resolversServicios = {
       querySnapshot.forEach((doc) => {
         servicios.push(doc.data())
       })
+      
       return servicios
     },
     // serviciosTablaTuHistoria: async (parent, args) => {

@@ -1,5 +1,6 @@
 import { ApolloServer } from 'apollo-server-micro'
 import { typeDefs, resolvers } from '../../graphql/index'
+import { initializeApp , applicationDefault } from 'firebase-admin/app';
 
 const apolloServer = new ApolloServer({ typeDefs, resolvers })
 
