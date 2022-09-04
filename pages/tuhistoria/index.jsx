@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { storage } from '../../firebase/initConfig'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { useMutation } from '@apollo/client'
-import { tuHistoriaUpdate } from '../../graphql/user/mutations'
+import { tuHistoriaUpdate } from '../../graphql-front/user/mutations'
 import { departamentos } from '../../utils/deparamentos'
 import { municipios } from '../../utils/municipios'
 

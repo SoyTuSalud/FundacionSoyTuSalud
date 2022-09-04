@@ -1,6 +1,6 @@
 import NewPrivateLayout from '../../../../../components/layouts/NewPrivateLayout/NewPrivateLayout'
-import { client } from '../../../../../graphql/initClientSide'
-import { servicioDetalle } from '../../../../../graphql/servicios/queries'
+import { client } from '../../../../../graphql-front/initClientSide'
+import { servicioDetalle } from '../../../../../graphql-front/servicios/queries'
 import Head from 'next/head'
 import { Box, Container, Grid } from '@mui/material'
 import { ServicioDetails } from '../../../../../components/servicios/ServiceDetails'

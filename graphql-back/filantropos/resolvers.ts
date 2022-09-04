@@ -8,19 +8,24 @@ import {
   doc,
   updateDoc,
 } from 'firebase/firestore'
+import {Filantropo} from "../domain/filantropo/filantropo";
+import firebase from "firebase/compat";
+import QuerySnapshot = firebase.firestore.QuerySnapshot;
+import {firestore} from "firebase-admin";
+import CollectionReference = firestore.CollectionReference;
 
 export const resolversFilantropos = {
   Query: {
-    Filantropos: async (parent, args) => {
+    Filantropos: async () => {
       // es el usuario que se creó en query en types
       const querySnapshot = await getDocs(collection(db, 'filantropos'))
-      let filantropos = []
+      let filantropos : Filantropo[] = []
       querySnapshot.forEach((doc) => {
         filantropos.push(doc.data())
       })
       return filantropos
     },
-    Filantropo: async (parent, args) => {
+    Filantropo: async (parent, args : any) => {
       const docRef = doc(db, 'filantropos', args.uid)
       const docSnap = await getDoc(docRef)
       return docSnap.data()

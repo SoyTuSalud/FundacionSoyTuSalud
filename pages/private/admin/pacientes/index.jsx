@@ -2,8 +2,8 @@ import { Box, Container } from '@mui/material'
 import Head from 'next/head'
 import NewPrivateLayout from '../../../../components/layouts/NewPrivateLayout/NewPrivateLayout'
 import { PacientesToolbar } from '../../../../components/pacientes/PacientesToolbar'
-import { client } from '../../../../graphql/initClientSide'
-import { usuariosTablas } from '../../../../graphql/user/queries'
+import { client } from '../../../../graphql-front/initClientSide'
+import { usuariosTablas } from '../../../../graphql-front/user/queries'
 import { PacientesTablas } from '../../../../components/pacientes/PacientesTablas'
 
 const PacientesPage = ({ UsuariosTabla }) => {

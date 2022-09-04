@@ -2,8 +2,8 @@ import { Box, Container } from '@mui/material'
 import Head from 'next/head'
 import NewPrivateLayout from '../../../../components/layouts/NewPrivateLayout/NewPrivateLayout'
 import { PacientesToolbar } from '../../../../components/pacientes/PacientesToolbar'
-import { client } from '../../../../graphql/initClientSide'
-import { pacientesTablaTuHistoria } from '../../../../graphql/user/queries'
+import { client } from '../../../../graphql-front/initClientSide'
+import { pacientesTablaTuHistoria } from '../../../../graphql-front/user/queries'
 import { PacientesTablasTuHistoria } from '../../../../components/pacientes/PacientesTablasTuHistoria'
 
 const PacientesTuHistoria = ({ data }) => {

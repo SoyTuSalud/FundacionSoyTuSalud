@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { useMutation } from '@apollo/client'
-import { registrarFilantropo } from '/graphql/filantropos/mutations'
+import { registrarFilantropo } from '/Users/jpobr/Desktop/App_Sebas/soytusalud/graphql-front/filantropos/mutations'
 import { auth } from '/firebase/initConfig'
 import { useRouter } from 'next/router'
 import { LayoutMain } from '/components/layouts/LayoutMain'

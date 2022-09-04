@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import '../styles/globals.css'
-import { client } from '../graphql/initClientSide'
+import { client } from '../graphql-front/initClientSide'
 import { ApolloProvider } from '@apollo/client'
 import { AuthContext } from '../context/useAuth'
 import { ThemeProvider } from '@mui/material/styles'

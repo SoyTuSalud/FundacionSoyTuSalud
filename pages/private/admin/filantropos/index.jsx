@@ -1,7 +1,7 @@
 import React from 'react'
 import NewPrivateLayout from '../../../../components/layouts/NewPrivateLayout/NewPrivateLayout'
-import { client } from '../../../../graphql/initClientSide'
-import { filantropos } from '../../../../graphql/filantropos/queries'
+import { client } from '../../../../graphql-front/initClientSide'
+import { filantropos } from '../../../../graphql-front/filantropos/queries'
 
 const FilantroposPage = ({ data }) => {
   return (

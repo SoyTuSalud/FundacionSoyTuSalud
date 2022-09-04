@@ -17,7 +17,7 @@ import {
   FormControlLabel,
 } from '@mui/material'
 import { IOSSwitch } from './ServiciosTabla.css'
-import { ActualizarEstadoServicio } from '../../graphql/servicios/mutations'
+import { ActualizarEstadoServicio } from '../../graphql-front/servicios/mutations'
 import { useMutation } from '@apollo/client/react'
 import { getInitials } from '../../utils/get-initials'
 

@@ -2,8 +2,8 @@ import NewPrivateLayout from '../../../../components/layouts/NewPrivateLayout/Ne
 import Head from 'next/head'
 import { Box, Container } from '@mui/material'
 import { ServiciosToolbar } from '../../../../components/servicios/ServiciosToolbar'
-import { serviciosTablaData } from '../../../../graphql/servicios/queries'
-import { client } from '../../../../graphql/initClientSide'
+import { serviciosTablaData } from '../../../../graphql-front/servicios/queries'
+import { client } from '../../../../graphql-front/initClientSide'
 import { ServiciosTablas } from '../../../../components/servicios/ServiciosTablas'
 
 const ServiciosPage = ({ serviciosData }) => {
