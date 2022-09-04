@@ -2,25 +2,25 @@ import { gql } from 'apollo-server-micro'
 
 export const typesUsuario = gql`
   type Usuario {
-    uid: ID!
+    _id: ID!
     identificacion: String!
     nombre: String!
     apellidos: String!
-    tipoDocumento: String!
+    tipoDocumento: TipoDocumentoEnum!
     celular: String!
     correo: String!
     formularioTuHistoria: Boolean
     aplicaEnFundacion: Boolean
     matchService: String
     foto: String
-    genero: String
+    genero: GeneroEnum
     fechaNacimiento: String
     direccion: String
-    discapacitado: String
-    tipoDiscapacidad: String
+    discapacitado: Boolean
+    tipoDiscapacidad: TipoDiscapacidadEnum
     victimaViolencia: String
-    identidadGenero: String
-    orientacionSexual: String
+    identidadGenero: IdentidadGeneroEnum
+    orientacionSexual: OrientacionSexualEnum
     grupoPoblacional: String
     municipio: String
     departamento: String
@@ -29,8 +29,8 @@ export const typesUsuario = gql`
     serviciosSolicitado: [String]
     historiaClinica: String
     sisben: String
-    autorizacionFoto: String
-    recopilacionDatos: String
+    autorizacionFoto: Boolean
+    recopilacionDatos: Boolean
     comunidad: String
     fechaSolicitud: String
   }
@@ -39,7 +39,6 @@ export const typesUsuario = gql`
     UsuariosTablaTuHistoria: [Usuario]
     Usuario(uid: String!): Usuario
   }
-
   type Mutation {
     crearUsuario(
       uid: ID!

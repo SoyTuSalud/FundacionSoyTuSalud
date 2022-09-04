@@ -1,4 +1,4 @@
-import { db } from '../../firebase/initConfig'
+import { db } from '../../../firebase/initConfig'
 import {
   addDoc,
   collection,
@@ -8,7 +8,7 @@ import {
   doc,
   updateDoc,
 } from 'firebase/firestore'
-import {Filantropo} from "../domain/filantropo/filantropo";
+import {Filantropo} from "../filantropos/filantropo";
 import firebase from "firebase/compat";
 import QuerySnapshot = firebase.firestore.QuerySnapshot;
 import {firestore} from "firebase-admin";

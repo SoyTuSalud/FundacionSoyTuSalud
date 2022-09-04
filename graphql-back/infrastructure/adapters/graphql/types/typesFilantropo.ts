@@ -2,7 +2,7 @@ import { gql } from 'apollo-server-micro'
 
 export const typesFilantropo = gql`
   type Filantropo {
-    uid: ID!
+    _id: ID!
     tipoDocumento: String!
     identificacion: String!
     nombre: String!
@@ -12,12 +12,11 @@ export const typesFilantropo = gql`
   }
   type Query {
     Filantropos: [Filantropo]
-    Filantropo(uid: String!): Filantropo
+    Filantropo(_id: String!): Filantropo
   }
 
   type Mutation {
     crearFilantropo(
-      uid: ID!
       tipoDocumento: String!
       identificacion: String!
       nombre: String!
