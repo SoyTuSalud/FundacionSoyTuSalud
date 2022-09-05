@@ -2,7 +2,7 @@ import { gql } from '@apollo/client'
 
 export const registrarUsuario = gql`
   mutation Mutation(
-    $uid: ID!
+    $uid: String!
     $identificacion: String!
     $nombre: String!
     $apellidos: String!
