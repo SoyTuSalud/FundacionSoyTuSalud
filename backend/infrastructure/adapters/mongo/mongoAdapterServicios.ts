@@ -41,7 +41,7 @@ export const serviciosTabla = async () =>{
 
 }
 
-export const servicio = async (id) =>{
+export const servicio = async (id: String) =>{
 
   await conectarBD()
 
