@@ -41,7 +41,7 @@ const RepresentanteSchema = new Schema<Representante>(
     },
     paginaWeb: {
       type: String,
-      validate: /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+      validate:/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
     },
     cuentaDeAhorros: {
       type: String,
@@ -85,7 +85,7 @@ const RepresentanteSchema = new Schema<Representante>(
     },
     habilitado: {
       type: Boolean,
-      required: true,
+      dafault: false,
     },
   },
   {
@@ -95,9 +95,9 @@ const RepresentanteSchema = new Schema<Representante>(
 )
 
 RepresentanteSchema.virtual('servicios', {
-  ref: 'servicios',
+  ref: 'Servicios',
   localField: '_id', //campo en el modelo representate
-  foreignField: 'representate', // campo en el modelo servicio
+  foreignField: 'representante', // campo en el modelo servicio
 },
 {
   versionKey: false

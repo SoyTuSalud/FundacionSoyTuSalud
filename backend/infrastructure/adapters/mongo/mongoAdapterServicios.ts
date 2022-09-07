@@ -23,6 +23,7 @@ export const crearServicio = async (args: any) => {
       return data
     })
     .catch((e) => {
+      console.log(e)
       return new servicioModel()
     })
 }

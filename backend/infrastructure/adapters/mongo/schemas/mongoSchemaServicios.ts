@@ -5,13 +5,11 @@ import { Servicios } from '../../../../domain/servicios/serviciosInterface'
 const ServiciosSchema = new Schema<Servicios>({
   tipoServicio: {
     type: String,
-    enum: TipoDocumentoEnum,
     required: true,
   },
   especialidad: {
     type: String,
     unique: true,
-    validate: /^\d/,
     required: true,
   },
   modalidad: {
@@ -25,6 +23,7 @@ const ServiciosSchema = new Schema<Servicios>({
   },
   horaFin: {
     type: String,
+    validate: /^\d/,
     required: true,
   },
   celularServicio: {
@@ -61,7 +60,7 @@ const ServiciosSchema = new Schema<Servicios>({
   },
   habilitado: {
     type: Boolean,
-    required: true,
+    default: false,
   },
 },
 {

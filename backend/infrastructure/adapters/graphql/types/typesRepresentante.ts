@@ -19,6 +19,7 @@ export const typesRepresentate = gql`
     fotoLogoPublicidad: String!
     hojaVida: String!
     resumenCurriculum: String!
+    servicios: [Servicios]
     aceptaConvenio: String!
     aceptaTratamientoDatos: String!
     aceptaDocumentoSARLAFT: String!
@@ -27,12 +28,12 @@ export const typesRepresentate = gql`
   }
 
   type Query {
-    ServiciosTabla: [Servicio]
-    Servicio(identificacion: String!): Servicio
+    RepresentantesTabla: [Representante]
+    Representante(_id: String!): Representante
   }
 
   type Mutation {
-    CrearServicio(
+    CrearRepresentante(
       identificacion: String!
       foto: String!
       nombreCompleto: String!
@@ -42,7 +43,6 @@ export const typesRepresentate = gql`
       municipio: String!
       direccion: String!
       paginaWeb: String
-      servicios: [Servicios]!
       cuentaDeAhorros: String!
       distintivoHabilitacion: String!
       convalidacionIcfes: String
@@ -53,10 +53,6 @@ export const typesRepresentate = gql`
       aceptaTratamientoDatos: Boolean!
       aceptaDocumentoSARLAFT: Boolean!
       aceptaCodigoEticaSoyTuSalud: Boolean!
-    ): Servicio
-    ActualizarEstadoServicio(
-      habilitado: Boolean!
-      identificacion: String!
-    ): Servicio
+    ): Representante
   }
 `

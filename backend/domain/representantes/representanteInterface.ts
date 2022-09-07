@@ -9,10 +9,10 @@ export interface Representante {
   departamento: String
   municipio: String
   direccion: String
-  paginaWeb: String
+  paginaWeb?: String
   cuentaDeAhorros: String
   distintivoHabilitacion: String
-  convalidacionIcfes: String
+  convalidacionIcfes?: String
   fotoLogoPublicidad: String
   hojaVida: String
   resumenCurriculum: String
@@ -20,5 +20,5 @@ export interface Representante {
   aceptaTratamientoDatos: Boolean
   aceptaDocumentoSARLAFT: Boolean
   aceptaCodigoEticaSoyTuSalud: Boolean
-  habilitado: Boolean
+  habilitado?: Boolean
 }

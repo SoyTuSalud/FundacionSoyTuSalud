@@ -1,27 +1,23 @@
 import { Servicios } from '../../../../domain/servicios/serviciosInterface';
 import {
-  serviciosTabla,
-  servicio,
+  representantesTabla,
+  representante,
   crearRepresentante,
 } from '../../mongo/mongoAdapterRepresentante'
 import { crearServicio } from '../../mongo/mongoAdapterServicios';
 
 export const resolversRepresentante = {
   Query: {
-    ServiciosTabla: async () => {
-      return await serviciosTabla()
+    RepresentantesTabla: async () => {
+      return await representantesTabla()
     },
-    Servicio: async (parent: any, args: any) => {
-      return await servicio(args._id)
+    Representante: async (parent: any, args: any) => {
+      return await representante(args._id)
     },
   },
   Mutation: {
     CrearRepresentante: async (parent: any, args: any) => {
-      let representante = await crearRepresentante(args);
-      args.sevicios.forEach((element: Servicios) => {
-        crearServicio({...element, representante: representante._id})
-      })
-      return representante;
+      return await crearRepresentante(args);
     }
   },
 }
