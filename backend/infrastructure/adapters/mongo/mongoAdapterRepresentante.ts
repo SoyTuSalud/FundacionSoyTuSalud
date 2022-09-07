@@ -1,6 +1,8 @@
 import { Representante } from '../../../domain/representantes/representanteInterface'
+import { ResponseEntity } from '../../../domain/commons/responseEntity'
 import conectarBD from './configurations/mongoConfiguration'
 import representanteModel from './schemas/mongoSchemaRepresentante'
+import { Status } from '../../../domain/commons/StatusInterface'
 
 export const representantesTabla = async () => {
   await conectarBD()
@@ -17,9 +19,14 @@ export const representante = async (id: String) =>{
     await conectarBD()
 
     return await representanteModel.findById(id).populate("servicios")
-    .then(data => {
+    .then((data: Representante) => {
       console.log(data)
-        return data
+
+      let status : Status = new Status("0", "exitoso")
+      let response : ResponseEntity<Representante> = new ResponseEntity(data, status)
+
+      return response
+
     }).catch(e =>{
       console.log(e)
         return new representanteModel()

@@ -11,8 +11,8 @@ export const typesFilantropo = gql`
     correo: String!
   }
   type Query {
-    Filantropos: [Filantropo]
-    Filantropo(_id: String!): Filantropo
+    Filantropos: ResponseList
+    Filantropo(_id: String!): Response
   }
 
   type Mutation {
@@ -23,6 +23,6 @@ export const typesFilantropo = gql`
       celular: String!
       direccion: String!
       correo: String!
-    ): Filantropo
+    ): Response
   }
 `

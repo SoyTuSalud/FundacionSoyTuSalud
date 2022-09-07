@@ -27,11 +27,24 @@ export const typesRepresentate = gql`
     habilitado: Boolean!
   }
 
-  type Query {
-    RepresentantesTabla: [Representante]
-    Representante(_id: String!): Representante
+  type Response{
+      body: Representante
+      status: Status
+  }
+  type ResponseList{
+      body: [Representante]
+      status: Status
+  }
+    type Status{
+      code: String!
+      description: String!
   }
 
+  type Query {
+    RepresentantesTabla: ResponseList
+    Representante(_id: String!): Response
+  }
+  
   type Mutation {
     CrearRepresentante(
       identificacion: String!
