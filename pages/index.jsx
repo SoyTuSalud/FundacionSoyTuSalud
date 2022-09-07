@@ -18,20 +18,20 @@ export default function Home() {
                                     Sobre Nosotros
                                 </span>
                                 <h2 className="heading__title">
-                                    <span>Soy Tú Salud</span>
+                                    <span>Fundacion Soy Tú Salud</span>
                                 </h2>
                             </div>
                             <p>
                                 Conoces a algún familiar, amigo, persona o tú
                                 que necesite algún servicio médico y se
                                 encuentre en situación de vulnerabilidad?. En{' '}
-                                <a href="">www.soytusalud.org</a> informa tu
+                                <a href="https://www.fundacionsoytusalud.org/">www.fundacionsoytusalud.org/</a> informa tu
                                 historia o su historia, aplica y Listo!.
                             </p>
                             <p className="pb-4">
                                 {' '}
                                 En la Fundación{' '}
-                                <a href="">www.soytusalud.org</a> una vez has
+                                <a href="https://www.fundacionsoytusalud.org/">www.fundacionsoytusalud.org</a> una vez has
                                 demostrado que estás en una situación de
                                 vulnerabilidad, podrás acceder :{' '}
                             </p>
