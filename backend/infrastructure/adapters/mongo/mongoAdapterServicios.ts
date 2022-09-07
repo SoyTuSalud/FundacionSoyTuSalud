@@ -27,3 +27,29 @@ export const crearServicio = async (args: any) => {
       return new servicioModel()
     })
 }
+
+export const serviciosTabla = async () =>{
+
+  await conectarBD()
+
+  return await servicioModel.find({})
+  .then(data => {
+    return data
+  }).catch(e =>{
+    console.log(e)
+  })
+
+}
+
+export const servicio = async (id) =>{
+
+  await conectarBD()
+
+  return await servicioModel.findById(id)
+  .then(data => {
+    return data
+  }).catch(e =>{
+    console.log(e)
+  })
+
+}

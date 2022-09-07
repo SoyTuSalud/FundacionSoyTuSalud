@@ -16,6 +16,12 @@ export const typesServicios = gql`
     valorServicio: Int!
     representante: Representante!
   }
+
+  type Query{
+    serviciosTabla: [Servicios]
+    servicio(_id: String) : Servicios
+  }
+
   type Mutation {
     crearServicio(
       tipoServicio: String!
