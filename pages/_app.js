@@ -5,6 +5,7 @@ import { ApolloProvider } from '@apollo/client'
 import { AuthContext } from '../context/useAuth'
 import { ThemeProvider } from '@mui/material/styles'
 import { lightTheme } from '../components/Ui/themes/lightTheme'
+import { appWithTranslation } from 'next-i18next'
 
 function MyApp({ Component, pageProps }) {
   const [authUser, setAuthUser] = useState({})
@@ -19,4 +20,4 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-export default MyApp
+export default appWithTranslation(MyApp)
