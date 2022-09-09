@@ -6,7 +6,7 @@ import { createEmotionCache } from '../utils/create-motion-cache'
 class CustomDocument extends Document {
   render() {
     return (
-      <Html lang="en">
+      <Html lang="es-MX">
         <Head>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
