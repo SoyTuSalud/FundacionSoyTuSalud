@@ -6,7 +6,6 @@ import { auth } from '../../../firebase/initConfig'
 import { signOut } from 'firebase/auth'
 import { useAuth } from '../../../context/useAuth'
 import { useRouter } from 'next/router'
-import LoginModal from '../../LoginModal'
 
 import {
   UserIcon,

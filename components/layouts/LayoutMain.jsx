@@ -4,7 +4,7 @@ import { auth } from '../../firebase/initConfig'
 import { useAuth } from '../../context/useAuth'
 import { client } from '../../graphql/initClientSide'
 import { authUser } from '../../graphql/user/queries'
-import { Navbar, ImageBackground, MenuFooter } from '../Ui/public'
+import { Navbar, MenuFooter } from '../Ui/public'
 import { Box } from '@mui/material'
 
 export const LayoutMain = ({ children }) => {
@@ -34,7 +34,6 @@ export const LayoutMain = ({ children }) => {
   return (
     <Box sx={{ backgroundColor: '#F9F7F6' }}>
       <Navbar></Navbar>
-      <ImageBackground></ImageBackground>
       {children}
       <MenuFooter></MenuFooter>
     </Box>

@@ -4,12 +4,20 @@ import Image from 'next/image'
 import { LayoutMain } from '../components/layouts/LayoutMain'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
+import { ImageBackground } from '../components/Ui/public'
 
 export default function Home({ locale }) {
   const { t } = useTranslation()
 
+  const propsHome = {
+    title:t('home:tituloHome'),
+    title2: t('home:titulohome2'),
+    image: "/promo_c1.png"
+  }
+  
   return (
     <LayoutMain>
+      <ImageBackground propsHome = {propsHome}/>
       <h1>{locale}</h1>
       <section className="" id="about">
         <div className="container mt-12">
@@ -26,15 +34,15 @@ export default function Home({ locale }) {
               <p>
                 {t('home:primerTexto')}{' '}
                 <a href="https://www.fundacionsoytusalud.org">
-                {t('home:fundacion')} Soy Tú Salud
+                  {t('home:fundacion')} Soy Tú Salud
                 </a>{' '}
                 {t('home:segundoTexto')}.
               </p>
               <p className="pb-4">
                 {' '}
-                {t('home:EnLa')} {' '}
+                {t('home:EnLa')}{' '}
                 <a href="https://www.fundacionsoytusalud.org/">
-                {t('home:fundacion')} Soy Tú Salud
+                  {t('home:fundacion')} Soy Tú Salud
                 </a>{' '}
                 {t('home:tercerTexto')} :{' '}
               </p>
@@ -45,9 +53,7 @@ export default function Home({ locale }) {
                     <li>{t('home:lista2')}</li>
                     <li>{t('home:lista3')}</li>
                     <li>{t('home:lista4')}</li>
-                    <li>
-                    {t('home:lista5')}
-                    </li>
+                    <li>{t('home:lista5')}</li>
                   </ul>
                 </div>
               </div>
@@ -84,7 +90,9 @@ export default function Home({ locale }) {
           <div className="row margin-bottom">
             <div className="col-12">
               <div className="heading heading--center">
-                <span className="heading__pre-title">{t('home:servicios')}</span>
+                <span className="heading__pre-title">
+                  {t('home:servicios')}
+                </span>
                 <h2 className="heading__title">
                   <span>{t('home:hacemos')}</span>{' '}
                   <span>{t('home:personas')}</span>{' '}
