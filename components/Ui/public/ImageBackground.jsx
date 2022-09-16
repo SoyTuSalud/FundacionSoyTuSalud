@@ -10,7 +10,7 @@ const initialState = {
   title2: 'con recursos de Responsabilidad Social',
 }
 
-export const ImageBackground = ({propsHome}) => {
+export const ImageBackground = ({propsImage}) => {
   
   // const router = useRouter()
   // useEffect(() => {
@@ -80,7 +80,7 @@ export const ImageBackground = ({propsHome}) => {
         position="relative"
       >
         <Image
-          src={propsHome.image}
+          src={propsImage.image}
           alt="img"
           layout="fill"
           objectFit="cover"
@@ -95,9 +95,9 @@ export const ImageBackground = ({propsHome}) => {
               className="text-white mt-12 text-3xl md:text-4xl lg:text-6xl xl:text-6xl tracking-tight text-left"
             >
               <span className="font-bold" data-lang="eslogan1">
-                {propsHome?.title}{' '}
+                {propsImage?.title}{' '}
               </span>
-              <span className="font-light">{propsHome?.title2}</span>
+              <span className="font-light">{propsImage?.title2}</span>
             </Box>
           </div>
         </Container>

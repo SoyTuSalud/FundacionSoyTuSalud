@@ -4,10 +4,10 @@ import { auth } from '../../firebase/initConfig'
 import { useAuth } from '../../context/useAuth'
 import { client } from '../../graphql/initClientSide'
 import { authUser } from '../../graphql/user/queries'
-import { Navbar, MenuFooter } from '../Ui/public'
+import { Navbar, MenuFooter, ImageBackground } from '../Ui/public'
 import { Box } from '@mui/material'
 
-export const LayoutMain = ({ children }) => {
+export const LayoutMain = ({ children , propsImage , t }) => {
   const { setAuthUser } = useAuth()
 
   useEffect(() => {
@@ -33,9 +33,10 @@ export const LayoutMain = ({ children }) => {
 
   return (
     <Box sx={{ backgroundColor: '#F9F7F6' }}>
-      <Navbar></Navbar>
+      <Navbar t={t} ></Navbar>
+      <ImageBackground propsImage = {propsImage}/>
       {children}
-      <MenuFooter></MenuFooter>
+      <MenuFooter t={t}></MenuFooter>
     </Box>
   )
 }

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-export const MenuFooter = () => {
+export const MenuFooter = ({t}) => {
   return (
     <>
       <section className="bottom-background">
@@ -42,11 +42,11 @@ export const MenuFooter = () => {
               </div>
             </div>
             <div className="col-sm-6 col-lg-3">
-              <h4 className="footer__title">Contáctanos</h4>
+              <h4 className="footer__title">{t("footer:contacto")}</h4>
               <div className="footer-contacts">
                 <p className="footer-contacts__address">Medellín</p>
                 <p className="footer-contacts__phone">
-                  Teléfono: <a href="tel:+3207148401">+57 320 702 3823</a>
+                {t("footer:telefono")}: <a href="tel:+3207148401">+57 320 702 3823</a>
                 </p>
                 <p className="footer-contacts__mail">
                   Email:{' '}
@@ -58,12 +58,12 @@ export const MenuFooter = () => {
             </div>
             <div className="col-sm-6 col-lg-3"></div>
             <div className="col-sm-6 col-lg-3">
-              <h4 className="footer__title">Te Acompaño</h4>
+              <h4 className="footer__title">{t("footer:teAcompano")}</h4>
               <p>
-                Ayúdanos a cambiar la vida de los menos favorecidos en Colombia
+                {t("footer:helpUs")}
               </p>
               <a className="button footer__button button--filled" href="#">
-                TE ACOMPAÑO
+                {t("footer:teAcompano")}
               </a>
             </div>
           </div>
@@ -112,7 +112,7 @@ export const MenuFooter = () => {
                 </li>
               </ul>
               <p className="footer-copyright">
-                Copyrights Soy Tú © 2022. Todos los derechos reservado.
+                Copyrights Soy Tú © 2022. {t("footer:copyrights")}
               </p>
             </div>
           </div>

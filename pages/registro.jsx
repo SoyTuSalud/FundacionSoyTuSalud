@@ -8,8 +8,19 @@ import { LayoutMain } from '../components/layouts/LayoutMain'
 
 import useFormData from '../hooks/useFormData'
 import PrivatePages from '../components/PrivatePages'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const Registro = () => {
+
+  const { t } = useTranslation()
+
+  const propsImage = {
+      title:t('home:tituloHome'),
+      title2: t('home:titulohome2'),
+      image: "/promo_c1.png"
+    }
+
   const router = useRouter()
   const [crearUsuario] = useMutation(registrarUsuario)
 
@@ -35,7 +46,7 @@ const Registro = () => {
   }
 
   return (
-    <LayoutMain>
+    <LayoutMain propsImage = {propsImage} t={t}>
       <PrivatePages login={false}>
         <main className="main">
           {/* <!-- section start--> */}
@@ -52,17 +63,17 @@ const Registro = () => {
                     id="Form_RegistroPaciente"
                   >
                     <div className="form__fieldset">
-                      <h6 className="form__title">Registrate</h6>
+                      <h6 className="form__title">{t('navbar:registro')}</h6>
                       <div className="row">
                         <div className="col-12">
                           <div className="row">
                             <select
                               className="form__field"
-                              defaultValue={'Tipo Documento'}
+                              defaultValue={t('registro:tipoDocumento')}
                               name="tipoDocumento"
                               id="tipoDocumento"
                             >
-                              <option disabled>Tipo Documento</option>
+                              <option disabled>{t('registro:tipoDocumento')}</option>
                               <option>CC</option>
                               <option>CE</option>
                               <option>TI</option>
@@ -91,7 +102,7 @@ const Registro = () => {
                               type="text"
                               name="nombre"
                               id="nombre"
-                              placeholder="Nombres Completo"
+                              placeholder={t('registro:nombreCompleto')}
                             />
                           </div>
                           <div className="row">
@@ -100,7 +111,7 @@ const Registro = () => {
                               type="text"
                               name="apellidos"
                               id="apellidos"
-                              placeholder="Apellidos Completo"
+                              placeholder={t('registro:apellidoCompleto')}
                             />
                           </div>
                           <div className="row">
@@ -109,7 +120,7 @@ const Registro = () => {
                               type="text"
                               name="celular"
                               id="celular"
-                              placeholder="Celular"
+                              placeholder={t('footer:telefono')}
                             />
                           </div>
                           <div className="row">
@@ -118,7 +129,7 @@ const Registro = () => {
                               type="correo"
                               name="correo"
                               id="correo"
-                              placeholder="Correo"
+                              placeholder={t('login:email')}
                             />
                           </div>
                           <div className="row">
@@ -127,7 +138,7 @@ const Registro = () => {
                               type="password"
                               name="password"
                               id="password"
-                              placeholder="Contraseña"
+                              placeholder={t('login:constrasena')}
                               autoComplete="on"
                             />
                           </div>
@@ -137,7 +148,7 @@ const Registro = () => {
                               type="password"
                               name=""
                               id=""
-                              placeholder="Confirmar Contraseña"
+                              placeholder={t('registro:confirmarContra')}
                               autoComplete="on"
                             />
                           </div>
@@ -152,9 +163,9 @@ const Registro = () => {
                           <Link href="/login" passHref>
                             <strong className="cursor-pointer">
                               <a className="form__link btn_IniciarUsaurio2">
-                                Inicia sesión
+                              {t('navbar:iniciarSesion')}
                               </a>{' '}
-                              si tienes una cuenta
+                              {t('registro:ifCuenta')}
                             </strong>
                           </Link>
                         </div>
@@ -180,6 +191,15 @@ const Registro = () => {
       </PrivatePages>
     </LayoutMain>
   )
+}
+
+
+export const getStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['footer','navbar','home','registro','login'])),
+    },
+  }
 }
 
 export default Registro

@@ -12,8 +12,19 @@ import PrivatePages from '../../components/PrivatePages'
 import useFormData from '../../hooks/useFormData'
 import { useAuth } from '../../context/useAuth'
 import { LayoutMain } from '../../components/layouts/LayoutMain'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const Tuhistoria = () => {
+
+  const { t } = useTranslation()
+
+  const propsImage = {
+      title:t('home:tituloHome'),
+      title2: t('home:titulohome2'),
+      image: "/promo_c1.png"
+    }
+
   const [tuHistoria] = useMutation(tuHistoriaUpdate)
   const datePick = new Date().toISOString().split('T')[0]
   const [filterMunicipios, setFilterMunicipios] = useState([])
@@ -93,7 +104,7 @@ const Tuhistoria = () => {
   }
 
   return (
-    <LayoutMain>
+    <LayoutMain propsImage = {propsImage} t={t}>
       <PrivatePages login={true}>
         <main className="main">
           <section className="section contacts no-padding-top">
@@ -1147,6 +1158,14 @@ const Tuhistoria = () => {
       </PrivatePages>
     </LayoutMain>
   )
+}
+
+export const getStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['navbar','home','registro'])),
+    },
+  }
 }
 
 export default Tuhistoria
