@@ -1,6 +1,6 @@
 import { TipoDocumentoEnum } from "../commons/enums/tipoDocumentoEnum"
 
-export interface filantropo {
+export interface Filantropo {
   tipoDocumento: String
   identificacion: TipoDocumentoEnum
   nombre: String

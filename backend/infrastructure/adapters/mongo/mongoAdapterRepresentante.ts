@@ -3,15 +3,33 @@ import { ResponseEntity } from '../../../domain/commons/responseEntity'
 import conectarBD from './configurations/mongoConfiguration'
 import representanteModel from './schemas/mongoSchemaRepresentante'
 import { Status } from '../../../domain/commons/StatusInterface'
+import { ResponseCodes } from '../../../domain/commons/enums/responseCodesEnum'
 
 export const representantesTabla = async () => {
   await conectarBD()
   return await representanteModel.find({})
   .populate("servicios")
   .then((data) => {
-    return data
+
+    if(!data){
+
+        const status : Status = new Status(ResponseCodes.SUCCESS_EMPTY, "exitoso sin datos")
+        const response : ResponseEntity<null> = new ResponseEntity(null, status)
+
+        return response
+    }
+
+    const status : Status = new Status(ResponseCodes.SUCCESS, "exitoso")
+    const response : ResponseEntity<any[]> = new ResponseEntity(data, status)
+
+    return response
+
   }).catch(e =>{
-    return new representanteModel()
+    const status : Status = new Status(ResponseCodes.ERROR,  e.message)
+
+      const response : ResponseEntity<null> = new ResponseEntity(null, status)
+
+      return response
   })
 }
 
@@ -20,43 +38,33 @@ export const representante = async (id: String) =>{
 
     return await representanteModel.findById(id).populate("servicios")
     .then((data: Representante) => {
-      console.log(data)
 
-      let status : Status = new Status("0", "exitoso")
-      let response : ResponseEntity<Representante> = new ResponseEntity(data, status)
+      if(!data){
+        const status : Status = new Status(ResponseCodes.SUCCESS_EMPTY, "exitoso sin datos")
+        const response : ResponseEntity<null> = new ResponseEntity(null, status)
+
+        return response
+
+      }
+
+      const status : Status = new Status(ResponseCodes.SUCCESS, "exitoso")
+      const response : ResponseEntity<Representante> = new ResponseEntity(data, status)
 
       return response
 
-    }).catch(e =>{
-      console.log(e)
-        return new representanteModel()
+    }).catch((e)  =>{
+
+      const status : Status = new Status(ResponseCodes.ERROR,  e.message)
+
+      const response : ResponseEntity<null> = new ResponseEntity(null, status)
+
+      return response
     })
 }
 
 export const crearRepresentante = async (args: Representante) =>{
 
     await conectarBD()
-
-    // let newRepresentante = new representanteModel({
-    //   identificacion: args.identificacion,
-    //   foto: args.foto,
-    //   nombreCompleto: args.nombreCompleto,
-    //   tipoDocumento: args.tipoDocumento,
-    //   celular: args.celular,
-    //   departamento: args.departamento,
-    //   municipio: args.municipio,
-    //   direccion: args.direccion,
-    //   cuentaDeAhorros:args.cuentaDeAhorros, 
-    //   distintivoHabilitacion:args.distintivoHabilitacion,      
-    //   fotoLogoPublicidad:args.fotoLogoPublicidad, 
-    //   hojaVida:args.hojaVida, 
-    //   resumenCurriculum:args.resumenCurriculum, 
-    //   aceptaConvenio:args.aceptaConvenio, 
-    //   aceptaTratamientoDatos:args.aceptaTratamientoDatos, 
-    //   aceptaDocumentoSARLAFT:args.aceptaDocumentoSARLAFT, 
-    //   aceptaCodigoEticaSoyTuSalud:args.aceptaCodigoEticaSoyTuSalud, 
-    // });
-
 
     let newRepresentante: Representante = {
       identificacion: args.identificacion,
@@ -87,11 +95,20 @@ export const crearRepresentante = async (args: Representante) =>{
     }
 
     return await representanteModel.create(newRepresentante)
-    .then(data =>{
-        return data
+    .then((data : any) =>{
+
+      const status : Status = new Status(ResponseCodes.SUCCESS, "exitoso")
+      const response : ResponseEntity<Representante> = new ResponseEntity(data, status)
+
+      return response
+
     }).catch(e =>{
-        console.log(e)
-        return new representanteModel()
+
+        const status : Status = new Status(ResponseCodes.ERROR,  e.message)
+
+        const response : ResponseEntity<null> = new ResponseEntity(null, status)
+
+      return response
     })
 
 }

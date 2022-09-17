@@ -1,15 +1,62 @@
+import { ResponseCodes } from '../../../domain/commons/enums/responseCodesEnum'
+import { ResponseEntity } from '../../../domain/commons/responseEntity'
+import { Status } from '../../../domain/commons/StatusInterface'
+import { User } from '../../../domain/user/userInterface'
 import conectarBD from './configurations/mongoConfiguration'
 import userModel from './schemas/mongoSchemaUser'
 
 export const findAllUsers = async () => {
   await conectarBD()
   return await userModel.find({})
+  .then((data) => {
+
+    if(!data){
+
+        const status : Status = new Status(ResponseCodes.SUCCESS_EMPTY, "exitoso sin datos")
+        const response : ResponseEntity<null> = new ResponseEntity(null, status)
+
+        return response
+    }
+
+    const status : Status = new Status(ResponseCodes.SUCCESS, "exitoso")
+    const response : ResponseEntity<any[]> = new ResponseEntity(data, status)
+
+    return response
+
+  }).catch(e =>{
+    
+    const status : Status = new Status(ResponseCodes.ERROR,  e.message)
+    const response : ResponseEntity<null> = new ResponseEntity(null, status)
+
+    return response
+  })
 }
 
 export const findAllUsersTuHistoria = async () => {
   await conectarBD()
   return await userModel.find({
-    tuHistoria: true,
+    formularioTuHistoria: true,
+  }).then((data) => {
+
+    if(!data){
+
+        const status : Status = new Status(ResponseCodes.SUCCESS_EMPTY, "exitoso sin datos")
+        const response : ResponseEntity<null> = new ResponseEntity(null, status)
+
+        return response
+    }
+
+    const status : Status = new Status(ResponseCodes.SUCCESS, "exitoso")
+    const response : ResponseEntity<any[]> = new ResponseEntity(data, status)
+
+    return response
+
+  }).catch(e =>{
+    
+    const status : Status = new Status(ResponseCodes.ERROR,  e.message)
+    const response : ResponseEntity<null> = new ResponseEntity(null, status)
+
+    return response
   })
 }
 
@@ -19,12 +66,28 @@ export const findUserById = async (uid: String) => {
   return await userModel
     .findOne({
       uid
-    })
-    .then((data) => {
-      return data 
-    })
-    .catch((err) => {
-      return new userModel()
+    }).then((data: User) => {
+
+      if(!data){
+        const status : Status = new Status(ResponseCodes.SUCCESS_EMPTY, "exitoso sin datos")
+        const response : ResponseEntity<null> = new ResponseEntity(null, status)
+  
+        return response
+  
+      }
+  
+      const status : Status = new Status(ResponseCodes.SUCCESS, "exitoso")
+      const response : ResponseEntity<User> = new ResponseEntity(data, status)
+  
+      return response
+  
+    }).catch((e)  =>{
+  
+      const status : Status = new Status(ResponseCodes.ERROR,  e.message)
+  
+      const response : ResponseEntity<null> = new ResponseEntity(null, status)
+  
+      return response
     })
 }
 
@@ -39,13 +102,19 @@ export const createUser = async (args: any) => {
       tipoDocumento: args.tipoDocumento,
       celular: args.celular,
       correo: args.correo,
-    })
-    .then((data) => {
-      return data
-    })
-    .catch((e) => {
-      console.log(e)
-    })
+    }).then((data: any) => {
+      
+      const status : Status = new Status(ResponseCodes.SUCCESS, "exitoso")
+      const response : ResponseEntity<User> = new ResponseEntity(data, status)
+
+      return response
+      })
+      .catch((e) => {
+
+        const status : Status = new Status(ResponseCodes.ERROR,  e.message)
+        const response : ResponseEntity<null> = new ResponseEntity(null, status)
+        return response
+      })
 }
 
 export const createUserTuHistoria = async (args: any) => {
@@ -72,13 +141,26 @@ export const createUserTuHistoria = async (args: any) => {
       sisben: args.sisben,
       autorizacionFoto: args.autorizacionFoto,
       recopilacionDatos: args.recopilacionDatos,
-    })
-    .then((data) => {
-      console.log(data)
-      return data
-    })
-    .catch((e) => {
-      console.log(e)
-      return new userModel()
-    })
+      formularioTuHistoria: true
+    }).then((data: any) => {
+
+      if(!data){
+
+        const status : Status = new Status(ResponseCodes.SUCCESS_EMPTY, "exitoso sin datos")
+        const response : ResponseEntity<null> = new ResponseEntity(null, status)
+
+        return response
+    }
+      
+      const status : Status = new Status(ResponseCodes.SUCCESS, "exitoso")
+      const response : ResponseEntity<User> = new ResponseEntity(data, status)
+
+      return response
+      })
+      .catch((e) => {
+
+        const status : Status = new Status(ResponseCodes.ERROR,  e.message)
+        const response : ResponseEntity<null> = new ResponseEntity(null, status)
+        return response
+      })
 }

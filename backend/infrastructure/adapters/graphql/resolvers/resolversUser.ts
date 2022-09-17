@@ -1,3 +1,4 @@
+import { ResponseCodes } from '../../../../domain/commons/enums/responseCodesEnum'
 import {
   findAllUsers,
   findAllUsersTuHistoria,
@@ -26,4 +27,18 @@ export const resolversUsuario = {
       return await createUserTuHistoria(args)
     },
   },
+  UnionUsuario: {
+    __resolveType(obj: any){
+      return obj.status.code === ResponseCodes.SUCCESS ?  
+                  "ResponseUsuario" :
+                  "ResponseUsuarioError" 
+    }
+  },
+  UnionUsuarioList: {
+    __resolveType(obj: any){
+      return obj.status.code === ResponseCodes.SUCCESS ?  
+                  "ResponseUsuarioList" :
+                  "ResponseUsuarioError" 
+    }
+  }
 }

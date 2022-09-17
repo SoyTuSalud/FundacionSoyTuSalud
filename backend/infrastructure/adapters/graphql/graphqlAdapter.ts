@@ -10,12 +10,17 @@ import { resolversRepresentante } from './resolvers/resolversRepresentante'
 import { resolversServicios } from './resolvers/resolversServicios'
 import { resolversServiciosCodes } from './resolvers/resolversServicesCodes'
 
-export const resolvers = [resolversUsuario, resolversServiciosCodes, resolversRepresentante, resolversServicios]
+export const resolvers = [resolversUsuario, 
+  resolversServiciosCodes, 
+  resolversRepresentante, 
+  resolversServicios,
+  resolversFilantropos]
 
 export const typeDefs = [
   typesUsuario,
   typesServiciosCodes,
   typesRepresentate,
   typesServicios,
+  typesFilantropo,
   typesEnums,
 ]

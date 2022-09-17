@@ -1,5 +1,5 @@
 
-export interface ServiceCodes{
+export interface ServicesCodes{
 
     DESCRIPCION_SERVICIO: String
     CODIGO: String
