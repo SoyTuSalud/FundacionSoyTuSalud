@@ -5,18 +5,17 @@ import { LayoutMain } from '../components/layouts/LayoutMain'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 
-
 export default function Home({ locale }) {
   const { t } = useTranslation()
 
   const propsImage = {
-    title:t('home:tituloHome'),
+    title: t('home:tituloHome'),
     title2: t('home:titulohome2'),
-    image: "/promo_c1.png"
+    image: '/promo_c1.png',
   }
 
   return (
-    <LayoutMain t={t} propsImage={propsImage} >
+    <LayoutMain t={t} propsImage={propsImage}>
       <section className="" id="about">
         <div className="container mt-12">
           <div className="row align-items-center">
@@ -135,7 +134,7 @@ export default function Home({ locale }) {
 export const getStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['home', 'footer','navbar'])),
+      ...(await serverSideTranslations(locale, ['home', 'footer', 'navbar'])),
     },
   }
 }
