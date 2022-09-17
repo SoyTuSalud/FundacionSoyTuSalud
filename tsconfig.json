@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/trabajaNosotros.jsx", "pages/registro.jsx", "pages/login.jsx", "pages/index.jsx", "pages/_document.jsx", "pages/_app.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/trabajaNosotros.jsx", "pages/registro.jsx", "pages/login.jsx", "pages/index.jsx", "pages/_document.jsx", "pages/_app.jsx", "hooks/useFormData.js"],
   "exclude": ["node_modules"]
 }

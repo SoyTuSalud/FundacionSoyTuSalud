@@ -98,9 +98,6 @@ RepresentanteSchema.virtual('servicios', {
   ref: 'Servicios',
   localField: '_id', //campo en el modelo representate
   foreignField: 'representante', // campo en el modelo servicio
-},
-{
-  versionKey: false
 }
 )
 
