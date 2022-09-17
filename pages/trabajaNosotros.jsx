@@ -14,6 +14,8 @@ import useFormData from '../hooks/useFormData'
 import { LayoutMain } from '../components/layouts/LayoutMain'
 import { useRouter } from 'next/router'
 import PrivatePages from '../components/PrivatePages'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
 
 const valuesEspacialiad = [
   'especialidad',
@@ -34,6 +36,15 @@ let filtrosCode = {
 }
 
 const TrabajaNosotros = () => {
+
+  const { t } = useTranslation()
+
+  const propsImage = {
+      title:t('home:tituloHome'),
+      title2: t('home:titulohome2'),
+      image: "/promo_c1.png"
+    }
+
   const router = useRouter()
   const [crearServicio] = useMutation(crearServicios)
   const [filterMunicipios, setFilterMunicipios] = useState([])
@@ -164,7 +175,7 @@ const TrabajaNosotros = () => {
   }
 
   return (
-    <LayoutMain>
+    <LayoutMain propsImage= {propsImage} t={t}>
       <PrivatePages login={false}>
         <main className="main">
           <section className="section contacts no-padding-top">
@@ -928,6 +939,14 @@ const ListServices = ({ index, handleCheckBox }) => {
       </div>
     </div>
   )
+}
+
+export const getStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['navbar','home','registro'])),
+    },
+  }
 }
 
 export default TrabajaNosotros

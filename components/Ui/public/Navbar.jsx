@@ -6,7 +6,7 @@ import { auth } from '../../../firebase/initConfig'
 import { signOut } from 'firebase/auth'
 import { useAuth } from '../../../context/useAuth'
 import { useRouter } from 'next/router'
-import LoginModal from '../../LoginModal'
+import '../../../node_modules/flag-icons/css/flag-icons.min.css'
 
 import {
   UserIcon,
@@ -18,72 +18,68 @@ import {
   XIcon,
 } from '@heroicons/react/outline'
 
-const solutions = [
-  {
-    name: 'Incio',
-    description:
-      'Get a better understanding of where your traffic is coming from.',
-    href: '/',
-    icon: HomeIcon,
-  },
-  {
-    name: 'Pacientes',
-    description: 'Speak directly to your customers in a more meaningful way.',
-    subNav: [
-      {
-        link: 'tuhistoria',
-        label: 'Tu historia',
-      },
-    ],
-    icon: UserIcon,
-  },
-  {
-    name: 'Filantropos',
-    description: "Your customers' data will be safe and secure.",
-    subNav: [
-      {
-        link: 'historias',
-        label: 'Pacientes Clasificados',
-      },
-      {
-        link: 'trazabilidad',
-        label: 'Trazabilidad Pacientes',
-      },
-      {
-        link: 'donaciones',
-        label: 'Donaciones',
-      },
-    ],
-    icon: UserGroupIcon,
-  },
-  {
-    name: 'Aliados',
-    description: "Connect with third-party tools that you're already using.",
-    subNav: [
-      {
-        link: 'instituciones',
-        label: 'Instituciones',
-      },
-      {
-        link: 'empresasconproposito',
-        label: 'Empresas con propósito',
-      },
-      {
-        link: 'personasconproposito',
-        label: 'Personas con propósito',
-      },
-    ],
-    icon: OfficeBuildingIcon,
-  },
-  {
-    name: 'Trabaja con nosotros',
-    href: '/trabajaNosotros',
-    icon: BriefcaseIcon,
-  },
-]
+export const Navbar = ({ t }) => {
+  const solutions = [
+    {
+      name: t('navbar:inicio'),
+      href: '/',
+      icon: HomeIcon,
+    },
+    {
+      name: t('navbar:pacientes'),
+      subNav: [
+        {
+          link: 'tuhistoria',
+          label: t('navbar:tuHistoria'),
+        },
+      ],
+      icon: UserIcon,
+    },
+    {
+      name: t('navbar:filantropos'),
+      subNav: [
+        {
+          link: 'historias',
+          label: t('navbar:clasificados'),
+        },
+        {
+          link: 'trazabilidad',
+          label: t('navbar:trazabilidad'),
+        },
+        {
+          link: 'donaciones',
+          label: t('navbar:donaciones'),
+        },
+      ],
+      icon: UserGroupIcon,
+    },
+    {
+      name: t('navbar:aliados'),
+      subNav: [
+        {
+          link: 'instituciones',
+          label: t('navbar:instituciones'),
+        },
+        {
+          link: 'empresasconproposito',
+          label: t('navbar:empresasProposito'),
+        },
+        {
+          link: 'personasconproposito',
+          label: t('navbar:personasProposito'),
+        },
+      ],
+      icon: OfficeBuildingIcon,
+    },
+    {
+      name: t('navbar:trabajaNosotros'),
+      href: '/trabajaNosotros',
+      icon: BriefcaseIcon,
+    },
+  ]
 
-export const Navbar = () => {
   const router = useRouter()
+
   const { authUser, setAuthUser } = useAuth()
   const handlerLogOut = async () => {
     await signOut(auth)
@@ -109,6 +105,14 @@ export const Navbar = () => {
     window.addEventListener('scroll', changeBackground, true)
     return () => window.removeEventListener('scroll', changeBackground)
   }, [])
+
+  const handleLanguage = () => {
+    if (router.locale === 'en') {
+      router.push(router.asPath, '', { locale: 'es' })
+    } else {
+      router.push(router.asPath, '', { locale: 'en' })
+    }
+  }
 
   return (
     <header
@@ -140,7 +144,7 @@ export const Navbar = () => {
                     <li className="text-black main-menu__item main-menu__item">
                       <Link href="/">
                         <a className="text-black main-menu__link font-black">
-                          Inicio
+                          {t('navbar:inicio')}
                         </a>
                       </Link>
                     </li>
@@ -148,19 +152,21 @@ export const Navbar = () => {
                       <>
                         <li className="main-menu__item main-menu__item--has-child">
                           <Link href="/">
-                            <a className="main-menu__link">Pacientes</a>
+                            <a className="main-menu__link">
+                              {t('navbar:pacientes')}
+                            </a>
                           </Link>
                           <ul className="main-menu__sub-list">
                             {authUser.formularioTuHistoria ? (
                               <li>
                                 <Link href="/miSolictud">
-                                  <a>Mi solicitud</a>
+                                  <a>{t('navbar:miSolicitud')}</a>
                                 </Link>
                               </li>
                             ) : (
                               <li>
                                 <Link href="/tuhistoria">
-                                  <a>Tu historia</a>
+                                  <a>{t('navbar:tuHistoria')}</a>
                                 </Link>
                               </li>
                             )}
@@ -202,44 +208,46 @@ export const Navbar = () => {
                                 </li> */}
                     <li className="main-menu__item main-menu__item--has-child">
                       <Link href="/">
-                        <a className="main-menu__link">Filántropos</a>
+                        <a className="main-menu__link">
+                          {t('navbar:filantropos')}
+                        </a>
                       </Link>
                       <ul className="main-menu__sub-list">
                         <li>
                           <Link href="/historias">
-                            <a>Pacientes Clasificados</a>
+                            <a>{t('navbar:clasificados')}</a>
                           </Link>
                         </li>
                         <li>
                           <Link href="/trazabilidad">
-                            <a>Trazabilidad Pacientes</a>
+                            <a>{t('navbar:trazabilidad')}</a>
                           </Link>
                         </li>
                         <li>
                           <Link href="/donaciones">
-                            <a>Donaciones</a>
+                            <a>{t('navbar:donaciones')}</a>
                           </Link>
                         </li>
                       </ul>
                     </li>
                     <li className="main-menu__item main-menu__item--has-child">
                       <Link href="/">
-                        <a className="main-menu__link">Aliados</a>
+                        <a className="main-menu__link">{t('navbar:aliados')}</a>
                       </Link>
                       <ul className="main-menu__sub-list">
                         <li>
                           <Link href="/instituciones">
-                            <a>Instituciones</a>
+                            <a>{t('navbar:instituciones')}</a>
                           </Link>
                         </li>
                         <li>
                           <Link href="/empresasconproposito">
-                            <a>Empresas Con Propósitos</a>
+                            <a>{t('navbar:empresasProposito')}</a>
                           </Link>
                         </li>
                         <li>
                           <Link href="/personasconproposito">
-                            <a>Personas Con Propósitos</a>
+                            <a>{t('navbar:personasProposito')}</a>
                           </Link>
                         </li>
                       </ul>
@@ -249,7 +257,7 @@ export const Navbar = () => {
                         <li className="text-black main-menu__item main-menu__item">
                           <Link href="/trabajaNosotros">
                             <a className="text-black main-menu__link font-black">
-                              Trabaja con Nosotros
+                              {t('navbar:trabajaNosotros')}
                             </a>
                           </Link>
                         </li>
@@ -266,7 +274,7 @@ export const Navbar = () => {
                     <a className="main-menu__link whitespace-nowrap no-underline">
                       <span className="px-4 py-1.5 items-center no-underlinejustify-center border rounded-md shadow-sm text-base font-medium text-white border-white cursor-pointer hover:bg-white hover:bg-opacity-10">
                         {' '}
-                        Registro{' '}
+                        {t('navbar:registro')}{' '}
                       </span>
                     </a>
                   </Link>
@@ -274,7 +282,7 @@ export const Navbar = () => {
                     <a className="main-menu__link whitespace-nowrap no-underline">
                       <span className="px-3 py-1.5 items-center no-underlinejustify-center border rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 cursor-pointer ">
                         {' '}
-                        Iniciar sesión{' '}
+                        {t('navbar:iniciarSesion')}{' '}
                       </span>
                     </a>
                   </Link>
@@ -293,6 +301,19 @@ export const Navbar = () => {
                 </>
               )}
             </div>
+            <li className="text-black main-menu__item main-menu__item">
+              <a
+                className="main-menu__link text-white cursor-pointer"
+                onClick={handleLanguage}
+              >
+                {router.locale}{' '}
+                {router.locale === 'en' ? (
+                  <span className="fi fi-gb"></span>
+                ) : (
+                  <span className="fi fi-es"></span>
+                )}
+              </a>
+            </li>
           </div>
         </div>
 
@@ -345,7 +366,7 @@ export const Navbar = () => {
                       >
                         <span className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 underline ">
                           {' '}
-                          Cerrar sesión{' '}
+                          {t('navbar:cerrarSesion')}{' '}
                         </span>
                       </a>
                     </>
@@ -353,16 +374,16 @@ export const Navbar = () => {
                     <>
                       <Link href={'/registro'}>
                         <a className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-                          Regístrate
+                          {t('navbar:registro')}
                         </a>
                       </Link>
                       <p className="mt-6 text-center text-base font-medium text-gray-500">
-                        Ya estas registrado?{' '}
+                        {t('navbar:yaRegistrado')}?{' '}
                       </p>
                       <div className="mt-3 flex justify-center">
                         <Link href={'/login'}>
                           <a className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-                            Iniciar sesión
+                            {t('navbar:iniciarSesion')}
                           </a>
                         </Link>
                       </div>

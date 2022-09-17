@@ -9,11 +9,21 @@ import { LayoutMain } from '/components/layouts/LayoutMain'
 import Image from 'next/image'
 import useFormData from '/hooks/useFormData'
 import PrivatePages from '/components/PrivatePages'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const Filatroposregistro = () => {
   const router = useRouter()
   const [crearFilantropo] = useMutation(registrarFilantropo)
   // const [login , setLogin] = useState(false)
+
+  const { t } = useTranslation()
+
+  const propsImage = {
+      title:t('home:tituloHome'),
+      title2: t('home:titulohome2'),
+      image: "/promo_c1.png"
+    }
 
   const { form, formData, updateFormData } = useFormData()
 
@@ -37,7 +47,7 @@ const Filatroposregistro = () => {
   }
 
   return (
-    <LayoutMain>
+    <LayoutMain propsImage= {propsImage} t={t}>
       <main className="main">
         <section className="promo-primary promo-primary--shop">
           <picture>
@@ -208,6 +218,14 @@ const Filatroposregistro = () => {
       </main>
     </LayoutMain>
   )
+}
+
+export const getStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['navbar','home','registro'])),
+    },
+  }
 }
 
 export default Filatroposregistro

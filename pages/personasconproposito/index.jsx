@@ -1,10 +1,21 @@
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Head from 'next/head'
 import Image from 'next/image'
 import { LayoutMain } from '../../components/layouts/LayoutMain'
 
 const Aliados = () => {
+
+  const { t } = useTranslation()
+
+  const propsImage = {
+      title:t('home:tituloHome'),
+      title2: t('home:titulohome2'),
+      image: "/promo_c1.png"
+    }
+
   return (
-    <LayoutMain>
+    <LayoutMain propsImage={propsImage} t={t}>
       <main className="main">
         <section className="background-section">
           <div className="container pt-12">
@@ -59,5 +70,14 @@ const Aliados = () => {
     </LayoutMain>
   )
 }
+
+export const getStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['navbar','home','registro'])),
+    },
+  }
+}
+
 
 export default Aliados

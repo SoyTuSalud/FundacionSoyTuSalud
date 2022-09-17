@@ -6,6 +6,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 import { client } from '../graphql-front/initClientSide'
 import useFormData from '../hooks/useFormData'
 import NextLink from 'next/link'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -19,10 +20,20 @@ import {
 } from '@mui/material'
 import { LayoutMain } from '../components/layouts/LayoutMain'
 import PrivatePages from '../components/PrivatePages'
+import { useTranslation } from 'next-i18next'
 
 let usuarioId = {}
 
 const Login = () => {
+
+    const { t } = useTranslation()
+
+    const propsImage = {
+        title:t('home:tituloHome'),
+        title2: t('home:titulohome2'),
+        image: "/promo_c1.png"
+      }
+
     const { setAuthUser } = useAuth()
     const { form, formData, updateFormData } = useFormData()
     const router = useRouter()
@@ -67,7 +78,7 @@ const Login = () => {
             <Head>
                 <title>Login | Soy Tu Salud</title>
             </Head>
-            <LayoutMain>
+            <LayoutMain propsImage ={propsImage} t={t} >
                 <PrivatePages login={false}>
                     <Box
                         component="main"
@@ -89,14 +100,14 @@ const Login = () => {
                                         color="textPrimary"
                                         variant="h4"
                                     >
-                                        Inicia sesión
+                                        {t('navbar:iniciarSesion')}
                                     </Typography>
                                     <Typography
                                         color="textSecondary"
                                         gutterBottom
                                         variant="body2"
                                     >
-                                        Inicia sesión en nuestra plataforma
+                                        {t('login:subTitle')}
                                     </Typography>
                                 </Box>
                                 <Box
@@ -115,7 +126,7 @@ const Login = () => {
                                         formik.touched.email &&
                                         formik.errors.email
                                     }
-                                    label="Correo Electronico"
+                                    label={t('login:email')}
                                     margin="normal"
                                     name="email"
                                     onBlur={formik.handleBlur}
@@ -134,7 +145,7 @@ const Login = () => {
                                         formik.touched.password &&
                                         formik.errors.password
                                     }
-                                    label="Contraseña"
+                                    label={t('login:contrasena')}
                                     margin="normal"
                                     name="password"
                                     onBlur={formik.handleBlur}
@@ -152,14 +163,14 @@ const Login = () => {
                                         type="submit"
                                         variant="outlined"
                                     >
-                                        Inicia sesión
+                                        {t('navbar:iniciarSesion')}
                                     </Button>
                                 </Box>
                                 <Typography
                                     color="textSecondary"
                                     variant="body2"
                                 >
-                                    No tienes cuenta?{' '}
+                                    {t('login:noCuenta')}?{' '}
                                     <NextLink href="/registro" passHref>
                                         <Link
                                             to="/registro"
@@ -169,7 +180,7 @@ const Login = () => {
                                                 cursor: 'pointer',
                                             }}
                                         >
-                                            Registrate
+                                             {t('navbar:registro')}
                                         </Link>
                                     </NextLink>
                                 </Typography>
@@ -181,5 +192,14 @@ const Login = () => {
         </>
     )
 }
+
+export const getStaticProps = async ({ locale }) => {
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, ['login', 'footer','navbar','home'])),
+      },
+    }
+  }
+  
 
 export default Login
