@@ -244,21 +244,7 @@ export const Navbar = () => {
                         </li>
                       </ul>
                     </li>
-                    {authUser ? (
-                      <>
-                        <li className="text-black main-menu__item main-menu__item ">
-                          <a
-                            onClick={handlerLogOut}
-                            className="main-menu__link whitespace-nowrap "
-                          >
-                            <span className="items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 cursor-pointer ">
-                              {' '}
-                              Cerrar sesión{' '}
-                            </span>
-                          </a>
-                        </li>
-                      </>
-                    ) : (
+                    {!authUser ? (
                       <>
                         <li className="text-black main-menu__item main-menu__item">
                           <Link href="/trabajaNosotros">
@@ -268,28 +254,44 @@ export const Navbar = () => {
                           </Link>
                         </li>
                       </>
-                    )}
+                    ) : null}
                   </ul>
                 </nav>
               </div>
             </Popover.Group>
             <div className="hidden lg:flex space-x-6 lg:mt-3">
-              <Link href={'/registro'}>
-                <a className="main-menu__link whitespace-nowrap no-underline">
-                  <span className="px-4 py-1.5 items-center no-underlinejustify-center border rounded-md shadow-sm text-base font-medium text-white border-white cursor-pointer hover:bg-white hover:bg-opacity-10">
-                    {' '}
-                    Registro{' '}
-                  </span>
-                </a>
-              </Link>
-              <Link href={'/login'}>
-                <a className="main-menu__link whitespace-nowrap no-underline">
-                  <span className="px-3 py-1.5 items-center no-underlinejustify-center border rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 cursor-pointer ">
-                    {' '}
-                    Iniciar sesión{' '}
-                  </span>
-                </a>
-              </Link>
+              {!authUser ? (
+                <>
+                  <Link href={'/registro'}>
+                    <a className="main-menu__link whitespace-nowrap no-underline">
+                      <span className="px-4 py-1.5 items-center no-underlinejustify-center border rounded-md shadow-sm text-base font-medium text-white border-white cursor-pointer hover:bg-white hover:bg-opacity-10">
+                        {' '}
+                        Registro{' '}
+                      </span>
+                    </a>
+                  </Link>
+                  <Link href={'/login'}>
+                    <a className="main-menu__link whitespace-nowrap no-underline">
+                      <span className="px-3 py-1.5 items-center no-underlinejustify-center border rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 cursor-pointer ">
+                        {' '}
+                        Iniciar sesión{' '}
+                      </span>
+                    </a>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <a
+                    onClick={handlerLogOut}
+                    className="main-menu__link whitespace-nowrap "
+                  >
+                    <span className="items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 cursor-pointer ">
+                      {' '}
+                      Cerrar sesión{' '}
+                    </span>
+                  </a>
+                </>
+              )}
             </div>
           </div>
         </div>
