@@ -6,7 +6,7 @@ export const resolversFilantropos = {
     Filantropos: async () => {
       return await filantroposTabla()
     },
-    Filantropo: async (parent: any, args : any) => {
+    Filantropo: async (parent: any, args : any, context : any) => {
       return await filantropo(args._id)
     },
   },

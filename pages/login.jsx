@@ -53,7 +53,9 @@ const Login = () => {
                 uid: usuarioId,
             },
         })
-        setAuthUser(data.Usuario)
+        localStorage.setItem('login', true)
+        localStorage.setItem('userUid', data.Usuario.body.uid)
+        setAuthUser(data.Usuario.body)
     }
 
     const formik = useFormik({

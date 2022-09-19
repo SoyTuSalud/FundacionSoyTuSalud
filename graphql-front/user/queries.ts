@@ -29,16 +29,31 @@ export const pacientesTablaTuHistoria = gql`
 `
 
 export const authUser = gql`
-  query AuthUser($uid: String!) {
+  query Query($uid: String!) {
     Usuario(uid: $uid) {
-      identificacion
-      nombre
-      apellidos
-      tipoDocumento
-      celular
-      correo
-      uid
-      formularioTuHistoria
+      ... on ResponseUsuario {
+        body {
+          identificacion
+          _id
+          uid
+          nombre
+          apellidos
+          tipoDocumento
+          celular
+          correo
+          formularioTuHistoria
+        }
+        status {
+          code
+          description
+        }
+      }
+      ... on ResponseUsuarioError {
+        status {
+          code
+          description
+        }
+      }
     }
   }
 `
