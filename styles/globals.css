@@ -10150,7 +10150,7 @@ a.text-dark:hover {
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
  */
-@font-face {
+/* @font-face {
   font-family: FontAwesome;
   src: url(../assets/fonts/font-awesome/fontawesome-webfont.eot);
   src: url(../assets/fonts/font-awesome/fontawesome-webfont-1.eot)
@@ -10162,7 +10162,7 @@ a.text-dark:hover {
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-}
+} */
 .fa {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
@@ -14311,7 +14311,7 @@ body.compensate-for-scrollbar {
 .no-csspointerevents .nice-select.open .list {
   display: block;
 }
-@font-face {
+/* @font-face {
   font-family: font-awesome;
   font-weight: 400;
   font-style: normal;
@@ -14322,8 +14322,8 @@ body.compensate-for-scrollbar {
     url(../assets/fonts/font-awesome/fontawesome-webfont-1.woff) format('woff'),
     url(../assets/fonts/font-awesome/fontawesome-webfont-1.ttf)
       format('truetype');
-}
-@font-face {
+} */
+/* @font-face {
   font-family: storytella;
   font-weight: 400;
   font-style: normal;
@@ -14333,7 +14333,7 @@ body.compensate-for-scrollbar {
       format('embedded-opentype'),
     url(../assets/fonts/storytella/storytella.woff) format('woff'),
     url(../assets/fonts/storytella/storytella.ttf) format('truetype');
-}
+} */
 .icon {
   display: inline-block;
   width: 1em;
