@@ -1239,3 +1239,66 @@ progress::-webkit-progress-value {
   padding-top: 15px;
   padding-bottom: 50px;
 }
+
+.footer-mobile {
+  display: none;
+}
+
+@media (max-width: 1350px) {
+  .container-footer {
+    max-width: 950px;
+  }
+
+  .footer-copyright {
+    max-width: 950px;
+  }
+}
+
+@media (max-width: 920px) {
+  .footer-mobile {
+    display: block;
+    background-color: #20212b;
+  }
+
+  .footer {
+    display: none;
+  }
+
+  .container-footer {
+    display: flex;
+    max-width: 640px;
+  }
+
+  .contact-info-footer {
+    padding: 15px 0;
+  }
+
+  .footer-copyright {
+    max-width: 640px;
+  }
+}
+
+@media (max-width: 680px) {
+  .container-footer {
+    display: block;
+    width: 100%;
+    padding: 50px 10px;
+  }
+
+  .img-footer-mobile {
+    display: flex;
+    justify-content: center;
+  }
+
+  .description-footer {
+    width: 100%;
+  }
+
+  .btn-footer {
+    width: 100%;
+  }
+
+  .footer-copyright {
+    text-align: center;
+  }
+}
