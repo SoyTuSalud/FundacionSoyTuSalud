@@ -16,11 +16,11 @@ export default function Home({ locale }) {
 
   return (
     <LayoutMain t={t} propsImage={propsImage}>
-      <section className="" id="about">
+      <section className="">
         <div className="container mt-12">
           <div className="row align-items-center">
             <div className="col-lg-6">
-              <div className="heading heading--primary">
+              <div className="heading">
                 <span className="heading__pre-title" data-lang="nostros">
                   {t('home:sobreNotros')}
                 </span>
@@ -82,7 +82,7 @@ export default function Home({ locale }) {
         </div>
       </section>
 
-      <section className="section icons-section no-padding-top">
+      <section className="section icons-section pt-0">
         <div className="container">
           <div className="row margin-bottom">
             <div className="col-12">

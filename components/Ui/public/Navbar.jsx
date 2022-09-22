@@ -115,12 +115,8 @@ export const Navbar = ({ t }) => {
   }
 
   return (
-    <header
-      className={
-        navbar ? 'backgroundNav w-full header ' : 'header header--front'
-      }
-    >
-      <Popover className="container-fluid relative bg-transparent">
+    <header className={navbar ? 'backgroundNav navbarTop0' : 'navbarTop0'}>
+      <Popover className="container-fluid popover  relative bg-transparent">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center py-6 lg:justify-start lg:space-x-12">
             <div className="flex justify-start items-center sm:w-0 sm:flex-1">
