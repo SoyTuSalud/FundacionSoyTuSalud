@@ -7,18 +7,16 @@ import { TipoDocumentoEnum } from '../../../../domain/commons/enums/tipoDocument
 import { User } from '../../../../domain/user/userInterface'
 
 const UserSchema = new Schema<User>({
-  uid :{
-    type: String,
-    required: true,
-    unique: true,
-    immutable: true
-  },
   identificacion: {
     type: String,
     required: true,
     unique: true,
   },
   nombre: {
+    type: String,
+    required: true,
+  },
+  contrasena: {
     type: String,
     required: true,
   },
@@ -111,7 +109,7 @@ const UserSchema = new Schema<User>({
     type: String,
   },
   autorizacionFoto: {
-    type: String,
+    type: Boolean,
   },
   recopilacionDatos: {
     type: Boolean,

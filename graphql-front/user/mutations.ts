@@ -19,13 +19,27 @@ export const registrarUsuario = gql`
       celular: $celular
       correo: $correo
     ) {
-      uid
-      identificacion
-      nombre
-      apellidos
-      tipoDocumento
-      celular
-      correo
+      ... on ResponseUsuario {
+        body {
+          uid
+          identificacion
+          nombre
+          apellidos
+          tipoDocumento
+          celular
+          correo
+        }
+        status {
+          code
+          description
+        }
+      }
+      ... on ResponseUsuarioError {
+        status {
+          code
+          description
+        }
+      }
     }
   }
 `

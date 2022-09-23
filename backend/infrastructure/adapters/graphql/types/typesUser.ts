@@ -1,19 +1,18 @@
 import { gql } from 'apollo-server-micro'
 
 export const typesUsuario = gql`
-
   union UnionUsuario = ResponseUsuario | ResponseUsuarioError
   union UnionUsuarioList = ResponseUsuarioList | ResponseUsuarioError
 
   type Usuario {
     _id: ID!
-    uid: String!
     identificacion: String!
     nombre: String!
     apellidos: String!
     tipoDocumento: TipoDocumentoEnum!
     celular: String!
     correo: String!
+    contrasena: String
     formularioTuHistoria: Boolean
     aplicaEnFundacion: Boolean
     matchService: String
@@ -40,37 +39,39 @@ export const typesUsuario = gql`
     fechaSolicitud: String
   }
 
-  type ResponseUsuario{
-      body: Usuario
-      status: StatusUsuario
+  type ResponseUsuario {
+    body: Usuario
+    status: StatusUsuario
   }
-  type ResponseUsuarioList{
-      body: [Usuario]
-      status: StatusUsuario
+  type ResponseUsuarioList {
+    body: [Usuario]
+    status: StatusUsuario
   }
-  type ResponseUsuarioError{
-      status: StatusUsuario
+  type ResponseUsuarioError {
+    status: StatusUsuario
   }
-    type StatusUsuario{
-      code: String!
-      description: String!
+  type StatusUsuario {
+    code: String!
+    description: String!
   }
 
   type Query {
     UsuariosTabla: UnionUsuarioList
     UsuariosTablaTuHistoria: UnionUsuarioList
     Usuario(uid: String!): UnionUsuario
+    LoginUsuario(correo: String!, contrasena: String!): UnionUsuario
   }
   type Mutation {
     crearUsuario(
-      uid: String!
       identificacion: String!
       nombre: String!
       apellidos: String!
       tipoDocumento: String!
       celular: String!
       correo: String!
+      contrasena: String!
     ): UnionUsuario
+
     tuHistoria(
       _id: ID!
       foto: String!

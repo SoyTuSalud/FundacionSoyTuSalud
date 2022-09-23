@@ -4,6 +4,8 @@ import { Status } from '../../../domain/commons/StatusInterface'
 import { User } from '../../../domain/user/userInterface'
 import conectarBD from './configurations/mongoConfiguration'
 import userModel from './schemas/mongoSchemaUser'
+import { sendEmail } from '../../helpers/emailHelper'
+import bcrypt from 'bcrypt'
 
 export const findAllUsers = async () => {
   await conectarBD()
@@ -62,7 +64,6 @@ export const findAllUsersTuHistoria = async () => {
 
 export const findUserById = async (uid: String) => {
   await conectarBD()
-
   return await userModel
     .findOne({
       uid
@@ -91,21 +92,66 @@ export const findUserById = async (uid: String) => {
     })
 }
 
+export const loginUsuario = async (args: any) => {
+  await conectarBD()
+
+  return await userModel
+    .findOne({
+      correo: args.correo
+    }).then((data: User) => {
+      if(!data){
+
+        const status : Status = new Status(ResponseCodes.ERROR, "Usuario no existe")
+        const response : ResponseEntity<null> = new ResponseEntity(null, status)
+  
+        return response
+  
+      }
+      return bcrypt.compare(args.contrasena, data.contrasena).then(validationPass=>{
+
+        if(validationPass){
+          const status : Status = new Status(ResponseCodes.SUCCESS, "exitoso")
+          const response : ResponseEntity<User> = new ResponseEntity(data, status)
+      
+          return response
+        }
+        else{
+          const status : Status = new Status(ResponseCodes.ERROR,  "contraseña erronea")
+  
+          const response : ResponseEntity<null> = new ResponseEntity(null, status)
+      
+          return response
+        }
+      })
+    }).catch((e)  =>{
+  
+      const status : Status = new Status(ResponseCodes.ERROR,  e.message)
+  
+      const response : ResponseEntity<null> = new ResponseEntity(null, status)
+  
+      return response
+    })
+}
+
 export const createUser = async (args: any) => {
   await conectarBD()
+
+  const hash = await bcrypt.hash(args.contrasena, 10)
+
   return await userModel
     .create({
-      uid: args.uid,
       identificacion: args.identificacion,
       nombre: args.nombre,
       apellidos: args.apellidos,
       tipoDocumento: args.tipoDocumento,
       celular: args.celular,
       correo: args.correo,
+      contrasena: hash
     }).then((data: any) => {
       
       const status : Status = new Status(ResponseCodes.SUCCESS, "exitoso")
-      const response : ResponseEntity<User> = new ResponseEntity(data, status)
+      const response : ResponseEntity<User> = new ResponseEntity(data, status);
+      sendEmail(args.correo, `${args.nombre} ${args.apellidos}`)
 
       return response
       })

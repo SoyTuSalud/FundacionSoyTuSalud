@@ -5,35 +5,35 @@ import { TipoDiscapacidadEnum } from '../commons/enums/tipoDiscapacidadEnum'
 import { TipoDocumentoEnum } from '../commons/enums/tipoDocumentoEnum'
 
 export interface User {
-  uid: String
-  identificacion: String
-  nombre: String
-  apellidos: String
+  identificacion: string
+  nombre: string
+  apellidos: string
+  contrasena: string
   tipoDocumento: TipoDocumentoEnum
-  celular: String
-  correo: String
-  formularioTuHistoria: Boolean
-  aplicaEnFundacion: Boolean
-  matchService: String
-  foto: String
+  celular: string
+  correo: string
+  formularioTuHistoria: boolean
+  aplicaEnFundacion: boolean
+  matchService: boolean
+  foto: string
   genero: GeneroEnum
-  fechaNacimiento: String
-  direccion: String
-  discapacitado: Boolean
+  fechaNacimiento: string
+  direccion: string
+  discapacitado: boolean
   tipoDiscapacidad: TipoDiscapacidadEnum
-  victimaViolencia: Boolean
+  victimaViolencia: boolean
   identidadGenero: IdentidadGeneroEnum
   orientacionSexual: OrientacionSexualEnum
-  grupoPoblacional: String
-  municipio: String
-  departamento: String
-  EPS: String
-  tuHistoria: String
-  serviciosSolicitado: [String]
-  historiaClinica: String
-  sisben: String
-  autorizacionFoto: Boolean
-  recopilacionDatos: Boolean
-  comunidad: String
-  fechaSolicitud: String
+  grupoPoblacional: string
+  municipio: string
+  departamento: string
+  EPS: string
+  tuHistoria: string
+  serviciosSolicitado: [string]
+  historiaClinica: string
+  sisben: string
+  autorizacionFoto: boolean
+  recopilacionDatos: boolean
+  comunidad: string
+  fechaSolicitud: string
 }

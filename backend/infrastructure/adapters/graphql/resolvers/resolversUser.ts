@@ -5,6 +5,7 @@ import {
   findUserById,
   createUserTuHistoria,
   createUser,
+  loginUsuario,
 } from '../../mongo/mongoAdapterUser'
 
 export const resolversUsuario = {
@@ -17,6 +18,9 @@ export const resolversUsuario = {
     },
     Usuario: async (parent: any, args: any) =>  {
       return await findUserById(args.uid)
+    },
+    LoginUsuario: async (parent: any, args: any) =>  {
+      return await loginUsuario(args)
     },
   },
   Mutation: {

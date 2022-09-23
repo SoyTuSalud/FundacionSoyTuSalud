@@ -1,9 +1,9 @@
 import { ApolloServer, AuthenticationError } from 'apollo-server-micro'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core'
-import { typeDefs, resolvers } from '../graphqlAdapter'
-import User from '../../mongo/schemas/mongoSchemaUser'
-import conectarBD from '../../mongo/configurations/mongoConfiguration'
+import { typeDefs, resolvers } from '../infrastructure/adapters/graphql/graphqlAdapter'
+import User from '../infrastructure/adapters/mongo/schemas/mongoSchemaUser'
+import conectarBD from '../infrastructure/adapters/mongo/configurations/mongoConfiguration'
 
 export const execute = async (req: NextApiRequest, res: NextApiResponse) => {
   const apolloServer = new ApolloServer({

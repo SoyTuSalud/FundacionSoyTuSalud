@@ -1,10 +1,10 @@
 import { TipoDocumentoEnum } from "../commons/enums/tipoDocumentoEnum"
 
 export interface Filantropo {
-  tipoDocumento: String
+  tipoDocumento: string
   identificacion: TipoDocumentoEnum
-  nombre: String
-  celular: String
-  direccion: String
-  correo: String
+  nombre: string
+  celular: string
+  direccion: string
+  correo: string
 }
