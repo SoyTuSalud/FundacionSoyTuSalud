@@ -18,14 +18,15 @@ export default function Home({ locale }) {
     <LayoutMain t={t} propsImage={propsImage}>
       <section className="">
         <div className="container mt-12">
-          <div className="row align-items-center">
+          <div className="row align-items-center mt-4">
             <div className="col-lg-6">
               <div className="heading">
                 <span className="heading__pre-title" data-lang="nostros">
                   {t('home:sobreNotros')}
                 </span>
                 <h2 className="heading__title">
-                  <span>{t('home:fundacion')} Soy Tú Salud</span>
+                  <span className="title-main-home">{t('home:fundacion')}</span>{' '}
+                  Soy Tú Salud
                 </h2>
               </div>
               <p>
@@ -35,7 +36,7 @@ export default function Home({ locale }) {
                 </a>{' '}
                 {t('home:segundoTexto')}.
               </p>
-              <p className="pb-4">
+              <p className="pb-8">
                 {' '}
                 {t('home:EnLa')}{' '}
                 <a href="https://www.fundacionsoytusalud.org/">
