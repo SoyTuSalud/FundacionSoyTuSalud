@@ -58,7 +58,7 @@ export default function Home({ locale }) {
                 {t('home:masSobre')}
               </a>
             </div>
-            <div className="col-lg-6 col-xl-5 offset-xl-1">
+            <div className="col-lg-6 col-xl-5">
               <div className="info-box flex items-center">
                 <div className="absolute">
                   <Image

@@ -8,6 +8,11 @@
   font-family: 'Quicksand', sans-serif;
 }
 
+*::selection {
+  background-color: #efc940;
+  color: #fff;
+}
+
 ul {
   list-style: none;
 }
@@ -868,6 +873,7 @@ section.section {
 .unordered-list {
   padding: 0;
   margin: 0;
+  margin-bottom: 15px;
 }
 .unordered-list li {
   list-style: none;
@@ -888,10 +894,8 @@ section.section {
 
 .container {
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+  padding: 0 15px;
+  margin: 10px auto;
 }
 
 .row {
@@ -1174,8 +1178,10 @@ progress::-webkit-progress-value {
 }
 @media (max-width: 992px) {
   .col-lg-6 {
-    flex: 0 0 50%;
-    max-width: 50%;
+    flex: 100%;
+    max-width: 100%;
+    padding: 0 20px;
+    /* background-color: #007bff; */
   }
 }
 
