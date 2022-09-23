@@ -15,17 +15,31 @@ export const usuariosTablas = gql`
 `
 
 export const pacientesTablaTuHistoria = gql`
-  query Query {
-    UsuariosTablaTuHistoria {
-      uid
-      nombre
-      apellidos
-      comunidad
-      fechaSolicitud
-      grupoPoblacional
-      foto
+query UsuariosTabla {
+  UsuariosTabla {
+    ... on ResponseUsuarioList {
+      body {
+        uid
+        nombre
+        apellidos
+        comunidad
+        fechaSolicitud
+        grupoPoblacional
+        foto
+      }
+      status {
+        code
+        description
+      }
+    }
+    ... on ResponseUsuarioError {
+      status {
+        code
+        description
+      }
     }
   }
+}
 `
 
 export const authUser = gql`

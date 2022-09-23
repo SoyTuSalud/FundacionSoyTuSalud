@@ -12,16 +12,16 @@ export const execute = async (req: NextApiRequest, res: NextApiResponse) => {
     csrfPrevention: true,
     cache: 'bounded',
     context: async ({ req }) => {
-      await conectarBD()
+      // await conectarBD()
 
-      return await User.findOne({ uid: req.headers.authorization || '' }).then(
-        (data) => {
-          if (!data) {
-            throw new AuthenticationError('you must be logged in')
-          }
-          return data._id
-        },
-      )
+      // return await User.findOne({ uid: req.headers.authorization || '' }).then(
+      //   (data) => {
+      //     if (!data) {
+      //       throw new AuthenticationError('you must be logged in')
+      //     }
+      //     return data._id
+      //   },
+      // )
 
     },
     plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true })],
