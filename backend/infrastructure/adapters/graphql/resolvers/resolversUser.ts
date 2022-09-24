@@ -27,8 +27,8 @@ export const resolversUsuario = {
     crearUsuario: async (parent: any, args: any) => {
       return await createUser(args)
     },
-    tuHistoria: async (parent: any, args: any) => {
-      return await createUserTuHistoria(args)
+    tuHistoria: async (parent: any, args: any, context: any) => {
+      return await createUserTuHistoria(args, context)
     },
   },
   UnionUsuario: {

@@ -163,7 +163,7 @@ export const createUser = async (args: any) => {
       })
 }
 
-export const createUserTuHistoria = async (args: any) => {
+export const createUserTuHistoria = async (args: any, context: any) => {
   await conectarBD()
 
   return await userModel
