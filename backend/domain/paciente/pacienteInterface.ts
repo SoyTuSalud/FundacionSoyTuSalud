@@ -4,7 +4,7 @@ import { OrientacionSexualEnum } from '../commons/enums/orientacionSexualEnum'
 import { TipoDiscapacidadEnum } from '../commons/enums/tipoDiscapacidadEnum'
 import { TipoDocumentoEnum } from '../commons/enums/tipoDocumentoEnum'
 
-export interface User {
+export interface Paciente {
   identificacion: string
   nombre: string
   apellidos: string

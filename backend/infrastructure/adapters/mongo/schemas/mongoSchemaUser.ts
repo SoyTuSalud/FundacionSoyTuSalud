@@ -4,9 +4,9 @@ import { IdentidadGeneroEnum } from '../../../../domain/commons/enums/identidadG
 import { OrientacionSexualEnum } from '../../../../domain/commons/enums/orientacionSexualEnum'
 import { TipoDiscapacidadEnum } from '../../../../domain/commons/enums/tipoDiscapacidadEnum'
 import { TipoDocumentoEnum } from '../../../../domain/commons/enums/tipoDocumentoEnum'
-import { User } from '../../../../domain/user/userInterface'
+import { Paciente } from '../../../../domain/paciente/pacienteInterface'
 
-const UserSchema = new Schema<User>({
+const PacienteSchema = new Schema<Paciente>({
   identificacion: {
     type: String,
     required: true,
@@ -126,4 +126,4 @@ const UserSchema = new Schema<User>({
 }
 )
 
-export default models.User || model('User', UserSchema)
+export default models.Paciente || model('Paciente', PacienteSchema)

@@ -1,4 +1,4 @@
-import { typesUsuario } from './types/typesUser'
+import { typesPaciente } from './types/typesPaciente'
 import { typesFilantropo } from './types/typesFilantropo'
 import { typesRepresentate } from './types/typesRepresentante'
 import { typesServicios } from './types/typesServicios'
@@ -17,7 +17,7 @@ export const resolvers = [resolversUsuario,
   resolversFilantropos]
 
 export const typeDefs = [
-  typesUsuario,
+  typesPaciente,
   typesServiciosCodes,
   typesRepresentate,
   typesServicios,
