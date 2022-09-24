@@ -8,7 +8,8 @@ import { appWithTranslation } from 'next-i18next'
 import { ComponentContext } from '../context/useComponents'
 
 import '../styles/globals.css'
-import '../styles/SignIn.css'
+import '../styles/SignInPage.css'
+import '../styles/HistoriesPage.css'
 
 function MyApp({ Component, pageProps }) {
   const [authUser, setAuthUser] = useState({})
