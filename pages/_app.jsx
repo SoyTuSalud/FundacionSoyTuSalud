@@ -10,6 +10,7 @@ import { ComponentContext } from '../context/useComponents'
 import '../styles/globals.css'
 import '../styles/SignInPage.css'
 import '../styles/HistoriesPage.css'
+import '../styles/TrazabilidadPage.css'
 
 function MyApp({ Component, pageProps }) {
   const [authUser, setAuthUser] = useState({})
