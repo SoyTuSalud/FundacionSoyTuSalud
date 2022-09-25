@@ -61,8 +61,6 @@ export const representante = async (id: String) => {
 
 export const crearRepresentante = async (args: Representante) =>{
 
-    await conectarBD()
-
   let newRepresentante: Representante = {
     user: args.user,
     identificacion: args.identificacion,

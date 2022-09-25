@@ -31,7 +31,10 @@ export const crearServicio = async (args: any) => {
     })
     .catch((e) => {
       const status: Status = new Status(ResponseCodes.ERROR, e.message)
-      return status
+
+      const response : ResponseEntity<null> = new ResponseEntity(null, status)
+
+      return response
     })
 }
 
@@ -56,8 +59,9 @@ export const serviciosTabla = async () => {
     })
     .catch((e) => {
       const status: Status = new Status(ResponseCodes.ERROR, e.message)
+      const response : ResponseEntity<null> = new ResponseEntity(null, status)
 
-      return status
+      return response
     })
 }
 
@@ -70,8 +74,8 @@ export const servicio = async (id: String) => {
           ResponseCodes.SUCCESS_EMPTY,
           'exitoso sin datos',
         )
-
-        return status
+        const response : ResponseEntity<null> = new ResponseEntity(null, status)
+        return response
       }
 
       const status: Status = new Status(ResponseCodes.SUCCESS, 'exitoso')
@@ -84,7 +88,7 @@ export const servicio = async (id: String) => {
     })
     .catch((e) => {
       const status: Status = new Status(ResponseCodes.ERROR, e.message)
-
-      return status
+      const response : ResponseEntity<null> = new ResponseEntity(null, status)
+      return response
     })
 }

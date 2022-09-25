@@ -10,8 +10,8 @@ export const login = async (args: any) => {
     .then((data: User) => {
       if (!data) {
         const status: Status = new Status(ResponseCodes.SUCCESS_EMPTY,'Usuario no existe')
-
-        return status
+        const response : ResponseEntity<null> = new ResponseEntity(null, status)
+        return response
       }
       return bcrypt.compare(args.contrasena, data.contrasena)
         .then((validationPass) => {
@@ -23,15 +23,17 @@ export const login = async (args: any) => {
                 return response
             } else {
                 const status: Status = new Status(ResponseCodes.ERROR, 'contraseña erronea')
-
-                return status
+                const response : ResponseEntity<null> = new ResponseEntity(null, status)
+                return response
             }
         })
     })
     .catch((e) => {
       const status: Status = new Status(ResponseCodes.ERROR, e.message)
 
-      return status
+      const response : ResponseEntity<null> = new ResponseEntity(null, status)
+
+      return response
     })
 }
 

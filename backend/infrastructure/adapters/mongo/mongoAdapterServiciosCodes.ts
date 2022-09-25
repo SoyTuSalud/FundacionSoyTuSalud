@@ -18,8 +18,8 @@ export const codeService = async (args: any) => {
           ResponseCodes.SUCCESS_EMPTY,
           'exitoso sin datos',
         )
-
-        return status
+        const response : ResponseEntity<null> = new ResponseEntity(null, status)
+        return response
       }
 
       const status: Status = new Status(ResponseCodes.SUCCESS, 'exitoso')
@@ -29,7 +29,7 @@ export const codeService = async (args: any) => {
     })
     .catch((e) => {
       const status: Status = new Status(ResponseCodes.ERROR, e.message)
-
-      return status
+      const response : ResponseEntity<null> = new ResponseEntity(null, status)
+      return response
     })
 }
