@@ -3,9 +3,7 @@ import {
   findAllPacientes,
   findAllPacientesTuHistoria,
   findPacienteById,
-  loginPaciente,
-  createPaciente,
-  createPacienteTuHistoria
+  createPacienteTuHistoria,
 } from '../../mongo/mongoAdapterPaciente'
 
 export const resolversPaciente = {
@@ -16,11 +14,8 @@ export const resolversPaciente = {
     PacientesTablaTuHistoria: async () => {
       return await findAllPacientesTuHistoria()
     },
-    Paciente: async (parent: any, args: any) =>  {
+    Paciente: async (parent: any, args: any) => {
       return await findPacienteById(args.uid)
-    },
-    LoginPaciente: async (parent: any, args: any) =>  {
-      return await loginPaciente(args)
     },
   },
   Mutation: {
@@ -29,17 +24,17 @@ export const resolversPaciente = {
     },
   },
   UnionPaciente: {
-    __resolveType(obj: any){
-      return obj.status.code === ResponseCodes.SUCCESS ?  
-                  "ResponsePaciente" :
-                  "ResponsePacienteError" 
-    }
+    __resolveType(obj: any) {
+      return obj.status.code === ResponseCodes.SUCCESS
+        ? 'ResponsePaciente'
+        : 'ResponsePacienteError'
+    },
   },
   UnionPacienteList: {
-    __resolveType(obj: any){
-      return obj.status.code === ResponseCodes.SUCCESS ?  
-                  "ResponsePacienteList" :
-                  "ResponsePacienteError" 
-    }
-  }
+    __resolveType(obj: any) {
+      return obj.status.code === ResponseCodes.SUCCESS
+        ? 'ResponsePacienteList'
+        : 'ResponsePacienteError'
+    },
+  },
 }
