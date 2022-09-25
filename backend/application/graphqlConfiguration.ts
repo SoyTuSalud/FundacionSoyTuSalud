@@ -5,8 +5,8 @@ import {
   typeDefs,
   resolvers,
 } from '../infrastructure/adapters/graphql/graphqlAdapter'
-import User from '../infrastructure/adapters/mongo/schemas/mongoSchemaPaciente'
 import conectarBD from '../infrastructure/adapters/mongo/configurations/mongoConfiguration'
+import jwt from 'jsonwebtoken'
 
 export const execute = async (req: NextApiRequest, res: NextApiResponse) => {
   const apolloServer = new ApolloServer({
@@ -16,15 +16,24 @@ export const execute = async (req: NextApiRequest, res: NextApiResponse) => {
     cache: 'bounded',
     context: async ({ req }) => {
       await conectarBD()
-      // return await User.findById(req.headers.authorization || '').then(
-      //   (data) => {
-      //     if (!data) {
-      //       return null
-      //       // throw new AuthenticationError('you must be logged in')
-      //     }
-      //     return data._id
-      //   },
-      // )
+
+      const authorization = req.headers.authorization || ''
+
+      if (!authorization) return
+
+      try {
+        const verifyToken = jwt.verify(
+          authorization,
+          process.env.ENV_KEY_TOKEN!,
+          {
+            complete: true,
+          },
+        )
+
+        return verifyToken
+      } catch (error: any) {
+        throw new AuthenticationError('Error de auntenticación', error)
+      }
     },
     plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true })],
   })

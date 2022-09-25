@@ -1,4 +1,8 @@
+import { ValidationError } from 'apollo-server-micro'
 import { ResponseCodes } from '../../../../domain/commons/enums/responseCodesEnum'
+import { ResponseEntity } from '../../../../domain/commons/responseEntity'
+import { Status } from '../../../../domain/commons/StatusInterface'
+import { roleEnum } from '../../../../domain/user/enums/roleEnum'
 import {
   findAllPacientes,
   findAllPacientesTuHistoria,
@@ -8,8 +12,17 @@ import {
 
 export const resolversPaciente = {
   Query: {
-    PacientesTabla: async () => {
-      return await findAllPacientes()
+    PacientesTabla: async (parent: any, args: any, { payload }: any) => {
+      if (payload.role === roleEnum.ADMIN) {
+        return await findAllPacientes()
+      }
+      const status: Status = new Status(
+        ResponseCodes.PERMISSION_ERROR,
+        'Acceso denegado',
+      )
+      const response: ResponseEntity<null> = new ResponseEntity(null, status)
+
+      return response
     },
     PacientesTablaTuHistoria: async () => {
       return await findAllPacientesTuHistoria()

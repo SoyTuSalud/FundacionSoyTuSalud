@@ -3,7 +3,7 @@ import { login, registro } from '../../mongo/mongoAdapterUser'
 
 export const resolversUser = {
   Query: {
-    login : async (parent: any, args: any) =>{
+    login: async (parent: any, args: any) => {
       return await login(args)
     },
   },
@@ -13,11 +13,18 @@ export const resolversUser = {
     },
   },
   UnionUser: {
-    __resolveType(obj: any){
+    __resolveType(obj: any) {
+      return obj.status.code === ResponseCodes.SUCCESS
+        ? 'ResponseUser'
+        : 'ResponseUserError'
+    },
+  },
 
-      return obj.status.code === ResponseCodes.SUCCESS ?  
-                  "ResponseUser" :
-                  "ResponseUserError"
-    }
-  }
+  UnionToken: {
+    __resolveType(obj: any) {
+      return obj.status.code === ResponseCodes.SUCCESS
+        ? 'TokenResponse'
+        : 'ResponseUserError'
+    },
+  },
 }

@@ -4,11 +4,12 @@ import { Status } from '../../../domain/commons/StatusInterface'
 import { User } from '../../../domain/user/userInterface'
 import UserModel from './schemas/mongoSchemaUser'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 import { sendEmail } from '../../helpers/emailHelper'
 
 export const login = async (args: any) => {
   return await UserModel.findOne({ correo: args.correo })
-    .then((data: User) => {
+    .then((data: any) => {
       if (!data) {
         const status: Status = new Status(
           ResponseCodes.SUCCESS_EMPTY,
@@ -23,8 +24,20 @@ export const login = async (args: any) => {
           if (validationPass) {
             const status: Status = new Status(ResponseCodes.SUCCESS, 'exitoso')
 
-            const response: ResponseEntity<User> = new ResponseEntity(
-              data,
+            let newData = data
+            newData = newData.toObject()
+            delete newData.contrasena
+
+            const token = jwt.sign(newData, process.env.ENV_KEY_TOKEN!, {
+              expiresIn: '1h',
+            })
+
+            const tokenObject = {
+              token,
+            }
+
+            const response: ResponseEntity<any> = new ResponseEntity(
+              tokenObject,
               status,
             )
 

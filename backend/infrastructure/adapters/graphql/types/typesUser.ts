@@ -1,9 +1,9 @@
 import { gql } from 'apollo-server-micro'
 
 export const typesUser = gql`
-
   union UnionUser = ResponseUser | ResponseUserError
   union UnionUserList = ResponseUserList | ResponseUserError
+  union UnionToken = TokenResponse | ResponseUserError
 
   type User {
     _id: ID!
@@ -18,6 +18,16 @@ export const typesUser = gql`
     paciente: Paciente
     filantropo: Filantropo
     representante: Representante
+    token: String
+  }
+
+  type Token {
+    token: String!
+  }
+
+  type TokenResponse {
+    body: Token
+    status: StatusUser
   }
 
   type ResponseUser {
@@ -31,13 +41,13 @@ export const typesUser = gql`
   type ResponseUserError {
     status: StatusUser
   }
-  type StatusUser{
+  type StatusUser {
     code: String!
     description: String!
   }
 
   type Query {
-    login(correo: String!, contrasena: String!): UnionUser
+    login(correo: String!, contrasena: String!): UnionToken
   }
 
   type Mutation {
@@ -50,6 +60,7 @@ export const typesUser = gql`
       correo: String!
       contrasena: String!
       role: String!
+      token: String
     ): UnionUser
   }
 `

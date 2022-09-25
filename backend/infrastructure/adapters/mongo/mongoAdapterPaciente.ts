@@ -14,7 +14,6 @@ export const findAllPacientes = async () => {
     .find({})
     .populate('user')
     .then((data) => {
-      console.log('data: ', data)
       if (!data) {
         const status: Status = new Status(
           ResponseCodes.SUCCESS_EMPTY,
