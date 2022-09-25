@@ -52,7 +52,7 @@ const ServiciosSchema = new Schema<Servicios>({
   },
   representante: {
     type: Schema.Types.ObjectId,
-    ref: models.Representante,
+    ref: "Representante",
     required: true,
   },
   habilitado: {

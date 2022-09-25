@@ -1,3 +1,4 @@
+import { Schema } from 'mongoose'
 import { GeneroEnum } from '../commons/enums/generoEnum'
 import { IdentidadGeneroEnum } from '../commons/enums/identidadGeneroEnum'
 import { OrientacionSexualEnum } from '../commons/enums/orientacionSexualEnum'
@@ -7,6 +8,7 @@ import { TipoDocumentoEnum } from '../commons/enums/tipoDocumentoEnum'
 export interface Paciente {
   identificacion: string
   nombre: string
+  user: Schema.Types.ObjectId
   apellidos: string
   contrasena: string
   tipoDocumento: TipoDocumentoEnum

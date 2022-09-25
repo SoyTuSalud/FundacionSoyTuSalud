@@ -1,5 +1,5 @@
 import { ResponseCodes } from "../../../../domain/commons/enums/responseCodesEnum"
-import { codeService, crearCode } from "../../mongo/mongoAdapterServiciosCodes"
+import { codeService } from "../../mongo/mongoAdapterServiciosCodes"
 
 export const resolversServiciosCodes = {
   Query: {

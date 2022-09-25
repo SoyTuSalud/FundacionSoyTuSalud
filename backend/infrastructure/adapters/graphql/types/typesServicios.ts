@@ -23,7 +23,7 @@ export const typesServicios = gql`
 
   type ResponseServicios{
       body: Servicios
-      status: StatusServicios
+    status: StatusServicios
   }
   type ResponseServiciosList{
       body: [Servicios]
@@ -33,8 +33,8 @@ export const typesServicios = gql`
       status: StatusServicios
   }
     type StatusServicios{
-      code: String!
-      description: String!
+    code: String!
+    description: String!
   }
 
   type Query{

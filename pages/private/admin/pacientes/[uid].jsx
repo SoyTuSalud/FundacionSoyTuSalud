@@ -43,7 +43,7 @@ export const getServerSideProps = async ({ params }) => {
   const { Usuario } = data
   return {
     props: {
-      Usuario,
+      Usuario: Pacientes,
     },
   }
 }

@@ -7,6 +7,7 @@ export const typesFilantropo = gql`
 
   type Filantropo {
     _id: ID!
+    user: User!
     tipoDocumento: String!
     identificacion: String!
     nombre: String!
@@ -39,6 +40,7 @@ export const typesFilantropo = gql`
   type Mutation {
     crearFilantropo(
       tipoDocumento: String!
+      user: String!
       identificacion: String!
       nombre: String!
       celular: String!

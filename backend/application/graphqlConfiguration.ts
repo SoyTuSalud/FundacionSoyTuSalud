@@ -5,7 +5,7 @@ import {
   typeDefs,
   resolvers,
 } from '../infrastructure/adapters/graphql/graphqlAdapter'
-import User from '../infrastructure/adapters/mongo/schemas/mongoSchemaUser'
+import User from '../infrastructure/adapters/mongo/schemas/mongoSchemaPaciente'
 import conectarBD from '../infrastructure/adapters/mongo/configurations/mongoConfiguration'
 
 export const execute = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -15,7 +15,7 @@ export const execute = async (req: NextApiRequest, res: NextApiResponse) => {
     csrfPrevention: true,
     cache: 'bounded',
     context: async ({ req }) => {
-      // await conectarBD()
+      await conectarBD()
       // return await User.findById(req.headers.authorization || '').then(
       //   (data) => {
       //     if (!data) {

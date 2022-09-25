@@ -2,16 +2,13 @@ import { ResponseCodes } from '../../../domain/commons/enums/responseCodesEnum'
 import { ResponseEntity } from '../../../domain/commons/responseEntity'
 import { Status } from '../../../domain/commons/StatusInterface'
 import { Filantropo } from '../../../domain/filantropos/filantropoInterface'
-import conectarBD from './configurations/mongoConfiguration'
 import filantropoModel from './schemas/mongoSchemaFilantropo'
 
 export const filantroposTabla = async () =>{
-
-    await conectarBD()
   
     return await filantropoModel.find({})
     .then((data) => {
-
+      
       if(!data){
   
           const status : Status = new Status(ResponseCodes.SUCCESS_EMPTY, "exitoso sin datos")
@@ -36,8 +33,6 @@ export const filantroposTabla = async () =>{
 }
 
 export const filantropo = async (id: String) =>{
-
-    await conectarBD()
   
     return await filantropoModel.findById(id)
     .then((data: Filantropo) => {
@@ -67,8 +62,6 @@ export const filantropo = async (id: String) =>{
 }
 
 export const crearFilantropo = async (args: any) =>{
-
-    await conectarBD()
 
     return await filantropoModel.create({
         tipoDocumento: args.tipoDocumento,

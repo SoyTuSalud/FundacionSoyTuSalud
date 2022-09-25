@@ -6,13 +6,7 @@ export const typesPaciente = gql`
 
     type Paciente {
         _id: ID!
-        identificacion: String!
-        nombre: String!
-        apellidos: String!
-        tipoDocumento: TipoDocumentoEnum!
-        celular: String!
-        correo: String!
-        contrasena: String
+        user: User!
         formularioTuHistoria: Boolean
         aplicaEnFundacion: Boolean
         matchService: String
@@ -62,18 +56,9 @@ export const typesPaciente = gql`
         LoginPaciente(correo: String!, contrasena: String!): UnionPaciente
     }
     type Mutation {
-        crearPaciente(
-            identificacion: String!
-            nombre: String!
-            apellidos: String!
-            tipoDocumento: String!
-            celular: String!
-            correo: String!
-            contrasena: String!
-        ): UnionPaciente
-
         tuHistoria(
             _id: ID!
+            user:String!
             foto: String!
             genero: GeneroEnum!
             fechaNacimiento: String!

@@ -37,7 +37,7 @@ export const getServerSideProps = async (ctx) => {
   const { UsuariosTabla } = data
   return {
     props: {
-      UsuariosTabla,
+      UsuariosTabla: PacientesTabla,
     },
   }
 }

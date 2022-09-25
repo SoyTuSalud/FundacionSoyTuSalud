@@ -7,6 +7,7 @@ export const typesRepresentate = gql`
 
   type Representante {
     _id: ID!
+    user: User!
     identificacion: String!
     foto: String!
     nombreCompleto: String!
@@ -57,6 +58,7 @@ export const typesRepresentate = gql`
     CrearRepresentante(
       identificacion: String!
       foto: String!
+      user: String!
       nombreCompleto: String!
       tipoDocumento: String!
       celular: String!

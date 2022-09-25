@@ -7,6 +7,11 @@ const FilantropoSchema = new Schema<Filantropo>({
     type: String,
     enum: TipoDocumentoEnum,
     required: true,
+  },  
+  user:{
+    type: Schema.Types.ObjectId,
+    require: true,
+    ref: "User"
   },
   identificacion: {
     type: String,

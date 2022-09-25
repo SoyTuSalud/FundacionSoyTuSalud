@@ -1,8 +1,10 @@
+import { Schema } from "mongoose"
 import { TipoDocumentoEnum } from "../commons/enums/tipoDocumentoEnum"
 
 export interface Representante {
   identificacion: string
   foto: string
+  user: Schema.Types.ObjectId
   nombreCompleto: string
   celular: string
   tipoDocumento: TipoDocumentoEnum

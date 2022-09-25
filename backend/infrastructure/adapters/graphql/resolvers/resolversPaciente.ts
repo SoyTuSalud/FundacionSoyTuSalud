@@ -1,48 +1,45 @@
 import { ResponseCodes } from '../../../../domain/commons/enums/responseCodesEnum'
 import {
-  findAllUsers,
-  findAllUsersTuHistoria,
-  findUserById,
-  createUserTuHistoria,
-  createUser,
-  loginUsuario,
-} from '../../mongo/mongoAdapterUser'
+  findAllPacientes,
+  findAllPacientesTuHistoria,
+  findPacienteById,
+  loginPaciente,
+  createPaciente,
+  createPacienteTuHistoria
+} from '../../mongo/mongoAdapterPaciente'
 
-export const resolversUsuario = {
+export const resolversPaciente = {
   Query: {
-    UsuariosTabla: async () => {
-      return await findAllUsers()
+    PacientesTabla: async () => {
+      return await findAllPacientes()
     },
-    UsuariosTablaTuHistoria: async () => {
-      return await findAllUsersTuHistoria()
+    PacientesTablaTuHistoria: async () => {
+      return await findAllPacientesTuHistoria()
     },
-    Usuario: async (parent: any, args: any) =>  {
-      return await findUserById(args.uid)
+    Paciente: async (parent: any, args: any) =>  {
+      return await findPacienteById(args.uid)
     },
-    LoginUsuario: async (parent: any, args: any) =>  {
-      return await loginUsuario(args)
+    LoginPaciente: async (parent: any, args: any) =>  {
+      return await loginPaciente(args)
     },
   },
   Mutation: {
-    crearUsuario: async (parent: any, args: any) => {
-      return await createUser(args)
-    },
     tuHistoria: async (parent: any, args: any, context: any) => {
-      return await createUserTuHistoria(args, context)
+      return await createPacienteTuHistoria(args, context)
     },
   },
-  UnionUsuario: {
+  UnionPaciente: {
     __resolveType(obj: any){
       return obj.status.code === ResponseCodes.SUCCESS ?  
-                  "ResponseUsuario" :
-                  "ResponseUsuarioError" 
+                  "ResponsePaciente" :
+                  "ResponsePacienteError" 
     }
   },
-  UnionUsuarioList: {
+  UnionPacienteList: {
     __resolveType(obj: any){
       return obj.status.code === ResponseCodes.SUCCESS ?  
-                  "ResponseUsuarioList" :
-                  "ResponseUsuarioError" 
+                  "ResponsePacienteList" :
+                  "ResponsePacienteError" 
     }
   }
 }

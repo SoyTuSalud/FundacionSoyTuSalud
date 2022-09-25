@@ -1,15 +1,13 @@
 import { Representante } from '../../../domain/representantes/representanteInterface'
 import { ResponseEntity } from '../../../domain/commons/responseEntity'
-import conectarBD from './configurations/mongoConfiguration'
 import representanteModel from './schemas/mongoSchemaRepresentante'
 import { Status } from '../../../domain/commons/StatusInterface'
 import { ResponseCodes } from '../../../domain/commons/enums/responseCodesEnum'
 
 export const representantesTabla = async () => {
-  await conectarBD()
   return await representanteModel.find({})
   .populate("servicios")
-  .then((data) => {
+    .then((data) => {
 
     if(!data){
 
@@ -17,12 +15,12 @@ export const representantesTabla = async () => {
         const response : ResponseEntity<null> = new ResponseEntity(null, status)
 
         return response
-    }
+      }
 
     const status : Status = new Status(ResponseCodes.SUCCESS, "exitoso")
     const response : ResponseEntity<any[]> = new ResponseEntity(data, status)
 
-    return response
+      return response
 
   }).catch(e =>{
     const status : Status = new Status(ResponseCodes.ERROR,  e.message)
@@ -30,11 +28,10 @@ export const representantesTabla = async () => {
       const response : ResponseEntity<null> = new ResponseEntity(null, status)
 
       return response
-  })
+    })
 }
 
-export const representante = async (id: String) =>{
-    await conectarBD()
+export const representante = async (id: String) => {
 
     return await representanteModel.findById(id).populate("servicios")
     .then((data: Representante) => {
@@ -66,15 +63,16 @@ export const crearRepresentante = async (args: Representante) =>{
 
     await conectarBD()
 
-    let newRepresentante: Representante = {
-      identificacion: args.identificacion,
-      foto: args.foto,
-      nombreCompleto: args.nombreCompleto,
-      tipoDocumento: args.tipoDocumento,
-      celular: args.celular,
-      departamento: args.departamento,
-      municipio: args.municipio,
-      direccion: args.direccion,
+  let newRepresentante: Representante = {
+    user: args.user,
+    identificacion: args.identificacion,
+    foto: args.foto,
+    nombreCompleto: args.nombreCompleto,
+    tipoDocumento: args.tipoDocumento,
+    celular: args.celular,
+    departamento: args.departamento,
+    municipio: args.municipio,
+    direccion: args.direccion,
       cuentaDeAhorros:args.cuentaDeAhorros, 
       distintivoHabilitacion:args.distintivoHabilitacion,   
       fotoLogoPublicidad:args.fotoLogoPublicidad, 
@@ -84,15 +82,15 @@ export const crearRepresentante = async (args: Representante) =>{
       aceptaTratamientoDatos:args.aceptaTratamientoDatos, 
       aceptaDocumentoSARLAFT:args.aceptaDocumentoSARLAFT, 
       aceptaCodigoEticaSoyTuSalud:args.aceptaCodigoEticaSoyTuSalud, 
-    }
+  }
 
-    if(Object.keys(args).includes("paginaWeb")){
-      newRepresentante.paginaWeb = args.paginaWeb
-    }
+  if (Object.keys(args).includes('paginaWeb')) {
+    newRepresentante.paginaWeb = args.paginaWeb
+  }
 
-    if(Object.keys(args).includes("convalidacionIcfes")){
-      newRepresentante.convalidacionIcfes = args.convalidacionIcfes
-    }
+  if (Object.keys(args).includes('convalidacionIcfes')) {
+    newRepresentante.convalidacionIcfes = args.convalidacionIcfes
+  }
 
     return await representanteModel.create(newRepresentante)
     .then((data : any) =>{
