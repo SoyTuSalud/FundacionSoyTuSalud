@@ -7,8 +7,9 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { sendEmail } from '../../helpers/emailHelper'
 import { roleEnum } from '../../../domain/user/enums/roleEnum'
+import { setCookie } from '../../../application/graphqlConfiguration'
 
-export const login = async (args: any) => {
+export const login = async (args: any , context: any) => {
   return await UserModel.findOne({ correo: args.correo })
     .then((data: any) => {
       if (!data) {
@@ -36,12 +37,13 @@ export const login = async (args: any) => {
             const tokenObject = {
               token,
             }
-
+            setCookie(context,"token", token, {
+              path:'/',
+            })
             const response: ResponseEntity<any> = new ResponseEntity(
               tokenObject,
               status,
             )
-
             return response
           } else {
             const status: Status = new Status(

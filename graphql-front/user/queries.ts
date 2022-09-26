@@ -109,3 +109,22 @@ export const userData = gql`
         }
     }
 `
+
+export const loginUser = gql`
+query Query($correo: String!, $contrasena: String!) {
+  login(correo: $correo, contrasena: $contrasena) {
+    ... on TokenResponse {
+      status {
+        code
+        description
+      }
+    }
+    ... on ResponseUserError {
+      status {
+        code
+        description
+      }
+    }
+  }
+}
+`

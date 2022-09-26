@@ -1,12 +1,30 @@
 import { ApolloServer, AuthenticationError } from 'apollo-server-micro'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core'
+import { serialize, CookieSerializeOptions } from 'cookie'
 import {
   typeDefs,
   resolvers,
 } from '../infrastructure/adapters/graphql/graphqlAdapter'
 import conectarBD from '../infrastructure/adapters/mongo/configurations/mongoConfiguration'
 import jwt from 'jsonwebtoken'
+
+
+export const setCookie = (
+  res: NextApiResponse,
+  name: string,
+  value: unknown,
+  options: CookieSerializeOptions = {}
+) => {
+  const stringValue =
+    typeof value === 'object' ? 'j:' + JSON.stringify(value) : String(value)
+
+  if (typeof options.maxAge === 'number') {
+    options.expires = new Date(Date.now() + options.maxAge * 1000)
+  }
+
+  res.setHeader('Set-Cookie', serialize(name, stringValue, options))
+}
 
 export const execute = async (req: NextApiRequest, res: NextApiResponse) => {
   const apolloServer = new ApolloServer({
@@ -19,7 +37,9 @@ export const execute = async (req: NextApiRequest, res: NextApiResponse) => {
 
       const authorization = req.headers.authorization || ''
 
-      if (!authorization) return
+      if (!authorization){
+        return res
+      } 
 
       try {
         const verifyToken = jwt.verify(
@@ -54,7 +74,6 @@ export const execute = async (req: NextApiRequest, res: NextApiResponse) => {
     return false
   }
 
-  // await runMiddleware(req, res, cors)
   await startServer
   await apolloServer.createHandler({
     path: '/api/graphql',

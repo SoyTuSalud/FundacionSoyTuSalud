@@ -3,8 +3,8 @@ import { login, registro, verifyAdmin } from '../../mongo/mongoAdapterUser'
 
 export const resolversUser = {
   Query: {
-    login: async (parent: any, args: any) => {
-      return await login(args)
+    login: async (parent: any, args: any, context: any) => {
+      return await login(args, context )
     },
 
     verifyAdmin: async (parent: any, args: any, { payload }: any) => {

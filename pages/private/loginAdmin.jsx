@@ -1,6 +1,27 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
+import { client } from '../../graphql-front/initClientSide'
+import { loginUser } from '../../graphql-front/user/queries'
+import { useRouter } from 'next/router'
 
 export default function Example() {
+
+  const router = useRouter()
+
+  const handleSubmit = async  (e) => {
+    e.preventDefault()
+   await client
+        .query({
+          query: loginUser,
+  
+          variables: {
+            //todo data user form
+          },
+        }).then(data => {
+          router.push("/private/admin")
+        })
+        
+  }
+  
   return (
     <>
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -16,7 +37,7 @@ export default function Example() {
             </h2>
             <p className="mt-2 text-center text-sm text-gray-600"></p>
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
+          <form className="mt-8 space-y-6" action="#" onSubmit={handleSubmit} method="POST">
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
