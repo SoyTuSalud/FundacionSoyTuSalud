@@ -24,18 +24,44 @@ export const resolversPaciente = {
 
       return response
     },
-    PacientesTablaTuHistoria: async () => {
-      return await findAllPacientesTuHistoria()
+
+    PacientesTablaTuHistoria: async (
+      parent: any,
+      args: any,
+      { payload }: any,
+    ) => {
+      if (payload.role === roleEnum.ADMIN) {
+        return await findAllPacientesTuHistoria()
+      }
+      const status: Status = new Status(
+        ResponseCodes.PERMISSION_ERROR,
+        'Acceso denegado',
+      )
+      const response: ResponseEntity<null> = new ResponseEntity(null, status)
+
+      return response
     },
-    Paciente: async (parent: any, args: any) => {
-      return await findPacienteById(args.uid)
+
+    Paciente: async (parent: any, args: any, { payload }: any) => {
+      if (payload.role === roleEnum.ADMIN) {
+        return await findPacienteById(args.uid)
+      }
+      const status: Status = new Status(
+        ResponseCodes.PERMISSION_ERROR,
+        'Acceso denegado',
+      )
+      const response: ResponseEntity<null> = new ResponseEntity(null, status)
+
+      return response
     },
   },
+
   Mutation: {
     tuHistoria: async (parent: any, args: any, context: any) => {
       return await createPacienteTuHistoria(args, context)
     },
   },
+
   UnionPaciente: {
     __resolveType(obj: any) {
       return obj.status.code === ResponseCodes.SUCCESS
@@ -43,6 +69,7 @@ export const resolversPaciente = {
         : 'ResponsePacienteError'
     },
   },
+
   UnionPacienteList: {
     __resolveType(obj: any) {
       return obj.status.code === ResponseCodes.SUCCESS

@@ -48,6 +48,7 @@ export const typesUser = gql`
 
   type Query {
     login(correo: String!, contrasena: String!): UnionToken
+    verifyAdmin: String
   }
 
   type Mutation {

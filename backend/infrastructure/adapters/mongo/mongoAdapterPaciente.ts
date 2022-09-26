@@ -138,3 +138,5 @@ export const createPacienteTuHistoria = async (args: any, context: any) => {
       return response
     })
 }
+
+export const findAllPacientesClasificados = () => {}

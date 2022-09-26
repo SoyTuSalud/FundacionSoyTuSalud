@@ -31,7 +31,7 @@ export const LayoutMain = ({ children, propsImage, t }) => {
   //       }else{
   //         setAuthUser(response.data.Usuario)
   //       }
-        
+
   //     })
   // }, [])
 

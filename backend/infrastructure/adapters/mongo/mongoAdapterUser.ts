@@ -6,6 +6,7 @@ import UserModel from './schemas/mongoSchemaUser'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { sendEmail } from '../../helpers/emailHelper'
+import { roleEnum } from '../../../domain/user/enums/roleEnum'
 
 export const login = async (args: any) => {
   return await UserModel.findOne({ correo: args.correo })
@@ -92,4 +93,19 @@ export const registro = async (args: any) => {
 
       return response
     })
+}
+
+export const findUserById = () => {}
+
+export const verifyAdmin = (payload: any) => {
+  if (payload.role === roleEnum.ADMIN) {
+    return 'ok'
+  }
+  const status: Status = new Status(
+    ResponseCodes.PERMISSION_ERROR,
+    'Acceso denegado',
+  )
+  const response: ResponseEntity<null> = new ResponseEntity(null, status)
+
+  return 'no'
 }
