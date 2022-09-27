@@ -8,14 +8,15 @@ import jwt from 'jsonwebtoken'
 import { sendEmail } from '../../helpers/emailHelper'
 import { roleEnum } from '../../../domain/user/enums/roleEnum'
 import { setCookie } from '../../../application/graphqlConfiguration'
+import { ResponseDescription } from '../../../domain/commons/enums/responseDescriptionEnum'
 
-export const login = async (args: any , context: any) => {
+export const login = async (args: any, context: any) => {
   return await UserModel.findOne({ correo: args.correo })
     .then((data: any) => {
       if (!data) {
         const status: Status = new Status(
-          ResponseCodes.SUCCESS_EMPTY,
-          'Usuario no existe',
+          ResponseCodes.ERROR_AUTH,
+          ResponseDescription.ERROR_AUTH,
         )
         const response: ResponseEntity<null> = new ResponseEntity(null, status)
         return response
@@ -37,18 +38,18 @@ export const login = async (args: any , context: any) => {
             const tokenObject = {
               token,
             }
-            setCookie(context,"token", token, {
-              path:'/',
+            setCookie(context, 'token', token, {
+              path: '/',
             })
             const response: ResponseEntity<any> = new ResponseEntity(
-              tokenObject,
+              data,
               status,
             )
             return response
           } else {
             const status: Status = new Status(
-              ResponseCodes.ERROR,
-              'contraseña erronea',
+              ResponseCodes.ERROR_AUTH,
+              ResponseDescription.ERROR_AUTH,
             )
             const response: ResponseEntity<null> = new ResponseEntity(
               null,

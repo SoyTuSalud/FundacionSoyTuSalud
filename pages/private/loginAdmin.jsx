@@ -1,89 +1,120 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
 import { client } from '../../graphql-front/initClientSide'
-import { loginUser } from '../../graphql-front/user/queries'
+import { loginUserAdmin } from '../../graphql-front/user/queries'
 import { useRouter } from 'next/router'
+import Image from 'next/image'
+import { Formik } from 'formik'
+import { ResponseCodes } from '../../backend/domain/commons/enums/responseCodesEnum'
+import { roleEnum } from '../../backend/domain/user/enums/roleEnum'
+import { useState } from 'react'
 
 export default function Example() {
-
   const router = useRouter()
+  const [error, setError] = useState('')
 
-  const handleSubmit = async  (e) => {
-    e.preventDefault()
-   await client
-        .query({
-          query: loginUser,
-  
-          variables: {
-            //todo data user form
-          },
-        }).then(data => {
-          router.push("/private/admin")
-        })
-        
+  const handleSubmit = async (variables) => {
+    await client
+      .query({
+        query: loginUserAdmin,
+
+        variables,
+      })
+      .then(({ data }) => {
+        if (data.login.status.code === ResponseCodes.ERROR_AUTH) {
+          return setError(data.login.status.description)
+        } else if (data.login.body.role !== roleEnum.ADMIN) {
+          return setError('No permission to access')
+        }
+        router.push('/private/admin')
+      })
   }
-  
+
   return (
     <>
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div>
-            <img
-              className="mx-auto h-12 w-auto"
-              src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-              alt="Workflow"
-            />
+            <div className="text-center">
+              <Image
+                src="/logo_horizontal-black.png"
+                width={'230px'}
+                height={'63px'}
+                alt="logo"
+              />
+            </div>
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
               Admin Fundacion
             </h2>
             <p className="mt-2 text-center text-sm text-gray-600"></p>
           </div>
-          <form className="mt-8 space-y-6" action="#" onSubmit={handleSubmit} method="POST">
-            <input type="hidden" name="remember" defaultValue="true" />
-            <div className="rounded-md shadow-sm -space-y-px">
-              <div>
-                <label htmlFor="email-address" className="sr-only">
-                  Email address
-                </label>
+
+          <span className="text-red-500">{error}</span>
+
+          <Formik
+            initialValues={{ correo: '', contrasena: '' }}
+            validate={(values) => {
+              const errors = {}
+              if (!values.correo) {
+                errors.correo = 'Requerido'
+              } else if (
+                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.correo)
+              ) {
+                errors.correo = 'Dirección de correo inválida'
+              }
+              return errors
+            }}
+            onSubmit={(values, { setSubmitting }) => {
+              setTimeout(() => {
+                handleSubmit(values)
+                setSubmitting(false)
+              }, 400)
+            }}
+          >
+            {({
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              isSubmitting,
+              /* and other goodies */
+            }) => (
+              <form onSubmit={handleSubmit} className="mt-8 space-y-6">
                 <input
-                  id="email-address"
-                  name="email"
                   type="email"
-                  autoComplete="email"
-                  required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="Email address"
-                />
-              </div>
-              <div>
-                <label htmlFor="password" className="sr-only">
-                  Password
-                </label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
+                  name="correo"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.correo}
+                  placeholder="Correo Electronico"
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="Password"
                 />
-              </div>
-            </div>
-            <div>
-              <button
-                type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                  <LockClosedIcon
-                    className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-                    aria-hidden="true"
-                  />
+                <span className="text-red-500">
+                  {errors.correo && touched.correo && errors.correo}
                 </span>
-                Sign in
-              </button>
-            </div>
-          </form>
+                <input
+                  type="password"
+                  name="contrasena"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.contrasena}
+                  placeholder="Contraseña"
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                />
+                <span className="text-red-500">
+                  {errors.contrasena && touched.contrasena && errors.contrasena}
+                </span>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                  Submit
+                </button>
+              </form>
+            )}
+          </Formik>
         </div>
       </div>
     </>

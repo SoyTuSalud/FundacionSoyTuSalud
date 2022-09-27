@@ -4,4 +4,5 @@ export enum ResponseCodes {
 
   ERROR = 'E_01',
   PERMISSION_ERROR = 'E_02',
+  ERROR_AUTH = 'E_03',
 }

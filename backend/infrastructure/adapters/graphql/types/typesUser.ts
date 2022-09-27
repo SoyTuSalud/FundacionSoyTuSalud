@@ -47,7 +47,7 @@ export const typesUser = gql`
   }
 
   type Query {
-    login(correo: String!, contrasena: String!): UnionToken
+    login(correo: String!, contrasena: String!): UnionUser
     verifyAdmin: String
   }
 
