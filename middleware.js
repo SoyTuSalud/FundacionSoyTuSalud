@@ -6,9 +6,10 @@ import { enablePages } from './utils/enablePages'
 export async function middleware(request) {
   const token = request.cookies.get('token')
   const validate = await validateUser(token)
-  const verifyRolesCondition = validate?.data?.verifyRoles || 'noAuth'
+  const role = validate?.data?.verifyRoles || 'noAuth'
+  const path = request.nextUrl.pathname
 
-  if (enablePages[verifyRolesCondition].includes(request.nextUrl.pathname)) {
+  if (enablePages[role].includes(path)) {
     return NextResponse.next()
   } else {
     return NextResponse.redirect(new URL('/', request.url))
