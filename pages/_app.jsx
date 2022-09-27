@@ -8,7 +8,7 @@ import { lightTheme } from '../components/Ui/themes/lightTheme'
 import { appWithTranslation } from 'next-i18next'
 import { ComponentContext } from '../context/useComponents'
 
-function MyApp({ Component, pageProps } ) {
+function MyApp({ Component, pageProps }) {
   const [authUser, setAuthUser] = useState({})
   const [componentStatus, setComponentStatus] = useState({})
   return (

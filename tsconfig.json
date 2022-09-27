@@ -26,7 +26,12 @@
     "pages/_document.jsx",
     "pages/_app.jsx",
     "hooks/useFormData.js",
-    "utils/validateUser.js"
+    "utils/validateUser.js",
+    "middleware.js",
+    "utils/validateRolPages.js",
+    "utils/validateRolPages.js",
+    "utils/enablePagesEnum.js",
+    "utils/validateRolPages.js"
   ],
   "exclude": ["node_modules"]
 }

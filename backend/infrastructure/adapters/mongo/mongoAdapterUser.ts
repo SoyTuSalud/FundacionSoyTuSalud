@@ -100,15 +100,6 @@ export const registro = async (args: any) => {
 
 export const findUserById = () => {}
 
-export const verifyAdmin = (payload: any) => {
-  if (payload.role === roleEnum.ADMIN) {
-    return 'ok'
-  }
-  const status: Status = new Status(
-    ResponseCodes.PERMISSION_ERROR,
-    'Acceso denegado',
-  )
-  const response: ResponseEntity<null> = new ResponseEntity(null, status)
-
-  return 'no'
+export const verifyRoles = (payload: any) => {
+  return payload.role
 }

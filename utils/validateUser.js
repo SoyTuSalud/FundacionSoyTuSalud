@@ -1,21 +1,14 @@
 export const validateUser = async (token) => {
-
   var myHeaders = new Headers()
-  myHeaders.append(
-    'Authorization',
-    token,
-  )
+  myHeaders.append('Authorization', token)
   myHeaders.append('Content-Type', 'application/json')
-  myHeaders.append(
-    'Cookie',
-    `token=${token}`,
-  )
+  myHeaders.append('Cookie', `token=${token}`)
 
-  const httpLink = process.env.ENV_API_GRAPHQL || process.env.NEXT_PUBLIC_API_GRAPHQL
-
+  const httpLink =
+    process.env.ENV_API_GRAPHQL || process.env.NEXT_PUBLIC_API_GRAPHQL
 
   var graphql = JSON.stringify({
-    query: 'query Query {\n  verifyAdmin\n}',
+    query: 'query Query {\n  verifyRoles\n}',
     variables: {},
   })
   var requestOptions = {

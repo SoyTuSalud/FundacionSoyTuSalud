@@ -90,8 +90,8 @@ export const Navbar = ({ t }) => {
       .catch((error) => {
         console(error)
       })
-      localStorage.setItem('login', false)
-      localStorage.setItem('userUid', '')
+    localStorage.setItem('login', false)
+    localStorage.setItem('userUid', '')
   }
 
   const [navbar, setNavbar] = useState(false)

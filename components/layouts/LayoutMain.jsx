@@ -8,31 +8,30 @@ import { Navbar, ImageBackground, MenuFooter } from '../Ui/public'
 import { Box } from '@mui/material'
 
 export const LayoutMain = ({ children, propsImage, t }) => {
-  const { setAuthUser } = useAuth()
+  // const { setAuthUser } = useAuth()
 
   // useEffect(() => {
   //   let uid = localStorage.getItem('userUid')
   //   if (!uid) {
   //     uid = ''
   //   }
-  //   client
-  //     .query({
-  //       query: authUser,
+  // client
+  //   .query({
+  //     query: authUser,
 
-  //       variables: {
-  //         uid,
-  //       },
-  //     })
-  //     .then((response) => {
-  //       console.log(response.data.Usuario.status.code);
+  //     variables: {
+  //       uid,
+  //     },
+  //   })
+  //   .then((response) => {
+  //     console.log(response.data.Usuario.status.code)
 
-  //       if(response.data.Usuario.status.code === "S_02"){
-  //         setAuthUser(null)
-  //       }else{
-  //         setAuthUser(response.data.Usuario)
-  //       }
-
-  //     })
+  //     if (response.data.Usuario.status.code === 'S_02') {
+  //       setAuthUser(null)
+  //     } else {
+  //       setAuthUser(response.data.Usuario)
+  //     }
+  //   })
   // }, [])
 
   // useEffect(() => {

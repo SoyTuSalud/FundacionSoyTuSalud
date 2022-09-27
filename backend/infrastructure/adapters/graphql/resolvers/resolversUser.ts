@@ -1,14 +1,14 @@
 import { ResponseCodes } from '../../../../domain/commons/enums/responseCodesEnum'
-import { login, registro, verifyAdmin } from '../../mongo/mongoAdapterUser'
+import { login, registro, verifyRoles } from '../../mongo/mongoAdapterUser'
 
 export const resolversUser = {
   Query: {
     login: async (parent: any, args: any, context: any) => {
-      return await login(args, context )
+      return await login(args, context)
     },
 
-    verifyAdmin: async (parent: any, args: any, { payload }: any) => {
-      return await verifyAdmin(payload)
+    verifyRoles: async (parent: any, args: any, { payload }: any) => {
+      return await verifyRoles(payload)
     },
   },
   Mutation: {

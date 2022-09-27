@@ -1,11 +1,11 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
-import { client } from '../../graphql-front/initClientSide'
-import { loginUserAdmin } from '../../graphql-front/user/queries'
+import { client } from '../graphql-front/initClientSide'
+import { loginUserAdmin } from '../graphql-front/user/queries'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { Formik } from 'formik'
-import { ResponseCodes } from '../../backend/domain/commons/enums/responseCodesEnum'
-import { roleEnum } from '../../backend/domain/user/enums/roleEnum'
+import { ResponseCodes } from '../backend/domain/commons/enums/responseCodesEnum'
+import { roleEnum } from '../backend/domain/user/enums/roleEnum'
 import { useState } from 'react'
 
 export default function Example() {
