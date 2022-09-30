@@ -7,7 +7,7 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { sendEmail } from '../../helpers/emailHelper'
 import { roleEnum } from '../../../domain/user/enums/roleEnum'
-import { setCookie } from '../../../application/graphqlConfiguration'
+import { setCookie } from '../../helpers/tokenSerialize'
 import { ResponseDescription } from '../../../domain/commons/enums/responseDescriptionEnum'
 
 export const login = async (args: any, context: any) => {
@@ -34,10 +34,6 @@ export const login = async (args: any, context: any) => {
             const token = jwt.sign(newData, process.env.ENV_KEY_TOKEN!, {
               expiresIn: '1h',
             })
-
-            const tokenObject = {
-              token,
-            }
             setCookie(context, 'token', token, {
               path: '/',
             })
@@ -102,4 +98,43 @@ export const findUserById = () => {}
 
 export const verifyRoles = (payload: any) => {
   return payload.role
+}
+
+export const usersTablaByRol= async (payload: any) => {
+
+  if(payload.role === roleEnum.ADMIN){
+    return await UserModel
+  .find({role: payload.role })
+    .populate('user')
+    .then((data) => {
+      if (!data) {
+        const status: Status = new Status(
+          ResponseCodes.SUCCESS_EMPTY,
+          'exitoso sin datos',
+        )
+        const response: ResponseEntity<null> = new ResponseEntity(null, status)
+
+        return response
+      }
+
+      const status: Status = new Status(ResponseCodes.SUCCESS, 'exitoso')
+      const response: ResponseEntity<any[]> = new ResponseEntity(data, status)
+
+      return response
+    })
+    .catch((e) => {
+      const status: Status = new Status(ResponseCodes.ERROR, e.message)
+      const response: ResponseEntity<null> = new ResponseEntity(null, status)
+
+      return response
+    }) 
+  }
+  else{
+
+    const status: Status = new Status(ResponseCodes.PERMISSION_ERROR, 'Acceso denegado')
+    const response: ResponseEntity<null> = new ResponseEntity(null, status)
+
+    return response
+
+  }
 }

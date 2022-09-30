@@ -1,6 +1,6 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
 import { client } from '../graphql-front/initClientSide'
-import { loginUserAdmin } from '../graphql-front/user/queries'
+import { loginUserAdmin } from '../graphql-front/paciente/queries'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { Formik } from 'formik'

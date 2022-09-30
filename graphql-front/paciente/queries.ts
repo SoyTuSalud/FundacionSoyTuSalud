@@ -1,17 +1,29 @@
 import { gql } from '@apollo/client'
 
-export const usuariosTablas = gql`
-  query Query {
-    PacientesTabla {
-      identificacion
-      nombre
-      apellidos
-      correo
-      tipoDocumento
-      formularioTuHistoria
-      foto
+export const pacientesTabla = gql`
+query UsersTablaByRol {
+  usersTablaByRol {
+      ... on ResponseUserList {
+      body {
+        identificacion
+        nombre
+        apellidos
+        correo
+        tipoDocumento
+      }
+      status {
+        description
+        code
+      }
     }
+    ... on ResponseUserError {
+      status {
+        code
+        description
+      }
+    }  
   }
+}
 `
 
 export const pacientesTablaTuHistoria = gql`

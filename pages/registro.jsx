@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword, deleteUser } from 'firebase/auth'
 import { useMutation } from '@apollo/client'
-import { registrarUsuario } from '../graphql-front/user/mutations'
+import { registrarUsuario } from '../graphql-front/paciente/mutations'
 import Link from 'next/link'
 import { auth } from '../firebase/initConfig'
 import { useRouter } from 'next/router'

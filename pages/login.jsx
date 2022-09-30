@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useAuth } from '../context/useAuth'
 import { auth } from '../firebase/initConfig'
-import { authUser } from '../graphql-front/user/queries'
+import { authUser } from '../graphql-front/paciente/queries'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { client } from '../graphql-front/initClientSide'
 import useFormData from '../hooks/useFormData'

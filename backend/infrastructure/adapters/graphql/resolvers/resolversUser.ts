@@ -1,16 +1,19 @@
 import { ResponseCodes } from '../../../../domain/commons/enums/responseCodesEnum'
-import { login, registro, verifyRoles } from '../../mongo/mongoAdapterUser'
+import { login, registro, verifyRoles, usersTablaByRol } from '../../mongo/mongoAdapterUser'
 
 export const resolversUser = {
   Query: {
     login: async (parent: any, args: any, context: any) => {
       return await login(args, context)
     },
-
+    usersTablaByRol: async(parent: any, args: any, { payload }: any) => {
+      return await usersTablaByRol(payload)
+    },
     verifyRoles: async (parent: any, args: any, { payload }: any) => {
       return await verifyRoles(payload)
     },
   },
+
   Mutation: {
     registro: async (parent: any, args: any) => {
       return await registro(args)
@@ -23,7 +26,13 @@ export const resolversUser = {
         : 'ResponseUserError'
     },
   },
-
+  UnionUserList:{
+    __resolveType(obj: any) {
+      return obj.status.code === ResponseCodes.SUCCESS
+        ? 'ResponseUserList'
+        : 'ResponseUserError'
+    },
+  },
   UnionToken: {
     __resolveType(obj: any) {
       return obj.status.code === ResponseCodes.SUCCESS

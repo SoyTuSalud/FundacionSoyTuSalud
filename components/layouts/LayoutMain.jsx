@@ -3,7 +3,7 @@ import { onAuthStateChanged, onIdTokenChanged } from 'firebase/auth'
 import { auth } from '../../firebase/initConfig'
 import { useAuth } from '../../context/useAuth'
 import { client } from '../../graphql-front/initClientSide'
-import { authUser } from '../../graphql-front/user/queries'
+import { authUser } from '../../graphql-front/paciente/queries'
 import { Navbar, ImageBackground, MenuFooter } from '../Ui/public'
 import { Box } from '@mui/material'
 
@@ -48,7 +48,7 @@ export const LayoutMain = ({ children, propsImage, t }) => {
 
   return (
     <Box sx={{ backgroundColor: '#F9F7F6' }}>
-      <Navbar t={t}></Navbar>
+      {/* <Navbar t={t}></Navbar> */}
       <ImageBackground propsImage={propsImage} />
       {children}
       <MenuFooter t={t}></MenuFooter>

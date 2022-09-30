@@ -2,8 +2,8 @@ import { Box, Container } from '@mui/material'
 import Head from 'next/head'
 import NewPrivateLayout from '../../../../components/layouts/NewPrivateLayout/NewPrivateLayout'
 import { PacientesToolbar } from '../../../../components/pacientes/PacientesToolbar'
-import { client } from '../../../../graphql-front/initClientSide'
-import { usuariosTablas } from '../../../../graphql-front/user/queries'
+import { initClientSSR } from '../../../../graphql-front/initClientSSR'
+import { pacientesTabla } from '../../../../graphql-front/paciente/queries'
 import { PacientesTablas } from '../../../../components/pacientes/PacientesTablas'
 
 const PacientesPage = ({ UsuariosTabla }) => {
@@ -30,14 +30,19 @@ const PacientesPage = ({ UsuariosTabla }) => {
   )
 }
 
-export const getServerSideProps = async (ctx) => {
+export const getServerSideProps = async ({req, res}) => {
+
+  const client = initClientSSR(req)
+  
   const { data } = await client.query({
-    query: usuariosTablas,
+    query: pacientesTabla,
+    variables: { rol: "PACIENTE" }
   })
+  console.log(data)
   const { UsuariosTabla } = data
   return {
     props: {
-      UsuariosTabla: PacientesTabla,
+      // UsuariosTabla: PacientesTabla,
     },
   }
 }
