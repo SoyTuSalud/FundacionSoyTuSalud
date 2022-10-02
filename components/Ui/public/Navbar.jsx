@@ -117,12 +117,8 @@ export const Navbar = ({ t }) => {
   }
 
   return (
-    <header
-      className={
-        navbar ? 'backgroundNav w-full header ' : 'header header--front'
-      }
-    >
-      <Popover className="container-fluid relative bg-transparent">
+    <header className={navbar ? 'backgroundNav navbarTop0' : 'navbarTop0'}>
+      <Popover className="container-fluid popover  relative bg-transparent">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center py-6 lg:justify-start lg:space-x-12">
             <div className="flex justify-start items-center sm:w-0 sm:flex-1">
@@ -133,8 +129,8 @@ export const Navbar = ({ t }) => {
                 alt="logo"
               />
             </div>
-            <Popover.Button className="-mr-2 -my-2 lg:hidden">
-              <div className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+            <Popover.Button className="-my-2 lg:hidden">
+              <div className="bg-white rounded-md p-2 mr-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                 <span className="sr-only">Open menu</span>
                 <MenuIcon className="h-6 w-6" aria-hidden="true" />
               </div>

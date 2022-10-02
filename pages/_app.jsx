@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import '../styles/globals.css'
 import { client } from '../graphql-front/initClientSide'
 import { ApolloProvider } from '@apollo/client'
 import { AuthContext } from '../context/useAuth'
@@ -7,6 +6,13 @@ import { ThemeProvider } from '@mui/material/styles'
 import { lightTheme } from '../components/Ui/themes/lightTheme'
 import { appWithTranslation } from 'next-i18next'
 import { ComponentContext } from '../context/useComponents'
+
+import '../styles/globals.css'
+import '../styles/SignInPage.css'
+import '../styles/HistoriesPage.css'
+import '../styles/TrazabilidadPage.css'
+import '../components/Ui/loading/loading.css'
+import '../components/Ui/popup/popup.css'
 
 function MyApp({ Component, pageProps }) {
   const [authUser, setAuthUser] = useState({})
