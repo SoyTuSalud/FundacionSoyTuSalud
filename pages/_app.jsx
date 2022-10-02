@@ -12,6 +12,7 @@ import '../styles/SignInPage.css'
 import '../styles/HistoriesPage.css'
 import '../styles/TrazabilidadPage.css'
 import '../components/Ui/loading/loading.css'
+import '../components/Ui/popup/popup.css'
 
 function MyApp({ Component, pageProps }) {
   const [authUser, setAuthUser] = useState({})
