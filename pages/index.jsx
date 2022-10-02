@@ -4,15 +4,21 @@ import Image from 'next/image'
 import { LayoutMain } from '../components/layouts/LayoutMain'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
+import { useState } from 'react'
+import { Loading } from '../components/Ui/loading/Loading'
 
 export default function Home({ locale }) {
   const { t } = useTranslation()
+
+  const [loading, setLoading] = useState(true)
 
   const propsImage = {
     title: t('home:tituloHome'),
     title2: t('home:titulohome2'),
     image: '/promo_c1.png',
   }
+
+  if (loading) return <Loading />
 
   return (
     <LayoutMain t={t} propsImage={propsImage}>
