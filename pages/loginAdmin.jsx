@@ -5,10 +5,10 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { Formik } from 'formik'
 import { ResponseCodes } from '../backend/domain/commons/enums/responseCodesEnum'
-import { roleEnum } from '../backend/domain/user/enums/roleEnum'
 import { useState } from 'react'
 
-export default function Example() {
+
+const LoginAdmin = () => {
   const router = useRouter()
   const [error, setError] = useState('')
 
@@ -20,10 +20,8 @@ export default function Example() {
         variables,
       })
       .then(({ data }) => {
-        if (data.login.status.code === ResponseCodes.ERROR_AUTH) {
-          return setError(data.login.status.description)
-        } else if (data.login.body.role !== roleEnum.ADMIN) {
-          return setError('No permission to access')
+        if (data.loginAdmin.status.code === ResponseCodes.ERROR_AUTH) {
+          return setError(data.loginAdmin.status.description)
         }
         router.push('/private/admin')
       })
@@ -53,7 +51,9 @@ export default function Example() {
           <Formik
             initialValues={{ correo: '', contrasena: '' }}
             validate={(values) => {
-              const errors = {}
+              const errors = {
+                correo: {},
+              }
               if (!values.correo) {
                 errors.correo = 'Requerido'
               } else if (
@@ -78,7 +78,6 @@ export default function Example() {
               handleBlur,
               handleSubmit,
               isSubmitting,
-              /* and other goodies */
             }) => (
               <form onSubmit={handleSubmit} className="mt-8 space-y-6">
                 <input
@@ -120,3 +119,5 @@ export default function Example() {
     </>
   )
 }
+
+export default LoginAdmin

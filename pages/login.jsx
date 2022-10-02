@@ -1,11 +1,9 @@
 import Head from 'next/head'
 import { useAuth } from '../context/useAuth'
-import { auth } from '../firebase/initConfig'
 import { authUser } from '../graphql-front/paciente/queries'
-import { signInWithEmailAndPassword } from 'firebase/auth'
 import { client } from '../graphql-front/initClientSide'
 import useFormData from '../hooks/useFormData'
-import NextLink from 'next/link'
+import Link from 'next/link'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
 import { useFormik } from 'formik'
@@ -14,15 +12,13 @@ import {
   Box,
   Button,
   Container,
-  Link,
   TextField,
   Typography,
 } from '@mui/material'
-import { LayoutMain } from '../components/layouts/LayoutMain'
-import PrivatePages from '../components/PrivatePages'
+import { LayoutMain } from '../components/layouts'
 import { useTranslation } from 'next-i18next'
+import { GetStaticProps } from 'next'
 
-let usuarioId = {}
 
 const Login = () => {
   const { t } = useTranslation()
@@ -33,28 +29,23 @@ const Login = () => {
     image: '/promo_c1.png',
   }
 
-  const { setAuthUser } = useAuth()
+  // const { setAuthUser } = useAuth()
   const { form, formData, updateFormData } = useFormData()
   const router = useRouter()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    await signInWithEmailAndPassword(
-      auth,
-      formData.email,
-      formData.password,
-    ).then((user) => {
-      usuarioId = user.user.uid
-    })
-    const { data } = await client.query({
+
+    await client
+    .query({
       query: authUser,
-      variables: {
-        uid: usuarioId,
+
+      variables:{
+        correo: formData.email,
+        contrasena: formData.password,
       },
     })
-    localStorage.setItem('login', true)
-    localStorage.setItem('userUid', data.Usuario.body.uid)
-    setAuthUser(data.Usuario.body)
+    
   }
 
   const formik = useFormik({
@@ -80,7 +71,6 @@ const Login = () => {
         <title>Login | Soy Tu Salud</title>
       </Head>
       <LayoutMain propsImage={propsImage} t={t}>
-        {/* <PrivatePages login={false}> */}
         <Box
           component="main"
           sx={{
@@ -112,7 +102,7 @@ const Login = () => {
                 helperText={formik.touched.email && formik.errors.email}
                 label={t('login:email')}
                 margin="normal"
-                name="email"
+                name="correo"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
                 type="email"
@@ -127,7 +117,7 @@ const Login = () => {
                 helperText={formik.touched.password && formik.errors.password}
                 label={t('login:contrasena')}
                 margin="normal"
-                name="password"
+                name="contrasena"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
                 type="password"
@@ -148,29 +138,19 @@ const Login = () => {
               </Box>
               <Typography color="textSecondary" variant="body2">
                 {t('login:noCuenta')}?{' '}
-                <NextLink href="/registro" passHref>
-                  <Link
-                    to="/registro"
-                    variant="subtitle2"
-                    underline="hover"
-                    sx={{
-                      cursor: 'pointer',
-                    }}
-                  >
-                    {t('navbar:registro')}
+                  <Link href="/registro" >
+                    <a className='text-violet-800 cursor-pointer'>{t('navbar:registro')}</a>
                   </Link>
-                </NextLink>
               </Typography>
             </form>
           </Container>
         </Box>
-        {/* </PrivatePages> */}
       </LayoutMain>
     </>
   )
 }
 
-export const getStaticProps = async ({ locale }) => {
+export const getStaticProps = async ({locale}) => {
   return {
     props: {
       ...(await serverSideTranslations(locale, [

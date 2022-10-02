@@ -55,33 +55,19 @@ export const pacientesTablaTuHistoria = gql`
 `
 
 export const authUser = gql`
-  query Query($uid: String!) {
-    Paciente(uid: $uid) {
-      ... on ResponsePaciente {
-        body {
-          identificacion
-          _id
-          uid
-          nombre
-          apellidos
-          tipoDocumento
-          celular
-          correo
-          formularioTuHistoria
-        }
-        status {
-          code
-          description
-        }
+query Query($correo: String!, $contrasena: String!) {
+  login(correo: $correo, contrasena: $contrasena) {
+    ... on ResponseUser {
+      body {
+        identificacion
       }
-      ... on ResponsePacienteError {
-        status {
-          code
-          description
-        }
+      status {
+        code
+        description
       }
     }
   }
+}
 `
 
 export const userData = gql`
@@ -122,13 +108,12 @@ export const userData = gql`
   }
 `
 
+
+
 export const loginUserAdmin = gql`
   query Query($correo: String!, $contrasena: String!) {
-    login(correo: $correo, contrasena: $contrasena) {
+    loginAdmin(correo: $correo, contrasena: $contrasena) {
       ... on ResponseUser {
-        body {
-          role
-        }
         status {
           code
           description

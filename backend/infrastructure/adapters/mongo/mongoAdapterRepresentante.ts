@@ -5,62 +5,67 @@ import { Status } from '../../../domain/commons/StatusInterface'
 import { ResponseCodes } from '../../../domain/commons/enums/responseCodesEnum'
 
 export const representantesTabla = async () => {
-  return await representanteModel.find({})
-  .populate("servicios")
+  return await representanteModel
+    .find({})
+    .populate('servicios')
     .then((data) => {
-
-    if(!data){
-
-        const status : Status = new Status(ResponseCodes.SUCCESS_EMPTY, "exitoso sin datos")
-        const response : ResponseEntity<null> = new ResponseEntity(null, status)
+      if (!data) {
+        const status: Status = new Status(
+          ResponseCodes.SUCCESS_EMPTY,
+          'exitoso sin datos',
+        )
+        const response: ResponseEntity<null> = new ResponseEntity(null, status)
 
         return response
       }
 
-    const status : Status = new Status(ResponseCodes.SUCCESS, "exitoso")
-    const response : ResponseEntity<any[]> = new ResponseEntity(data, status)
+      const status: Status = new Status(ResponseCodes.SUCCESS, 'exitoso')
+      const response: ResponseEntity<any[]> = new ResponseEntity(data, status)
 
       return response
+    })
+    .catch((e) => {
+      const status: Status = new Status(ResponseCodes.ERROR, e.message)
 
-  }).catch(e =>{
-    const status : Status = new Status(ResponseCodes.ERROR,  e.message)
-
-      const response : ResponseEntity<null> = new ResponseEntity(null, status)
+      const response: ResponseEntity<null> = new ResponseEntity(null, status)
 
       return response
     })
 }
 
 export const representante = async (id: String) => {
-
-    return await representanteModel.findById(id).populate("servicios")
+  return await representanteModel
+    .findById(id)
+    .populate('servicios')
     .then((data: Representante) => {
-
-      if(!data){
-        const status : Status = new Status(ResponseCodes.SUCCESS_EMPTY, "exitoso sin datos")
-        const response : ResponseEntity<null> = new ResponseEntity(null, status)
+      if (!data) {
+        const status: Status = new Status(
+          ResponseCodes.SUCCESS_EMPTY,
+          'exitoso sin datos',
+        )
+        const response: ResponseEntity<null> = new ResponseEntity(null, status)
 
         return response
-
       }
 
-      const status : Status = new Status(ResponseCodes.SUCCESS, "exitoso")
-      const response : ResponseEntity<Representante> = new ResponseEntity(data, status)
+      const status: Status = new Status(ResponseCodes.SUCCESS, 'exitoso')
+      const response: ResponseEntity<Representante> = new ResponseEntity(
+        data,
+        status,
+      )
 
       return response
+    })
+    .catch((e) => {
+      const status: Status = new Status(ResponseCodes.ERROR, e.message)
 
-    }).catch((e)  =>{
-
-      const status : Status = new Status(ResponseCodes.ERROR,  e.message)
-
-      const response : ResponseEntity<null> = new ResponseEntity(null, status)
+      const response: ResponseEntity<null> = new ResponseEntity(null, status)
 
       return response
     })
 }
 
-export const crearRepresentante = async (args: Representante) =>{
-
+export const crearRepresentante = async (args: Representante) => {
   let newRepresentante: Representante = {
     user: args.user,
     identificacion: args.identificacion,
@@ -71,15 +76,15 @@ export const crearRepresentante = async (args: Representante) =>{
     departamento: args.departamento,
     municipio: args.municipio,
     direccion: args.direccion,
-      cuentaDeAhorros:args.cuentaDeAhorros, 
-      distintivoHabilitacion:args.distintivoHabilitacion,   
-      fotoLogoPublicidad:args.fotoLogoPublicidad, 
-      hojaVida:args.hojaVida, 
-      resumenCurriculum:args.resumenCurriculum, 
-      aceptaConvenio:args.aceptaConvenio, 
-      aceptaTratamientoDatos:args.aceptaTratamientoDatos, 
-      aceptaDocumentoSARLAFT:args.aceptaDocumentoSARLAFT, 
-      aceptaCodigoEticaSoyTuSalud:args.aceptaCodigoEticaSoyTuSalud, 
+    cuentaDeAhorros: args.cuentaDeAhorros,
+    distintivoHabilitacion: args.distintivoHabilitacion,
+    fotoLogoPublicidad: args.fotoLogoPublicidad,
+    hojaVida: args.hojaVida,
+    resumenCurriculum: args.resumenCurriculum,
+    aceptaConvenio: args.aceptaConvenio,
+    aceptaTratamientoDatos: args.aceptaTratamientoDatos,
+    aceptaDocumentoSARLAFT: args.aceptaDocumentoSARLAFT,
+    aceptaCodigoEticaSoyTuSalud: args.aceptaCodigoEticaSoyTuSalud,
   }
 
   if (Object.keys(args).includes('paginaWeb')) {
@@ -90,21 +95,22 @@ export const crearRepresentante = async (args: Representante) =>{
     newRepresentante.convalidacionIcfes = args.convalidacionIcfes
   }
 
-    return await representanteModel.create(newRepresentante)
-    .then((data : any) =>{
-
-      const status : Status = new Status(ResponseCodes.SUCCESS, "exitoso")
-      const response : ResponseEntity<Representante> = new ResponseEntity(data, status)
-
-      return response
-
-    }).catch(e =>{
-
-        const status : Status = new Status(ResponseCodes.ERROR,  e.message)
-
-        const response : ResponseEntity<null> = new ResponseEntity(null, status)
+  return await representanteModel
+    .create(newRepresentante)
+    .then((data: any) => {
+      const status: Status = new Status(ResponseCodes.SUCCESS, 'exitoso')
+      const response: ResponseEntity<Representante> = new ResponseEntity(
+        data,
+        status,
+      )
 
       return response
     })
+    .catch((e) => {
+      const status: Status = new Status(ResponseCodes.ERROR, e.message)
 
+      const response: ResponseEntity<null> = new ResponseEntity(null, status)
+
+      return response
+    })
 }

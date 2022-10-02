@@ -1,13 +1,12 @@
-import { ValidationError } from 'apollo-server-micro'
-import { ResponseCodes } from '../../../../domain/commons/enums/responseCodesEnum'
-import { ResponseEntity } from '../../../../domain/commons/responseEntity'
-import { Status } from '../../../../domain/commons/StatusInterface'
-import { roleEnum } from '../../../../domain/user/enums/roleEnum'
+import {ResponseCodes} from '../../../../domain/commons/enums/responseCodesEnum'
+import {ResponseEntity} from '../../../../domain/commons/responseEntity'
+import {Status} from '../../../../domain/commons/StatusInterface'
+import {roleEnum} from '../../../../domain/user/enums/roleEnum'
 import {
+  createPacienteTuHistoria,
   findAllPacientes,
   findAllPacientesTuHistoria,
   findPacienteById,
-  createPacienteTuHistoria,
 } from '../../mongo/mongoAdapterPaciente'
 
 export const resolversPaciente = {
@@ -20,9 +19,7 @@ export const resolversPaciente = {
         ResponseCodes.PERMISSION_ERROR,
         'Acceso denegado',
       )
-      const response: ResponseEntity<null> = new ResponseEntity(null, status)
-
-      return response
+      return new ResponseEntity(null, status)
     },
 
     PacientesTablaTuHistoria: async (

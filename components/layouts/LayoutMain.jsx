@@ -6,33 +6,18 @@ import { client } from '../../graphql-front/initClientSide'
 import { authUser } from '../../graphql-front/paciente/queries'
 import { Navbar, ImageBackground, MenuFooter } from '../Ui/public'
 import { Box } from '@mui/material'
+import { useCookies } from 'react-cookie'
+import { decode} from 'jsonwebtoken'
 
 export const LayoutMain = ({ children, propsImage, t }) => {
-  // const { setAuthUser } = useAuth()
+  const { setAuthUser } = useAuth()
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
 
-  // useEffect(() => {
-  //   let uid = localStorage.getItem('userUid')
-  //   if (!uid) {
-  //     uid = ''
-  //   }
-  // client
-  //   .query({
-  //     query: authUser,
+  useEffect(() => {
+    const user = decode(cookies.token)
 
-  //     variables: {
-  //       uid,
-  //     },
-  //   })
-  //   .then((response) => {
-  //     console.log(response.data.Usuario.status.code)
-
-  //     if (response.data.Usuario.status.code === 'S_02') {
-  //       setAuthUser(null)
-  //     } else {
-  //       setAuthUser(response.data.Usuario)
-  //     }
-  //   })
-  // }, [])
+    console.log(user)
+  }, [])
 
   // useEffect(() => {
   //   const login = localStorage.getItem('login')

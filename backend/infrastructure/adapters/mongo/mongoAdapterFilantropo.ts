@@ -1,7 +1,7 @@
-import { ResponseCodes } from '../../../domain/commons/enums/responseCodesEnum'
-import { ResponseEntity } from '../../../domain/commons/responseEntity'
-import { Status } from '../../../domain/commons/StatusInterface'
-import { Filantropo } from '../../../domain/filantropos/filantropoInterface'
+import {ResponseCodes} from '../../../domain/commons/enums/responseCodesEnum'
+import {ResponseEntity} from '../../../domain/commons/responseEntity'
+import {Status} from '../../../domain/commons/StatusInterface'
+import {Filantropo} from '../../../domain/filantropos/filantropoInterface'
 import filantropoModel from './schemas/mongoSchemaFilantropo'
 
 export const filantroposTabla = async () =>{
@@ -12,9 +12,7 @@ export const filantroposTabla = async () =>{
       if(!data){
   
           const status : Status = new Status(ResponseCodes.SUCCESS_EMPTY, "exitoso sin datos")
-          const response : ResponseEntity<null> = new ResponseEntity(null, status)
-  
-          return response
+          return new ResponseEntity(null, status)
       }
   
       const status : Status = new Status(ResponseCodes.SUCCESS, "exitoso")
@@ -25,9 +23,7 @@ export const filantroposTabla = async () =>{
     }).catch(e =>{
       
       const status : Status = new Status(ResponseCodes.ERROR,  e.message)
-      const response : ResponseEntity<null> = new ResponseEntity(null, status)
-
-      return response
+            return new ResponseEntity(null, status)
     })
   
 }
@@ -39,24 +35,18 @@ export const filantropo = async (id: String) =>{
 
       if(!data){
         const status : Status = new Status(ResponseCodes.SUCCESS_EMPTY, "exitoso sin datos")
-        const response : ResponseEntity<null> = new ResponseEntity(null, status)
-
-        return response
+          return new ResponseEntity(null, status)
 
       }
 
       const status : Status = new Status(ResponseCodes.SUCCESS, "exitoso")
-      const response : ResponseEntity<Filantropo> = new ResponseEntity(data, status)
-
-      return response
+        return new ResponseEntity(data, status)
 
     }).catch((e)  =>{
 
       const status : Status = new Status(ResponseCodes.ERROR,  e.message)
 
-      const response : ResponseEntity<null> = new ResponseEntity(null, status)
-
-      return response
+      return new ResponseEntity(null, status)
     })
   
 }
@@ -81,8 +71,7 @@ export const crearFilantropo = async (args: any) =>{
       .catch((e) => {
 
         const status : Status = new Status(ResponseCodes.ERROR,  e.message)
-        const response : ResponseEntity<null> = new ResponseEntity(null, status)
-        return response
+          return new ResponseEntity(null, status)
       })
 
 }

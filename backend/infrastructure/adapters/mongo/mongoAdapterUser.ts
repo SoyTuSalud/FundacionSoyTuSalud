@@ -4,11 +4,10 @@ import { Status } from '../../../domain/commons/StatusInterface'
 import { User } from '../../../domain/user/userInterface'
 import UserModel from './schemas/mongoSchemaUser'
 import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
 import { sendEmail } from '../../helpers/emailHelper'
 import { roleEnum } from '../../../domain/user/enums/roleEnum'
-import { setCookie } from '../../helpers/tokenSerialize'
 import { ResponseDescription } from '../../../domain/commons/enums/responseDescriptionEnum'
+import { validatePass } from '../../helpers/validatePass'
 
 export const login = async (args: any, context: any) => {
   return await UserModel.findOne({ correo: args.correo })
@@ -18,49 +17,32 @@ export const login = async (args: any, context: any) => {
           ResponseCodes.ERROR_AUTH,
           ResponseDescription.ERROR_AUTH,
         )
-        const response: ResponseEntity<null> = new ResponseEntity(null, status)
-        return response
+        return new ResponseEntity(null, status)
       }
-      return bcrypt
-        .compare(args.contrasena, data.contrasena)
-        .then((validationPass) => {
-          if (validationPass) {
-            const status: Status = new Status(ResponseCodes.SUCCESS, 'exitoso')
+      return validatePass(args, data, context)
+    })
+    .catch((e) => {
+      const status: Status = new Status(ResponseCodes.ERROR, e.message)
+      return new ResponseEntity(null, status)
+    })
+}
 
-            let newData = data
-            newData = newData.toObject()
-            delete newData.contrasena
-
-            const token = jwt.sign(newData, process.env.ENV_KEY_TOKEN!, {
-              expiresIn: '1h',
-            })
-            setCookie(context, 'token', token, {
-              path: '/',
-            })
-            const response: ResponseEntity<any> = new ResponseEntity(
-              data,
-              status,
-            )
-            return response
-          } else {
-            const status: Status = new Status(
-              ResponseCodes.ERROR_AUTH,
-              ResponseDescription.ERROR_AUTH,
-            )
-            const response: ResponseEntity<null> = new ResponseEntity(
-              null,
-              status,
-            )
-            return response
-          }
-        })
+export const loginAdmin = async (args: any, context: any) => {
+  return await UserModel.findOne({ correo: args.correo, role: roleEnum.ADMIN })
+    .then((data: any) => {
+      if (!data) {
+        const status: Status = new Status(
+          ResponseCodes.ERROR_AUTH,
+          ResponseDescription.ERROR_AUTH,
+        )
+        return new ResponseEntity(null, status)
+      }
+      return validatePass(args, data, context)
     })
     .catch((e) => {
       const status: Status = new Status(ResponseCodes.ERROR, e.message)
 
-      const response: ResponseEntity<null> = new ResponseEntity(null, status)
-
-      return response
+      return new ResponseEntity(null, status)
     })
 }
 
@@ -88,9 +70,7 @@ export const registro = async (args: any) => {
     })
     .catch((e) => {
       const status: Status = new Status('PACIENTE', e.message)
-      const response: ResponseEntity<null> = new ResponseEntity(null, status)
-
-      return response
+      return new ResponseEntity(null, status)
     })
 }
 
@@ -100,41 +80,35 @@ export const verifyRoles = (payload: any) => {
   return payload.role
 }
 
-export const usersTablaByRol= async (payload: any) => {
+export const usersTablaByRol = async (payload: any) => {
+  if (payload.role === roleEnum.ADMIN) {
+    return await UserModel.find({ role: payload.role })
+      .populate('user')
+      .then((data) => {
+        if (!data) {
+          const status: Status = new Status(
+            ResponseCodes.SUCCESS_EMPTY,
+            'exitoso sin datos',
+          )
+          return new ResponseEntity(null, status)
+        }
 
-  if(payload.role === roleEnum.ADMIN){
-    return await UserModel
-  .find({role: payload.role })
-    .populate('user')
-    .then((data) => {
-      if (!data) {
-        const status: Status = new Status(
-          ResponseCodes.SUCCESS_EMPTY,
-          'exitoso sin datos',
-        )
+        const status: Status = new Status(ResponseCodes.SUCCESS, 'exitoso')
+        const response: ResponseEntity<any[]> = new ResponseEntity(data, status)
+
+        return response
+      })
+      .catch((e) => {
+        const status: Status = new Status(ResponseCodes.ERROR, e.message)
         const response: ResponseEntity<null> = new ResponseEntity(null, status)
 
         return response
-      }
-
-      const status: Status = new Status(ResponseCodes.SUCCESS, 'exitoso')
-      const response: ResponseEntity<any[]> = new ResponseEntity(data, status)
-
-      return response
-    })
-    .catch((e) => {
-      const status: Status = new Status(ResponseCodes.ERROR, e.message)
-      const response: ResponseEntity<null> = new ResponseEntity(null, status)
-
-      return response
-    }) 
-  }
-  else{
-
-    const status: Status = new Status(ResponseCodes.PERMISSION_ERROR, 'Acceso denegado')
-    const response: ResponseEntity<null> = new ResponseEntity(null, status)
-
-    return response
-
+      })
+  } else {
+    const status: Status = new Status(
+      ResponseCodes.PERMISSION_ERROR,
+      'Acceso denegado',
+    )
+    return new ResponseEntity(null, status)
   }
 }

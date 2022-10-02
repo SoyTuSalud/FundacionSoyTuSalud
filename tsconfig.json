@@ -32,6 +32,6 @@
     "utils/validateRolPages.js",
     "utils/enablePagesEnum.js",
     "utils/validateRolPages.js"
-  ],
+, "pages/loginAdmin.jsx"  ],
   "exclude": ["node_modules"]
 }

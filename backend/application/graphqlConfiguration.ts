@@ -1,12 +1,12 @@
-import { ApolloServer, AuthenticationError } from 'apollo-server-micro'
+import { ApolloServer } from 'apollo-server-micro'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core'
 import {
   typeDefs,
   resolvers,
 } from '../infrastructure/adapters/graphql/graphqlAdapter'
-import conectarBD from '../infrastructure/adapters/mongo/configurations/mongoConfiguration'
-import jwt from 'jsonwebtoken'
+import {validateToken} from "../infrastructure/helpers/validateToken";
+
 
 export const execute = async (req: NextApiRequest, res: NextApiResponse) => {
   const apolloServer = new ApolloServer({
@@ -14,27 +14,8 @@ export const execute = async (req: NextApiRequest, res: NextApiResponse) => {
     resolvers,
     csrfPrevention: true,
     cache: 'bounded',
-    context: async ({ req }) => {
-      await conectarBD()
-      const authorization = req.cookies.token || ''
-
-      if (!authorization) {
-        return res
-      }
-
-      try {
-        const verifyToken = jwt.verify(
-          authorization,
-          process.env.ENV_KEY_TOKEN!,
-          {
-            complete: true,
-          },
-        )
-
-        return verifyToken
-      } catch (error: any) {
-        throw new AuthenticationError('Error de auntenticación', error)
-      }
+    context: async () => {
+      return await validateToken(req, res)
     },
     plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true })],
   })

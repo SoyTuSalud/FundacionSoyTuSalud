@@ -1,11 +1,8 @@
-import { ResponseCodes } from '../../../domain/commons/enums/responseCodesEnum'
-import { ResponseEntity } from '../../../domain/commons/responseEntity'
-import { Status } from '../../../domain/commons/StatusInterface'
-import { Paciente } from '../../../domain/paciente/pacienteInterface'
+import {ResponseCodes} from '../../../domain/commons/enums/responseCodesEnum'
+import {ResponseEntity} from '../../../domain/commons/responseEntity'
+import {Status} from '../../../domain/commons/StatusInterface'
+import {Paciente} from '../../../domain/paciente/pacienteInterface'
 import userModel from './schemas/mongoSchemaPaciente'
-import { sendEmail } from '../../helpers/emailHelper'
-import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
 // import AuthModel from './schemas/mongoSchemaAuth'
 // import { roleEnum } from '../../../domain/auth/enums/roleEnum'
 
@@ -19,9 +16,7 @@ export const findAllPacientes = async () => {
           ResponseCodes.SUCCESS_EMPTY,
           'exitoso sin datos',
         )
-        const response: ResponseEntity<null> = new ResponseEntity(null, status)
-
-        return response
+          return new ResponseEntity(null, status)
       }
 
       const status: Status = new Status(ResponseCodes.SUCCESS, 'exitoso')
@@ -77,25 +72,19 @@ export const findPacienteById = async (uid: String) => {
           ResponseCodes.SUCCESS_EMPTY,
           'exitoso sin datos',
         )
-        const response: ResponseEntity<null> = new ResponseEntity(null, status)
-
-        return response
+          return new ResponseEntity(null, status)
       }
 
       const status: Status = new Status(ResponseCodes.SUCCESS, 'exitoso')
-      const response: ResponseEntity<Paciente> = new ResponseEntity(
-        data,
-        status,
+        return new ResponseEntity(
+          data,
+          status,
       )
-
-      return response
     })
     .catch((e) => {
       const status: Status = new Status(ResponseCodes.ERROR, e.message)
 
-      const response: ResponseEntity<null> = new ResponseEntity(null, status)
-
-      return response
+      return new ResponseEntity(null, status)
     })
 }
 
@@ -134,8 +123,7 @@ export const createPacienteTuHistoria = async (args: any, context: any) => {
     })
     .catch((e) => {
       const status: Status = new Status(ResponseCodes.ERROR, e.message)
-      const response: ResponseEntity<null> = new ResponseEntity(null, status)
-      return response
+        return new ResponseEntity(null, status)
     })
 }
 

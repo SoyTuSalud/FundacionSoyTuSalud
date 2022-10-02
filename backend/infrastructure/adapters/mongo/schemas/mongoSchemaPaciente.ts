@@ -3,7 +3,6 @@ import { GeneroEnum } from '../../../../domain/commons/enums/generoEnum'
 import { IdentidadGeneroEnum } from '../../../../domain/commons/enums/identidadGeneroEnum'
 import { OrientacionSexualEnum } from '../../../../domain/commons/enums/orientacionSexualEnum'
 import { TipoDiscapacidadEnum } from '../../../../domain/commons/enums/tipoDiscapacidadEnum'
-import { TipoDocumentoEnum } from '../../../../domain/commons/enums/tipoDocumentoEnum'
 import { Paciente } from '../../../../domain/paciente/pacienteInterface'
 
 const PacienteSchema = new Schema<Paciente>(

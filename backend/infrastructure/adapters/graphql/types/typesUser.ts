@@ -48,6 +48,7 @@ export const typesUser = gql`
 
   type Query {
     login(correo: String!, contrasena: String!): UnionUser
+    loginAdmin(correo: String!, contrasena: String!): UnionUser
     usersTablaByRol: UnionUserList
     verifyRoles: String
   }
