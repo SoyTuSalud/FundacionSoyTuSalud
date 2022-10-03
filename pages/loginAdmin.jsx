@@ -21,7 +21,7 @@ const LoginAdmin = () => {
       })
       .then(({ data }) => {
         if (data.loginAdmin.status.code === ResponseCodes.ERROR_AUTH) {
-          return setError(data.loginAdmin.status.description)
+           setError(data.loginAdmin.status.description)
         }
         router.push('/private/admin')
       })
@@ -51,9 +51,7 @@ const LoginAdmin = () => {
           <Formik
             initialValues={{ correo: '', contrasena: '' }}
             validate={(values) => {
-              const errors = {
-                correo: {},
-              }
+              const errors = {}
               if (!values.correo) {
                 errors.correo = 'Requerido'
               } else if (

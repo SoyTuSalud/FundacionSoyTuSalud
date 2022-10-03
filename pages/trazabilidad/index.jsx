@@ -83,7 +83,12 @@ const Historia = () => {
 export const getStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['navbar', 'home', 'registro'])),
+      ...(await serverSideTranslations(locale, [
+        'navbar',
+        'home',
+        'registro',
+        'footer',
+      ])),
     },
   }
 }

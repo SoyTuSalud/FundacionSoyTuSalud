@@ -7,7 +7,6 @@ import { useRouter } from 'next/router'
 import { LayoutMain } from '../components/layouts/LayoutMain'
 
 import useFormData from '../hooks/useFormData'
-import PrivatePages from '../components/PrivatePages'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { ResponseCodes } from '../backend/domain/commons/enums/responseCodesEnum'
@@ -56,7 +55,6 @@ const Registro = () => {
 
   return (
     <LayoutMain propsImage={propsImage} t={t}>
-      <PrivatePages login={false}>
         <section className="section-container-register-page">
           <div className="section-container-form">
             <form
@@ -185,7 +183,6 @@ const Registro = () => {
             ></button>
           </div>
         </section>
-      </PrivatePages>
     </LayoutMain>
   )
 }

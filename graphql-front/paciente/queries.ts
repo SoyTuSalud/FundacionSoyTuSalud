@@ -58,9 +58,12 @@ export const authUser = gql`
 query Query($correo: String!, $contrasena: String!) {
   login(correo: $correo, contrasena: $contrasena) {
     ... on ResponseUser {
-      body {
-        identificacion
+      status {
+        code
+        description
       }
+    }
+    ... on ResponseUserError {
       status {
         code
         description

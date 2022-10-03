@@ -8,6 +8,8 @@ import { Navbar, ImageBackground, MenuFooter } from '../Ui/public'
 import { Box } from '@mui/material'
 import { useCookies } from 'react-cookie'
 import { decode} from 'jsonwebtoken'
+import { PopUp } from '../Ui/popup/PopUp'
+import { Loading } from '../Ui/loading/Loading'
 
 export const LayoutMain = ({ children, propsImage, t }) => {
   const { setAuthUser } = useAuth()
@@ -33,10 +35,11 @@ export const LayoutMain = ({ children, propsImage, t }) => {
 
   return (
     <Box sx={{ backgroundColor: '#F9F7F6' }}>
-      {/* <Navbar t={t}></Navbar> */}
+      <Navbar t={t}></Navbar>
       <ImageBackground propsImage={propsImage} />
-      {children}
+        {children}
       <MenuFooter t={t}></MenuFooter>
+      {/* <Loading/> */}
     </Box>
   )
 }

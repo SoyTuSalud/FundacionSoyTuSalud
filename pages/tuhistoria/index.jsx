@@ -4,11 +4,10 @@ import Image from 'next/image'
 import { storage } from '../../firebase/initConfig'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { useMutation } from '@apollo/client'
-import { tuHistoriaUpdate } from '../../graphql-front/user/mutations'
+import { tuHistoriaUpdate } from '../../graphql-front/paciente/mutations'
 import { departamentos } from '../../utils/deparamentos'
 import { municipios } from '../../utils/municipios'
 
-import PrivatePages from '../../components/PrivatePages'
 import useFormData from '../../hooks/useFormData'
 // import { useAuth } from '../../context/useAuth'
 import { LayoutMain } from '../../components/layouts/LayoutMain'
@@ -105,7 +104,6 @@ const Tuhistoria = () => {
   return (
     <>
       <LayoutMain propsImage={propsImage} t={t}>
-        {/* <PrivatePages login={true}> */}
         <main className="main">
           <section className="section contacts no-padding-top">
             <div className="contacts-wrapper">
@@ -1155,7 +1153,6 @@ const Tuhistoria = () => {
 
           <section></section>
         </main>
-        {/* </PrivatePages> */}
       </LayoutMain>
     </>
   )
