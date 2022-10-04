@@ -2,10 +2,9 @@ import { Fragment, useState, useEffect } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { auth } from '../../../firebase/initConfig'
-import { signOut } from 'firebase/auth'
 import { useAuth } from '../../../context/useAuth'
 import { useRouter } from 'next/router'
+import { useCookies } from 'react-cookie'
 import '../../../node_modules/flag-icons/css/flag-icons.min.css'
 
 import {
@@ -79,22 +78,18 @@ export const Navbar = ({ t }) => {
   ]
 
   const router = useRouter()
-
   const { authUser, setAuthUser } = useAuth()
+  const [navbar, setNavbar] = useState(false)
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
+
+
   const handlerLogOut = async () => {
-    await signOut(auth)
-      .then(() => {
-        setAuthUser(null)
-        router.push('/')
-      })
-      .catch((error) => {
-        console(error)
-      })
-    localStorage.setItem('login', false)
-    localStorage.setItem('userUid', '')
+    setAuthUser(null)
+    removeCookie('token')
+    router.push('/')
   }
 
-  const [navbar, setNavbar] = useState(false)
+ 
   const changeBackground = () => {
     if (window.scrollY >= 2) {
       setNavbar(true)

@@ -22,8 +22,9 @@ const LoginAdmin = () => {
       .then(({ data }) => {
         if (data.loginAdmin.status.code === ResponseCodes.ERROR_AUTH) {
            setError(data.loginAdmin.status.description)
+        }else{
+          router.push('/private/admin')
         }
-        router.push('/private/admin')
       })
   }
 

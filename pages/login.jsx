@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import { useAuth } from '../context/useAuth'
 import { authUser } from '../graphql-front/paciente/queries'
-import { client } from '../graphql-front/initClientSide'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
 import { Formik } from 'formik'
@@ -10,31 +9,34 @@ import { LayoutMain } from '../components/layouts'
 import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 import { ResponseCodes } from '../backend/domain/commons/enums/responseCodesEnum'
-import { PopUp } from '../components/Ui/popup/PopUp'
+import { useLazyQuery } from '@apollo/client'
 
 const Login = () => {
   const { t } = useTranslation()
   const [mssgError, setMssgError] = useState('')
+  const [loginUser, { called, loading, data }] = useLazyQuery(authUser, {
+    fetchPolicy: 'no-cache',
+  })
+  const router = useRouter()
 
   const propsImage = {
     title: t('home:tituloHome'),
     title2: t('home:titulohome2'),
     image: '/promo_c1.png',
   }
-  const router = useRouter()
 
   const handleSubmit = async (variables) => {
-    console.log(variables)
-    await client
-      .query({
-        query: authUser,
-        variables,
-      })
-      .then(({ data }) => {
-        if (data.login.status.code === ResponseCodes.ERROR_AUTH) {
-          setMssgError(data.login.status.description)
-        }
-      })
+    await loginUser({
+      variables,
+    }).then(({ data }) => {
+      if (data.login.status.code === ResponseCodes.ERROR_AUTH) {
+        setMssgError(data.login.status.description)
+      } else if (data.login.status.code === ResponseCodes.ERROR) {
+        setMssgError(data.login.status.description)
+      } else if (data.login.status.code === ResponseCodes.SUCCESS) {
+        router.push('/')
+      }
+    })
   }
 
   return (
@@ -142,7 +144,6 @@ const Login = () => {
             </Formik>
           </Container>
         </Box>
-          <PopUp mssgError={mssgError} / >
       </LayoutMain>
     </>
   )

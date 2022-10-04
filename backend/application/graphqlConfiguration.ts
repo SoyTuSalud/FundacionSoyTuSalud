@@ -1,6 +1,5 @@
 import { ApolloServer } from 'apollo-server-micro'
 import { NextApiRequest, NextApiResponse } from 'next'
-import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core'
 import {
   typeDefs,
   resolvers,
@@ -12,12 +11,9 @@ export const execute = async (req: NextApiRequest, res: NextApiResponse) => {
   const apolloServer = new ApolloServer({
     typeDefs,
     resolvers,
-    csrfPrevention: true,
-    cache: 'bounded',
     context: async () => {
       return await validateToken(req, res)
-    },
-    plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true })],
+    }
   })
 
   const startServer = apolloServer.start()

@@ -8,8 +8,6 @@ import { Navbar, ImageBackground, MenuFooter } from '../Ui/public'
 import { Box } from '@mui/material'
 import { useCookies } from 'react-cookie'
 import { decode} from 'jsonwebtoken'
-import { PopUp } from '../Ui/popup/PopUp'
-import { Loading } from '../Ui/loading/Loading'
 
 export const LayoutMain = ({ children, propsImage, t }) => {
   const { setAuthUser } = useAuth()
@@ -17,21 +15,10 @@ export const LayoutMain = ({ children, propsImage, t }) => {
 
   useEffect(() => {
     const user = decode(cookies.token)
-
-    console.log(user)
+    if(user){
+      setAuthUser(user)
+    }
   }, [])
-
-  // useEffect(() => {
-  //   const login = localStorage.getItem('login')
-  //   if (!login) {
-  //     onAuthStateChanged(auth, (user) => {
-  //       if (user) {
-  //         localStorage.setItem('login', true)
-  //         localStorage.setItem('userUid', user.uid)
-  //       }
-  //     })
-  //   }
-  // }, [])
 
   return (
     <Box sx={{ backgroundColor: '#F9F7F6' }}>
