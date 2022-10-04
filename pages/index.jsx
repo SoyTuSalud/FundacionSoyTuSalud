@@ -4,14 +4,17 @@ import Image from 'next/image'
 import { LayoutMain } from '../components/layouts/LayoutMain'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Loading } from '../components/Ui/loading/Loading'
 import { PopUp } from '../components/Ui/popup/PopUp'
+import { PopupContext } from '../context/popup'
 
 export default function Home({ locale }) {
   const { t } = useTranslation()
 
   const [loading, setLoading] = useState(false)
+
+  const { openPopup } = useContext(PopupContext)
 
   const propsImage = {
     title: t('home:tituloHome'),
@@ -140,7 +143,7 @@ export default function Home({ locale }) {
         </section>
       </LayoutMain>
 
-      <PopUp mssgError="Usuario o contraseña incorrecto" />
+      {/* <PopUp mssgError="Usuario o contraseña incorrecto" /> */}
     </>
   )
 }
