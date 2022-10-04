@@ -2,10 +2,9 @@ import { Fragment, useState, useEffect } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { auth } from '../../../firebase/initConfig'
-import { signOut } from 'firebase/auth'
 import { useAuth } from '../../../context/useAuth'
 import { useRouter } from 'next/router'
+import { useCookies } from 'react-cookie'
 import '../../../node_modules/flag-icons/css/flag-icons.min.css'
 
 import {
@@ -79,20 +78,18 @@ export const Navbar = ({ t }) => {
   ]
 
   const router = useRouter()
-
   const { authUser, setAuthUser } = useAuth()
+  const [navbar, setNavbar] = useState(false)
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
+
+
   const handlerLogOut = async () => {
-    await signOut(auth)
-      .then(() => {
-        setAuthUser(null)
-        router.push('/')
-      })
-      .catch((error) => {
-        console(error)
-      })
+    setAuthUser(null)
+    removeCookie('token')
+    router.push('/')
   }
 
-  const [navbar, setNavbar] = useState(false)
+ 
   const changeBackground = () => {
     if (window.scrollY >= 2) {
       setNavbar(true)
@@ -116,8 +113,8 @@ export const Navbar = ({ t }) => {
 
   return (
     <header className={navbar ? 'backgroundNav navbarTop0' : 'navbarTop0'}>
-      <Popover className="container-fluid popover  relative bg-transparent">
-        <div className="max-w-7xl mx-auto px-4">
+      <Popover className="container-fluid popover  relative bg-transparent w-full ">
+        <div className="max-w-screen-2xl mx-auto px-4">
           <div className="flex justify-between items-center py-6 lg:justify-start lg:space-x-12">
             <div className="flex justify-start items-center sm:w-0 sm:flex-1">
               <Image

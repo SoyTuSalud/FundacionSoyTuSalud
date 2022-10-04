@@ -17,6 +17,7 @@ import { ShoppingBag as ShoppingBagIcon } from '../icons/shopping-bag'
 import { User as UserIcon } from '../icons/user'
 import { Users as UsersIcon } from '../icons/users'
 import { NavItem } from './nav-item'
+import { useCookies } from 'react-cookie'
 
 const items = [
   {
@@ -48,6 +49,13 @@ export const DashboardSidebar = (props) => {
     defaultMatches: true,
     noSsr: false,
   })
+
+  const [cookie, setCookie, removeCookie] = useCookies(['token'])
+
+  const onLogout = () => {
+    removeCookie('token', { path: '/' })
+    router.push('/')
+  }
 
   useEffect(
     () => {
@@ -117,6 +125,7 @@ export const DashboardSidebar = (props) => {
             fullWidth
             sx={{ mt: 2 }}
             variant="contained"
+            onClick={onLogout}
           >
             Cerrar sesión
           </Button>

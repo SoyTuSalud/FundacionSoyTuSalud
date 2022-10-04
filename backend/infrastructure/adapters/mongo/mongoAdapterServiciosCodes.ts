@@ -1,34 +1,35 @@
-import conectarBD from './configurations/mongoConfiguration'
+import { ResponseCodes } from '../../../domain/commons/enums/responseCodesEnum'
+import { ResponseEntity } from '../../../domain/commons/responseEntity'
+import { Status } from '../../../domain/commons/StatusInterface'
 import ServiceCodes from './schemas/MongoSchemaServiceCodes'
 
 export const codeService = async (args: any) => {
-  conectarBD()
-  const findService = await ServiceCodes.find({
+
+  return await ServiceCodes.find({
     TIPO_DE_SERVICIO: { $regex: args.TIPO_DE_SERVICIO, $options: 'i' },
     DESCRIPCION_SERVICIO: {
       $regex: args.DESCRIPCION_SERVICIO,
       $options: 'i',
     },
   })
-  return findService
-}
+    .then((data) => {
+      if (!data) {
+        const status: Status = new Status(
+          ResponseCodes.SUCCESS_EMPTY,
+          'exitoso sin datos',
+        )
+        const response : ResponseEntity<null> = new ResponseEntity(null, status)
+        return response
+      }
 
-export const crearCode = async (args: any) => {
-  conectarBD()
-  const newServiceCode = new ServiceCodes({
-    DESCRIPCION_SERVICIO: args.DESCRIPCION_SERVICIO,
-    CODIGO: args.CODIGO,
-    COBERTURA: args.COBERTURA,
-    TIPO_DE_SERVICIO: args.TIPO_DE_SERVICIO,
-  })
-  await newServiceCode
-    .save()
-    .then(() => {
-      console.log('Servicio creado')
-      return newServiceCode
+      const status: Status = new Status(ResponseCodes.SUCCESS, 'exitoso')
+      const response: ResponseEntity<any[]> = new ResponseEntity(data, status)
+
+      return response
     })
     .catch((e) => {
-      console.log('Error al crear servicio', e)
-      return new ServiceCodes()
+      const status: Status = new Status(ResponseCodes.ERROR, e.message)
+      const response : ResponseEntity<null> = new ResponseEntity(null, status)
+      return response
     })
 }

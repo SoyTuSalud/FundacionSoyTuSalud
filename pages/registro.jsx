@@ -1,15 +1,15 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword, deleteUser } from 'firebase/auth'
 import { useMutation } from '@apollo/client'
-import { registrarUsuario } from '../graphql-front/user/mutations'
+import { registrarUsuario } from '../graphql-front/paciente/mutations'
 import Link from 'next/link'
 import { auth } from '../firebase/initConfig'
 import { useRouter } from 'next/router'
 import { LayoutMain } from '../components/layouts/LayoutMain'
 
 import useFormData from '../hooks/useFormData'
-import PrivatePages from '../components/PrivatePages'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { ResponseCodes } from '../backend/domain/commons/enums/responseCodesEnum'
 
 const Registro = () => {
   const { t } = useTranslation()
@@ -21,12 +21,21 @@ const Registro = () => {
   }
 
   const router = useRouter()
-  const [crearUsuario] = useMutation(registrarUsuario)
+  const [crearUsuario, { loading }] = useMutation(registrarUsuario)
 
   const { form, formData, updateFormData } = useFormData()
 
   const submitForm = async (e) => {
     e.preventDefault()
+
+    crearUsuario({ variables: formData })
+      .then(({ data }) => {
+        if (data.crearUsuario.status.code === ResponseCodes.ERROR) {
+          deleteUser()
+        }
+      })
+      .catch((error) => {})
+
     await createUserWithEmailAndPassword(
       auth,
       formData.correo,
@@ -36,7 +45,7 @@ const Registro = () => {
         delete formData.password
         formData['uid'] = user.user.uid
         console.log(formData)
-        crearUsuario({ variables: formData })
+
         router.push('/')
       })
       .catch((error) => {
@@ -46,7 +55,6 @@ const Registro = () => {
 
   return (
     <LayoutMain propsImage={propsImage} t={t}>
-      <PrivatePages login={false}>
         <section className="section-container-register-page">
           <div className="section-container-form">
             <form
@@ -175,7 +183,6 @@ const Registro = () => {
             ></button>
           </div>
         </section>
-      </PrivatePages>
     </LayoutMain>
   )
 }

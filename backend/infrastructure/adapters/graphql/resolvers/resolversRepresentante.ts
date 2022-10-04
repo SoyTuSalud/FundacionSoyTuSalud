@@ -1,10 +1,10 @@
-import { Servicios } from '../../../../domain/servicios/serviciosInterface';
+import { ResponseCodes } from '../../../../domain/commons/enums/responseCodesEnum';
+
 import {
   representantesTabla,
   representante,
   crearRepresentante,
 } from '../../mongo/mongoAdapterRepresentante'
-import { crearServicio } from '../../mongo/mongoAdapterServicios';
 
 export const resolversRepresentante = {
   Query: {
@@ -20,4 +20,20 @@ export const resolversRepresentante = {
       return await crearRepresentante(args);
     }
   },
+
+  UnionRepresentante: {
+    __resolveType(obj: any){
+      return obj.status.code === ResponseCodes.SUCCESS ?  
+                  "ResponseRepresentante" :
+                  "ResponseRepresentanteError" 
+    }
+  },
+  UnionRepresentanteList: {
+    __resolveType(obj: any){
+      return obj.status.code === ResponseCodes.SUCCESS ?  
+                  "ResponseRepresentanteList" :
+                  "ResponseRepresentanteError" 
+    }
+  }
+
 }

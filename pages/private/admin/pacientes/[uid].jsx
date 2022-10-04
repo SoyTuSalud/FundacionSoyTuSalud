@@ -40,10 +40,11 @@ export const getServerSideProps = async ({ params }) => {
     query: userData,
     variables: { uid },
   })
-  const { Usuario } = data
+  console.log(data);
+  // const { Usuario } = data
   return {
     props: {
-      Usuario,
+      Usuario: Pacientes,
     },
   }
 }

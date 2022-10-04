@@ -10,4 +10,5 @@ export enum TipoDocumentoEnum {
   ADULTO_SIN_IDENTIFICAR = "AS",
   MENOR_SIN_IDENTIFICAR = "MS",
   PERMISO_PROTECCION_TEMPORAL = "PT",
+  ERROR = "ERROR"
 }
