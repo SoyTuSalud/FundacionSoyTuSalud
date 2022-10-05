@@ -2,8 +2,12 @@ import { gql } from 'apollo-server-micro'
 
 export const typesRepresentate = gql`
 
+  union UnionRepresentante = ResponseRepresentante | ResponseRepresentanteError
+  union UnionRepresentanteList = ResponseRepresentanteList | ResponseRepresentanteError
+
   type Representante {
     _id: ID!
+    user: User!
     identificacion: String!
     foto: String!
     nombreCompleto: String!
@@ -27,28 +31,34 @@ export const typesRepresentate = gql`
     habilitado: Boolean!
   }
 
-  type Response{
+  type ResponseRepresentante{
       body: Representante
-      status: Status
+      status: StatusRepresentante
   }
-  type ResponseList{
+
+  type ResponseRepresentanteError{
+      status: StatusRepresentante
+  }
+
+  type ResponseRepresentanteList{
       body: [Representante]
-      status: Status
+      status: StatusRepresentante
   }
-    type Status{
+    type StatusRepresentante{
       code: String!
       description: String!
   }
 
   type Query {
-    RepresentantesTabla: ResponseList
-    Representante(_id: String!): Response
+    RepresentantesTabla: UnionRepresentanteList
+    Representante(_id: String!): UnionRepresentante 
   }
   
   type Mutation {
     CrearRepresentante(
       identificacion: String!
       foto: String!
+      user: String!
       nombreCompleto: String!
       tipoDocumento: String!
       celular: String!
@@ -66,6 +76,6 @@ export const typesRepresentate = gql`
       aceptaTratamientoDatos: Boolean!
       aceptaDocumentoSARLAFT: Boolean!
       aceptaCodigoEticaSoyTuSalud: Boolean!
-    ): Representante
+    ): UnionRepresentante
   }
 `

@@ -1,5 +1,4 @@
 import { Schema, model, models } from 'mongoose'
-import { TipoDocumentoEnum } from '../../../../domain/commons/enums/tipoDocumentoEnum'
 import { Servicios } from '../../../../domain/servicios/serviciosInterface'
 
 const ServiciosSchema = new Schema<Servicios>({
@@ -9,7 +8,6 @@ const ServiciosSchema = new Schema<Servicios>({
   },
   especialidad: {
     type: String,
-    unique: true,
     required: true,
   },
   modalidad: {
@@ -28,7 +26,6 @@ const ServiciosSchema = new Schema<Servicios>({
   },
   celularServicio: {
     type: String,
-    unique: true,
     validate: /^\d{10}$/,
     required: true,
   },
@@ -55,7 +52,7 @@ const ServiciosSchema = new Schema<Servicios>({
   },
   representante: {
     type: Schema.Types.ObjectId,
-    ref: models.Representante,
+    ref: "Representante",
     required: true,
   },
   habilitado: {

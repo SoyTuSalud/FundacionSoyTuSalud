@@ -20,10 +20,10 @@ const Filatroposregistro = () => {
   const { t } = useTranslation()
 
   const propsImage = {
-      title:t('home:tituloHome'),
-      title2: t('home:titulohome2'),
-      image: "/promo_c1.png"
-    }
+    title: t('home:tituloHome'),
+    title2: t('home:titulohome2'),
+    image: '/promo_c1.png',
+  }
 
   const { form, formData, updateFormData } = useFormData()
 
@@ -47,7 +47,7 @@ const Filatroposregistro = () => {
   }
 
   return (
-    <LayoutMain propsImage= {propsImage} t={t}>
+    <LayoutMain propsImage={propsImage} t={t}>
       <main className="main">
         <section className="promo-primary promo-primary--shop">
           <picture>
@@ -223,7 +223,12 @@ const Filatroposregistro = () => {
 export const getStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['navbar','home','registro'])),
+      ...(await serverSideTranslations(locale, [
+        'navbar',
+        'home',
+        'registro',
+        'footer',
+      ])),
     },
   }
 }

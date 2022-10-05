@@ -1,10 +1,10 @@
 
 export class Status {
 
-    code: String
-    description: String
+    code: string
+    description: string
 
-    constructor(code: String, description: String){
+    constructor(code: string, description: string){
         this.code = code
         this.description = description
     }

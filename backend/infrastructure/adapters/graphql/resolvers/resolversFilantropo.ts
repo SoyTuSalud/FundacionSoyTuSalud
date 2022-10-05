@@ -1,3 +1,4 @@
+import { ResponseCodes } from '../../../../domain/commons/enums/responseCodesEnum';
 import { crearFilantropo, filantropo, filantroposTabla } from '../../mongo/mongoAdapterFilantropo';
 
 export const resolversFilantropos = {
@@ -5,7 +6,7 @@ export const resolversFilantropos = {
     Filantropos: async () => {
       return await filantroposTabla()
     },
-    Filantropo: async (parent: any, args : any) => {
+    Filantropo: async (parent: any, args : any, context : any) => {
       return await filantropo(args._id)
     },
   },
@@ -14,4 +15,19 @@ export const resolversFilantropos = {
       return await crearFilantropo(args)
     },
   },
+
+  UnionFilantropo: {
+    __resolveType(obj: any){
+      return obj.status.code === ResponseCodes.SUCCESS ?  
+                  "ResponseFilantropo" :
+                  "ResponseFilantropoError" 
+    }
+  },
+  UnionFilantropoList: {
+    __resolveType(obj: any){
+      return obj.status.code === ResponseCodes.SUCCESS ?  
+                  "ResponseFilantropoList" :
+                  "ResponseFilantropoError" 
+    }
+  }
 }

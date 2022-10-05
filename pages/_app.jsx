@@ -15,7 +15,7 @@ import '../components/Ui/loading/loading.css'
 import '../components/Ui/popup/popup.css'
 
 function MyApp({ Component, pageProps }) {
-  const [authUser, setAuthUser] = useState({})
+  const [authUser, setAuthUser] = useState()
   const [componentStatus, setComponentStatus] = useState({})
   return (
     <ApolloProvider client={client}>

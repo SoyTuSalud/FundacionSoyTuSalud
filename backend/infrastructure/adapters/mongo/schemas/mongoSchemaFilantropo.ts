@@ -1,12 +1,17 @@
 import { Schema, model, models } from 'mongoose'
 import { TipoDocumentoEnum } from '../../../../domain/commons/enums/tipoDocumentoEnum'
-import { filantropo } from '../../../../domain/filantropos/filantropoInterface'
+import { Filantropo } from '../../../../domain/filantropos/filantropoInterface'
 
-const FilantropoSchema = new Schema<filantropo>({
+const FilantropoSchema = new Schema<Filantropo>({
   tipoDocumento: {
     type: String,
     enum: TipoDocumentoEnum,
     required: true,
+  },  
+  user:{
+    type: Schema.Types.ObjectId,
+    require: true,
+    ref: "User"
   },
   identificacion: {
     type: String,
@@ -20,7 +25,7 @@ const FilantropoSchema = new Schema<filantropo>({
   },
   celular: {
     type: String,
-    validate: /^\d/,
+    validate: /^\d{10}$/,
     required: true,
   },
   direccion: {

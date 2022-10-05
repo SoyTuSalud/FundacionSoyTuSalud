@@ -1,76 +1,69 @@
 import { gql } from 'apollo-server-micro'
 
-export const typesUsuario = gql`
-  type Usuario {
+export const typesUser = gql`
+  union UnionUser = ResponseUser | ResponseUserError
+  union UnionUserList = ResponseUserList | ResponseUserError
+  union UnionToken = TokenResponse | ResponseUserError
+
+  type User {
     _id: ID!
-    uid: String!
     identificacion: String!
     nombre: String!
     apellidos: String!
-    tipoDocumento: TipoDocumentoEnum!
+    tipoDocumento: String!
     celular: String!
     correo: String!
-    formularioTuHistoria: Boolean
-    aplicaEnFundacion: Boolean
-    matchService: String
-    foto: String
-    genero: GeneroEnum
-    fechaNacimiento: String
-    direccion: String
-    discapacitado: Boolean
-    tipoDiscapacidad: TipoDiscapacidadEnum
-    victimaViolencia: String
-    identidadGenero: IdentidadGeneroEnum
-    orientacionSexual: OrientacionSexualEnum
-    grupoPoblacional: String
-    municipio: String
-    departamento: String
-    EPS: String
-    tuHistoria: String
-    serviciosSolicitado: [String]
-    historiaClinica: String
-    sisben: String
-    autorizacionFoto: Boolean
-    recopilacionDatos: Boolean
-    comunidad: String
-    fechaSolicitud: String
+    contrasena: String!
+    role: String!
+    paciente: Paciente
+    filantropo: Filantropo
+    representante: Representante
+    token: String
   }
+
+  type Token {
+    token: String!
+  }
+
+  type TokenResponse {
+    body: Token
+    status: StatusUser
+  }
+
+  type ResponseUser {
+    body: User
+    status: StatusUser
+  }
+  type ResponseUserList {
+    body: [User]
+    status: StatusUser
+  }
+  type ResponseUserError {
+    status: StatusUser
+  }
+  type StatusUser {
+    code: String!
+    description: String!
+  }
+
   type Query {
-    UsuariosTabla: [Usuario]
-    UsuariosTablaTuHistoria: [Usuario]
-    Usuario(uid: String!): Usuario
+    login(correo: String!, contrasena: String!): UnionUser
+    loginAdmin(correo: String!, contrasena: String!): UnionUser
+    usersTablaByRol: UnionUserList
+    verifyRoles: String
   }
+
   type Mutation {
-    crearUsuario(
-      uid: String!
+    registro(
       identificacion: String!
       nombre: String!
       apellidos: String!
       tipoDocumento: String!
       celular: String!
       correo: String!
-    ): Usuario
-    tuHistoria(
-      _id: ID!
-      foto: String!
-      genero: GeneroEnum!
-      fechaNacimiento: String!
-      direccion: String!
-      discapacitado: Boolean!
-      tipoDiscapacidad: TipoDiscapacidadEnum
-      victimaViolencia: Boolean!
-      identidadGenero: IdentidadGeneroEnum!
-      orientacionSexual: OrientacionSexualEnum
-      grupoPoblacional: String!
-      municipio: String!
-      departamento: String!
-      EPS: String!
-      tuHistoria: String!
-      serviciosSolicitado: [String]!
-      historiaClinica: String!
-      sisben: String!
-      autorizacionFoto: Boolean!
-      recopilacionDatos: Boolean!
-    ): Usuario
+      contrasena: String!
+      role: String!
+      token: String
+    ): UnionUser
   }
 `

@@ -71,7 +71,7 @@ export const ImageBackground = ({propsImage}) => {
   return (
     <>
       <Box
-        className="pb-20"
+        className="pb-20 "
         sx={{
           overflow: 'hidden',
           backgroundSize: 'contain',
@@ -88,7 +88,7 @@ export const ImageBackground = ({propsImage}) => {
           objectPosition="50% 25%"
           priority={true}
         />
-        <Container className="pt-32">
+        <Container className="pt-32 max-w-screen-2xl">
           <div className="align-container__item">
             <Box
               position={'relative'}
