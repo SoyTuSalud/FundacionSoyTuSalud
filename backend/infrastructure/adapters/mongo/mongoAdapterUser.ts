@@ -8,6 +8,8 @@ import { sendEmail } from '../../helpers/emailHelper'
 import { roleEnum } from '../../../domain/user/enums/roleEnum'
 import { ResponseDescription } from '../../../domain/commons/enums/responseDescriptionEnum'
 import { validatePass } from '../../helpers/validatePass'
+import { registroData } from '../../../domain/commons/interfaces'
+
 
 export const login = async (args: any, context: any) => {
   return await UserModel.findOne({ correo: args.correo })
@@ -46,69 +48,60 @@ export const loginAdmin = async (args: any, context: any) => {
     })
 }
 
-export const registro = async (args: any) => {
-  const hash = await bcrypt.hash(args.contrasena, 10)
-
-  return await UserModel.create({
-    tipoDocumento: args.tipoDocumento,
-    identificacion: args.identificacion,
-    nombre: args.nombre,
-    role: args.role,
-    apellidos: args.apellidos,
-    celular: args.celular,
-    direccion: args.direccion,
+export const registro =  ( args : registroData ) => new Promise( async (resolve,reject) => {
+  const hash = await bcrypt.hash(args.constrasena, 10)
+  await UserModel.create({
     correo: args.correo,
     contrasena: hash,
-  })
-    .then((data: any) => {
+    role: args.rol
+  }).then((data: any) => {
+    
       const status: Status = new Status(ResponseCodes.SUCCESS, 'exitoso')
       const response: ResponseEntity<User> = new ResponseEntity(data, status)
-
       sendEmail(args.correo, `${args.nombre} ${args.apellidos}`)
 
-      return response
+      resolve(response)
     })
     .catch((e) => {
-      const status: Status = new Status('PACIENTE', e.message)
-      return new ResponseEntity(null, status)
+      reject({
+        message: e.message
+      })
     })
-}
+})
 
-export const findUserById = () => {}
 
 export const verifyRoles = (payload: any) => {
   return payload.role
 }
 
-export const usersTablaByRol = async (payload: any) => {
-  if (payload.role === roleEnum.ADMIN) {
-    return await UserModel.find({ role: payload.role })
-      .populate('user')
-      .then((data) => {
-        if (!data) {
-          const status: Status = new Status(
-            ResponseCodes.SUCCESS_EMPTY,
-            'exitoso sin datos',
-          )
-          return new ResponseEntity(null, status)
-        }
+// export const usersTablaByRol = async (args: any, payload: any) => {
+//   if (payload.role === roleEnum.ADMIN) {
+//     return await UserModel.find({ role: args.role })
+//       .then((data) => {
+//         if (data.length === 0) {
+//           const status: Status = new Status(
+//             ResponseCodes.SUCCESS_EMPTY,
+//             ResponseDescription.ERROR_NO_DATA,
+//           )
+//           return new ResponseEntity(null, status)
+//         }
 
-        const status: Status = new Status(ResponseCodes.SUCCESS, 'exitoso')
-        const response: ResponseEntity<any[]> = new ResponseEntity(data, status)
+//         const status: Status = new Status(ResponseCodes.SUCCESS, 'exitoso')
+//         const response: ResponseEntity<any[]> = new ResponseEntity(data, status)
 
-        return response
-      })
-      .catch((e) => {
-        const status: Status = new Status(ResponseCodes.ERROR, e.message)
-        const response: ResponseEntity<null> = new ResponseEntity(null, status)
+//         return response
+//       })
+//       .catch((e) => {
+//         const status: Status = new Status(ResponseCodes.ERROR, e.message)
+//         const response: ResponseEntity<null> = new ResponseEntity(null, status)
 
-        return response
-      })
-  } else {
-    const status: Status = new Status(
-      ResponseCodes.PERMISSION_ERROR,
-      'Acceso denegado',
-    )
-    return new ResponseEntity(null, status)
-  }
-}
+//         return response
+//       })
+//   } else {
+//     const status: Status = new Status(
+//       ResponseCodes.PERMISSION_ERROR,
+//       'Acceso denegado',
+//     )
+//     return new ResponseEntity(null, status)
+//   }
+// }

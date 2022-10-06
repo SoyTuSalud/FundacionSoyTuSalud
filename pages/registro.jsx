@@ -1,8 +1,7 @@
-import { createUserWithEmailAndPassword, deleteUser } from 'firebase/auth'
 import { useMutation } from '@apollo/client'
-import { registrarUsuario } from '../graphql-front/paciente/mutations'
+import { useState } from 'react'
+import { registrarPaciente } from '../graphql-front/paciente/mutations'
 import Link from 'next/link'
-import { auth } from '../firebase/initConfig'
 import { useRouter } from 'next/router'
 import { LayoutMain } from '../components/layouts/LayoutMain'
 
@@ -13,6 +12,7 @@ import { ResponseCodes } from '../backend/domain/commons/enums/responseCodesEnum
 
 const Registro = () => {
   const { t } = useTranslation()
+  const [error, setMssgError] = useState('')
 
   const propsImage = {
     title: t('home:tituloHome'),
@@ -21,35 +21,23 @@ const Registro = () => {
   }
 
   const router = useRouter()
-  const [crearUsuario, { loading }] = useMutation(registrarUsuario)
+  const [crearUsuario, { loading }] = useMutation(registrarPaciente)
 
   const { form, formData, updateFormData } = useFormData()
 
   const submitForm = async (e) => {
     e.preventDefault()
-
+    console.log(formData)
     crearUsuario({ variables: formData })
       .then(({ data }) => {
-        if (data.crearUsuario.status.code === ResponseCodes.ERROR) {
-          deleteUser()
+        if (data.crearPaciente.status.code === ResponseCodes.SUCCESS) {
+          router.push('/')
+        } else{
+          setMssgError(data.crearPaciente.status.description)
         }
       })
-      .catch((error) => {})
-
-    await createUserWithEmailAndPassword(
-      auth,
-      formData.correo,
-      formData.password,
-    )
-      .then((user) => {
-        delete formData.password
-        formData['uid'] = user.user.uid
-        console.log(formData)
-
-        router.push('/')
-      })
       .catch((error) => {
-        console.log(error)
+
       })
   }
 
@@ -136,8 +124,8 @@ const Registro = () => {
                     <input
                       className="input-field-form"
                       type="password"
-                      name="password"
-                      id="password"
+                      name="contrasena"
+                      id="contrasena"
                       placeholder={t('login:constrasena')}
                       autoComplete="on"
                     />
@@ -183,6 +171,7 @@ const Registro = () => {
             ></button>
           </div>
         </section>
+        {error&& <h1 className='text-red-500'>{error}</h1>}
     </LayoutMain>
   )
 }

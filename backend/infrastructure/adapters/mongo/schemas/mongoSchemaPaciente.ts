@@ -3,14 +3,44 @@ import { GeneroEnum } from '../../../../domain/commons/enums/generoEnum'
 import { IdentidadGeneroEnum } from '../../../../domain/commons/enums/identidadGeneroEnum'
 import { OrientacionSexualEnum } from '../../../../domain/commons/enums/orientacionSexualEnum'
 import { TipoDiscapacidadEnum } from '../../../../domain/commons/enums/tipoDiscapacidadEnum'
+import { TipoDocumentoEnum } from '../../../../domain/commons/enums/tipoDocumentoEnum'
 import { Paciente } from '../../../../domain/paciente/pacienteInterface'
 
 const PacienteSchema = new Schema<Paciente>(
   {
-    user: {
-      type: Schema.Types.ObjectId,
-      require: true,
-      ref: 'User',
+    identificacion: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    nombre: {
+      type: String,
+      required: true,
+    },
+    apellidos: {
+      type: String,
+      required: true,
+    },
+    tipoDocumento: {
+      type: String,
+      enum: TipoDocumentoEnum,
+      required: true,
+    },
+    celular: {
+      type: String,
+      validate: /^\d{10}$/,
+      required: true,
+    },
+    correo: {
+      type: String,
+      unique: true,
+      validate: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+      required: true,
+    },
+    formularioTuHistoria: {
+      type: Boolean,
+      required: true,
+      default: false
     },
     aplicaEnFundacion: {
       type: Boolean,

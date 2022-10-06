@@ -29,12 +29,10 @@ const Login = () => {
     await loginUser({
       variables,
     }).then(({ data }) => {
-      if (data.login.status.code === ResponseCodes.ERROR_AUTH) {
-        setMssgError(data.login.status.description)
-      } else if (data.login.status.code === ResponseCodes.ERROR) {
-        setMssgError(data.login.status.description)
-      } else if (data.login.status.code === ResponseCodes.SUCCESS) {
+      if (data.login.status.code === ResponseCodes.SUCCESS) {
         router.push('/')
+      } else{
+        setMssgError(data.login.status.description)
       }
     })
   }

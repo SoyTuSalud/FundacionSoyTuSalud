@@ -33,3 +33,4 @@ export const validatePass = async (args: any, data: any, context: any) => {
       }
     })
 }
+

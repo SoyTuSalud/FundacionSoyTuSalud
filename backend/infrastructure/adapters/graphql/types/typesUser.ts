@@ -7,18 +7,9 @@ export const typesUser = gql`
 
   type User {
     _id: ID!
-    identificacion: String!
-    nombre: String!
-    apellidos: String!
-    tipoDocumento: String!
-    celular: String!
     correo: String!
     contrasena: String!
     role: String!
-    paciente: Paciente
-    filantropo: Filantropo
-    representante: Representante
-    token: String
   }
 
   type Token {
@@ -49,21 +40,6 @@ export const typesUser = gql`
   type Query {
     login(correo: String!, contrasena: String!): UnionUser
     loginAdmin(correo: String!, contrasena: String!): UnionUser
-    usersTablaByRol: UnionUserList
     verifyRoles: String
-  }
-
-  type Mutation {
-    registro(
-      identificacion: String!
-      nombre: String!
-      apellidos: String!
-      tipoDocumento: String!
-      celular: String!
-      correo: String!
-      contrasena: String!
-      role: String!
-      token: String
-    ): UnionUser
   }
 `

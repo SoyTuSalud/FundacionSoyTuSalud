@@ -5,7 +5,6 @@ export interface Filantropo {
   tipoDocumento: string
   identificacion: TipoDocumentoEnum
   nombre: string
-  user: Schema.Types.ObjectId
   celular: string
   direccion: string
   correo: string

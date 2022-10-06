@@ -67,7 +67,6 @@ export const representante = async (id: String) => {
 
 export const crearRepresentante = async (args: Representante) => {
   let newRepresentante: Representante = {
-    user: args.user,
     identificacion: args.identificacion,
     foto: args.foto,
     nombreCompleto: args.nombreCompleto,

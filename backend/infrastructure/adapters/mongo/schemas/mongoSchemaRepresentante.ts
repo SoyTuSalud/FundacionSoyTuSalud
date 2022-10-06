@@ -13,11 +13,6 @@ const RepresentanteSchema = new Schema<Representante>(
       type: String,
       required: true,
     },
-    user:{
-      type: Schema.Types.ObjectId,
-      require: true,
-      ref: "User"
-    },
     nombreCompleto: {
       type: String,
       required: true,

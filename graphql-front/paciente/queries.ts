@@ -1,57 +1,59 @@
 import { gql } from '@apollo/client'
 
 export const pacientesTabla = gql`
-query UsersTablaByRol {
-  usersTablaByRol {
-      ... on ResponseUserList {
+query Query {
+  PacientesTabla {
+    ... on ResponsePacienteList {
       body {
-        identificacion
-        nombre
-        apellidos
-        correo
-        tipoDocumento
+      identificacion
+      nombre
+      apellidos
+      correo
+      tipoDocumento
+      formularioTuHistoria
+      foto
       }
       status {
-        description
         code
+        description
       }
     }
-    ... on ResponseUserError {
+    ... on ResponsePacienteError {
       status {
         code
         description
       }
-    }  
+    }
   }
 }
 `
 
 export const pacientesTablaTuHistoria = gql`
-  query UsuariosTabla {
-    PacientesTabla {
-      ... on ResponsePacienteList {
-        body {
-          uid
-          nombre
-          apellidos
-          comunidad
-          fechaSolicitud
-          grupoPoblacional
-          foto
-        }
-        status {
-          code
-          description
-        }
+query PacientesTablaTuHistoria {
+  PacientesTablaTuHistoria {
+    ... on ResponsePacienteList {
+      body {
+      _id
+      nombre
+      apellidos
+      comunidad
+      fechaSolicitud
+      grupoPoblacional
+      foto
       }
-      ... on ResponsePacienteError {
-        status {
-          code
-          description
-        }
+      status {
+        code
+        description
+      }
+    }
+    ... on ResponsePacienteError {
+      status {
+        code
+        description
       }
     }
   }
+}
 `
 
 export const authUser = gql`

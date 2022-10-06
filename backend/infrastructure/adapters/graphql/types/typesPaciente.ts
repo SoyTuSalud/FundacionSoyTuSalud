@@ -6,30 +6,36 @@ export const typesPaciente = gql`
 
   type Paciente {
     _id: ID!
-    user: User!
-    aplicaEnFundacion: Boolean!
+    identificacion: String!
+    nombre: String!
+    apellidos: String!
+    tipoDocumento: TipoDocumentoEnum!
+    celular: String!
+    correo: String!
+    formularioTuHistoria: Boolean
+    aplicaEnFundacion: Boolean
     matchService: String
-    foto: String!
-    genero: String!
-    fechaNacimiento: String!
-    direccion: String!
-    discapacitado: Boolean!
-    tipoDiscapacidad: String
-    victimaViolencia: String!
-    identidadGenero: String!
-    orientacionSexual: String!
-    grupoPoblacional: String!
-    municipio: String!
-    departamento: String!
-    EPS: String!
-    tuHistoria: String!
-    serviciosSolicitado: [String]!
-    historiaClinica: String!
-    sisben: String!
-    autorizacionFoto: Boolean!
-    recopilacionDatos: Boolean!
+    foto: String
+    genero: GeneroEnum
+    fechaNacimiento: String
+    direccion: String
+    discapacitado: Boolean
+    tipoDiscapacidad: TipoDiscapacidadEnum
+    victimaViolencia: String
+    identidadGenero: IdentidadGeneroEnum
+    orientacionSexual: OrientacionSexualEnum
+    grupoPoblacional: String
+    municipio: String
+    departamento: String
+    EPS: String
+    tuHistoria: String
+    serviciosSolicitado: [String]
+    historiaClinica: String
+    sisben: String
+    autorizacionFoto: Boolean
+    recopilacionDatos: Boolean
     comunidad: String
-    fechaSolicitud: String!
+    fechaSolicitud: String
   }
 
   type ResponsePaciente {
@@ -54,18 +60,27 @@ export const typesPaciente = gql`
     Paciente(uid: String!): UnionPaciente
   }
   type Mutation {
+    crearPaciente(
+      identificacion: String!
+      nombre: String!
+      apellidos: String!
+      tipoDocumento: String!
+      celular: String!
+      correo: String!
+      contrasena: String!
+    ): UnionPaciente
     tuHistoria(
-      user: String!
+      _id: ID!
       foto: String!
-      genero: String!
+      genero: GeneroEnum!
       fechaNacimiento: String!
       direccion: String!
       discapacitado: Boolean!
-      tipoDiscapacidad: String
+      tipoDiscapacidad: TipoDiscapacidadEnum
       victimaViolencia: Boolean!
-      identidadGenero: String!
-      orientacionSexual: String!
-      grupoPoblacional: String
+      identidadGenero: IdentidadGeneroEnum!
+      orientacionSexual: OrientacionSexualEnum
+      grupoPoblacional: String!
       municipio: String!
       departamento: String!
       EPS: String!

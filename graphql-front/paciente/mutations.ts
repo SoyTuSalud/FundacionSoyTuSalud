@@ -1,47 +1,38 @@
 import { gql } from '@apollo/client'
 
-export const registrarUsuario = gql`
-    mutation Mutation(
-        $uid: String!
-        $identificacion: String!
-        $nombre: String!
-        $apellidos: String!
-        $tipoDocumento: String!
-        $celular: String!
-        $correo: String!
+export const registrarPaciente = gql`
+  mutation Mutation(
+    $identificacion: String!
+    $nombre: String!
+    $apellidos: String!
+    $tipoDocumento: String!
+    $celular: String!
+    $correo: String!
+    $contrasena: String!
+  ) {
+    crearPaciente(
+      identificacion: $identificacion
+      nombre: $nombre
+      apellidos: $apellidos
+      tipoDocumento: $tipoDocumento
+      celular: $celular
+      correo: $correo
+      contrasena: $contrasena
     ) {
-        crearPaciente(
-            uid: $uid
-            identificacion: $identificacion
-            nombre: $nombre
-            apellidos: $apellidos
-            tipoDocumento: $tipoDocumento
-            celular: $celular
-            correo: $correo
-        ) {
-            ... on ResponsePaciente {
-                body {
-                    uid
-                    identificacion
-                    nombre
-                    apellidos
-                    tipoDocumento
-                    celular
-                    correo
-                }
-                status {
-                    code
-                    description
-                }
-            }
-            ... on ResponsePacienteError {
-                status {
-                    code
-                    description
-                }
-            }
+      ... on ResponsePaciente {
+        status {
+          code
+          description
         }
+      }
+      ... on ResponsePacienteError {
+        status {
+          code
+          description
+        }
+      }
     }
+  }
 `
 
 export const tuHistoriaUpdate = gql`

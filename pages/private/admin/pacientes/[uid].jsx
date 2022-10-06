@@ -1,14 +1,38 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import { client } from '../../../../graphql-front/initClientSide'
 import { userData } from '../../../../graphql-front/user/queries'
 import { AccountProfileDetails } from '../../../../components/detallePacientes/account-profile-details'
 import NewPrivateLayout from '../../../../components/layouts/NewPrivateLayout/NewPrivateLayout'
 import { Box, Container, Grid } from '@mui/material'
+import { useLazyQuery } from '@apollo/client'
 
 const DetallePaciente = ({ Usuario }) => {
-  const [user, setUser] = useState(Usuario)
-  console.log(user)
+  const [error, setError] = useState({
+    type: '',
+    message: '',
+  })
+  const [data, setData] = useState()
+
+  const [getPacientes] = useLazyQuery(pacientesTabla)
+
+  useEffect(() => {
+    getPacientes()
+      .then(({ data }) => {
+        const request = data.PacientesTabla
+        if (request.status.code === ResponseCodes.SUCCESS) {
+          setData(request.body)
+        } else {
+          setError({ message: request.status.description, type: 'info' })
+        }
+      })
+      .catch(() => {
+        setError({
+          message: 'Error en el Server, contacte el administrador',
+          type: 'error',
+        })
+      })
+  }, [])
 
   return (
     <NewPrivateLayout>
@@ -32,21 +56,6 @@ const DetallePaciente = ({ Usuario }) => {
       </Box>
     </NewPrivateLayout>
   )
-}
-
-export const getServerSideProps = async ({ params }) => {
-  const { uid } = params
-  const { data } = await client.query({
-    query: userData,
-    variables: { uid },
-  })
-  console.log(data);
-  // const { Usuario } = data
-  return {
-    props: {
-      Usuario: Pacientes,
-    },
-  }
 }
 
 export default DetallePaciente

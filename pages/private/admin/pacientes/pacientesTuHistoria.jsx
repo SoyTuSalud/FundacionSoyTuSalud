@@ -2,12 +2,40 @@ import { Box, Container } from '@mui/material'
 import Head from 'next/head'
 import NewPrivateLayout from '../../../../components/layouts/NewPrivateLayout/NewPrivateLayout'
 import { PacientesToolbar } from '../../../../components/pacientes/PacientesToolbar'
-import { client } from '../../../../graphql-front/initClientSide'
-import { pacientesTablaTuHistoria } from '../../../../graphql-front/user/queries'
+import { pacientesTablaTuHistoria } from '../../../../graphql-front/paciente/queries'
 import { PacientesTablasTuHistoria } from '../../../../components/pacientes/PacientesTablasTuHistoria'
+import { useLazyQuery } from '@apollo/client'
+import { useEffect, useState } from 'react'
+import Alert from '../../../../components/Ui/alert/Alert'
+import { ResponseCodes } from '../../../../backend/domain/commons/enums/responseCodesEnum'
 
-const PacientesTuHistoria = ({ data }) => {
-  const { UsuariosTablaTuHistoria } = data
+const PacientesTuHistoria = () => {
+  
+  const [error, setError] = useState({
+    type: '',
+    message: '',
+  })
+  const [data, setData] = useState([])
+
+  const [getPacientes] = useLazyQuery(pacientesTablaTuHistoria)
+
+  useEffect(() => {
+    getPacientes()
+      .then(({ data }) => {
+        const request = data.PacientesTablaTuHistoria
+        console.log(request)
+        if (request.status.code === ResponseCodes.SUCCESS) {
+          setData(request.body)
+        } else {
+          setError({ message: request.status.description, type: 'info' })
+        }
+      }).catch(() => {
+        setError({
+          message: 'Error en el Server, contacte el administrador',
+          type: 'error',
+        })
+      })
+  }, [])
 
   return (
     <NewPrivateLayout>
@@ -25,24 +53,14 @@ const PacientesTuHistoria = ({ data }) => {
           <PacientesToolbar tab={1} />
           <Box sx={{ mt: 3 }}>
             <PacientesTablasTuHistoria
-              UsuariosTablaTuHistoria={UsuariosTablaTuHistoria}
+              UsuariosTablaTuHistoria={data}
             />
           </Box>
         </Container>
       </Box>
+      {error && <Alert config={error} />}
     </NewPrivateLayout>
   )
-}
-
-export const getServerSideProps = async (ctx) => {
-  const { data } = await client.query({
-    query: pacientesTablaTuHistoria,
-  })
-  return {
-    props: {
-      data,
-    },
-  }
 }
 
 export default PacientesTuHistoria
