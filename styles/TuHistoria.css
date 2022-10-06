@@ -1,0 +1,161 @@
+.container-general-page {
+  max-width: 1504px;
+  margin: 0 auto;
+}
+
+.container-inputs-general {
+  display: flex;
+}
+
+.container-inputs {
+  width: 33.3%;
+  display: flex;
+  margin-top: 20px;
+}
+
+.container-columns {
+  display: flex;
+}
+
+.container-label-input-pequeno {
+  display: block;
+  width: 50%;
+}
+
+.general-inputs {
+  width: 90%;
+  background-color: #fff;
+  padding: 5px 10px;
+  font-size: 14px;
+  border: 1px solid #dfdfdf;
+  border-radius: 5px;
+  outline: none;
+}
+
+.general-inputs-95 {
+  width: 95%;
+  background-color: #fff;
+  padding: 5px 10px;
+  font-size: 14px;
+  border: 1px solid #dfdfdf;
+  border-radius: 5px;
+  outline: none;
+}
+
+.general-selects {
+  width: 90%;
+  background-color: #fff;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #dfdfdf;
+  border-radius: 5px;
+  outline: none;
+}
+
+.general-selects-95 {
+  width: 95%;
+  background-color: #fff;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #dfdfdf;
+  border-radius: 5px;
+  outline: none;
+}
+
+.general-selects-5 {
+  width: 87%;
+  background-color: #fff;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #dfdfdf;
+  border-radius: 5px;
+  outline: none;
+}
+
+.container-label-input-eps {
+  margin-top: 20px;
+}
+
+.general-select-eps {
+  width: 98.3%;
+  background-color: #fff;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #dfdfdf;
+  border-radius: 5px;
+  outline: none;
+}
+
+.container-label-input {
+  width: 100%;
+}
+
+.container-textarea-input {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.general-titles {
+  font-size: 22px;
+  color: #343a40;
+  font-weight: 700;
+}
+
+.textarea-input {
+  width: 98.3%;
+  padding: 5px 10px;
+  border: 1px solid #dfdfdf;
+  border-radius: 5px;
+  outline: none;
+}
+
+.servicio-solicitado-container {
+  margin-top: 20px;
+}
+
+.container-checkboxs {
+  display: flex;
+}
+
+.container-checkbox-3 {
+  width: 33.3%;
+}
+
+.general-inputs:focus {
+  border: 2px solid #6f42c1; /*343878*/
+}
+
+.general-inputs-95:focus {
+  border: 2px solid #6f42c1; /*343878*/
+}
+
+.general-selects:focus {
+  border: 2px solid #6f42c1; /*343878*/
+}
+
+.general-selects-95:focus {
+  border: 2px solid #6f42c1; /*343878*/
+}
+
+.general-selects-5:focus {
+  border: 2px solid #6f42c1; /*343878*/
+}
+
+.general-select-eps:focus {
+  border: 2px solid #6f42c1; /*343878*/
+}
+
+.textarea-input:focus {
+  border: 2px solid #6f42c1; /*343878*/
+}
+
+.checkbox:checked {
+  accent-color: #6f42c1;
+}
+
+.label-checkbox {
+  color: #000;
+  font-weight: 600;
+  margin-left: 10px;
+  font-size: 15px;
+}
