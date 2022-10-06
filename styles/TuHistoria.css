@@ -3,6 +3,19 @@
   margin: 0 auto;
 }
 
+.contenedor-picture {
+  width: 180px;
+  margin: 20px auto;
+}
+
+.upload-photo {
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  margin-top: -15px;
+  margin-bottom: 5px;
+}
+
 .container-inputs-general {
   display: flex;
 }
@@ -158,4 +171,70 @@
   font-weight: 600;
   margin-left: 10px;
   font-size: 15px;
+}
+
+.container-upload-files {
+  display: flex;
+  width: 100%;
+  gap: 50px;
+}
+
+.container-upload-one {
+  width: 50%;
+  display: block;
+}
+
+@media (max-width: 950px) {
+  .container-inputs-general {
+    display: block;
+  }
+
+  .container-inputs {
+    width: 100%;
+    display: block;
+  }
+
+  .container-columns {
+    display: block;
+  }
+
+  .container-label-input-pequeno {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .general-inputs {
+    width: 100%;
+  }
+
+  .general-inputs-95 {
+    width: 100%;
+  }
+
+  .general-selects {
+    width: 100%;
+  }
+
+  .general-selects-95 {
+    width: 100%;
+  }
+
+  .general-selects-5 {
+    width: 100%;
+  }
+
+  .container-label-input {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .container-textarea-input {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .textarea-input {
+    width: 100%;
+  }
 }

@@ -13,7 +13,6 @@ import { crearServicios } from '../graphql-front/servicios/mutations'
 import useFormData from '../hooks/useFormData'
 import { LayoutMain } from '../components/layouts/LayoutMain'
 import { useRouter } from 'next/router'
-import PrivatePages from '../components/PrivatePages'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 

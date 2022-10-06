@@ -113,46 +113,40 @@ const Tuhistoria = () => {
               onSubmit={handleSubmit}
               id="Form_TuHistoria"
             >
-              <h6 className="form__title">
+              <h6 className="general-titles">
                 Si consideras que eres una persona en situación de
                 vulnerabilidad, que padece una enfermedad y necesita servicios
                 médicos, diligencia este formulario y te pondremos en contacto
                 con un especialista que te ayude a mejorar su estado de salud.
               </h6>
+
               <label className="control-label mb-1">
                 Por favor, verifique los campos obligatorios marcados con un (*){' '}
               </label>
-              <div className="row">
-                <div className="col-lg-5"></div>
-                <div className="col-lg-2">
-                  <div className="contenedor">
-                    <h6 className="form__title">Foto</h6>
-                    <div className="FotoHistoria">
-                      <Image
-                        alt="defaultPhoto"
-                        className="profile-pic"
-                        id="perfil"
-                        name="perfil"
-                        src={photo}
-                        height="150"
-                        width="180"
-                      />
-                      <label className="centrado" htmlFor="logo">
-                        <span className="badge badge-primary r-3">
-                          Subir Foto
-                        </span>
-                      </label>
-                      <input
-                        type="file"
-                        onChange={handlePhoto}
-                        id="foto"
-                        name="foto"
-                        accept="image/*"
-                        className="custom-file-input"
-                        required
-                      />
-                    </div>
-                  </div>
+
+              <div className="contenedor-picture">
+                <h6 className="general-titles text-center">Foto</h6>
+                <div className="FotoHistoria">
+                  <Image
+                    alt="defaultPhoto"
+                    className="profile-picture"
+                    id="perfil"
+                    name="perfil"
+                    src={photo}
+                    height="150"
+                    width="180"
+                  />
+
+                  <input
+                    type="file"
+                    onChange={handlePhoto}
+                    id="foto"
+                    name="foto"
+                    accept="image/*"
+                    className="custom-file-input"
+                    required
+                  />
+                  <p className="upload-photo">Subir Foto</p>
                 </div>
               </div>
 
@@ -985,12 +979,11 @@ const Tuhistoria = () => {
                 </div>
               </div>
 
-              <div className="row">
-                <div className="col-12">
-                  <h6 className="form__title">Adjuntar Documentos</h6>{' '}
-                </div>
-                <div className="col-lg-6">
-                  <label className="form__checkbox-label" />
+              <div className="mt-4">
+                <h6 className="general-titles">Adjuntar Documentos</h6>{' '}
+              </div>
+              <div className="container-upload-files">
+                <div className="container-upload-one">
                   <span className="form__label-text">
                     Anexar Historia Clinica
                   </span>
@@ -1002,7 +995,8 @@ const Tuhistoria = () => {
                     accept=".pdf"
                   />
                 </div>
-                <div className="col-lg-6">
+
+                <div className="container-upload-one">
                   <label className="form__checkbox-label" />
                   <span className="form__label-text">
                     Anexar Consulta Sisben
@@ -1083,7 +1077,7 @@ const Tuhistoria = () => {
                 </div>
 
                 <div className="col-12">
-                  <button className="form__submit" type="submit">
+                  <button className="button button--primary" type="submit">
                     Enviar Informacion
                   </button>
                 </div>
