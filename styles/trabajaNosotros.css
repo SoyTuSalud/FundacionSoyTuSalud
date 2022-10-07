@@ -1,0 +1,37 @@
+.container-inputs-general-work {
+  display: flex;
+  gap: 30px;
+}
+
+.container-input {
+  width: 25%;
+  display: block;
+}
+
+.input-work {
+  width: 100%;
+  background-color: #fff;
+  padding: 5px 10px;
+  font-size: 14px;
+  border: 1px solid #dfdfdf;
+  border-radius: 5px;
+  outline: none;
+}
+
+.select-work {
+  width: 100%;
+  background-color: #fff;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #dfdfdf;
+  border-radius: 5px;
+  outline: none;
+}
+
+.input-work:focus {
+  border: 2px solid #6f42c1; /*343878*/
+}
+
+.select-work:focus {
+  border: 2px solid #6f42c1; /*343878*/
+}
