@@ -11,23 +11,27 @@ import '../styles/globals.css'
 import '../styles/SignInPage.css'
 import '../styles/HistoriesPage.css'
 import '../styles/TrazabilidadPage.css'
+import '../styles/TuHistoria.css'
 import '../components/Ui/loading/loading.css'
 import '../components/Ui/popup/popup.css'
+import { PopupProvider } from '../context/popup'
 
 function MyApp({ Component, pageProps }) {
   const [authUser, setAuthUser] = useState()
   const [componentStatus, setComponentStatus] = useState({})
   return (
     <ApolloProvider client={client}>
-      <ThemeProvider theme={lightTheme}>
-        <AuthContext.Provider value={{ authUser, setAuthUser }}>
-          <ComponentContext.Provider
-            value={{ componentStatus, setComponentStatus }}
-          >
-            <Component {...pageProps} />
-          </ComponentContext.Provider>
-        </AuthContext.Provider>
-      </ThemeProvider>
+      <PopupProvider>
+        <ThemeProvider theme={lightTheme}>
+          <AuthContext.Provider value={{ authUser, setAuthUser }}>
+            <ComponentContext.Provider
+              value={{ componentStatus, setComponentStatus }}
+            >
+              <Component {...pageProps} />
+            </ComponentContext.Provider>
+          </AuthContext.Provider>
+        </ThemeProvider>
+      </PopupProvider>
     </ApolloProvider>
   )
 }
