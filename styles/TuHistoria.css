@@ -184,6 +184,21 @@
   display: block;
 }
 
+.up-file {
+  background-color: #fff;
+  padding: 7px 20px;
+  border-radius: 6px;
+}
+
+.search-sisben-text {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.container-authorizations {
+  width: 100%;
+}
+
 @media (max-width: 950px) {
   .container-inputs-general {
     display: block;
@@ -236,5 +251,9 @@
 
   .textarea-input {
     width: 100%;
+  }
+
+  .container-upload-files {
+    display: block;
   }
 }

@@ -984,12 +984,12 @@ const Tuhistoria = () => {
               </div>
               <div className="container-upload-files">
                 <div className="container-upload-one">
-                  <span className="form__label-text">
+                  <span className="block text-black">
                     Anexar Historia Clinica
                   </span>
                   <input
                     type="file"
-                    className="form-control"
+                    className="up-file"
                     id="historiaClinica"
                     name="historiaClinica"
                     accept=".pdf"
@@ -998,13 +998,13 @@ const Tuhistoria = () => {
 
                 <div className="container-upload-one">
                   <label className="form__checkbox-label" />
-                  <span className="form__label-text">
+                  <span className="block text-black">
                     Anexar Consulta Sisben
                   </span>
 
                   <input
                     type="file"
-                    className="form-control"
+                    className="up-file"
                     id="sisben"
                     name="sisben"
                     accept=".pdf"
@@ -1012,28 +1012,19 @@ const Tuhistoria = () => {
                   />
                   <br />
                   <a
-                    className="centrado"
+                    className="search-sisben-text"
                     href="https://www.sisben.gov.co/Paginas/consulta-tu-grupo.aspx"
                     target="_blank"
                     rel="noreferrer"
                   >
-                    Consulta Tu Sisben
+                    <p>Consulta Tu Sisben</p>
                   </a>
                 </div>
               </div>
 
-              <div className="row">
-                <div className="col-12">
+              <div className="container-authorizations">
+                <div className="">
                   <label className="form__checkbox-label">
-                    <span
-                      name="autorizacionFoto"
-                      id="autorizacionFoto"
-                      value={true}
-                      className="form__label-text"
-                    >
-                      {' '}
-                      Autorizo de manera voluntaria, mostrar mi nombre y mi foto
-                    </span>
                     <input
                       className="checkbox"
                       type="checkbox"
@@ -1041,15 +1032,31 @@ const Tuhistoria = () => {
                       id="autorizacionFoto"
                       required
                     />
+                    <span
+                      name="autorizacionFoto"
+                      id="autorizacionFoto"
+                      value={true}
+                      className="label-checkbox"
+                    >
+                      {' '}
+                      Autorizo de manera voluntaria, mostrar mi nombre y mi foto
+                    </span>
                     <span className="form__checkbox-mask"></span>
                   </label>
                 </div>
 
-                <div className="col-12">
+                <div className="">
                   <label className="form__checkbox-label">
+                    <input
+                      className="checkbox"
+                      type="checkbox"
+                      name="recopilacionDatos"
+                      id="recopilacionDatos"
+                      required
+                    />
                     <span
                       id="recopilacionDatos"
-                      className="form__label-text"
+                      className="label-checkbox"
                       value={true}
                     >
                       Autorizo de manera voluntaria, previa, expresa e informada
@@ -1065,18 +1072,11 @@ const Tuhistoria = () => {
                       solicitar la supresión de mis datos en los casos en que
                       sea procedente
                     </span>
-                    <input
-                      className="checkbox"
-                      type="checkbox"
-                      name="recopilacionDatos"
-                      id="recopilacionDatos"
-                      required
-                    />
                     <span className="form__checkbox-mask"></span>
                   </label>
                 </div>
 
-                <div className="col-12">
+                <div className="col-12 mt-3">
                   <button className="button button--primary" type="submit">
                     Enviar Informacion
                   </button>
