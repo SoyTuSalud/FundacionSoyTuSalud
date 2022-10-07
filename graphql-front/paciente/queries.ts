@@ -76,9 +76,11 @@ query Query($correo: String!, $contrasena: String!) {
 `
 
 export const userData = gql`
-  query Usuario($uid: String!) {
-    Paciente(uid: $uid) {
-      uid
+query Query($_id: String!) {
+  Paciente(_id: $_id) {
+    ... on ResponsePaciente {
+      body {
+      _id
       identificacion
       nombre
       apellidos
@@ -109,8 +111,20 @@ export const userData = gql`
       recopilacionDatos
       comunidad
       fechaSolicitud
+      }
+      status {
+        code
+        description
+      }
+    }
+    ... on ResponsePacienteError {
+      status {
+        code
+        description
+      }
     }
   }
+}
 `
 
 

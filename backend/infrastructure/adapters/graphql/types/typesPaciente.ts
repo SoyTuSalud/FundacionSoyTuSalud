@@ -57,7 +57,7 @@ export const typesPaciente = gql`
   type Query {
     PacientesTabla: UnionPacienteList
     PacientesTablaTuHistoria: UnionPacienteList
-    Paciente(uid: String!): UnionPaciente
+    Paciente( _id: String!): UnionPaciente
   }
   type Mutation {
     crearPaciente(

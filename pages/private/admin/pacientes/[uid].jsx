@@ -1,39 +1,12 @@
-import { useEffect, useState } from 'react'
 import Head from 'next/head'
-import { client } from '../../../../graphql-front/initClientSide'
-import { userData } from '../../../../graphql-front/user/queries'
+import { initClientSSR } from '../../../../graphql-front/initClientSSR'
+import { userData } from '../../../../graphql-front/paciente/queries'
 import { AccountProfileDetails } from '../../../../components/detallePacientes/account-profile-details'
 import NewPrivateLayout from '../../../../components/layouts/NewPrivateLayout/NewPrivateLayout'
 import { Box, Container, Grid } from '@mui/material'
-import { useLazyQuery } from '@apollo/client'
 
-const DetallePaciente = ({ Usuario }) => {
-  const [error, setError] = useState({
-    type: '',
-    message: '',
-  })
-  const [data, setData] = useState()
-
-  const [getPacientes] = useLazyQuery(pacientesTabla)
-
-  useEffect(() => {
-    getPacientes()
-      .then(({ data }) => {
-        const request = data.PacientesTabla
-        if (request.status.code === ResponseCodes.SUCCESS) {
-          setData(request.body)
-        } else {
-          setError({ message: request.status.description, type: 'info' })
-        }
-      })
-      .catch(() => {
-        setError({
-          message: 'Error en el Server, contacte el administrador',
-          type: 'error',
-        })
-      })
-  }, [])
-
+const DetallePaciente = ({ Paciente }) => {
+ 
   return (
     <NewPrivateLayout>
       <Head>
@@ -49,13 +22,34 @@ const DetallePaciente = ({ Usuario }) => {
         <Container maxWidth="xl">
           <Grid container>
             <Grid item width={'100%'}>
-              <AccountProfileDetails user={user} />
+              <AccountProfileDetails user={Paciente.body} />
             </Grid>
           </Grid>
         </Container>
       </Box>
     </NewPrivateLayout>
   )
+}
+
+// You should use getServerSideProps when:
+// - Only if you need to pre-render a page whose data must be fetched at request time
+export const getServerSideProps = async ({ params, req }) => {
+  const { uid } = params
+
+  const clientSSR = initClientSSR(req)
+
+  const { data } = await clientSSR.query({
+    query: userData,
+    variables: { _id: uid },
+    fetchPolicy:'no-cache'
+  })
+
+  const { Paciente } = data
+  return {
+    props: {
+      Paciente,
+    },
+  }
 }
 
 export default DetallePaciente

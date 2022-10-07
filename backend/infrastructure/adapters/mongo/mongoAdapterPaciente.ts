@@ -62,11 +62,10 @@ export const findAllPacientesTuHistoria = async () => {
     })
 }
 
-export const findPacienteById = async (uid: String) => {
-  return await PacienteModel.findOne({
-    uid,
-  })
+export const findPacienteById = async (_id: String) => {
+  return await PacienteModel.findById(_id)
     .then((data: Paciente) => {
+      console.log(data)
       if (!data) {
         const status: Status = new Status(
           ResponseCodes.SUCCESS_EMPTY,

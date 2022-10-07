@@ -156,7 +156,7 @@ export const PacientesTablasTuHistoria = ({
                 <TableCell>
                   <Link
                     passHref
-                    href={`/private/admin/pacientes/${customer.uid}`}
+                    href={`/private/admin/pacientes/${customer._id}`}
                   >
                     <a className="text-blue-500">Ver mas</a>
                   </Link>

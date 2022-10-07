@@ -42,7 +42,7 @@ export const resolversPaciente = {
 
     Paciente: async (parent: any, args: any, { payload }: any) => {
       if (payload?.role === roleEnum.ADMIN) {
-        return await findPacienteById(args.uid)
+        return await findPacienteById(args._id)
       }
       const status: Status = new Status(
         ResponseCodes.PERMISSION_ERROR,
