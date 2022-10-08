@@ -379,14 +379,12 @@ const TrabajaNosotros = () => {
               </div>
             )}
             <div>
-              <div className="row">
-                <div className="col-lg-4">
-                  <label className="mt-3">
-                    Cuenta de ahorros Bancolombia *
-                  </label>
+              <div className="mt-7">
+                <div className="container-input">
+                  <label>Cuenta de ahorros Bancolombia *</label>
                   <input
                     type="number"
-                    className="form-control"
+                    className="input-work"
                     name="cuentaDeAhorros"
                     id="cuentaDeAhorros"
                     required
@@ -496,7 +494,7 @@ const TrabajaNosotros = () => {
                 <h6>Resumen de curriculum</h6>
                 <textarea
                   required
-                  className="form-control"
+                  className="textarea-input-work"
                   name="resumenCurriculum"
                   id="resumenCurriculum"
                   placeholder=""
@@ -504,13 +502,20 @@ const TrabajaNosotros = () => {
               </div>
             </div>
 
-            <div className="row mt-10">
-              <div className=" flex flex-col ml-3 mt-12">
+            <div className="mt-10">
+              <div className="flex flex-col ml-3 mt-12">
                 <label className="form__checkbox-label">
+                  <input
+                    className="checkbox"
+                    type="checkbox"
+                    name="aceptaConvenio"
+                    id="aceptaConvenio"
+                    value="1"
+                  />
                   <span
                     name="aceptaConvenio"
                     id="aceptaConvenio"
-                    className="form__label-text"
+                    className="label-checkbox"
                   >
                     Acepta{' '}
                     <a
@@ -522,13 +527,6 @@ const TrabajaNosotros = () => {
                       Convenio Profesionales
                     </a>
                   </span>
-                  <input
-                    className="form__input-checkbox"
-                    type="checkbox"
-                    name="aceptaConvenio"
-                    id="aceptaConvenio"
-                    value="1"
-                  />
                   <span className="form__checkbox-mask"></span>
                 </label>
                 {/* <label className="form__checkbox-label"><span name="convenioProveedores" id="convenioProveedores" className="form__label-text">Acepta <a href="https://firebasestorage.googleapis.com/v0/b/quetions-app.appspot.com/o/Terminos%2FContrato%20de%20acceso%20a%20la%20Plataforma%20Fundaci%C3%B3n%20Soy%20T%C3%BA%20Salud-Proveedores.pdf?alt=media&token=df28ca97-f067-44a2-8645-09eff342cdac" target='_blank' required rel="noreferrer">Convenio Proveedores</a></span>
@@ -536,10 +534,17 @@ const TrabajaNosotros = () => {
 																<span className="form__checkbox-mask"></span>
 															</label> */}
                 <label className="form__checkbox-label">
+                  <input
+                    className="checkbox"
+                    type="checkbox"
+                    name="aceptaTratamientoDatos"
+                    id="aceptaTratamientoDatos"
+                    value="on"
+                  />
                   <span
                     name="politicaDatos"
                     id="aceptaTratamientoDatos"
-                    className="form__label-text"
+                    className="label-checkbox"
                   >
                     Acepta Política de{' '}
                     <a
@@ -551,20 +556,20 @@ const TrabajaNosotros = () => {
                       Tratamiento de Datos Personales
                     </a>
                   </span>
-                  <input
-                    className="form__input-checkbox"
-                    type="checkbox"
-                    name="aceptaTratamientoDatos"
-                    id="aceptaTratamientoDatos"
-                    value="on"
-                  />
                   <span className="form__checkbox-mask"></span>
                 </label>
                 <label className="form__checkbox-label">
+                  <input
+                    className="checkbox"
+                    type="checkbox"
+                    name="aceptaDocumentoSARLAFT"
+                    id="aceptaDocumentoSARLAFT"
+                    value="on"
+                  />
                   <span
                     name="docSarlaft"
                     id="docSarlaft"
-                    className="form__label-text"
+                    className="label-checkbox"
                   >
                     Acepta documento{' '}
                     <a
@@ -577,20 +582,20 @@ const TrabajaNosotros = () => {
                     </a>
                     de Fundación Soy Tú Salud
                   </span>
-                  <input
-                    className="form__input-checkbox"
-                    type="checkbox"
-                    name="aceptaDocumentoSARLAFT"
-                    id="aceptaDocumentoSARLAFT"
-                    value="on"
-                  />
                   <span className="form__checkbox-mask"></span>
                 </label>
                 <label className="form__checkbox-label">
+                  <input
+                    className="checkbox"
+                    type="checkbox"
+                    name="aceptaCodigoEticaSoyTuSalud"
+                    id="aceptaCodigoEticaSoyTuSalud"
+                    value="on"
+                  />
                   <span
                     name="codigoEtica"
                     id="codigoEtica"
-                    className="form__label-text"
+                    className="label-checkbox"
                   >
                     Acepta{' '}
                     <a
@@ -603,13 +608,6 @@ const TrabajaNosotros = () => {
                     </a>{' '}
                     de Fundación Soy Tú Salud
                   </span>
-                  <input
-                    className="form__input-checkbox"
-                    type="checkbox"
-                    name="aceptaCodigoEticaSoyTuSalud"
-                    id="aceptaCodigoEticaSoyTuSalud"
-                    value="on"
-                  />
                   <span className="form__checkbox-mask"></span>
                 </label>
               </div>
@@ -847,39 +845,39 @@ const ListServices = ({ index, handleCheckBox }) => {
           </div>
         </div>
       </div>
-      <div className="row">
-        <div className="col-lg-3 mt-5">
-          <label className="mt-3">Valor del servicio *</label>
+      <div className="container-inputs-general-work mt-5">
+        <div className="container-input">
+          <label className="">Valor del servicio *</label>
           <input
             type="number"
-            className="form-control"
+            className="input-work"
             name={`valorServicio${index}`}
             id="valorServicio"
             required
           ></input>
         </div>
-        <div className="col-lg-3">
-          <label className="mt-3">Prestador del servicio *</label>
+        <div className="container-input">
+          <label className="">Prestador del servicio *</label>
           <input
             type="text"
-            className="form-control"
+            className="input-work"
             name={`nombreResponsable${index}`}
             required
           ></input>
         </div>
-        <div className="col-lg-3 mt-3">
+        <div className="container-input">
           <label>Contacto responsable *</label>
           <input
-            className="form-control"
+            className="input-work"
             type="text"
             name={`celularServicio${index}`}
             required
           />
         </div>
-        <div className="col-lg-3 mt-3">
+        <div className="container-input">
           <label>Linea WhatsApp *</label>
           <input
-            className="form-control"
+            className="input-work"
             type="number"
             name={`whatsAppServicio${index}`}
             required
@@ -887,13 +885,11 @@ const ListServices = ({ index, handleCheckBox }) => {
         </div>
       </div>
       <div className="row">
-        <div className="col-lg-6">
-          <label className="mt-3">
-            Dirrecion donde se presta el servicio *
-          </label>
+        <div className="col-lg-6 mt-5">
+          <label className="">Dirrecion donde se presta el servicio *</label>
           <input
             type="text"
-            className="form-control"
+            className="input-work"
             name={`direccionServicio${index}`}
             required
           ></input>
