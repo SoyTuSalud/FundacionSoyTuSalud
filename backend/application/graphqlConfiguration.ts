@@ -18,6 +18,11 @@ export const execute = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const startServer = apolloServer.start()
 
+  const corsOptions = {
+    credentials: true,
+    origin: 'http://localhost:3001',
+};
+
   res.setHeader('Access-Control-Allow-Credentials', 'true')
   res.setHeader(
     'Access-Control-Allow-Origin',

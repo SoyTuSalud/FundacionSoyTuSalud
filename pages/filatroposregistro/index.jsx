@@ -8,7 +8,6 @@ import { LayoutMain } from '/components/layouts/LayoutMain'
 
 import Image from 'next/image'
 import useFormData from '/hooks/useFormData'
-import PrivatePages from '/components/PrivatePages'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
