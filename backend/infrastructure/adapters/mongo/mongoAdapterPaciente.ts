@@ -2,13 +2,11 @@ import { ResponseCodes } from '../../../domain/commons/enums/responseCodesEnum'
 import { ResponseEntity } from '../../../domain/commons/responseEntity'
 import { Status } from '../../../domain/commons/StatusInterface'
 import { Paciente } from '../../../domain/paciente/pacienteInterface'
-import { registro } from './mongoAdapterUser'
+import { deleteUser, registro } from './mongoAdapterUser'
 import PacienteModel from './schemas/mongoSchemaPaciente'
 import jwt from 'jsonwebtoken'
 import { setCookie } from '../../helpers/tokenSerialize'
 import { roleEnum } from '../../../domain/user/enums/roleEnum'
-// import AuthModel from './schemas/mongoSchemaAuth'
-// import { roleEnum } from '../../../domain/auth/enums/roleEnum'
 
 export const findAllPacientes = async () => {
   return await PacienteModel.find({})
@@ -122,6 +120,8 @@ export const createPaciente = async (args: any, context: any) => {
           return response
         })
         .catch((e) => {
+          deleteUser(args.correo)
+
           const status: Status = new Status(ResponseCodes.ERROR, e.message)
           return new ResponseEntity(null, status)
         })
@@ -133,29 +133,32 @@ export const createPaciente = async (args: any, context: any) => {
 }
 
 export const createPacienteTuHistoria = async (args: any, context: any) => {
-  return await PacienteModel.findByIdAndUpdate(args._id, {
-    foto: args.foto,
-    genero: args.genero,
-    fechaNacimiento: args.fechaNacimiento,
-    direccion: args.direccion,
-    discapacitado: args.discapacitado,
-    tipoDiscapacidad: args.tipoDiscapacidad,
-    victimaViolencia: args.victimaViolencia,
-    identidadGenero: args.identidadGenero,
-    orientacionSexual: args.orientacionSexual,
-    grupoPoblacional: args.grupoPoblacional,
-    municipio: args.municipio,
-    departamento: args.departamento,
-    EPS: args.EPS,
-    tuHistoria: args.tuHistoria,
-    serviciosSolicitado: args.serviciosSolicitado,
-    historiaClinica: args.historiaClinica,
-    sisben: args.sisben,
-    autorizacionFoto: args.autorizacionFoto,
-    recopilacionDatos: args.recopilacionDatos,
-    formularioTuHistoria:true,
-    fechaSolicitud: new Date().toISOString().split("T")[0],
-  })
+  return await PacienteModel.findOneAndUpdate(
+    { correo: args.correo },
+    {
+      foto: args.foto,
+      genero: args.genero,
+      fechaNacimiento: args.fechaNacimiento,
+      direccion: args.direccion,
+      discapacitado: args.discapacitado === 'true',
+      tipoDiscapacidad: args.tipoDiscapacidad,
+      victimaViolencia: args.victimaViolencia === 'true',
+      identidadGenero: args.identidadGenero,
+      orientacionSexual: args.orientacionSexual,
+      grupoPoblacional: args.grupoPoblacional,
+      municipio: args.municipio,
+      departamento: args.departamento,
+      EPS: args.EPS,
+      tuHistoria: args.tuHistoria,
+      serviciosSolicitado: args.serviciosSolicitado,
+      historiaClinica: args.historiaClinica,
+      sisben: args.sisben,
+      autorizacionFoto: args.autorizacionFoto === 'true',
+      recopilacionDatos: args.recopilacionDatos === 'true',
+      formularioTuHistoria: true,
+      fechaSolicitud: new Date().toISOString().split('T')[0],
+    },
+  )
     .then((data: Paciente) => {
       if (!data) {
         const status: Status = new Status(

@@ -123,7 +123,7 @@ const Registro = () => {
                   <input
                     className="input-field-form"
                     type="password"
-                    name="password"
+                    name="contrasena"
                     id="password"
                     placeholder={t('login:constrasena')}
                     autoComplete="on"

@@ -69,6 +69,10 @@ export const registro =  ( args : registroData ) => new Promise( async (resolve,
     })
 })
 
+export const deleteUser = async  ( correo : string ) => {
+
+  await UserModel.findOneAndDelete({correo})
+}
 
 export const verifyRoles = (payload: any) => {
   return payload.role

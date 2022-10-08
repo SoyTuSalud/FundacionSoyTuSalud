@@ -12,18 +12,18 @@ export const typesPaciente = gql`
     tipoDocumento: TipoDocumentoEnum!
     celular: String!
     correo: String!
-    formularioTuHistoria: Boolean
-    aplicaEnFundacion: Boolean
+    formularioTuHistoria: String
+    aplicaEnFundacion: String
     matchService: String
     foto: String
-    genero: GeneroEnum
+    genero: String
     fechaNacimiento: String
     direccion: String
-    discapacitado: Boolean
-    tipoDiscapacidad: TipoDiscapacidadEnum
+    discapacitado: String
+    tipoDiscapacidad: String
     victimaViolencia: String
-    identidadGenero: IdentidadGeneroEnum
-    orientacionSexual: OrientacionSexualEnum
+    identidadGenero: String
+    orientacionSexual: String
     grupoPoblacional: String
     municipio: String
     departamento: String
@@ -32,8 +32,8 @@ export const typesPaciente = gql`
     serviciosSolicitado: [String]
     historiaClinica: String
     sisben: String
-    autorizacionFoto: Boolean
-    recopilacionDatos: Boolean
+    autorizacionFoto: String
+    recopilacionDatos: String
     comunidad: String
     fechaSolicitud: String
   }
@@ -70,16 +70,16 @@ export const typesPaciente = gql`
       contrasena: String!
     ): UnionPaciente
     tuHistoria(
-      _id: ID!
+      correo: String!
       foto: String!
-      genero: GeneroEnum!
+      genero: String!
       fechaNacimiento: String!
       direccion: String!
-      discapacitado: Boolean!
-      tipoDiscapacidad: TipoDiscapacidadEnum
-      victimaViolencia: Boolean!
-      identidadGenero: IdentidadGeneroEnum!
-      orientacionSexual: OrientacionSexualEnum
+      discapacitado: String!
+      tipoDiscapacidad: String
+      victimaViolencia: String!
+      identidadGenero: String!
+      orientacionSexual: String
       grupoPoblacional: String!
       municipio: String!
       departamento: String!
@@ -88,8 +88,8 @@ export const typesPaciente = gql`
       serviciosSolicitado: [String]!
       historiaClinica: String!
       sisben: String!
-      autorizacionFoto: Boolean!
-      recopilacionDatos: Boolean!
+      autorizacionFoto: String!
+      recopilacionDatos: String!
     ): UnionPaciente
   }
 `

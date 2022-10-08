@@ -37,7 +37,7 @@ export const registrarPaciente = gql`
 
 export const tuHistoriaUpdate = gql`
   mutation Mutation(
-    $uid: ID!
+    $correo: String!
     $foto: String!
     $genero: String!
     $fechaNacimiento: String!
@@ -59,7 +59,7 @@ export const tuHistoriaUpdate = gql`
     $tipoDiscapacidad: String
   ) {
     tuHistoria(
-      uid: $uid
+      correo: $correo
       foto: $foto
       genero: $genero
       fechaNacimiento: $fechaNacimiento
@@ -80,8 +80,18 @@ export const tuHistoriaUpdate = gql`
       recopilacionDatos: $recopilacionDatos
       tipoDiscapacidad: $tipoDiscapacidad
     ) {
-      uid
-      identificacion
+      ... on ResponsePaciente {
+        status {
+          code
+          description
+        }
+      }
+      ... on ResponsePacienteError {
+        status {
+          code
+          description
+        }
+      }
     }
   }
 `

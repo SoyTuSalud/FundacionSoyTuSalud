@@ -9,7 +9,7 @@ import { departamentos } from '../../utils/deparamentos'
 import { municipios } from '../../utils/municipios'
 
 import useFormData from '../../hooks/useFormData'
-// import { useAuth } from '../../context/useAuth'
+import { useAuth } from '../../context/useAuth'
 import { LayoutMain } from '../../components/layouts/LayoutMain'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -26,28 +26,22 @@ const Tuhistoria = () => {
   const [tuHistoria] = useMutation(tuHistoriaUpdate)
   const datePick = new Date().toISOString().split('T')[0]
   const [filterMunicipios, setFilterMunicipios] = useState([])
-  // const { authUser } = useAuth()
+  const { authUser } = useAuth()
   const [photo, setPhoto] = useState('/Foto.png')
   const [discapacitado, setDiscapacitado] = useState(false)
   const [servicios, setServicios] = useState([])
   const { form, formData, updateFormData } = useFormData()
   let municipiosFiltrado
-  // const imagRef = ref(
-  //   storage,
-  //   `pacientes/${authUser?.identificacion}/perfil.jpg`,
-  // )
-  // const historiaClinicaRef = ref(
-  //   storage,
-  //   `pacientes/${authUser?.identificacion}/historiaClinica.pdf`,
-  // )
-  // const sisbenRef = ref(
-  //   storage,
-  //   `pacientes/${authUser?.identificacion}/sisben.pdf`,
-  // )
+  const imagRef = ref(storage, `pacientes/${authUser?._id}/perfil.jpg`)
+  const historiaClinicaRef = ref(
+    storage,
+    `pacientes/${authUser?._id}/historiaClinica.pdf`,
+  )
+  const sisbenRef = ref(storage, `pacientes/${authUser?._id}/sisben.pdf`)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    // formData['uid'] = authUser.uid
+    formData['correo'] = authUser.correo
     formData['serviciosSolicitado'] = servicios
 
     await uploadBytes(imagRef, formData.foto)
@@ -78,14 +72,11 @@ const Tuhistoria = () => {
   }
 
   const handlerDiscapacitado = (e) => {
-    if (e.target.value === 'Si') {
-      setDiscapacitado(true)
-    } else {
-      setDiscapacitado(false)
-    }
+    setDiscapacitado(e.target.value)
   }
+  
   const handleDpto = (e) => {
-    console.log(e.target.value)
+    console.log(e)
     municipiosFiltrado = municipios.filter(
       (municipio) => municipio.codigodepartamento === e.target.value,
     )
@@ -136,6 +127,9 @@ const Tuhistoria = () => {
                     height="150"
                     width="180"
                   />
+                  <label className="centrado" htmlFor="logo">
+                    <span className="badge badge-primary r-3">Subir Foto</span>
+                  </label>
 
                   <input
                     type="file"
@@ -143,7 +137,7 @@ const Tuhistoria = () => {
                     id="foto"
                     name="foto"
                     accept="image/*"
-                    className="custom-file-input"
+                    // className="custom-file-input"
                     required
                   />
                   <p className="upload-photo">Subir Foto</p>
@@ -161,8 +155,8 @@ const Tuhistoria = () => {
                       required
                     >
                       <option value="">Seleccionar</option>
-                      <option>Femenino</option>
-                      <option>Masculino</option>
+                      <option value= "FEMENINO">Femenino</option>
+                      <option value= "MASCULINO" >Masculino</option>
                     </select>
                   </div>
 
@@ -228,7 +222,7 @@ const Tuhistoria = () => {
                         Municipio
                       </option>
                       {filterMunicipios.map((municipio, index) => (
-                        <option key={index}>{municipio.nombre}</option>
+                        <option key={index} value={municipio.nombre} >{municipio.nombre}</option>
                       ))}
                     </select>
                   </div>
@@ -246,8 +240,8 @@ const Tuhistoria = () => {
                       id="discapacitado"
                     >
                       <option value="">Seleccionar</option>
-                      <option>No</option>
-                      <option>Si</option>
+                      <option value={false} >No</option>
+                      <option value={true}  >Si</option>
                     </select>
                   </div>
                   {discapacitado ? (
@@ -283,8 +277,8 @@ const Tuhistoria = () => {
                       required
                     >
                       <option value="">Seleccionar</option>
-                      <option>Si</option>
-                      <option>No</option>
+                      <option value={true} >Si</option>
+                      <option value={false} >No</option>
                     </select>
                   </div>
                 </div>
@@ -301,13 +295,13 @@ const Tuhistoria = () => {
                       required
                     >
                       <option value="">Seleccionar</option>
-                      <option>Masculino</option>
-                      <option>Femenino</option>
-                      <option>Travesti</option>
-                      <option>Transexual</option>
-                      <option>Transgénero</option>
-                      <option>Ninguna</option>
-                      <option>No Binario</option>
+                      <option value={"MASCULINO"} >Masculino</option>
+                      <option value={"FEMENINO"} >Femenino</option>
+                      <option value={"TRAVESTI"} >Travesti</option>
+                      <option value={"TRANSEXUAL"} >Transexual</option>
+                      <option value={"TRANSGENERO"} >Transgénero</option>
+                      <option value={"NINGUNA"} >Ninguna</option>
+                      <option value={"NO BINARIO"} >No Binario</option>
                     </select>
                   </div>
                 </div>
@@ -321,12 +315,12 @@ const Tuhistoria = () => {
                       required
                     >
                       <option value="">Seleccionar</option>
-                      <option>Heterosexual</option>
-                      <option>Lesbiana</option>
-                      <option>Bisexual</option>
-                      <option>Gay</option>
-                      <option>Asexual</option>
-                      <option>Ninguna</option>
+                      <option value={"HETEROSEXUAL"} >Heterosexual</option>
+                      <option value={"LESBIANA"} >Lesbiana</option>
+                      <option value={"BISEXUAL"} >Bisexual</option>
+                      <option value={"GAY"} >Gay</option>
+                      <option value={"ASEXUAL"} >Asexual</option>
+                      <option value={"NINGUNA"} >Ninguna</option>
                     </select>
                   </div>
                 </div>
@@ -1031,6 +1025,7 @@ const Tuhistoria = () => {
                       name="autorizacionFoto"
                       id="autorizacionFoto"
                       required
+                      value={true}
                     />
                     <span
                       name="autorizacionFoto"
@@ -1053,6 +1048,7 @@ const Tuhistoria = () => {
                       name="recopilacionDatos"
                       id="recopilacionDatos"
                       required
+                      value={true}
                     />
                     <span
                       id="recopilacionDatos"
