@@ -651,49 +651,56 @@ const ListServices = ({ index, handleCheckBox }) => {
   return (
     <div>
       <div className="row">
-        <div className="col-12 mt-12">
+        <div className="col-12 mt-12 mb-4">
           <h6 className="general-titles">{`Servicio ${index + 1}`}</h6>
         </div>
       </div>
-      <div className="row">
-        <div className="col-lg-5">
-          <label className="mt-3">Tipo de servicio *</label>
-          <select
-            className="form-control"
-            onChange={handleCodeSelector}
-            name={`tipoServicio${index}`}
-            id="especialidad"
-            required
-          >
-            <option value="">Tipo de servicio</option>
-            <option>Consulta Medica General</option>
-            <option>Consulta Medica Especializada</option>
-            <option>Otros Profesionales de la salud</option>
-            <option>Ayudas diagnosticas</option>
-            <option>Medicamentos</option>
-            <option>Examenes de Laboratorio</option>
-            <option>Rayos X</option>
-            <option>Terapias</option>
-            <option>Cirugia Ambulatoria y Otros Servicios</option>
-          </select>
+      <div className="container-inputs-general-work">
+        <div className="container-service">
+          <div className="container-label-input">
+            <label className="mt-3">Tipo de servicio *</label>
+            <select
+              className="select-work"
+              onChange={handleCodeSelector}
+              name={`tipoServicio${index}`}
+              id="especialidad"
+              required
+            >
+              <option value="">Tipo de servicio</option>
+              <option>Consulta Medica General</option>
+              <option>Consulta Medica Especializada</option>
+              <option>Otros Profesionales de la salud</option>
+              <option>Ayudas diagnosticas</option>
+              <option>Medicamentos</option>
+              <option>Examenes de Laboratorio</option>
+              <option>Rayos X</option>
+              <option>Terapias</option>
+              <option>Cirugia Ambulatoria y Otros Servicios</option>
+            </select>
+          </div>
         </div>
-        <div className="col-lg-5">
-          <label className="mt-3">Nombre Servicio *</label>
-          <input
-            onChange={(e) =>
-              (filtrosCode.DESCRIPCION_SERVICIO = e.target.value)
-            }
-            className="form-control"
-            type="text"
-          />
+        <div className="container-service">
+          <div className="container-label-input">
+            <label className="mt-3">Nombre Servicio *</label>
+            <input
+              onChange={(e) =>
+                (filtrosCode.DESCRIPCION_SERVICIO = e.target.value)
+              }
+              className="input-work"
+              type="text"
+            />
+          </div>
         </div>
-        <div className="col-lg-2">
-          <label className="mt-3">*</label>
+        <div className="mt-7">
+          <label className="mt-3"> </label>
           {/* <div className='cursor-pointer bg-blue-500 text-white rounded-lg flex justify-center py-1 ' onClick={handleSearch}>Buscar</div> */}
           <input onClick={handleSearch} className="inputfile inputfile-1" />
-          <label className="space-x-2" onClick={() => handleSearch(index)}>
-            <span className="iborrainputfile">Buscar</span>
-          </label>
+          <button
+            className="btn-search-work"
+            onClick={() => handleSearch(index)}
+          >
+            Buscar
+          </button>
         </div>
       </div>
       <div className="row">
@@ -737,103 +744,103 @@ const ListServices = ({ index, handleCheckBox }) => {
         </div>
       </div>
       <div className="row">
-        <div className="col-12 mt-4 text-sm font-bold">
+        <div className="col-12 mt-6 text-sm font-bold">
           <span>Disponibilidad Horaria</span>
         </div>
       </div>
-      <div className="row">
-        <div className="col-lg-2">
+      <div className="container-dates">
+        <div className="container-date-one">
           <label className="mt-3"> Hora inicio *</label>
           <input
             type="time"
-            className="form-control"
+            className="select-work"
             name={`horaInicio${index}`}
             id="disponibilidadHoraria"
           />
         </div>
-        <div className="col-lg-2">
+        <div className="container-date-one">
           <label className="mt-3"> Hora Fin *</label>
           <input
             type="time"
-            className="form-control"
+            className="select-work"
             name={`horaFin${index}`}
             id="disponibilidadHoraria"
           />
         </div>
       </div>
       <div className="row">
-        <div className="col-lg-12">
-          <label className="mt-3">Dias disponibles*</label>
+        <div className="col-lg-12 mt-5">
+          <label className="">Dias disponibles*</label>
           <div className=" space-x-6">
             <div className="flex flex-col justify-between md:flex-row">
               <label className="form__checkbox-label">
-                <span className="form__label-text">Lunes</span>
                 <input
-                  className="form__input-checkbox"
+                  className="checkbox"
                   type="checkbox"
                   value={`lunes`}
                   onChange={(e) => handleCheckBox(e, index)}
                 />
+                <span className="label-checkbox">Lunes</span>
                 <span className="form__checkbox-mask"></span>
               </label>
               <label className="form__checkbox-label">
-                <span className="form__label-text">Martes</span>
                 <input
-                  className="form__input-checkbox"
+                  className="checkbox"
                   type="checkbox"
                   value={`martes`}
                   onChange={(e) => handleCheckBox(e, index)}
                 />
+                <span className="label-checkbox">Martes</span>
                 <span className="form__checkbox-mask"></span>
               </label>
               <label className="form__checkbox-label">
-                <span className="form__label-text">Miércoles</span>
                 <input
-                  className="form__input-checkbox"
+                  className="checkbox"
                   type="checkbox"
                   onChange={(e) => handleCheckBox(e, index)}
                   value={`miercoles`}
                 />
+                <span className="label-checkbox">Miércoles</span>
                 <span className="form__checkbox-mask"></span>
               </label>
               <label className="form__checkbox-label">
-                <span className="form__label-text">Jueves</span>
                 <input
-                  className="form__input-checkbox"
+                  className="checkbox"
                   type="checkbox"
                   onChange={(e) => handleCheckBox(e, index)}
                   value={`jueves`}
                 />
+                <span className="label-checkbox">Jueves</span>
                 <span className="form__checkbox-mask"></span>
               </label>
               <label className="form__checkbox-label">
-                <span className="form__label-text">Viernes</span>
                 <input
-                  className="form__input-checkbox"
+                  className="checkbox"
                   type="checkbox"
                   value={`viernes`}
                   onChange={(e) => handleCheckBox(e, index)}
                 />
+                <span className="label-checkbox">Viernes</span>
                 <span className="form__checkbox-mask"></span>
               </label>
               <label className="form__checkbox-label">
-                <span className="form__label-text">Sábado</span>
                 <input
-                  className="form__input-checkbox"
+                  className="checkbox"
                   type="checkbox"
                   onChange={(e) => handleCheckBox(e, index)}
                   value={`sabado`}
                 />
+                <span className="label-checkbox">Sábado</span>
                 <span className="form__checkbox-mask"></span>
               </label>
               <label className="form__checkbox-label">
-                <span className="form__label-text">Domingo</span>
                 <input
-                  className="form__input-checkbox"
+                  className="checkbox"
                   type="checkbox"
                   onChange={(e) => handleCheckBox(e, index)}
                   value={`domingo`}
                 />
+                <span className="label-checkbox">Domingo</span>
                 <span className="form__checkbox-mask"></span>
               </label>
             </div>
@@ -841,7 +848,7 @@ const ListServices = ({ index, handleCheckBox }) => {
         </div>
       </div>
       <div className="row">
-        <div className="col-lg-3">
+        <div className="col-lg-3 mt-5">
           <label className="mt-3">Valor del servicio *</label>
           <input
             type="number"
