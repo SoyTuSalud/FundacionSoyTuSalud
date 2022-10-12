@@ -55,11 +55,11 @@ const Registro = () => {
               <div className="col-12">
                 <select
                   className="input-field-form"
-                  defaultValue={t('registro:tipoDocumento')}
+                  defaultValue={t('registro:DOCUMENT_TYPE')}
                   name="tipoDocumento"
                   id="tipoDocumento"
                 >
-                  <option disabled>{t('registro:tipoDocumento')}</option>
+                  <option disabled>{t('registro:DOCUMENT_TYPE')}</option>
                   <option>CC</option>
                   <option>CE</option>
                   <option>TI</option>
@@ -87,7 +87,7 @@ const Registro = () => {
                     type="text"
                     name="nombre"
                     id="nombre"
-                    placeholder={t('registro:nombreCompleto')}
+                    placeholder={t('registro:FULL_NAME')}
                   />
                 </div>
                 <div className="container-fields">
@@ -96,7 +96,7 @@ const Registro = () => {
                     type="text"
                     name="apellidos"
                     id="apellidos"
-                    placeholder={t('registro:apellidoCompleto')}
+                    placeholder={t('registro:FULL_SURNAME')}
                   />
                 </div>
                 <div className="container-fields">
@@ -133,7 +133,7 @@ const Registro = () => {
                     type="password"
                     name=""
                     id=""
-                    placeholder={t('registro:confirmarContra')}
+                    placeholder={t('registro:CONFIRM_PASSWORD')}
                     autoComplete="on"
                   />
                 </div>
@@ -141,14 +141,14 @@ const Registro = () => {
 
               <div className="text-center mt-10 mb-5">
                 <button className="button button--primary" type="submit">
-                  Registrar
+                  {t('common:REGISTER')}
                 </button>
               </div>
               <div className="col-12 text-center">
                 <Link href="/login" passHref>
                   <strong className="login-text">
                     <a className="login-text-underline">{t('navbar:LOG_IN')}</a>{' '}
-                    {t('registro:ifCuenta')}
+                    {t('registro:HAVE_AN_ACCOUNT')}
                   </strong>
                 </Link>
               </div>
@@ -174,6 +174,7 @@ export const getStaticProps = async ({ locale }) => {
   return {
     props: {
       ...(await serverSideTranslations(locale, [
+        'common',
         'footer',
         'navbar',
         'home',
