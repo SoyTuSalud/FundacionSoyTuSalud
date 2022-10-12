@@ -20,8 +20,8 @@ const Login = () => {
   const router = useRouter()
 
   const propsImage = {
-    title: t('home:tituloHome'),
-    title2: t('home:titulohome2'),
+    title: t('home:HOME_TITLE'),
+    title2: t('home:HOME_TITLE_2'),
     image: '/promo_c1.png',
   }
 
@@ -31,7 +31,7 @@ const Login = () => {
     }).then(({ data }) => {
       if (data.login.status.code === ResponseCodes.SUCCESS) {
         router.push('/')
-      } else{
+      } else {
         setMssgError(data.login.status.description)
       }
     })

@@ -18,8 +18,8 @@ const Tuhistoria = () => {
   const { t } = useTranslation()
 
   const propsImage = {
-    title: t('home:tituloHome'),
-    title2: t('home:titulohome2'),
+    title: t('home:HOME_TITLE'),
+    title2: t('home:HOME_TITLE_2'),
     image: '/promo_c1.png',
   }
 
@@ -74,7 +74,7 @@ const Tuhistoria = () => {
   const handlerDiscapacitado = (e) => {
     setDiscapacitado(e.target.value)
   }
-  
+
   const handleDpto = (e) => {
     console.log(e)
     municipiosFiltrado = municipios.filter(
@@ -155,8 +155,8 @@ const Tuhistoria = () => {
                       required
                     >
                       <option value="">Seleccionar</option>
-                      <option value= "FEMENINO">Femenino</option>
-                      <option value= "MASCULINO" >Masculino</option>
+                      <option value="FEMENINO">Femenino</option>
+                      <option value="MASCULINO">Masculino</option>
                     </select>
                   </div>
 
@@ -222,7 +222,9 @@ const Tuhistoria = () => {
                         Municipio
                       </option>
                       {filterMunicipios.map((municipio, index) => (
-                        <option key={index} value={municipio.nombre} >{municipio.nombre}</option>
+                        <option key={index} value={municipio.nombre}>
+                          {municipio.nombre}
+                        </option>
                       ))}
                     </select>
                   </div>
@@ -240,8 +242,8 @@ const Tuhistoria = () => {
                       id="discapacitado"
                     >
                       <option value="">Seleccionar</option>
-                      <option value={false} >No</option>
-                      <option value={true}  >Si</option>
+                      <option value={false}>No</option>
+                      <option value={true}>Si</option>
                     </select>
                   </div>
                   {discapacitado ? (
@@ -277,8 +279,8 @@ const Tuhistoria = () => {
                       required
                     >
                       <option value="">Seleccionar</option>
-                      <option value={true} >Si</option>
-                      <option value={false} >No</option>
+                      <option value={true}>Si</option>
+                      <option value={false}>No</option>
                     </select>
                   </div>
                 </div>
@@ -295,13 +297,13 @@ const Tuhistoria = () => {
                       required
                     >
                       <option value="">Seleccionar</option>
-                      <option value={"MASCULINO"} >Masculino</option>
-                      <option value={"FEMENINO"} >Femenino</option>
-                      <option value={"TRAVESTI"} >Travesti</option>
-                      <option value={"TRANSEXUAL"} >Transexual</option>
-                      <option value={"TRANSGENERO"} >Transgénero</option>
-                      <option value={"NINGUNA"} >Ninguna</option>
-                      <option value={"NO BINARIO"} >No Binario</option>
+                      <option value={'MASCULINO'}>Masculino</option>
+                      <option value={'FEMENINO'}>Femenino</option>
+                      <option value={'TRAVESTI'}>Travesti</option>
+                      <option value={'TRANSEXUAL'}>Transexual</option>
+                      <option value={'TRANSGENERO'}>Transgénero</option>
+                      <option value={'NINGUNA'}>Ninguna</option>
+                      <option value={'NO BINARIO'}>No Binario</option>
                     </select>
                   </div>
                 </div>
@@ -315,12 +317,12 @@ const Tuhistoria = () => {
                       required
                     >
                       <option value="">Seleccionar</option>
-                      <option value={"HETEROSEXUAL"} >Heterosexual</option>
-                      <option value={"LESBIANA"} >Lesbiana</option>
-                      <option value={"BISEXUAL"} >Bisexual</option>
-                      <option value={"GAY"} >Gay</option>
-                      <option value={"ASEXUAL"} >Asexual</option>
-                      <option value={"NINGUNA"} >Ninguna</option>
+                      <option value={'HETEROSEXUAL'}>Heterosexual</option>
+                      <option value={'LESBIANA'}>Lesbiana</option>
+                      <option value={'BISEXUAL'}>Bisexual</option>
+                      <option value={'GAY'}>Gay</option>
+                      <option value={'ASEXUAL'}>Asexual</option>
+                      <option value={'NINGUNA'}>Ninguna</option>
                     </select>
                   </div>
                 </div>
