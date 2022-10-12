@@ -32,13 +32,11 @@ const Registro = () => {
       .then(({ data }) => {
         if (data.crearPaciente.status.code === ResponseCodes.SUCCESS) {
           router.push('/')
-        } else{
+        } else {
           setMssgError(data.crearPaciente.status.description)
         }
       })
-      .catch((error) => {
-
-      })
+      .catch((error) => {})
   }
 
   return (

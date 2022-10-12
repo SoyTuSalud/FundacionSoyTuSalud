@@ -36,23 +36,23 @@ export const MenuFooter = ({ t }) => {
               alt="logo"
             />
             <div className="contact-info-footer">
-              <h4 className="footer-title">Contáctanos</h4>
+              <h4 className="footer-title">{t('footer:CONTACT_US')}</h4>
               <p>Medellín</p>
-              <p>Teléfono +57 320 702 3823</p>
+              <p>{t('footer:PHONE')} +57 320 702 3823</p>
               <p>Email: </p>
               <p>info@fundacionsoytusalud.org</p>
             </div>
           </div>
           <div>
-            <h4 className="footer-title">TeAcompaño</h4>
-            <p className="description-footer">
-              Ayúdanos a cambiar la vida de los menos favorecidos en Colombia.
-            </p>
-            <button className="btn-footer">TE ACOMPAÑO</button>
+            <h4 className="footer-title">{t('footer:I_ACCOMPANY_YOU')}</h4>
+            <p className="description-footer">{t('footer:HELP_US')}</p>
+            <button className="btn-footer">
+              {t('footer:I_ACCOMPANY_YOU')}
+            </button>
           </div>
         </div>
         <p className="footer-copyright">
-          Copyrights Soy Tú Salud © {currentYear}. {t('footer:copyrights')}
+          Copyrights Soy Tú Salud © {currentYear}. {t('footer:COPYRIGHT')}
         </p>
       </footer>
 
@@ -68,23 +68,23 @@ export const MenuFooter = ({ t }) => {
           </div>
           <div>
             <div className="contact-info-footer">
-              <h4 className="footer-title">Contáctanos</h4>
+              <h4 className="footer-title">{t('footer:CONTACT_US')}</h4>
               <p>Medellín</p>
-              <p>Teléfono +57 320 702 3823</p>
+              <p>{t('footer:PHONE')} +57 320 702 3823</p>
               <p>Email: </p>
               <p>info@fundacionsoytusalud.org</p>
             </div>
             <div>
-              <h4 className="footer-title">TeAcompaño</h4>
-              <p className="description-footer">
-                Ayúdanos a cambiar la vida de los menos favorecidos en Colombia.
-              </p>
-              <button className="btn-footer">TE ACOMPAÑO</button>
+              <h4 className="footer-title">{t('footer:I_ACCOMPANY_YOU')}</h4>
+              <p className="description-footer">{t('footer:HELP_US')}</p>
+              <button className="btn-footer">
+                {t('footer:I_ACCOMPANY_YOU')}
+              </button>
             </div>
           </div>
         </div>
         <p className="footer-copyright">
-          Copyrights Soy Tú Salud © {currentYear}. {t('footer:copyrights')}
+          Copyrights Soy Tú Salud © {currentYear}. {t('footer:COPYRIGHT')}
         </p>
       </footer>
     </>
