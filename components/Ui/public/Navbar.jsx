@@ -20,58 +20,58 @@ import {
 export const Navbar = ({ t }) => {
   const solutions = [
     {
-      name: t('navbar:inicio'),
+      name: t('navbar:BEGINNING'),
       href: '/',
       icon: HomeIcon,
     },
     {
-      name: t('navbar:pacientes'),
+      name: t('navbar:PATIENTS'),
       subNav: [
         {
           link: 'tuhistoria',
-          label: t('navbar:tuHistoria'),
+          label: t('navbar:YOUR_HISTORY'),
         },
       ],
       icon: UserIcon,
     },
     {
-      name: t('navbar:filantropos'),
+      name: t('navbar:PHILANTHROPISTS'),
       subNav: [
         {
           link: 'historias',
-          label: t('navbar:clasificados'),
+          label: t('navbar:CLASSIFIED'),
         },
         {
           link: 'trazabilidad',
-          label: t('navbar:trazabilidad'),
+          label: t('navbar:TRACEABILITY'),
         },
         {
           link: 'donaciones',
-          label: t('navbar:donaciones'),
+          label: t('navbar:DONATIONS'),
         },
       ],
       icon: UserGroupIcon,
     },
     {
-      name: t('navbar:aliados'),
+      name: t('navbar:ALLIES'),
       subNav: [
         {
           link: 'instituciones',
-          label: t('navbar:instituciones'),
+          label: t('navbar:INSTITUTIONS'),
         },
         {
           link: 'empresasconproposito',
-          label: t('navbar:empresasProposito'),
+          label: t('navbar:COMPANIES_PURPOSE'),
         },
         {
           link: 'personasconproposito',
-          label: t('navbar:personasProposito'),
+          label: t('navbar:PURPOSEFUL_PEOPLE'),
         },
       ],
       icon: OfficeBuildingIcon,
     },
     {
-      name: t('navbar:trabajaNosotros'),
+      name: t('navbar:WORK_WITH_US'),
       href: '/trabajaNosotros',
       icon: BriefcaseIcon,
     },
@@ -80,8 +80,7 @@ export const Navbar = ({ t }) => {
   const router = useRouter()
   const { authUser, setAuthUser } = useAuth()
   const [navbar, setNavbar] = useState(false)
-  const [cookies, setCookie, removeCookie] = useCookies(['token']);
-
+  const [cookies, setCookie, removeCookie] = useCookies(['token'])
 
   const handlerLogOut = async () => {
     setAuthUser(null)
@@ -89,7 +88,6 @@ export const Navbar = ({ t }) => {
     router.push('/')
   }
 
- 
   const changeBackground = () => {
     if (window.scrollY >= 2) {
       setNavbar(true)
@@ -137,7 +135,7 @@ export const Navbar = ({ t }) => {
                     <li className="text-black main-menu__item main-menu__item">
                       <Link href="/">
                         <a className="text-black main-menu__link font-black">
-                          {t('navbar:inicio')}
+                          {t('navbar:BEGINNING')}
                         </a>
                       </Link>
                     </li>
@@ -146,20 +144,20 @@ export const Navbar = ({ t }) => {
                         <li className="main-menu__item main-menu__item--has-child">
                           <Link href="/">
                             <a className="main-menu__link">
-                              {t('navbar:pacientes')}
+                              {t('navbar:PATIENTS')}
                             </a>
                           </Link>
                           <ul className="main-menu__sub-list">
                             {authUser.formularioTuHistoria ? (
                               <li>
                                 <Link href="/miSolictud">
-                                  <a>{t('navbar:miSolicitud')}</a>
+                                  <a>{t('navbar:MY_REQUEST')}</a>
                                 </Link>
                               </li>
                             ) : (
                               <li>
                                 <Link href="/tuhistoria">
-                                  <a>{t('navbar:tuHistoria')}</a>
+                                  <a>{t('navbar:YOUR_HISTORY')}</a>
                                 </Link>
                               </li>
                             )}
@@ -202,45 +200,45 @@ export const Navbar = ({ t }) => {
                     <li className="main-menu__item main-menu__item--has-child">
                       <Link href="/">
                         <a className="main-menu__link">
-                          {t('navbar:filantropos')}
+                          {t('navbar:PHILANTHROPISTS')}
                         </a>
                       </Link>
                       <ul className="main-menu__sub-list">
                         <li>
                           <Link href="/historias">
-                            <a>{t('navbar:clasificados')}</a>
+                            <a>{t('navbar:CLASSIFIED')}</a>
                           </Link>
                         </li>
                         <li>
                           <Link href="/trazabilidad">
-                            <a>{t('navbar:trazabilidad')}</a>
+                            <a>{t('navbar:TRACEABILITY')}</a>
                           </Link>
                         </li>
                         <li>
                           <Link href="/donaciones">
-                            <a>{t('navbar:donaciones')}</a>
+                            <a>{t('navbar:DONATIONS')}</a>
                           </Link>
                         </li>
                       </ul>
                     </li>
                     <li className="main-menu__item main-menu__item--has-child">
                       <Link href="/">
-                        <a className="main-menu__link">{t('navbar:aliados')}</a>
+                        <a className="main-menu__link">{t('navbar:ALLIES')}</a>
                       </Link>
                       <ul className="main-menu__sub-list">
                         <li>
                           <Link href="/instituciones">
-                            <a>{t('navbar:instituciones')}</a>
+                            <a>{t('navbar:INSTITUTIONS')}</a>
                           </Link>
                         </li>
                         <li>
                           <Link href="/empresasconproposito">
-                            <a>{t('navbar:empresasProposito')}</a>
+                            <a>{t('navbar:COMPANIES_PURPOSE')}</a>
                           </Link>
                         </li>
                         <li>
                           <Link href="/personasconproposito">
-                            <a>{t('navbar:personasProposito')}</a>
+                            <a>{t('navbar:PURPOSEFUL_PEOPLE')}</a>
                           </Link>
                         </li>
                       </ul>
@@ -250,7 +248,7 @@ export const Navbar = ({ t }) => {
                         <li className="text-black main-menu__item main-menu__item">
                           <Link href="/trabajaNosotros">
                             <a className="text-black main-menu__link font-black">
-                              {t('navbar:trabajaNosotros')}
+                              {t('navbar:WORK_WITH_US')}
                             </a>
                           </Link>
                         </li>
@@ -267,7 +265,7 @@ export const Navbar = ({ t }) => {
                     <a className="main-menu__link whitespace-nowrap no-underline">
                       <span className="px-4 py-1.5 items-center no-underlinejustify-center border rounded-md shadow-sm text-base font-medium text-white border-white cursor-pointer hover:bg-white hover:bg-opacity-10">
                         {' '}
-                        {t('navbar:registro')}{' '}
+                        {t('navbar:SIGN IN')}{' '}
                       </span>
                     </a>
                   </Link>
@@ -275,7 +273,7 @@ export const Navbar = ({ t }) => {
                     <a className="main-menu__link whitespace-nowrap no-underline">
                       <span className="px-3 py-1.5 items-center no-underlinejustify-center border rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 cursor-pointer ">
                         {' '}
-                        {t('navbar:iniciarSesion')}{' '}
+                        {t('navbar:LOG_IN')}{' '}
                       </span>
                     </a>
                   </Link>
@@ -359,7 +357,7 @@ export const Navbar = ({ t }) => {
                       >
                         <span className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 underline ">
                           {' '}
-                          {t('navbar:cerrarSesion')}{' '}
+                          {t('navbar:LOG_OUT')}{' '}
                         </span>
                       </a>
                     </>
@@ -367,16 +365,16 @@ export const Navbar = ({ t }) => {
                     <>
                       <Link href={'/registro'}>
                         <a className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-                          {t('navbar:registro')}
+                          {t('navbar:SIGN IN')}
                         </a>
                       </Link>
                       <p className="mt-6 text-center text-base font-medium text-gray-500">
-                        {t('navbar:yaRegistrado')}?{' '}
+                        {t('navbar:ALREADY_REGISTERED')}?{' '}
                       </p>
                       <div className="mt-3 flex justify-center">
                         <Link href={'/login'}>
                           <a className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-                            {t('navbar:iniciarSesion')}
+                            {t('navbar:LOG_IN')}
                           </a>
                         </Link>
                       </div>

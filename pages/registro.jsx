@@ -50,7 +50,7 @@ const Registro = () => {
             id="Form_RegistroPaciente"
           >
             <div className="pb-10">
-              <h6 className="title-sign-in">{t('navbar:registro')}</h6>
+              <h6 className="title-sign-in">{t('navbar:SIGN_IN')}</h6>
 
               <div className="col-12">
                 <select
@@ -105,7 +105,7 @@ const Registro = () => {
                     type="text"
                     name="celular"
                     id="celular"
-                    placeholder={t('footer:telefono')}
+                    placeholder={t('footer:PHONE')}
                   />
                 </div>
                 <div className="container-fields">
@@ -114,7 +114,7 @@ const Registro = () => {
                     type="correo"
                     name="correo"
                     id="correo"
-                    placeholder={t('login:email')}
+                    placeholder={t('login:EMAIL')}
                   />
                 </div>
                 <div className="container-fields">
@@ -123,7 +123,7 @@ const Registro = () => {
                     type="password"
                     name="contrasena"
                     id="password"
-                    placeholder={t('login:constrasena')}
+                    placeholder={t('login:PASSWORD')}
                     autoComplete="on"
                   />
                 </div>
@@ -147,9 +147,7 @@ const Registro = () => {
               <div className="col-12 text-center">
                 <Link href="/login" passHref>
                   <strong className="login-text">
-                    <a className="login-text-underline">
-                      {t('navbar:iniciarSesion')}
-                    </a>{' '}
+                    <a className="login-text-underline">{t('navbar:LOG_IN')}</a>{' '}
                     {t('registro:ifCuenta')}
                   </strong>
                 </Link>
