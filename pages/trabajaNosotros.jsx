@@ -117,11 +117,9 @@ const TrabajaNosotros = () => {
         .then((res) => {
           router.push('/')
         })
-        .catch((err) => {
-          console.log(err)
-        })
+        .catch((err) => console.error(err))
     } else {
-      console.log('error')
+      console.error('error')
     }
   }
 
@@ -185,18 +183,17 @@ const TrabajaNosotros = () => {
           >
             <div className="row mt-10">
               <h6 className="general-titles">
-                Si consideras que eres una persona en situación de
-                vulnerabilidad, que padece una enfermedad y necesita servicios
-                médicos, diligencia este formulario y te pondremos en contacto
-                con un especialista que te ayude a mejorar tu estado de salud.
+                {t('trabajaConNosotros:FILL_FORM')}
               </h6>
               <label className="control-label mb-1">
-                Por favor, verifica los campos obligatorios marcados con un (*){' '}
+                {t('trabajaConNosotros:PLEASE_CHECK_REQUIRED_FIELDS')} (*){' '}
               </label>
             </div>
 
             <div className="contenedor-picture">
-              <h6 className="general-titles text-center">Foto</h6>
+              <h6 className="general-titles text-center">
+                {t('common:PHOTO')}
+              </h6>
 
               <div className="FotoHistoria">
                 <Image
@@ -219,17 +216,21 @@ const TrabajaNosotros = () => {
                   required
                 />
                 <label className="upload-photo" htmlFor="logo">
-                  <p className="upload-photo">Subir Foto</p>
+                  <p className="upload-photo">{t('common:UPLOAD_PHOTO')}</p>
                 </label>
               </div>
             </div>
 
             <div className="col-12 mt-12">
-              <h6 className="general-titles">Datos Personales</h6>
+              <h6 className="general-titles">
+                {t('common:PERSONAL_INFORMATION')}
+              </h6>
             </div>
             <div className="container-inputs-general-work">
               <div className="container-input">
-                <label>Nombres Completo o Razon social *</label>
+                <label>
+                  {t('trabajaConNosotros:FULL_NAMES_OR_COMPANY_NAME')} *
+                </label>
                 <input
                   className="input-work"
                   type="text"
@@ -240,13 +241,13 @@ const TrabajaNosotros = () => {
               </div>
 
               <div className="container-input">
-                <label>Tipo documento *</label>
+                <label>{t('registro:DOCUMENT_TYPE')} *</label>
                 <select
                   className="select-work"
                   name="tipoDocumento"
                   id="tipoDocumento required"
                 >
-                  <option value="">Tipo Documento</option>
+                  <option value="">{t('registro:DOCUMENT_TYPE')}</option>
                   <option>CC</option>
                   <option>NIT</option>
                   <option>CE</option>
@@ -261,7 +262,7 @@ const TrabajaNosotros = () => {
                 </select>
               </div>
               <div className="container-input">
-                <label>Numero de documento *</label>
+                <label>{t('trabajaConNosotros:DOCUMENT_NUMBER')} *</label>
                 <input
                   className="input-work"
                   type="text"
@@ -271,7 +272,7 @@ const TrabajaNosotros = () => {
                 />
               </div>
               <div className="container-input">
-                <label>Número celular *</label>
+                <label>{t('trabajaConNosotros:CELL_PHONE_NUMBER')} *</label>
                 <input
                   className="input-work"
                   type="number"
@@ -284,7 +285,7 @@ const TrabajaNosotros = () => {
 
             <div className="container-inputs-general-work">
               <div className="container-input">
-                <label>Departamento *</label>
+                <label>{t('common:DEPARTMENT')} *</label>
                 <select
                   onChange={handleDpto}
                   name="departamento"
@@ -302,7 +303,7 @@ const TrabajaNosotros = () => {
                 </select>
               </div>
               <div className="container-input">
-                <label>Municipio *</label>
+                <label>{t('common:MUNICIPALITY')} *</label>
                 <select
                   name="municipio"
                   className="select-work"
@@ -317,7 +318,7 @@ const TrabajaNosotros = () => {
                 </select>
               </div>
               <div className="container-input">
-                <label>Dirección comercial completa *</label>
+                <label>{t('common:FULL_BUSINESS_ADDRESS')} *</label>
                 <input
                   className="input-work"
                   type="text"
@@ -327,7 +328,7 @@ const TrabajaNosotros = () => {
                 />
               </div>
               <div className="container-input">
-                <label>Página Web</label>
+                <label>{t('common:WEBPAGE')}</label>
                 <input
                   className="input-work"
                   type="url"
@@ -339,7 +340,9 @@ const TrabajaNosotros = () => {
 
             <div className="row">
               <div className="col-12 mt-12">
-                <h6 className="general-titles">Información de aplicación</h6>
+                <h6 className="general-titles">
+                  {t('trabajaConNosotros:APPLICATION_INFORMATION')}
+                </h6>
               </div>
             </div>
 
@@ -363,8 +366,10 @@ const TrabajaNosotros = () => {
                       setSecurities(false)
                     }}
                   >
-                    <AddBoxIcon color="success"></AddBoxIcon>
-                    <span className="">Agregar un nuevo servicio</span>
+                    <AddBoxIcon color="success" />
+                    <span className="">
+                      {t('trabajaConNosotros:ADD_NEW_SERVICE')}
+                    </span>
                   </button>
                 </div>
               </div>
@@ -372,8 +377,10 @@ const TrabajaNosotros = () => {
               <div className="row">
                 <div className="col-lg-4 mt-3 ">
                   <button type="button" disabled>
-                    <AddBoxIcon color=""></AddBoxIcon>
-                    <span className="">Agregar un nuevo servicio</span>
+                    <AddBoxIcon color="" />
+                    <span className="">
+                      {t('trabajaConNosotros:ADD_NEW_SERVICE')}
+                    </span>
                   </button>
                 </div>
               </div>
@@ -381,22 +388,26 @@ const TrabajaNosotros = () => {
             <div>
               <div className="mt-7">
                 <div className="container-input">
-                  <label>Cuenta de ahorros Bancolombia *</label>
+                  <label>
+                    {t('trabajaConNosotros:BANCOLOMBIA_SAVINGS_ACCOUNT')} *
+                  </label>
                   <input
                     type="number"
                     className="input-work"
                     name="cuentaDeAhorros"
                     id="cuentaDeAhorros"
                     required
-                  ></input>
+                  />
                 </div>
               </div>
               <div className="mt-12 mb-3">
-                <h6>Adjuntar Documentos</h6>
+                <h6>{t('trabajaConNosotros:ATTACH_DOCUMENTS')}</h6>
               </div>
               <div className=" mt-6 max-w-xs">
                 <div className="">
-                  <label className="">Distintivo Habilitación *</label>
+                  <label className="">
+                    {t('trabajaConNosotros:DISCTINCTIVE_ENABLING')} *
+                  </label>
                   <input
                     type="file"
                     name="distintivoHabilitacion"
@@ -415,11 +426,15 @@ const TrabajaNosotros = () => {
                     >
                       <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path>
                     </svg>
-                    <span className="iborrainputfile">Seleccionar archivo</span>
+                    <span className="iborrainputfile">
+                      {t('common:SELECT_FILE')}
+                    </span>
                   </label>
                 </div>
                 <div className="">
-                  <label className="">Convalidación Icfes *</label>
+                  <label className="">
+                    {t('trabajaConNosotros:ICFES_VALIDATION')} *
+                  </label>
                   <input
                     type="file"
                     name="convalidacionIcfes"
@@ -437,11 +452,15 @@ const TrabajaNosotros = () => {
                     >
                       <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path>
                     </svg>
-                    <span className="iborrainputfile">Seleccionar archivo</span>
+                    <span className="iborrainputfile">
+                      {t('common:SELECT_FILE')}
+                    </span>
                   </label>
                 </div>
                 <div className="">
-                  <label className="">imágenes Publicidad *</label>
+                  <label className="">
+                    {t('trabajaConNosotros:ADVERTISING_IMAGES')} *
+                  </label>
                   <input
                     type="file"
                     name="fotoLogoPublicidad"
@@ -459,11 +478,15 @@ const TrabajaNosotros = () => {
                     >
                       <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path>
                     </svg>
-                    <span className="iborrainputfile">Seleccionar archivo</span>
+                    <span className="iborrainputfile">
+                      {t('common:SELECT_FILE')}
+                    </span>
                   </label>
                 </div>
                 <div className="">
-                  <label className="">Hoja de vida *</label>
+                  <label className="">
+                    {t('trabajaConNosotros:CURRICULUM')} *
+                  </label>
                   <input
                     type="file"
                     name="hojaVida"
@@ -483,7 +506,7 @@ const TrabajaNosotros = () => {
                       <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path>
                     </svg>
                     <span className="iborrainputfile">
-                      Seleccionar archivo *
+                      {t('common:SELECT_FILE')} *
                     </span>
                   </label>
                 </div>
@@ -491,7 +514,7 @@ const TrabajaNosotros = () => {
             </div>
             <div className="row mt-12">
               <div className="col-lg-12">
-                <h6>Resumen de curriculum</h6>
+                <h6>{t('trabajaConNosotros:RESUME_SUMMARY')}</h6>
                 <textarea
                   required
                   className="textarea-input-work"
@@ -517,14 +540,14 @@ const TrabajaNosotros = () => {
                     id="aceptaConvenio"
                     className="label-checkbox"
                   >
-                    Acepta{' '}
+                    {t('common:ACCEPT')}{' '}
                     <a
                       href="https://firebasestorage.googleapis.com/v0/b/quetions-app.appspot.com/o/Terminos%2FContrato%20de%20acceso%20a%20la%20Plataforma%20Fundaci%C3%B3n%20Soy%20T%C3%BA%20Salud%20Profesionales.pdf?alt=media&token=6de426d2-45a9-4edd-9b1c-bab313aaca60"
                       target="_blank"
                       required
                       rel="noreferrer"
                     >
-                      Convenio Profesionales
+                      {t('trabajaConNosotros:PROFESSIONAL_AGREEMENT')}
                     </a>
                   </span>
                   <span className="form__checkbox-mask"></span>
@@ -546,14 +569,14 @@ const TrabajaNosotros = () => {
                     id="aceptaTratamientoDatos"
                     className="label-checkbox"
                   >
-                    Acepta Política de{' '}
+                    {t('common:ACCEPT')} {t('trabajaConNosotros:POLITICS_OF')}{' '}
                     <a
                       href="https://firebasestorage.googleapis.com/v0/b/quetions-app.appspot.com/o/Terminos%2FPol%C3%ADtica%20de%20tratamiento%20de%20datos%20Fundaci%C3%B3n%20Soy%20T%C3%BA%20Salud.pdf?alt=media&token=5b6dc7da-566a-4bff-8b19-87ceaafed660"
                       target="_blank"
                       required
                       rel="noreferrer"
                     >
-                      Tratamiento de Datos Personales
+                      {t('trabajaConNosotros:PROCESSING_OF_PERSONAL_DATA')}
                     </a>
                   </span>
                   <span className="form__checkbox-mask"></span>
@@ -571,7 +594,7 @@ const TrabajaNosotros = () => {
                     id="docSarlaft"
                     className="label-checkbox"
                   >
-                    Acepta documento{' '}
+                    {t('trabajaConNosotros:ACCEPT_DOCUMENT')}{' '}
                     <a
                       href="https://firebasestorage.googleapis.com/v0/b/quetions-app.appspot.com/o/Terminos%2FPol%C3%ADticas%20para%20el%20Sistema%20de%20Administraci%C3%B3n%20de%20Riesgos%20de%20Lavado%20de%20Activos%20y%20Financiaci%C3%B3n%20del%20terrorismo%20Fundaci%C3%B3n%20Mi%20Salud%20PLUS.pdf?alt=media&token=07652efc-1eda-484e-b5f4-fec8bc9e3bcc"
                       target="_blank"
@@ -580,7 +603,7 @@ const TrabajaNosotros = () => {
                     >
                       SARLAFT{' '}
                     </a>
-                    de Fundación Soy Tú Salud
+                    {t('trabajaConNosotros:OF_FOUNDATION')} Soy Tú Salud
                   </span>
                   <span className="form__checkbox-mask"></span>
                 </label>
@@ -597,16 +620,16 @@ const TrabajaNosotros = () => {
                     id="codigoEtica"
                     className="label-checkbox"
                   >
-                    Acepta{' '}
+                    {t('common:ACCEPT')}{' '}
                     <a
                       href="https://firebasestorage.googleapis.com/v0/b/quetions-app.appspot.com/o/Terminos%2FC%C3%B3digo%20de%20%C3%89tica%20Fundaci%C3%B3n%20Soy%20T%C3%BA%20Salud.pdf?alt=media&token=4684b7f7-afc9-47eb-97fd-a71ac11b0ee9"
                       target="_blank"
                       required
                       rel="noreferrer"
                     >
-                      código de ética
+                      {t('trabajaConNosotros:CODE_OF_ETHICS')}
                     </a>{' '}
-                    de Fundación Soy Tú Salud
+                    {t('trabajaConNosotros:OF_FOUNDATION')} Soy Tú Salud
                   </span>
                   <span className="form__checkbox-mask"></span>
                 </label>
@@ -617,7 +640,7 @@ const TrabajaNosotros = () => {
                 type="submit"
                 className="button-submit m-auto py-2 px-8 text-white"
               >
-                ENVIAR FORMULARIO
+                {t('common:SEND_FORM')}
               </button>
             </div>
           </form>
@@ -656,7 +679,7 @@ const ListServices = ({ index, handleCheckBox }) => {
       <div className="container-inputs-general-work">
         <div className="container-service">
           <div className="container-label-input">
-            <label className="mt-3">Tipo de servicio *</label>
+            <label className="mt-3">{t('common:SERVICE_TYPE')} *</label>
             <select
               className="select-work"
               onChange={handleCodeSelector}
@@ -679,7 +702,7 @@ const ListServices = ({ index, handleCheckBox }) => {
         </div>
         <div className="container-service">
           <div className="container-label-input">
-            <label className="mt-3">Nombre Servicio *</label>
+            <label className="mt-3">{t('common:SERVICE_NAME')} *</label>
             <input
               onChange={(e) =>
                 (filtrosCode.DESCRIPCION_SERVICIO = e.target.value)
@@ -697,7 +720,7 @@ const ListServices = ({ index, handleCheckBox }) => {
             className="btn-search-work"
             onClick={() => handleSearch(index)}
           >
-            Buscar
+            {t('common:SEARCH')}
           </button>
         </div>
       </div>
@@ -705,7 +728,7 @@ const ListServices = ({ index, handleCheckBox }) => {
         <div className="col-12">
           {codigoServicios?.CodeService ? (
             <>
-              <laber>Resultados</laber>
+              <laber>{t('common:RESULTS')}</laber>
               <select
                 select
                 className="form-control"
@@ -723,7 +746,9 @@ const ListServices = ({ index, handleCheckBox }) => {
               </select>
               <div className="row">
                 <div className="col-lg-4">
-                  <label className="mt-3">Modalidad de atención *</label>
+                  <label className="mt-3">
+                    {t('trabajaConNosotros:CARE_MODALITY')} *
+                  </label>
                   <select
                     className="form-control"
                     name={`modalidad${index}`}
@@ -743,12 +768,12 @@ const ListServices = ({ index, handleCheckBox }) => {
       </div>
       <div className="row">
         <div className="col-12 mt-6 text-sm font-bold">
-          <span>Disponibilidad Horaria</span>
+          <span>{t('trabajaConNosotros:TIME_AVAILABILITY')}</span>
         </div>
       </div>
       <div className="container-dates">
         <div className="container-date-one">
-          <label className="mt-3"> Hora inicio *</label>
+          <label className="mt-3"> {t('common:START_TIME')} *</label>
           <input
             type="time"
             className="select-work"
@@ -757,7 +782,7 @@ const ListServices = ({ index, handleCheckBox }) => {
           />
         </div>
         <div className="container-date-one">
-          <label className="mt-3"> Hora Fin *</label>
+          <label className="mt-3"> {t('common:END_TIME')} *</label>
           <input
             type="time"
             className="select-work"
@@ -768,7 +793,7 @@ const ListServices = ({ index, handleCheckBox }) => {
       </div>
       <div className="row">
         <div className="col-lg-12 mt-5">
-          <label className="">Dias disponibles*</label>
+          <label className="">{t('common:AVAILABLE_DAYS')}*</label>
           <div className=" space-x-6">
             <div className="flex flex-col justify-between md:flex-row">
               <label className="form__checkbox-label">
@@ -778,7 +803,7 @@ const ListServices = ({ index, handleCheckBox }) => {
                   value={`lunes`}
                   onChange={(e) => handleCheckBox(e, index)}
                 />
-                <span className="label-checkbox">Lunes</span>
+                <span className="label-checkbox">{t('common:MONDAY')}</span>
                 <span className="form__checkbox-mask"></span>
               </label>
               <label className="form__checkbox-label">
@@ -788,7 +813,7 @@ const ListServices = ({ index, handleCheckBox }) => {
                   value={`martes`}
                   onChange={(e) => handleCheckBox(e, index)}
                 />
-                <span className="label-checkbox">Martes</span>
+                <span className="label-checkbox">{t('common:TUESDAY')}</span>
                 <span className="form__checkbox-mask"></span>
               </label>
               <label className="form__checkbox-label">
@@ -798,7 +823,7 @@ const ListServices = ({ index, handleCheckBox }) => {
                   onChange={(e) => handleCheckBox(e, index)}
                   value={`miercoles`}
                 />
-                <span className="label-checkbox">Miércoles</span>
+                <span className="label-checkbox">{t('common:WEDNESDAY')}</span>
                 <span className="form__checkbox-mask"></span>
               </label>
               <label className="form__checkbox-label">
@@ -808,7 +833,7 @@ const ListServices = ({ index, handleCheckBox }) => {
                   onChange={(e) => handleCheckBox(e, index)}
                   value={`jueves`}
                 />
-                <span className="label-checkbox">Jueves</span>
+                <span className="label-checkbox">{t('common:THURSDAY')}</span>
                 <span className="form__checkbox-mask"></span>
               </label>
               <label className="form__checkbox-label">
@@ -818,7 +843,7 @@ const ListServices = ({ index, handleCheckBox }) => {
                   value={`viernes`}
                   onChange={(e) => handleCheckBox(e, index)}
                 />
-                <span className="label-checkbox">Viernes</span>
+                <span className="label-checkbox">{t('common:FRIDAY')}</span>
                 <span className="form__checkbox-mask"></span>
               </label>
               <label className="form__checkbox-label">
@@ -828,7 +853,7 @@ const ListServices = ({ index, handleCheckBox }) => {
                   onChange={(e) => handleCheckBox(e, index)}
                   value={`sabado`}
                 />
-                <span className="label-checkbox">Sábado</span>
+                <span className="label-checkbox">{t('common:SATURDAY')}</span>
                 <span className="form__checkbox-mask"></span>
               </label>
               <label className="form__checkbox-label">
@@ -838,7 +863,7 @@ const ListServices = ({ index, handleCheckBox }) => {
                   onChange={(e) => handleCheckBox(e, index)}
                   value={`domingo`}
                 />
-                <span className="label-checkbox">Domingo</span>
+                <span className="label-checkbox">{t('common:SUNDAY')}</span>
                 <span className="form__checkbox-mask"></span>
               </label>
             </div>
@@ -847,7 +872,7 @@ const ListServices = ({ index, handleCheckBox }) => {
       </div>
       <div className="container-inputs-general-work mt-5">
         <div className="container-input">
-          <label className="">Valor del servicio *</label>
+          <label className="">{t('trabajaConNosotros:SERVICE_VALUE')} *</label>
           <input
             type="number"
             className="input-work"
@@ -857,7 +882,9 @@ const ListServices = ({ index, handleCheckBox }) => {
           ></input>
         </div>
         <div className="container-input">
-          <label className="">Prestador del servicio *</label>
+          <label className="">
+            {t('trabajaConNosotros:SERVICE_PROVIDER')} *
+          </label>
           <input
             type="text"
             className="input-work"
@@ -866,7 +893,7 @@ const ListServices = ({ index, handleCheckBox }) => {
           ></input>
         </div>
         <div className="container-input">
-          <label>Contacto responsable *</label>
+          <label>{t('trabajaConNosotros:RESPONSIBLE_CONTACT')} *</label>
           <input
             className="input-work"
             type="text"
@@ -875,7 +902,7 @@ const ListServices = ({ index, handleCheckBox }) => {
           />
         </div>
         <div className="container-input">
-          <label>Linea WhatsApp *</label>
+          <label>{t('trabajaConNosotros:WHATSAPP_LINE')} *</label>
           <input
             className="input-work"
             type="number"
@@ -886,7 +913,9 @@ const ListServices = ({ index, handleCheckBox }) => {
       </div>
       <div className="row">
         <div className="col-lg-6 mt-5">
-          <label className="">Dirrecion donde se presta el servicio *</label>
+          <label className="">
+            {t('trabajaConNosotros:ADDRESS_SERVICE_PROVIDED')} *
+          </label>
           <input
             type="text"
             className="input-work"
@@ -903,10 +932,12 @@ export const getStaticProps = async ({ locale }) => {
   return {
     props: {
       ...(await serverSideTranslations(locale, [
+        'common',
         'navbar',
         'home',
         'footer',
         'registro',
+        'trabajaConNosotros',
       ])),
     },
   }
