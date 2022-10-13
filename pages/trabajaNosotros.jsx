@@ -115,7 +115,7 @@ const TrabajaNosotros = () => {
       console.log(formData)
       crearServicio({ variables: formData })
         .then((res) => {
-          router.push('/')
+          // router.push('/')
         })
         .catch((err) => {
           console.log(err)
@@ -215,12 +215,12 @@ const TrabajaNosotros = () => {
                   id="foto"
                   name="foto"
                   accept="image/*"
-                  className="custom-file-input  "
+                  // className="custom-file-input  "
                   required
                 />
-                <label className="upload-photo" htmlFor="logo">
+                {/* <label className="upload-photo" htmlFor="logo">
                   <p className="upload-photo">Subir Foto</p>
-                </label>
+                </label> */}
               </div>
             </div>
 
@@ -510,7 +510,7 @@ const TrabajaNosotros = () => {
                     type="checkbox"
                     name="aceptaConvenio"
                     id="aceptaConvenio"
-                    value="1"
+                    value="true"
                   />
                   <span
                     name="aceptaConvenio"
@@ -539,7 +539,7 @@ const TrabajaNosotros = () => {
                     type="checkbox"
                     name="aceptaTratamientoDatos"
                     id="aceptaTratamientoDatos"
-                    value="on"
+                    value="true"
                   />
                   <span
                     name="politicaDatos"
@@ -564,7 +564,7 @@ const TrabajaNosotros = () => {
                     type="checkbox"
                     name="aceptaDocumentoSARLAFT"
                     id="aceptaDocumentoSARLAFT"
-                    value="on"
+                    value="true"
                   />
                   <span
                     name="docSarlaft"
@@ -590,7 +590,7 @@ const TrabajaNosotros = () => {
                     type="checkbox"
                     name="aceptaCodigoEticaSoyTuSalud"
                     id="aceptaCodigoEticaSoyTuSalud"
-                    value="on"
+                    value="true"
                   />
                   <span
                     name="codigoEtica"
@@ -639,11 +639,11 @@ const ListServices = ({ index, handleCheckBox }) => {
     const { data } = await client.query({
       query: CodeServices,
       variables: {
-        TIPO_DE_SERVICIO: filtrosCode.TIPO_DE_SERVICIO,
-        DESCRIPCION_SERVICIO: filtrosCode.DESCRIPCION_SERVICIO,
+        tipoDeServicio: filtrosCode.TIPO_DE_SERVICIO,
+        descripcionServicio: filtrosCode.DESCRIPCION_SERVICIO,
       },
     })
-    setCodigoServicios(data)
+    setCodigoServicios(data.CodeService.body)
   }
 
   return (
@@ -703,19 +703,18 @@ const ListServices = ({ index, handleCheckBox }) => {
       </div>
       <div className="row">
         <div className="col-12">
-          {codigoServicios?.CodeService ? (
+          {codigoServicios.length > 0? (
             <>
-              <laber>Resultados</laber>
+              <label className="mt-3" >Resultados</label>
               <select
-                select
-                className="form-control"
+                className="select-work"
                 name={`especialidad${index}`}
                 id="especialidad"
                 required
               >
                 <option value="">Tipo Especialidad</option>
-                {codigoServicios?.CodeService &&
-                  codigoServicios?.CodeService.map((codigo, index) => (
+                {codigoServicios &&
+                  codigoServicios.map((codigo, index) => (
                     <option key={index} value={codigo.DESCRIPCION_SERVICIO}>
                       {codigo.DESCRIPCION_SERVICIO} REF:{codigo.CODIGO}
                     </option>
@@ -725,7 +724,7 @@ const ListServices = ({ index, handleCheckBox }) => {
                 <div className="col-lg-4">
                   <label className="mt-3">Modalidad de atención *</label>
                   <select
-                    className="form-control"
+                    className="select-work"
                     name={`modalidad${index}`}
                     id="modalidad"
                     required

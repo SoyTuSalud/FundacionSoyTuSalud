@@ -12,7 +12,7 @@ export interface Servicios {
   nombreResponsable: string
   direccionServicio: string
   dias: [string]
-  valorServicio: number
+  valorServicio: string
   representante: Schema.Types.ObjectId
   habilitado: boolean
 

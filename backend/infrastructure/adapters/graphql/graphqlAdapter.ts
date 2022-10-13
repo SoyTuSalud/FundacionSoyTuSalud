@@ -15,17 +15,17 @@ import { resolversUser } from './resolvers/resolversUser';
 export const resolvers = [
   resolversPaciente, 
   resolversUser,
+  resolversServicios,
   resolversServiciosCodes, 
   resolversRepresentante, 
-  resolversServicios,
   resolversFilantropos]
 
 export const typeDefs = [
   typesUser,
+  typesServicios,
   typesPaciente,
   typesServiciosCodes,
   typesRepresentate,
-  typesServicios,
   typesFilantropo,
   typesEnums,
 ]

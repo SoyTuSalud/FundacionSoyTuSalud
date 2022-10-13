@@ -3,6 +3,7 @@ import { ResponseEntity } from '../../../domain/commons/responseEntity'
 import representanteModel from './schemas/mongoSchemaRepresentante'
 import { Status } from '../../../domain/commons/StatusInterface'
 import { ResponseCodes } from '../../../domain/commons/enums/responseCodesEnum'
+import { crearServicio, servicio } from './mongoAdapterServicios';
 
 export const representantesTabla = async () => {
   return await representanteModel
@@ -65,7 +66,7 @@ export const representante = async (id: String) => {
     })
 }
 
-export const crearRepresentante = async (args: Representante) => {
+export const crearRepresentante = async (args: any) => {
   let newRepresentante: Representante = {
     identificacion: args.identificacion,
     foto: args.foto,
@@ -80,26 +81,32 @@ export const crearRepresentante = async (args: Representante) => {
     fotoLogoPublicidad: args.fotoLogoPublicidad,
     hojaVida: args.hojaVida,
     resumenCurriculum: args.resumenCurriculum,
-    aceptaConvenio: args.aceptaConvenio,
-    aceptaTratamientoDatos: args.aceptaTratamientoDatos,
-    aceptaDocumentoSARLAFT: args.aceptaDocumentoSARLAFT,
-    aceptaCodigoEticaSoyTuSalud: args.aceptaCodigoEticaSoyTuSalud,
+    aceptaConvenio: args.aceptaConvenio === 'true',
+    aceptaTratamientoDatos: args.aceptaTratamientoDatos  === 'true',
+    aceptaDocumentoSARLAFT: args.aceptaDocumentoSARLAFT  === 'true',
+    aceptaCodigoEticaSoyTuSalud: args.aceptaCodigoEticaSoyTuSalud  === 'true' ,
   }
 
-  if (Object.keys(args).includes('paginaWeb')) {
+  if (Object.keys(args).includes('paginaWeb') && args.paginaWeb ) {
     newRepresentante.paginaWeb = args.paginaWeb
   }
 
-  if (Object.keys(args).includes('convalidacionIcfes')) {
+  if (Object.keys(args).includes('convalidacionIcfes') && args.convalidacionIcfes ) {
     newRepresentante.convalidacionIcfes = args.convalidacionIcfes
   }
 
   return await representanteModel
     .create(newRepresentante)
-    .then((data: any) => {
+    .then((representante: any) => {
+      
+      const servicesCreate = args.servicios.map((servicio: any) => {
+        return {...servicio, representante: representante._id}
+      });
+      crearServicio(servicesCreate)
+      
       const status: Status = new Status(ResponseCodes.SUCCESS, 'exitoso')
       const response: ResponseEntity<Representante> = new ResponseEntity(
-        data,
+        representante,
         status,
       )
 

@@ -1,16 +1,16 @@
 import { gql } from '@apollo/client'
 
 export const crearServicios = gql`
-  mutation CrearServicio(
+  mutation Mutation(
+    $identificacion: String!
     $foto: String!
     $nombreCompleto: String!
     $tipoDocumento: String!
-    $identificacion: String!
     $celular: String!
     $departamento: String!
     $municipio: String!
     $direccion: String!
-    $servicios: [crearServices]!
+    $servicios: [ServiciosCreate]!
     $cuentaDeAhorros: String!
     $distintivoHabilitacion: String!
     $fotoLogoPublicidad: String!
@@ -23,11 +23,11 @@ export const crearServicios = gql`
     $paginaWeb: String
     $convalidacionIcfes: String
   ) {
-    crearServicio(
+    CrearRepresentante(
+      identificacion: $identificacion
       foto: $foto
       nombreCompleto: $nombreCompleto
       tipoDocumento: $tipoDocumento
-      identificacion: $identificacion
       celular: $celular
       departamento: $departamento
       municipio: $municipio
@@ -45,7 +45,18 @@ export const crearServicios = gql`
       paginaWeb: $paginaWeb
       convalidacionIcfes: $convalidacionIcfes
     ) {
-      identificacion
+      ... on ResponseRepresentante {
+        status {
+          code
+          description
+        }
+      }
+      ... on ResponseRepresentanteError {
+        status {
+          code
+          description
+        }
+      }
     }
   }
 `

@@ -1,17 +1,25 @@
 import { gql } from 'apollo-server-micro'
 
 export const CodeServices = gql`
-  query CodeService(
-    $DESCRIPCION_SERVICIO: String!
-    $TIPO_DE_SERVICIO: String!
-  ) {
-    CodeService(
-      DESCRIPCION_SERVICIO: $DESCRIPCION_SERVICIO
-      TIPO_DE_SERVICIO: $TIPO_DE_SERVICIO
-    ) {
-      DESCRIPCION_SERVICIO
-      CODIGO
-      TIPO_DE_SERVICIO
+query Query($tipoDeServicio: String!, $descripcionServicio: String!) {
+  CodeService(TIPO_DE_SERVICIO: $tipoDeServicio, DESCRIPCION_SERVICIO: $descripcionServicio) {
+    ... on ResponseServicesCodesList {
+      body {
+        DESCRIPCION_SERVICIO
+        CODIGO
+        TIPO_DE_SERVICIO
+      }
+      status {
+        code
+        description
+      }
+    }
+    ... on ResponseServicesCodesError {
+      status {
+        code
+        description
+      }
     }
   }
+}
 `

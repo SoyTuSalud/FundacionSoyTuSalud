@@ -27,12 +27,10 @@ const ServiciosSchema = new Schema<Servicios>({
   celularServicio: {
     type: String,
     validate: /^\d{10}$/,
-    required: true,
   },
   whatsAppServicio: {
     type: String,
     validate: /^\d{10}$/,
-    required: true,
   },
   nombreResponsable: {
     type: String,
@@ -47,7 +45,7 @@ const ServiciosSchema = new Schema<Servicios>({
     required: true,
   },
   valorServicio: {
-    type: Number,
+    type: String,
     required: true,
   },
   representante: {
