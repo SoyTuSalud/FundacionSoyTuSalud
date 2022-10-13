@@ -20,8 +20,8 @@ const Login = () => {
   const router = useRouter()
 
   const propsImage = {
-    title: t('home:tituloHome'),
-    title2: t('home:titulohome2'),
+    title: t('home:HOME_TITLE'),
+    title2: t('home:HOME_TITLE_2'),
     image: '/promo_c1.png',
   }
 
@@ -31,7 +31,7 @@ const Login = () => {
     }).then(({ data }) => {
       if (data.login.status.code === ResponseCodes.SUCCESS) {
         router.push('/')
-      } else{
+      } else {
         setMssgError(data.login.status.description)
       }
     })
@@ -87,14 +87,14 @@ const Login = () => {
                 <form onSubmit={handleSubmit} className="mt-8 space-y-6">
                   <Box sx={{ my: 3 }}>
                     <Typography color="textPrimary" variant="h4">
-                      {t('navbar:iniciarSesion')}
+                      {t('navbar:LOG_IN')}
                     </Typography>
                     <Typography
                       color="textSecondary"
                       gutterBottom
                       variant="body2"
                     >
-                      {t('login:subTitle')}
+                      {t('login:SUB_TITLE')}
                     </Typography>
                   </Box>
                   <Box
@@ -102,7 +102,7 @@ const Login = () => {
                       pb: 1,
                       pt: 3,
                     }}
-                  ></Box>
+                  />
                   <input
                     type="email"
                     name="correo"

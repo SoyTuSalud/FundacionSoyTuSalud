@@ -15,8 +15,8 @@ const Registro = () => {
   const [error, setMssgError] = useState('')
 
   const propsImage = {
-    title: t('home:tituloHome'),
-    title2: t('home:titulohome2'),
+    title: t('home:HOME_TITLE'),
+    title2: t('home:HOME_TITLE_2'),
     image: '/promo_c1.png',
   }
 
@@ -32,13 +32,11 @@ const Registro = () => {
       .then(({ data }) => {
         if (data.crearPaciente.status.code === ResponseCodes.SUCCESS) {
           router.push('/')
-        } else{
+        } else {
           setMssgError(data.crearPaciente.status.description)
         }
       })
-      .catch((error) => {
-
-      })
+      .catch((error) => {})
   }
 
   return (
@@ -52,16 +50,16 @@ const Registro = () => {
             id="Form_RegistroPaciente"
           >
             <div className="pb-10">
-              <h6 className="title-sign-in">{t('navbar:registro')}</h6>
+              <h6 className="title-sign-in">{t('navbar:SIGN_IN')}</h6>
 
               <div className="col-12">
                 <select
                   className="input-field-form"
-                  defaultValue={t('registro:tipoDocumento')}
+                  defaultValue={t('registro:DOCUMENT_TYPE')}
                   name="tipoDocumento"
                   id="tipoDocumento"
                 >
-                  <option disabled>{t('registro:tipoDocumento')}</option>
+                  <option disabled>{t('registro:DOCUMENT_TYPE')}</option>
                   <option>CC</option>
                   <option>CE</option>
                   <option>TI</option>
@@ -89,7 +87,7 @@ const Registro = () => {
                     type="text"
                     name="nombre"
                     id="nombre"
-                    placeholder={t('registro:nombreCompleto')}
+                    placeholder={t('registro:FULL_NAME')}
                   />
                 </div>
                 <div className="container-fields">
@@ -98,7 +96,7 @@ const Registro = () => {
                     type="text"
                     name="apellidos"
                     id="apellidos"
-                    placeholder={t('registro:apellidoCompleto')}
+                    placeholder={t('registro:FULL_SURNAME')}
                   />
                 </div>
                 <div className="container-fields">
@@ -107,7 +105,7 @@ const Registro = () => {
                     type="text"
                     name="celular"
                     id="celular"
-                    placeholder={t('footer:telefono')}
+                    placeholder={t('footer:PHONE')}
                   />
                 </div>
                 <div className="container-fields">
@@ -116,7 +114,7 @@ const Registro = () => {
                     type="correo"
                     name="correo"
                     id="correo"
-                    placeholder={t('login:email')}
+                    placeholder={t('login:EMAIL')}
                   />
                 </div>
                 <div className="container-fields">
@@ -125,7 +123,7 @@ const Registro = () => {
                     type="password"
                     name="contrasena"
                     id="password"
-                    placeholder={t('login:constrasena')}
+                    placeholder={t('login:PASSWORD')}
                     autoComplete="on"
                   />
                 </div>
@@ -135,7 +133,7 @@ const Registro = () => {
                     type="password"
                     name=""
                     id=""
-                    placeholder={t('registro:confirmarContra')}
+                    placeholder={t('registro:CONFIRM_PASSWORD')}
                     autoComplete="on"
                   />
                 </div>
@@ -143,16 +141,14 @@ const Registro = () => {
 
               <div className="text-center mt-10 mb-5">
                 <button className="button button--primary" type="submit">
-                  Registrar
+                  {t('common:REGISTER')}
                 </button>
               </div>
               <div className="col-12 text-center">
                 <Link href="/login" passHref>
                   <strong className="login-text">
-                    <a className="login-text-underline">
-                      {t('navbar:iniciarSesion')}
-                    </a>{' '}
-                    {t('registro:ifCuenta')}
+                    <a className="login-text-underline">{t('navbar:LOG_IN')}</a>{' '}
+                    {t('registro:HAVE_AN_ACCOUNT')}
                   </strong>
                 </Link>
               </div>
@@ -178,6 +174,7 @@ export const getStaticProps = async ({ locale }) => {
   return {
     props: {
       ...(await serverSideTranslations(locale, [
+        'common',
         'footer',
         'navbar',
         'home',

@@ -19,8 +19,8 @@ const Filatroposregistro = () => {
   const { t } = useTranslation()
 
   const propsImage = {
-    title: t('home:tituloHome'),
-    title2: t('home:titulohome2'),
+    title: t('home:HOME_TITLE'),
+    title2: t('home:HOME_TITLE_2'),
     image: '/promo_c1.png',
   }
 
