@@ -7,6 +7,7 @@ import PacienteModel from './schemas/mongoSchemaPaciente'
 import jwt from 'jsonwebtoken'
 import { setCookie } from '../../helpers/tokenSerialize'
 import { roleEnum } from '../../../domain/user/enums/roleEnum'
+import { sendEmail } from '../../helpers/emailHelper'
 
 export const findAllPacientes = async () => {
   return await PacienteModel.find({})
@@ -113,9 +114,11 @@ export const createPaciente = async (args: any, context: any) => {
           const token = jwt.sign(newData, process.env.ENV_KEY_TOKEN!, {
             expiresIn: '1h',
           })
-          setCookie(context, 'token', token, {
-            path: '/',
-          })
+          // setCookie(context, 'token', token, {
+          //   path: '/',
+          // })
+
+          sendEmail(data.correo, data.nombre, token)
 
           return response
         })

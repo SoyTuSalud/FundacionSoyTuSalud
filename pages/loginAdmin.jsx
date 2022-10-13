@@ -7,7 +7,6 @@ import { Formik } from 'formik'
 import { ResponseCodes } from '../backend/domain/commons/enums/responseCodesEnum'
 import { useState } from 'react'
 
-
 const LoginAdmin = () => {
   const router = useRouter()
   const [error, setError] = useState('')
@@ -21,8 +20,8 @@ const LoginAdmin = () => {
       })
       .then(({ data }) => {
         if (data.loginAdmin.status.code === ResponseCodes.ERROR_AUTH) {
-           setError(data.loginAdmin.status.description)
-        }else{
+          setError(data.loginAdmin.status.description)
+        } else {
           router.push('/private/admin')
         }
       })

@@ -1,5 +1,10 @@
 import { ResponseCodes } from '../../../../domain/commons/enums/responseCodesEnum'
-import { login, verifyRoles, loginAdmin } from '../../mongo/mongoAdapterUser'
+import {
+  login,
+  verifyRoles,
+  loginAdmin,
+  verifyAccount,
+} from '../../mongo/mongoAdapterUser'
 
 export const resolversUser = {
   Query: {
@@ -14,6 +19,12 @@ export const resolversUser = {
     },
   },
 
+  Mutation: {
+    verifyAccount: async (parent: any, args: any) => {
+      return await verifyAccount(args)
+    },
+  },
+
   UnionUser: {
     __resolveType(obj: any) {
       return obj.status.code === ResponseCodes.SUCCESS
@@ -21,7 +32,7 @@ export const resolversUser = {
         : 'ResponseUserError'
     },
   },
-  UnionUserList:{
+  UnionUserList: {
     __resolveType(obj: any) {
       return obj.status.code === ResponseCodes.SUCCESS
         ? 'ResponseUserList'

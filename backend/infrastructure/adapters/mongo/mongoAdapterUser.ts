@@ -9,7 +9,8 @@ import { roleEnum } from '../../../domain/user/enums/roleEnum'
 import { ResponseDescription } from '../../../domain/commons/enums/responseDescriptionEnum'
 import { validatePass } from '../../helpers/validatePass'
 import { registroData } from '../../../domain/commons/interfaces'
-
+import { verify } from 'jsonwebtoken'
+import { AuthenticationError } from 'apollo-server-micro'
 
 export const login = async (args: any, context: any) => {
   return await UserModel.findOne({ correo: args.correo })
@@ -48,30 +49,30 @@ export const loginAdmin = async (args: any, context: any) => {
     })
 }
 
-export const registro =  ( args : registroData ) => new Promise( async (resolve,reject) => {
-  const hash = await bcrypt.hash(args.constrasena, 10)
-  await UserModel.create({
-    correo: args.correo,
-    contrasena: hash,
-    role: args.rol
-  }).then((data: any) => {
-    
-      const status: Status = new Status(ResponseCodes.SUCCESS, 'exitoso')
-      const response: ResponseEntity<User> = new ResponseEntity(data, status)
-      sendEmail(args.correo, `${args.nombre} ${args.apellidos}`)
-
-      resolve(response)
+export const registro = (args: registroData) =>
+  new Promise(async (resolve, reject) => {
+    const hash = await bcrypt.hash(args.constrasena, 10)
+    await UserModel.create({
+      correo: args.correo,
+      contrasena: hash,
+      role: args.rol,
     })
-    .catch((e) => {
-      reject({
-        message: e.message
+      .then((data: any) => {
+        const status: Status = new Status(ResponseCodes.SUCCESS, 'exitoso')
+        const response: ResponseEntity<User> = new ResponseEntity(data, status)
+        sendEmail(args.correo, `${args.nombre} ${args.apellidos}`, '')
+
+        resolve(response)
       })
-    })
-})
+      .catch((e) => {
+        reject({
+          message: e.message,
+        })
+      })
+  })
 
-export const deleteUser = async  ( correo : string ) => {
-
-  await UserModel.findOneAndDelete({correo})
+export const deleteUser = async (correo: string) => {
+  await UserModel.findOneAndDelete({ correo })
 }
 
 export const verifyRoles = (payload: any) => {
@@ -109,3 +110,38 @@ export const verifyRoles = (payload: any) => {
 //     return new ResponseEntity(null, status)
 //   }
 // }
+
+export const verifyAccount = async (args: any) => {
+  const { payload }: any = await validateToken(args.token)
+
+  return await UserModel.findOneAndUpdate(
+    { email: payload?.correo! },
+    { statusAccount: 'verified' },
+  )
+    .then((user: any) => {
+      if (!user) {
+        const status: Status = new Status(
+          ResponseCodes.ERROR_AUTH,
+          ResponseDescription.ERROR_AUTH,
+        )
+        return new ResponseEntity(null, status)
+      }
+      const status: Status = new Status(ResponseCodes.SUCCESS, 'exitoso')
+      return new ResponseEntity(null, status)
+    })
+    .catch((e) => {
+      const status: Status = new Status(ResponseCodes.ERROR, e.message)
+
+      return new ResponseEntity(null, status)
+    })
+}
+
+export const validateToken = async (token: string) => {
+  try {
+    return verify(token, process.env.ENV_KEY_TOKEN!, {
+      complete: true,
+    })
+  } catch (error: any) {
+    throw new AuthenticationError('Error de auntenticación', error)
+  }
+}

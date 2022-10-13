@@ -40,7 +40,7 @@ const PacienteSchema = new Schema<Paciente>(
     formularioTuHistoria: {
       type: Boolean,
       required: true,
-      default: false
+      default: false,
     },
     aplicaEnFundacion: {
       type: Boolean,

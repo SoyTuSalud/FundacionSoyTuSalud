@@ -42,4 +42,8 @@ export const typesUser = gql`
     loginAdmin(correo: String!, contrasena: String!): UnionUser
     verifyRoles: String
   }
+
+  type Mutation {
+    verifyAccount(token: String): ResponseUserError
+  }
 `
