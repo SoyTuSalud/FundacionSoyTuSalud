@@ -3,13 +3,17 @@ import { GetServerSideProps } from 'next'
 import { initClientSSRNoToken } from '../../graphql-front/initClientSSR'
 import { verifyAccount } from '../../graphql-front/users/mutationUser'
 import { ResponseCodes } from '../../backend/domain/commons/enums/responseCodesEnum'
+import Link from 'next/link'
 
 const VerificarElToken = ({ response }: any) => {
   console.log('response', response)
 
   return (
     <>
-      <h1>{response}</h1>
+      <h1>Bienvenido, su cuenta ha sido verificada.</h1>
+      <Link href="/" replace>
+        Ir al home
+      </Link>
     </>
   )
 }

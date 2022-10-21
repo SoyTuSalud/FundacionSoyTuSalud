@@ -7,15 +7,15 @@ import { authUser } from '../../graphql-front/paciente/queries'
 import { Navbar, ImageBackground, MenuFooter } from '../Ui/public'
 import { Box } from '@mui/material'
 import { useCookies } from 'react-cookie'
-import { decode} from 'jsonwebtoken'
+import { decode } from 'jsonwebtoken'
 
 export const LayoutMain = ({ children, propsImage, t }) => {
-  const { setAuthUser } = useAuth()
-  const [cookies, setCookie, removeCookie] = useCookies(['token']);
+  // const { setAuthUser } = useAuth()
+  const [cookies, setCookie, removeCookie] = useCookies(['token'])
 
   useEffect(() => {
     const user = decode(cookies.token)
-    if(user){
+    if (user) {
       setAuthUser(user)
     }
   }, [])
@@ -24,7 +24,7 @@ export const LayoutMain = ({ children, propsImage, t }) => {
     <Box sx={{ backgroundColor: '#F9F7F6' }}>
       <Navbar t={t}></Navbar>
       <ImageBackground propsImage={propsImage} />
-        {children}
+      {children}
       <MenuFooter t={t}></MenuFooter>
       {/* <Loading/> */}
     </Box>

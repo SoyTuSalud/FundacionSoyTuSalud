@@ -24,7 +24,7 @@
     "pages/login.jsx",
     "pages/index.jsx",
     "pages/_document.jsx",
-    "pages/_app.jsx",
+    "pages/verifiedAccount/_app.jsx",
     "hooks/useFormData.js",
     "utils/validateUser.js",
     "middleware.js",

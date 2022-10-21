@@ -9,13 +9,19 @@ export async function middleware(request) {
 
   if (path.includes('/verifiedAccount/')) {
     const token = path.slice(17)
-    console.log(token)
+
     if (token.length > 0) {
       const response = await verifyAccount(token)
 
-      // response === ResponseCodes.SUCCESS ?
+      console.log('response ', response)
+
+      // if (data?.verifyAccount?.status?.code === ResponseCodes.SUCCESS) {
+      //   return NextResponse.next()
+      // }
+
+      return NextResponse.rewrite(new URL('/hgddghtd', request.url))
     }
-    return NextResponse.next()
+    return NextResponse.rewrite(new URL('/gdhgb', request.url))
   } else {
     const token = request.cookies.get('token') || ''
     const validate = await validateUser(token)

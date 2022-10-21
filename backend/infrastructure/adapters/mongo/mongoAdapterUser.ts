@@ -136,12 +136,16 @@ export const verifyAccount = async (args: any) => {
     })
 }
 
-export const validateToken = async (token: string) => {
-  try {
-    return verify(token, process.env.ENV_KEY_TOKEN!, {
-      complete: true,
-    })
-  } catch (error: any) {
-    throw new AuthenticationError('Error de auntenticación', error)
-  }
-}
+export const validateToken = async (token: string) =>
+  new Promise(async (resolve, reject) => {
+    try {
+      return verify(token, process.env.ENV_KEY_TOKEN!, {
+        complete: true,
+      })
+    } catch (error: any) {
+      reject({
+        message: error.message,
+      })
+      throw new AuthenticationError('Error de auntenticación', error)
+    }
+  })
