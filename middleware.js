@@ -19,9 +19,9 @@ export async function middleware(request) {
       //   return NextResponse.next()
       // }
 
-      return NextResponse.rewrite(new URL('/hgddghtd', request.url))
+      return NextResponse.redirect(new URL('/error', request.url))
     }
-    return NextResponse.rewrite(new URL('/gdhgb', request.url))
+    return NextResponse.redirect(new URL('/error', request.url))
   } else {
     const token = request.cookies.get('token') || ''
     const validate = await validateUser(token)

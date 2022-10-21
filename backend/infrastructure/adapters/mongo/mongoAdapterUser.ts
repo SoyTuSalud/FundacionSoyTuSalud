@@ -60,8 +60,6 @@ export const registro = (args: registroData) =>
       .then((data: any) => {
         const status: Status = new Status(ResponseCodes.SUCCESS, 'exitoso')
         const response: ResponseEntity<User> = new ResponseEntity(data, status)
-        sendEmail(args.correo, `${args.nombre} ${args.apellidos}`, '')
-
         resolve(response)
       })
       .catch((e) => {

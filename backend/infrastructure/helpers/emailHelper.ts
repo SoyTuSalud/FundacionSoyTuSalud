@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
 })
 
 export const sendEmail = async (email: String, name: string, token: string) => {
-  console.log('token on emailHelper: ', token)
+  console.log("execute")
   await transporter.sendMail({
     from: emailDireccion, // sender address
     to: `${email}`, // list of receivers
@@ -119,17 +119,12 @@ export const sendEmail = async (email: String, name: string, token: string) => {
         <div class="container-general">
           <div class="container-card">
             <div class="container-logo">
-            //   <img
-            //     src="cid:logo_horizontal-black"
-            //     alt="Logo"
-            //     class="logo-img"
-            //   />
-            // </div>
-            // <img
-            //   src="../public/send-image.png"
-            //   alt="Send email picture"
-            //   class="send-email-picture"
-            // />
+               <img
+                 src="cid:logo_horizontal-black"
+                 alt="Logo"
+                 class="logo-img"
+               />
+             </div>
             <h1 style="text-align: center">
               Verificación de tu correo electrónico
             </h1>
@@ -141,7 +136,7 @@ export const sendEmail = async (email: String, name: string, token: string) => {
             </div>
             <div class="container-questions">
               <div>
-                <img src="../public/email.svg" alt="Email picture" />
+                <img src="cid:email" alt="Email picture" />
               </div>
     
               <div style="padding-left: 20px">
@@ -166,14 +161,19 @@ export const sendEmail = async (email: String, name: string, token: string) => {
     </html>
     
     `, // html body
-    // attachments: [
-    //   //this is for find the img at send
-    //   {
-    //     filename: 'logo_horizontal-black.png',
-    //     path: __dirname + '../../../public/logo_horizontal-black.png',
-    //     cid: 'logo_horizontal-black',
-    //   },
-    // ],
+     attachments: [
+       //this is for find the img at send
+       {
+         filename: 'logo_horizontal-black.png',
+         path: "https://firebasestorage.googleapis.com/v0/b/quetions-app.appspot.com/o/logo_horizontal-black.png?alt=media&token=da78c055-e58f-4a68-a11b-851eb2a278a6",
+         cid: 'logo_horizontal-black',
+       },
+      {
+        filename: 'email.png',
+        path: 'https://firebasestorage.googleapis.com/v0/b/quetions-app.appspot.com/o/email.svg?alt=media&token=409fed59-cf9c-41b7-a552-14f559588917',
+        cid: 'email',
+      },
+     ],
   })
 }
 

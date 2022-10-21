@@ -112,7 +112,7 @@ export const createPaciente = async (args: any, context: any) => {
           delete newData.contrasena
 
           const token = jwt.sign(newData, process.env.ENV_KEY_TOKEN!, {
-            expiresIn: '1m',
+            expiresIn: '5m',
           })
           // setCookie(context, 'token', token, {
           //   path: '/',
