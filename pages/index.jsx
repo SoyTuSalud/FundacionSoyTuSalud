@@ -17,8 +17,8 @@ export default function Home({ locale }) {
   const { openPopup } = useContext(PopupContext)
 
   const propsImage = {
-    title: t('home:tituloHome'),
-    title2: t('home:titulohome2'),
+    title: t('home:HOME_TITLE'),
+    title2: t('home:HOME_TITLE_2'),
     image: '/promo_c1.png',
   }
 
@@ -36,43 +36,43 @@ export default function Home({ locale }) {
               <div className="col-lg-6">
                 <div className="heading">
                   <span className="heading__pre-title" data-lang="nostros">
-                    {t('home:sobreNotros')}
+                    {t('home:ABOUT_US')}
                   </span>
                   <h2 className="heading__title">
                     <span className="title-main-home">
-                      {t('home:fundacion')}
+                      {t('common:FOUNDATION')}
                     </span>{' '}
                     Soy Tú Salud
                   </h2>
                 </div>
                 <p>
-                  {t('home:primerTexto')}{' '}
+                  {t('home:FIRST_TEXT')}{' '}
                   <a href="https://www.fundacionsoytusalud.org">
-                    {t('home:fundacion')} Soy Tú Salud
+                    {t('common:FOUNDATION')} Soy Tú Salud
                   </a>{' '}
-                  {t('home:segundoTexto')}.
+                  {t('home:SECOND_TEXT')}.
                 </p>
                 <p className="pb-8">
                   {' '}
-                  {t('home:EnLa')}{' '}
+                  {t('home:ON_THE')}{' '}
                   <a href="https://www.fundacionsoytusalud.org/">
-                    {t('home:fundacion')} Soy Tú Salud
+                    {t('common:FOUNDATION')} Soy Tú Salud
                   </a>{' '}
-                  {t('home:tercerTexto')} :{' '}
+                  {t('home:THIRD_TEXT')} :{' '}
                 </p>
                 <div className="row">
                   <div className="col-md-6 col-lg-12">
                     <ul className="unordered-list">
-                      <li>{t('home:lista1')}</li>
-                      <li>{t('home:lista2')}</li>
-                      <li>{t('home:lista3')}</li>
-                      <li>{t('home:lista4')}</li>
-                      <li>{t('home:lista5')}</li>
+                      <li>{t('home:LIST_1')}</li>
+                      <li>{t('home:LIST_2')}</li>
+                      <li>{t('home:LIST_3')}</li>
+                      <li>{t('home:LIST_4')}</li>
+                      <li>{t('home:LIST_5')}</li>
                     </ul>
                   </div>
                 </div>
                 <a className="button button--primary" href="#">
-                  {t('home:masSobre')}
+                  {t('home:MORE_ABOUT_US')}
                 </a>
               </div>
               <div className="col-lg-6 col-xl-5">
@@ -105,11 +105,11 @@ export default function Home({ locale }) {
               <div className="col-12">
                 <div className="heading heading--center">
                   <span className="heading__pre-title">
-                    {t('home:servicios')}
+                    {t('common:SERVICES')}
                   </span>
                   <h2 className="heading__title">
-                    <span>{t('home:hacemos')}</span>{' '}
-                    <span>{t('home:personas')}</span>{' '}
+                    <span>{t('home:WE_MAKE')}</span>{' '}
+                    <span>{t('home:PEOPLE')}</span>{' '}
                   </h2>
                 </div>
               </div>
@@ -137,7 +137,7 @@ export default function Home({ locale }) {
                     </div>
                   </div>
                   <div className="icon-item__text">
-                    <p>{t('home:ayudaMedica')}</p>
+                    <p>{t('home:MEDICAL_HELP')}</p>
                   </div>
                 </div>
               </div>
@@ -154,7 +154,12 @@ export default function Home({ locale }) {
 export const getStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['home', 'footer', 'navbar'])),
+      ...(await serverSideTranslations(locale, [
+        'common',
+        'home',
+        'footer',
+        'navbar',
+      ])),
     },
   }
 }
