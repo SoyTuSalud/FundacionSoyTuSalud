@@ -6,30 +6,20 @@ import servicioModel from './schemas/mongoSchemaServicios'
 
 export const crearServicio = async (args: any) => {
   return await servicioModel
-    .create({
-      tipoServicio: args.tipoServicio,
-      especialidad: args.especialidad,
-      modalidad: args.modalidad,
-      horaInicio: args.horaInicio,
-      horaFin: args.horaFin,
-      celularServicio: args.celularServicio,
-      whatsAppServicio: args.whatsAppServicio,
-      nombreResponsable: args.nombreResponsable,
-      direccionServicio: args.direccionServicio,
-      dias: args.dias,
-      valorServicio: args.valorServicio,
-      representante: args.representante,
-    })
+    .insertMany(args)
     .then((data: any) => {
       const status: Status = new Status(ResponseCodes.SUCCESS, 'exitoso')
       const response: ResponseEntity<Servicios> = new ResponseEntity(
         data,
         status,
       )
+      console.log("bien")
 
       return response
     })
     .catch((e) => {
+
+      console.log("mal",e)
       const status: Status = new Status(ResponseCodes.ERROR, e.message)
 
       const response : ResponseEntity<null> = new ResponseEntity(null, status)

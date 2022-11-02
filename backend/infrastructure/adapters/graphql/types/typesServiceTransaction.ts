@@ -7,18 +7,16 @@ export const typesServicios = gql`
 
   type Servicios {
     _id: ID!
-    tipoServicio: String!
-    especialidad: String!
-    modalidad: String!
-    horaInicio: String!
-    horaFin: String!
-    celularServicio: String!
-    whatsAppServicio: String!
-    nombreResponsable: String!
-    direccionServicio: String!
-    dias: [String]!
-    valorServicio: String!
-    representante: Representante!
+    pacienteId: Paciente
+    filantropoId: Filantropo
+    representanteId: Representante
+    servicioSolicitado: Servicios
+    fechaCreacion: String
+    fechaCita:String
+    fechaFin: String
+    precio: String
+    status: String
+    nroPago: String
   }
 
   type ResponseServicios{

@@ -27,7 +27,21 @@ export const typesRepresentate = gql`
     aceptaTratamientoDatos: String!
     aceptaDocumentoSARLAFT: String!
     aceptaCodigoEticaSoyTuSalud: String!
-    habilitado: Boolean!
+    habilitado: String!
+  }
+
+  input ServiciosCreate {
+    tipoServicio: String!
+    especialidad: String!
+    modalidad: String!
+    horaInicio: String!
+    horaFin: String!
+    celularServicio: String!
+    whatsAppServicio: String!
+    nombreResponsable: String!
+    direccionServicio: String!
+    dias: [String]!
+    valorServicio: String!
   }
 
   type ResponseRepresentante{
@@ -64,16 +78,17 @@ export const typesRepresentate = gql`
       municipio: String!
       direccion: String!
       paginaWeb: String
+      servicios: [ServiciosCreate]!
       cuentaDeAhorros: String!
       distintivoHabilitacion: String!
       convalidacionIcfes: String
       fotoLogoPublicidad: String!
       hojaVida: String!
       resumenCurriculum: String!
-      aceptaConvenio: Boolean!
-      aceptaTratamientoDatos: Boolean!
-      aceptaDocumentoSARLAFT: Boolean!
-      aceptaCodigoEticaSoyTuSalud: Boolean!
+      aceptaConvenio: String!
+      aceptaTratamientoDatos: String!
+      aceptaDocumentoSARLAFT: String!
+      aceptaCodigoEticaSoyTuSalud: String!
     ): UnionRepresentante
   }
 `
