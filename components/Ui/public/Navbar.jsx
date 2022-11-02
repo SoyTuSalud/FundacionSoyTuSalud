@@ -265,7 +265,7 @@ export const Navbar = ({ t }) => {
                     <a className="main-menu__link whitespace-nowrap no-underline">
                       <span className="px-4 py-1.5 items-center no-underlinejustify-center border rounded-md shadow-sm text-base font-medium text-white border-white cursor-pointer hover:bg-white hover:bg-opacity-10">
                         {' '}
-                        {t('navbar:SIGN IN')}{' '}
+                        {t('navbar:SIGN_IN')}{' '}
                       </span>
                     </a>
                   </Link>
@@ -365,7 +365,7 @@ export const Navbar = ({ t }) => {
                     <>
                       <Link href={'/registro'}>
                         <a className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-                          {t('navbar:SIGN IN')}
+                          {t('navbar:SIGN_IN')}
                         </a>
                       </Link>
                       <p className="mt-6 text-center text-base font-medium text-gray-500">
