@@ -1,7 +1,6 @@
 import { gql } from 'apollo-server-micro'
 
 export const typesFilantropo = gql`
-
   union UnionFilantropo = ResponseFilantropo | ResponseFilantropoError
   union UnionFilantropoList = ResponseFilantropoList | ResponseFilantropoError
 
@@ -13,22 +12,26 @@ export const typesFilantropo = gql`
     celular: String!
     direccion: String!
     correo: String!
+    numeroDonaciones: Number!
+    totalDonado: Number!
+    pacientesApoyados: [Pacientes]!
+    profileType: String!
   }
 
-  type ResponseFilantropo{
-      body: Filantropo
-      status: StatusFilantropo
+  type ResponseFilantropo {
+    body: Filantropo
+    status: StatusFilantropo
   }
-  type ResponseFilantropoList{
-      body: [Filantropo]
-      status: StatusFilantropo
+  type ResponseFilantropoList {
+    body: [Filantropo]
+    status: StatusFilantropo
   }
-  type ResponseFilantropoError{
-      status: StatusFilantropo
+  type ResponseFilantropoError {
+    status: StatusFilantropo
   }
-    type StatusFilantropo{
-      code: String!
-      description: String!
+  type StatusFilantropo {
+    code: String!
+    description: String!
   }
 
   type Query {
@@ -44,6 +47,10 @@ export const typesFilantropo = gql`
       celular: String!
       direccion: String!
       correo: String!
+      numeroDonaciones: Number!
+      totalDonado: Number!
+      pacientesApoyados: [Pacientes]!
+      profileType: String!
     ): UnionFilantropo
   }
 `
