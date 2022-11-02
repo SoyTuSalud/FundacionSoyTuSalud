@@ -1,15 +1,15 @@
 import { ResponseCodes } from '../../../domain/commons/enums/responseCodesEnum'
 import { ResponseEntity } from '../../../domain/commons/responseEntity'
 import { Status } from '../../../domain/commons/StatusInterface'
-import { ServicesTransaction } from '../../../domain/serviceTransaction/serviceTransaction'
-import serviceTransacionModel from './schemas/mongoSchemServiceTransaction'
+import { Servicios } from '../../../domain/servicios/serviciosInterface'
+import serviceTransactionModel from './schemas/mongoSchemServiceTransaction'
 
-export const crearServicio = async (args: any) => {
-  return await serviceTransacionModel
-    .insertMany(args)
+export const createServiceTransaction = async (args: any) => {
+  return await serviceTransactionModel
+    .create(args)
     .then((data: any) => {
       const status: Status = new Status(ResponseCodes.SUCCESS, 'exitoso')
-      const response: ResponseEntity<ServicesTransaction> = new ResponseEntity(
+      const response: ResponseEntity<Servicios> = new ResponseEntity(
         data,
         status,
       )
@@ -28,9 +28,9 @@ export const crearServicio = async (args: any) => {
     })
 }
 
-export const serviciosTabla = async () => {
+export const serviceTransactionTabla = async () => {
 
-  return await serviceTransacionModel
+  return await serviceTransactionModel
     .find({})
     .then((data: any) => {
       if (!data) {
@@ -55,10 +55,10 @@ export const serviciosTabla = async () => {
     })
 }
 
-export const servicio = async (id: String) => {
-  return await serviceTransacionModel
+export const serviceTransaction = async (id: String) => {
+  return await serviceTransactionModel
     .findById(id)
-    .then((data: ServicesTransaction) => {
+    .then((data: Servicios) => {
       if (!data) {
         const status: Status = new Status(
           ResponseCodes.SUCCESS_EMPTY,
@@ -69,7 +69,7 @@ export const servicio = async (id: String) => {
       }
 
       const status: Status = new Status(ResponseCodes.SUCCESS, 'exitoso')
-      const response: ResponseEntity<ServicesTransaction> = new ResponseEntity(
+      const response: ResponseEntity<Servicios> = new ResponseEntity(
         data,
         status,
       )

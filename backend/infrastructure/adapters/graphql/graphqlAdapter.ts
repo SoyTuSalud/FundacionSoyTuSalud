@@ -11,6 +11,8 @@ import { resolversServicios } from './resolvers/resolversServicios'
 import { resolversServiciosCodes } from './resolvers/resolversServicesCodes'
 import { typesUser } from './types/typesUser';
 import { resolversUser } from './resolvers/resolversUser';
+import { resolversServiceTransaction } from './resolvers/resolversServiceTransaction';
+import { typesServiceTransaction } from './types/typesServiceTransaction';
 
 export const resolvers = [
   resolversPaciente, 
@@ -18,7 +20,9 @@ export const resolvers = [
   resolversServicios,
   resolversServiciosCodes, 
   resolversRepresentante, 
-  resolversFilantropos]
+  resolversFilantropos,
+  resolversServiceTransaction
+]
 
 export const typeDefs = [
   typesUser,
@@ -28,4 +32,5 @@ export const typeDefs = [
   typesRepresentate,
   typesFilantropo,
   typesEnums,
+  typesServiceTransaction
 ]

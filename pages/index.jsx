@@ -122,8 +122,8 @@ export default function Home({ locale }) {
                       <Image
                         src="/Logo_servicios1.png"
                         alt="img"
-                        width={300}
-                        height={300}
+                        width={150}
+                        height={150}
                       />
                     </div>
 

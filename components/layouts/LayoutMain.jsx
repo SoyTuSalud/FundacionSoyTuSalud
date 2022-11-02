@@ -10,7 +10,7 @@ import { useCookies } from 'react-cookie'
 import { decode } from 'jsonwebtoken'
 
 export const LayoutMain = ({ children, propsImage, t }) => {
-  // const { setAuthUser } = useAuth()
+  const { setAuthUser } = useAuth()
   const [cookies, setCookie, removeCookie] = useCookies(['token'])
 
   useEffect(() => {

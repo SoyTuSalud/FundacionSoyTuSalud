@@ -19,7 +19,7 @@
     "@heroicons/react": "^1.0.6",
     "@mui/icons-material": "^5.10.3",
     "@mui/material": "^5.10.5",
-    "apollo-server-micro": "^3.10.2",
+    "apollo-server-micro": "^3.10.4",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "date-fns": "^2.29.3",

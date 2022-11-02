@@ -1,60 +1,60 @@
 import { gql } from 'apollo-server-micro'
 
-export const typesServicios = gql`
+export const typesServiceTransaction = gql`
+  union UnionServiceTransaction =
+      ResponseServiceTransaction
+    | ResponseServiceTransactionError
+  union UnionServiceTransactionList =
+      ResponseServiceTransactionList
+    | ResponseServiceTransactionError
 
-  union UnionServicios = ResponseServicios | ResponseServiciosError
-  union UnionServiciosList = ResponseServiciosList | ResponseServiciosError
-
-  type Servicios {
+  type ServiceTransaction {
     _id: ID!
     pacienteId: Paciente
     filantropoId: Filantropo
     representanteId: Representante
     servicioSolicitado: Servicios
     fechaCreacion: String
-    fechaCita:String
+    fechaCita: String
     fechaFin: String
     precio: String
     status: String
     nroPago: String
   }
 
-  type ResponseServicios{
-      body: Servicios
-    status: StatusServicios
+  type ResponseServiceTransaction {
+    body: ServiceTransaction
+    status: StatusServiceTransaction
   }
-  type ResponseServiciosList{
-      body: [Servicios]
-      status: StatusServicios
+  type ResponseServiceTransactionList {
+    body: [ServiceTransaction]
+    status: StatusServiceTransaction
   }
-  type ResponseServiciosError{
-      status: StatusServicios
+  type ResponseServiceTransactionError {
+    status: StatusServiceTransaction
   }
-    type StatusServicios{
+  type StatusServiceTransaction {
     code: String!
     description: String!
   }
 
-  type Query{
-    serviciosTabla: UnionServiciosList
-    servicio(_id: String) : UnionServicios
+  type Query {
+    ServiceTransactionTabla: UnionServiceTransactionList
+    ServiceTransaction(_id: String): UnionServiceTransaction
   }
 
   type Mutation {
-    crearServicio(
-      tipoServicio: String!
-      especialidad: String!
-      modalidad: String!
-      horaInicio: String!
-      horaFin: String!
-      celularServicio: String!
-      whatsAppServicio: String!
-      nombreResponsable: String!
-      direccionServicio: String!
-      dias: [String]!
-      valorServicio: String!
-      representante: String!
-    ): UnionServicios
+    CreateServiceTransaction(
+      pacienteId: String
+      filantropoId: String
+      representanteId: String
+      servicioSolicitado: String
+      fechaCreacion: String
+      fechaCita: String
+      fechaFin: String
+      precio: String
+      status: String
+      nroPago: String
+    ): UnionServiceTransaction
   }
-
 `
