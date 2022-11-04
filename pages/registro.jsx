@@ -14,11 +14,14 @@ import Image from 'next/image'
 import Head from 'next/head'
 import { Field, Form, Formik } from 'formik'
 import { basicSchema } from '../schema'
+import { useCookies } from 'react-cookie'
+import { Box } from '@mui/material'
 
 const Registro = () => {
   const { t } = useTranslation()
   const [agregarPaciente, resultPaciente] = useMutation(registrarPaciente)
   const [agregarFilantropo, resultFiltrantropo] = useMutation(registrarFilantropo)
+  const [cookies, setCookie, removeCookie] = useCookies(['access'])
   const [mssagError, setMssgError] = useState('')
 
   const router = useRouter()
@@ -27,7 +30,8 @@ const Registro = () => {
     if (variables.tipoUsuario === 'PACIENTE') {
       agregarPaciente({ variables }).then(({ data }) => {
         if (data.crearPaciente.status.code === ResponseCodes.SUCCESS) {
-          router.push('/')
+          setCookie('access','true', { path: '/' })
+          router.push('/emailVerified/jasc')
         } else {
           setMssgError(data.crearPaciente.status.description)
         }
@@ -35,7 +39,8 @@ const Registro = () => {
     } else {
       agregarFilantropo({ variables }).then(({ data }) => {
         if (data.crearFilantropo.status.code === ResponseCodes.SUCCESS) {
-          router.push('/')
+          setCookie('access','true', { path: '/' })
+          router.push('/emailVerified/jasc')
         } else {
           setMssgError(data.crearFilantropo.status.description)
         }
@@ -44,9 +49,9 @@ const Registro = () => {
   }
 
   return (
-    <>
+    <Box height="100vh" display="flex" flexDirection="column" sx={{ backgroundColor: '#A5B4FC' }}>
       <Head>
-        <title>FundacionSoyTu | Registro Pacientes</title>
+        <title>FundacionSoyTu | Registro</title>
       </Head>
       <section className="section-container-register-page">
         <div className="section-container-form rounded-3xl">
@@ -76,7 +81,7 @@ const Registro = () => {
                   />
                   <div className="pb-10">
                     <div className="flex justify-center">
-                      <div className="mt-10">
+                      <div>
                         <Image
                           src="/logo_horizontal-black.png"
                           width={'200px'}
@@ -252,7 +257,7 @@ const Registro = () => {
           </div>
         </div>
       </section>
-    </>
+    </Box>
   )
 }
 

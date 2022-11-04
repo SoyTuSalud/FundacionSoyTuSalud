@@ -85,7 +85,7 @@ export const crearFilantropo = async (args: any) =>{
         delete newData.contrasena
 
         const token = jwt.sign(newData, process.env.ENV_KEY_TOKEN!, {
-          expiresIn: '5m',
+          expiresIn: '1h',
         })
         // setCookie(context, 'token', token, {
         //   path: '/',

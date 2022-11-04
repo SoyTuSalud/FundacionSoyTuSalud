@@ -3,25 +3,34 @@ import { validateUser } from './utils/validateUser'
 import { enablePages, redirect } from './utils/enablePages'
 import { verifyAccount } from './utils/verifyAccount'
 import { ResponseCodes } from './backend/domain/commons/enums/responseCodesEnum'
+import { NextRequest } from 'next/server'
 
 export async function middleware(request) {
   const path = request.nextUrl.pathname
-
+  const access = request.cookies.get('access') || ''
   if (path.includes('/verifiedAccount/')) {
     const token = path.slice(17)
 
     if (token.length > 0) {
-      const response = await verifyAccount(token)
-
-      console.log('response ', response)
-
-      // if (data?.verifyAccount?.status?.code === ResponseCodes.SUCCESS) {
-      //   return NextResponse.next()
-      // }
+      const { data } = await verifyAccount(token)
+      if (data?.verifyAccount?.status?.code === ResponseCodes.SUCCESS) {
+        const response = NextResponse.redirect(new URL('/success', request.url))
+        response.cookies.set('access', 'true')
+        return response
+      }
 
       return NextResponse.redirect(new URL('/error', request.url))
     }
     return NextResponse.redirect(new URL('/error', request.url))
+  } else if (path.includes('/emailVerified/') && access === 'true') {
+    const response = NextResponse.next()
+    deleteCookie(request, response, 'access')
+
+    return response
+  } else if (path.includes('/success') && access === 'true') {
+    const response = NextResponse.next()
+
+    return response
   } else {
     const token = request.cookies.get('token') || ''
     const validate = await validateUser(token)
@@ -54,7 +63,9 @@ export const config = {
     '/loginAdmin',
     '/login',
     '/registro',
+    '/emailVerified/:path*',
     '/verifiedAccount/:path*',
+    '/success',
   ],
 }
 
