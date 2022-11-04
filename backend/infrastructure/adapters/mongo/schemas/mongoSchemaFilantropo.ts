@@ -20,13 +20,13 @@ const FilantropoSchema = new Schema<Filantropo>(
       type: String,
       required: true,
     },
+    apellidos: {
+      type: String,
+      required: true,
+    },
     celular: {
       type: String,
       validate: /^\d{10}$/,
-      required: true,
-    },
-    direccion: {
-      type: String,
       required: true,
     },
     correo: {
@@ -46,6 +46,7 @@ const FilantropoSchema = new Schema<Filantropo>(
     profileType: {
       type: String,
       enum: ProfileTypeEnum,
+      default: ProfileTypeEnum.PUBLIC
     },
   },
   {

@@ -19,6 +19,7 @@ ul {
 
 html {
   --tw-bg-opacity: 1;
+  background-color: rgb(165 180 252 / var(--tw-bg-opacity));
 }
 
 body {

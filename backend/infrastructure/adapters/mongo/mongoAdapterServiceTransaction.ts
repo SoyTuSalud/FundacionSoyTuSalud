@@ -31,7 +31,7 @@ export const createServiceTransaction = async (args: any) => {
 export const serviceTransactionTabla = async () => {
 
   return await serviceTransactionModel
-    .find({})
+    .find({}).populate("pacienteId").populate('filantropoId').populate('representanteId').populate('servicioSolicitado')
     .then((data: any) => {
       if (!data) {
         const status: Status = new Status(

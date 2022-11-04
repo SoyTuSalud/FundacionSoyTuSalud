@@ -29,9 +29,9 @@ const LoginAdmin = () => {
 
   return (
     <>
-      <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8">
-          <div>
+      <div className="min-h-full flex items-center justify-center h-full py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full space-y-8 ">
+          <div >
             <div className="text-center">
               <Image
                 src="/logo_horizontal-black.png"

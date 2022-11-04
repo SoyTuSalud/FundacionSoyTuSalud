@@ -1,15 +1,15 @@
 import { ResponseCodes } from '../../../domain/commons/enums/responseCodesEnum'
 import { ResponseEntity } from '../../../domain/commons/responseEntity'
 import { Status } from '../../../domain/commons/StatusInterface'
-import { ServicesTransaction } from '../../../domain/serviceTransaction/serviceTransaction'
-import serviceTransacionModel from './schemas/mongoSchemServiceTransaction'
+import { Servicios } from '../../../domain/servicios/serviciosInterface'
+import serviceModel from './schemas/mongoSchemaServicios'
 
 export const crearServicio = async (args: any) => {
-  return await serviceTransacionModel
+  return await serviceModel
     .insertMany(args)
     .then((data: any) => {
       const status: Status = new Status(ResponseCodes.SUCCESS, 'exitoso')
-      const response: ResponseEntity<ServicesTransaction> = new ResponseEntity(
+      const response: ResponseEntity<Servicios> = new ResponseEntity(
         data,
         status,
       )
@@ -30,8 +30,8 @@ export const crearServicio = async (args: any) => {
 
 export const serviciosTabla = async () => {
 
-  return await serviceTransacionModel
-    .find({})
+  return await serviceModel
+    .find({}).populate('Representante')
     .then((data: any) => {
       if (!data) {
         const status: Status = new Status(
@@ -56,9 +56,9 @@ export const serviciosTabla = async () => {
 }
 
 export const servicio = async (id: String) => {
-  return await serviceTransacionModel
+  return await serviceModel
     .findById(id)
-    .then((data: ServicesTransaction) => {
+    .then((data: Servicios) => {
       if (!data) {
         const status: Status = new Status(
           ResponseCodes.SUCCESS_EMPTY,
@@ -69,7 +69,7 @@ export const servicio = async (id: String) => {
       }
 
       const status: Status = new Status(ResponseCodes.SUCCESS, 'exitoso')
-      const response: ResponseEntity<ServicesTransaction> = new ResponseEntity(
+      const response: ResponseEntity<Servicios> = new ResponseEntity(
         data,
         status,
       )

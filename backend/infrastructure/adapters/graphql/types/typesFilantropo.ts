@@ -9,12 +9,12 @@ export const typesFilantropo = gql`
     tipoDocumento: String!
     identificacion: String!
     nombre: String!
+    apellidos: String!
     celular: String!
-    direccion: String!
     correo: String!
-    numeroDonaciones: Number!
-    totalDonado: Number!
-    pacientesApoyados: [Pacientes]!
+    numeroDonaciones: String!
+    totalDonado: String
+    pacientesApoyados: [Paciente]
     profileType: String!
   }
 
@@ -44,13 +44,10 @@ export const typesFilantropo = gql`
       tipoDocumento: String!
       identificacion: String!
       nombre: String!
+      apellidos: String!
       celular: String!
-      direccion: String!
       correo: String!
-      numeroDonaciones: Number!
-      totalDonado: Number!
-      pacientesApoyados: [Pacientes]!
-      profileType: String!
+      contrasena: String!
     ): UnionFilantropo
   }
 `

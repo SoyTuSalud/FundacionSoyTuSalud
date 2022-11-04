@@ -27,9 +27,7 @@ export default function Home({ locale }) {
   return (
     <>
       <LayoutMain t={t} propsImage={propsImage}>
-        <Head>
-          <title>Fundacion Soy Tu Salud</title>
-        </Head>
+        <Head> <title>FundacionSoyTu | Home</title> </Head>
         <section className="">
           <div className="container mt-12">
             <div className="row align-items-center mt-4">

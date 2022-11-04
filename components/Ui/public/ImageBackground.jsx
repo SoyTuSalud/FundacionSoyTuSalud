@@ -71,7 +71,7 @@ export const ImageBackground = ({propsImage}) => {
   return (
     <>
       <Box
-        className="pb-20 "
+        className="pb-12"
         sx={{
           overflow: 'hidden',
           backgroundSize: 'contain',

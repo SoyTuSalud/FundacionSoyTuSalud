@@ -6,6 +6,7 @@ export interface Filantropo {
   tipoDocumento: string
   identificacion: TipoDocumentoEnum
   nombre: string
+  apellidos: string
   celular: string
   direccion: string
   correo: string

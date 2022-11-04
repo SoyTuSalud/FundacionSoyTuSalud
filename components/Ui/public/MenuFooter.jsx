@@ -15,8 +15,8 @@ export const MenuFooter = ({ t }) => {
                   alt="footerLogo"
                   src="/bottom-bg.png"
                   priority={true}
-                  width={500}
-                  height={100}
+                  width={400}
+                  height={50}
                   layout="responsive"
                 />
               </div>
@@ -31,8 +31,8 @@ export const MenuFooter = ({ t }) => {
             <Image
               className=""
               src="/logo_vertical-white.png"
-              width="150"
-              height="150"
+              width="165"
+              height="100"
               alt="logo"
             />
             <div className="contact-info-footer">
@@ -61,8 +61,8 @@ export const MenuFooter = ({ t }) => {
           <div className="img-footer-mobile">
             <Image
               src="/logo_vertical-white.png"
-              width="150"
-              height="150"
+              width={150}
+              height={150}
               alt="logo"
             />
           </div>
