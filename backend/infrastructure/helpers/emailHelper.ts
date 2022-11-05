@@ -4,6 +4,7 @@ const emailDireccion = process.env.ENV_EMAIL_DIRECCION || ''
 const emailPassword = process.env.ENV_EMAIL_PASSWORD || ''
 const emailHost = process.env.ENV_EMAIL_HOST || ''
 const emialPort = process.env.ENV_EMAIL_PORT || ''
+const LinkEmail = process.env.ENV_LINK_HOST || ''
 
 const transporter = nodemailer.createTransport({
   host: emailHost,
@@ -127,7 +128,7 @@ export const sendEmail = async (email: String, name: string, token: string) => {
               Hola, ${name} ingresa al siguiente link y confirma tu cuenta
             </p>
             <div class="container-btn-verify">
-              <a href="http://localhost:3000/verifiedAccount/${token}"
+              <a href="http://${LinkEmail}/verifiedAccount/${token}"
                 ><button class="btn-verify">VERIFICAR</button></a
               >
             </div>

@@ -23,7 +23,7 @@ export async function middleware(request) {
     }
     return NextResponse.redirect(new URL('/error', request.url))
   } 
-  else if (path.includes('/success') ) {
+  else if (path.includes('/success') && access === 'true') {
     const response = NextResponse.next()
     return response
   } 
