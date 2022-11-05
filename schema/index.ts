@@ -6,8 +6,8 @@ const passwordRuler = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/
 export const basicSchema = yup.object().shape({
   correo: yup.string().email('Ingrese un correo valido').required('Requerido'),
   identificacion: yup.string().min(5).required('Requerido'),
-  nombre: yup.string().matches(nameRuler).required('Requerido'),
-  apellidos: yup.string().matches(nameRuler).required('Requerido'),
+  nombre: yup.string().matches(nameRuler,"Ingresa un nombre valido").required('Requerido'),
+  apellidos: yup.string().matches(nameRuler,"Ingresa una apellido valido").required('Requerido'),
   celular: yup
     .string()
     .test('len', 'Ingresa un numero valido', val  => val?.length === 10)

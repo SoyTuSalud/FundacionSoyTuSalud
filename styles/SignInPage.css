@@ -25,16 +25,16 @@
 
 .input-field-form {
   width: 96%;
-  padding: 13px 25px;
+  padding: 13px 2px;
   margin: 10px;
-  background-color: #f9f7f6;
-  font-weight: 700;
-  font-size: 14px;
+  font-weight: 400;
+  font-size: 14px; 
+  border-bottom: 1px solid ;
+  border-color: #dadae0;
 }
 
 .input-field-form:focus {
-  background-color: #fff;
-  border: 1px solid #f9f7f6;
+  border: 1px solid #f8f8f8;
 }
 
 .login-text {

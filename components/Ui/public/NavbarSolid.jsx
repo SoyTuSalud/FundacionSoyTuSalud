@@ -17,7 +17,7 @@ import {
   XIcon,
 } from '@heroicons/react/outline'
 
-export const Navbar = ({ t }) => {
+export const NavbarSolid = ({ t }) => {
   const solutions = [
     {
       name: t('navbar:BEGINNING'),
@@ -110,7 +110,7 @@ export const Navbar = ({ t }) => {
   }
 
   return (
-    <header className={navbar ? 'backgroundNav navbarTop0' : 'navbarTop0'}>
+    <header className={'backgroundNav navbarTop1' }>
       <Popover className="container-fluid popover  relative bg-transparent w-full ">
         <div className="max-w-screen-2xl mx-auto px-4">
           <div className="flex justify-between items-center py-6 lg:justify-start lg:space-x-12">
@@ -122,6 +122,12 @@ export const Navbar = ({ t }) => {
                 alt="logo"
               />
             </div>
+            <Popover.Button className="-my-2 lg:hidden">
+              <div className="bg-white rounded-md p-2 mr-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                <span className="sr-only">Open menu</span>
+                <MenuIcon className="h-6 w-6" aria-hidden="true" />
+              </div>
+            </Popover.Button>
             <Popover.Group as="nav" className="hidden lg:flex space-x-10">
               <div className="items-center mr-14">
                 <nav>
@@ -286,7 +292,7 @@ export const Navbar = ({ t }) => {
                 </>
               )}
             </div>
-            <li className=" hidden lg:flex text-black main-menu__item main-menu__item">
+            <li className="text-black main-menu__item main-menu__item">
               <a
                 className="main-menu__link text-white cursor-pointer"
                 onClick={handleLanguage}
@@ -299,12 +305,6 @@ export const Navbar = ({ t }) => {
                 )}
               </a>
             </li>
-            <Popover.Button className="-my-2 lg:hidden">
-              <div className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-                <span className="sr-only">Open menu</span>
-                <MenuIcon className="h-6 w-6" aria-hidden="true" />
-              </div>
-            </Popover.Button>
           </div>
         </div>
 
@@ -319,11 +319,11 @@ export const Navbar = ({ t }) => {
         >
           <Popover.Panel
             focus
-            className="absolute z-50  top-0 inset-x-0 transition transform origin-top-right lg:hidden"
+            className=" overscroll-y-auto absolute z-30 top-0 inset-x-0 p-2 transition transform origin-top-right lg:hidden"
           >
             <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
-              <div className="pt-5 pb-6 px-5 ">
-                <div className="flex items-center justify-between ">
+              <div className="pt-5 pb-6 px-5">
+                <div className="flex items-center justify-between">
                   <div>
                     <Image
                       src="/logo_horizontal-black.png"
@@ -332,57 +332,11 @@ export const Navbar = ({ t }) => {
                       alt="logo"
                     />
                   </div>
-                  <li className="text-black main-menu__item main-menu__item">
-                    <a
-                      className=" text-white cursor-pointer"
-                      onClick={handleLanguage}
-                    >
-                      {router.locale}{' '}
-                      {router.locale === 'en' ? (
-                        <span className="fi fi-gb"></span>
-                      ) : (
-                        <span className="fi fi-es"></span>
-                      )}
-                    </a>
-                  </li>
                   <div className="-mr-2">
                     <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                       <span className="sr-only">Close menu</span>
                       <XIcon className="h-6 w-6" aria-hidden="true" />
                     </Popover.Button>
-                  </div>
-                </div>
-                <div className="py-6 px-5 space-y-6">
-                  <div>
-                    {authUser ? (
-                      <>
-                        <a
-                          onClick={handlerLogOut}
-                          className="main-menu__link whitespace-nowrap cursor-pointer "
-                        >
-                          <span className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 underline ">
-                            {' '}
-                            {t('navbar:LOG_OUT')}{' '}
-                          </span>
-                        </a>
-                      </>
-                    ) : (
-                      <>
-                        <Link href={'/login'}>
-                          <a className="w-full flex items-center justify-center px-4 py-2 border rounded-md shadow-sm text-base text-gray-700 font-semibold">
-                            {t('navbar:LOG_IN')}
-                          </a>
-                        </Link>
-
-                        <div className="mt-3 flex justify-center">
-                          <Link href={'/registro'}>
-                            <a className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-                              {t('navbar:SIGN_IN')}
-                            </a>
-                          </Link>
-                        </div>
-                      </>
-                    )}
                   </div>
                 </div>
                 <div className="mt-6">
@@ -391,6 +345,41 @@ export const Navbar = ({ t }) => {
                       <SubMenu key={item.name} item={item} />
                     ))}
                   </nav>
+                </div>
+              </div>
+              <div className="py-6 px-5 space-y-6">
+                <div>
+                  {authUser ? (
+                    <>
+                      <a
+                        onClick={handlerLogOut}
+                        className="main-menu__link whitespace-nowrap cursor-pointer "
+                      >
+                        <span className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 underline ">
+                          {' '}
+                          {t('navbar:LOG_OUT')}{' '}
+                        </span>
+                      </a>
+                    </>
+                  ) : (
+                    <>
+                      <Link href={'/registro'}>
+                        <a className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                          {t('navbar:SIGN_IN')}
+                        </a>
+                      </Link>
+                      <p className="mt-6 text-center text-base font-medium text-gray-500">
+                        {t('navbar:ALREADY_REGISTERED')}?{' '}
+                      </p>
+                      <div className="mt-3 flex justify-center">
+                        <Link href={'/login'}>
+                          <a className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                            {t('navbar:LOG_IN')}
+                          </a>
+                        </Link>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>

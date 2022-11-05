@@ -1,11 +1,11 @@
 import Image from 'next/image'
 
-export const MenuFooter = ({ t }) => {
+export const MenuFooter = ({ t, visible }) => {
   const currentYear = new Date().getFullYear()
 
   return (
     <>
-      <section className="bottom-background">
+      <section className={!visible?"bottom-background":"hidden"}>
         <div className="container">
           <div className="row">
             <div className="col-12">
@@ -18,6 +18,7 @@ export const MenuFooter = ({ t }) => {
                   width={400}
                   height={50}
                   layout="responsive"
+                  quality={100}
                 />
               </div>
             </div>

@@ -22,16 +22,12 @@ export async function middleware(request) {
       return NextResponse.redirect(new URL('/error', request.url))
     }
     return NextResponse.redirect(new URL('/error', request.url))
-  } else if (path.includes('/emailVerified/') && access === 'true') {
+  } 
+  else if (path.includes('/success') ) {
     const response = NextResponse.next()
-    deleteCookie(request, response, 'access')
-
     return response
-  } else if (path.includes('/success') && access === 'true') {
-    const response = NextResponse.next()
-
-    return response
-  } else {
+  } 
+  else {
     const token = request.cookies.get('token') || ''
     const validate = await validateUser(token)
     const role = validate?.data?.verifyRoles || 'noAuth'
@@ -63,7 +59,6 @@ export const config = {
     '/loginAdmin',
     '/login',
     '/registro',
-    '/emailVerified/:path*',
     '/verifiedAccount/:path*',
     '/success',
   ],
