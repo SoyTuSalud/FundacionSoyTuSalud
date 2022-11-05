@@ -17,6 +17,7 @@ const transporter = nodemailer.createTransport({
 })
 
 export const sendEmail = async (email: String, name: string, token: string) => {
+  console.log("execute")
   await transporter.sendMail({
     from: emailDireccion, // sender address
     to: `${email}`, // list of receivers
