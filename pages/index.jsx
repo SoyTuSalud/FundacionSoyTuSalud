@@ -14,8 +14,6 @@ export default function Home({ locale }) {
 
   const [loading, setLoading] = useState(false)
 
-  const { openPopup } = useContext(PopupContext)
-
   const propsImage = {
     title: t('home:HOME_TITLE'),
     title2: t('home:HOME_TITLE_2'),
