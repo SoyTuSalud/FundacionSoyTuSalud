@@ -1,3 +1,4 @@
+import { ResponseCodes } from '../../../../domain/commons/enums/responseCodesEnum'
 import { crearServicio, servicio, serviciosTabla } from '../../mongo/mongoAdapterServicios'
 
 export const resolversServicios = {
@@ -14,4 +15,18 @@ export const resolversServicios = {
       return await crearServicio(args)
     },
   },
+  UnionServicios: {
+    __resolveType(obj: any){
+      return obj.status.code === ResponseCodes.SUCCESS ?  
+                  "ResponseServicios" :
+                  "ResponseServiciosError" 
+    }
+  },
+  UnionServiciosList: {
+    __resolveType(obj: any){
+      return obj.status.code === ResponseCodes.SUCCESS ?  
+                  "ResponseServiciosList" :
+                  "ResponseServiciosError" 
+    }
+  }
 }

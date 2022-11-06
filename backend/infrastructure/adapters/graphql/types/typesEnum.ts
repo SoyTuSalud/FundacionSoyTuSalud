@@ -44,5 +44,6 @@ export const typesEnums = gql`
     AS
     MS
     PT
+    ERROR
   }
 `

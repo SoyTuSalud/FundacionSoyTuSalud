@@ -1,0 +1,147 @@
+.container-inputs-general-work {
+  display: flex;
+  gap: 30px;
+}
+
+.container-input {
+  width: 25%;
+  display: block;
+}
+
+.input-work {
+  width: 100%;
+  background-color: #fff;
+  padding: 5px 10px;
+  font-size: 14px;
+  border: 1px solid #dfdfdf;
+  border-radius: 5px;
+  outline: none;
+}
+
+.select-work {
+  width: 100%;
+  background-color: #fff;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #dfdfdf;
+  border-radius: 5px;
+  outline: none;
+}
+
+.input-work:focus {
+  border: 2px solid #6f42c1; /*343878*/
+}
+
+.select-work:focus {
+  border: 2px solid #6f42c1; /*343878*/
+}
+
+.container-service {
+  display: flex;
+  width: 43%;
+}
+
+.btn-search-work {
+  background-color: #007bff;
+  color: #fff;
+  padding: 5px 50px;
+  border-radius: 5px;
+  font-size: 14px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 15px 25px;
+}
+
+.btn-search-work:hover {
+  background-color: #056cda;
+}
+
+.container-dates {
+  display: flex;
+  width: 50%;
+  gap: 30px;
+}
+
+.container-date-one {
+  width: 25%;
+}
+
+.textarea-input-work {
+  width: 100%;
+  padding: 5px 10px;
+  border: 1px solid #dfdfdf;
+  border-radius: 5px;
+  outline: none;
+}
+
+.textarea-input-work:focus {
+  border: 2px solid #6f42c1; /*343878*/
+}
+
+@media (max-width: 950px) {
+  .container-inputs-general-work {
+    display: block;
+  }
+
+  .container-input {
+    width: 100%;
+    display: block;
+  }
+
+  .input-work {
+    width: 100%;
+    background-color: #fff;
+    padding: 5px 10px;
+    font-size: 14px;
+    border: 1px solid #dfdfdf;
+    border-radius: 5px;
+    outline: none;
+  }
+
+  .select-work {
+    width: 100%;
+    background-color: #fff;
+    padding: 8px 10px;
+    font-size: 14px;
+    border: 1px solid #dfdfdf;
+    border-radius: 5px;
+    outline: none;
+  }
+
+  .input-work:focus {
+    border: 2px solid #6f42c1; /*343878*/
+  }
+
+  .select-work:focus {
+    border: 2px solid #6f42c1; /*343878*/
+  }
+
+  .container-service {
+    display: block;
+    width: 100%;
+  }
+
+  .btn-search-work {
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 50px;
+    border-radius: 5px;
+    font-size: 14px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 15px 25px;
+  }
+
+  .btn-search-work:hover {
+    background-color: #056cda;
+  }
+
+  .container-dates {
+    display: block;
+    width: 100%;
+  }
+
+  .container-date-one {
+    width: 100%;
+  }
+
+  .textarea-input-work {
+    width: 100%;
+  }
+}

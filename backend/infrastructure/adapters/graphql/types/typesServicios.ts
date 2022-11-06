@@ -1,6 +1,10 @@
 import { gql } from 'apollo-server-micro'
 
 export const typesServicios = gql`
+
+  union UnionServicios = ResponseServicios | ResponseServiciosError
+  union UnionServiciosList = ResponseServiciosList | ResponseServiciosError
+
   type Servicios {
     _id: ID!
     tipoServicio: String!
@@ -13,13 +17,29 @@ export const typesServicios = gql`
     nombreResponsable: String!
     direccionServicio: String!
     dias: [String]!
-    valorServicio: Int!
+    valorServicio: String!
     representante: Representante!
   }
 
+  type ResponseServicios{
+      body: Servicios
+    status: StatusServicios
+  }
+  type ResponseServiciosList{
+      body: [Servicios]
+      status: StatusServicios
+  }
+  type ResponseServiciosError{
+      status: StatusServicios
+  }
+    type StatusServicios{
+    code: String!
+    description: String!
+  }
+
   type Query{
-    serviciosTabla: [Servicios]
-    servicio(_id: String) : Servicios
+    serviciosTabla: UnionServiciosList
+    servicio(_id: String) : UnionServicios
   }
 
   type Mutation {
@@ -34,9 +54,9 @@ export const typesServicios = gql`
       nombreResponsable: String!
       direccionServicio: String!
       dias: [String]!
-      valorServicio: Int!
+      valorServicio: String!
       representante: String!
-    ): Servicios
+    ): UnionServicios
   }
 
 `

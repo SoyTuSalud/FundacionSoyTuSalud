@@ -1,15 +1,12 @@
-import { useState } from 'react'
 import Head from 'next/head'
-import { client } from '../../../../graphql-front/initClientSide'
-import { userData } from '../../../../graphql-front/user/queries'
+import { initClientSSR } from '../../../../graphql-front/initClientSSR'
+import { userData } from '../../../../graphql-front/paciente/queries'
 import { AccountProfileDetails } from '../../../../components/detallePacientes/account-profile-details'
 import NewPrivateLayout from '../../../../components/layouts/NewPrivateLayout/NewPrivateLayout'
 import { Box, Container, Grid } from '@mui/material'
 
-const DetallePaciente = ({ Usuario }) => {
-  const [user, setUser] = useState(Usuario)
-  console.log(user)
-
+const DetallePaciente = ({ Paciente }) => {
+ 
   return (
     <NewPrivateLayout>
       <Head>
@@ -25,7 +22,7 @@ const DetallePaciente = ({ Usuario }) => {
         <Container maxWidth="xl">
           <Grid container>
             <Grid item width={'100%'}>
-              <AccountProfileDetails user={user} />
+              <AccountProfileDetails user={Paciente.body} />
             </Grid>
           </Grid>
         </Container>
@@ -34,16 +31,23 @@ const DetallePaciente = ({ Usuario }) => {
   )
 }
 
-export const getServerSideProps = async ({ params }) => {
+// You should use getServerSideProps when:
+// - Only if you need to pre-render a page whose data must be fetched at request time
+export const getServerSideProps = async ({ params, req }) => {
   const { uid } = params
-  const { data } = await client.query({
+
+  const clientSSR = initClientSSR(req)
+
+  const { data } = await clientSSR.query({
     query: userData,
-    variables: { uid },
+    variables: { _id: uid },
+    fetchPolicy:'no-cache'
   })
-  const { Usuario } = data
+
+  const { Paciente } = data
   return {
     props: {
-      Usuario,
+      Paciente,
     },
   }
 }

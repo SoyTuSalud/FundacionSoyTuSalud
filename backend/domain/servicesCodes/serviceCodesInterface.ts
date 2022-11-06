@@ -1,9 +1,9 @@
 
-export interface ServiceCodes{
+export interface ServicesCodes{
 
-    DESCRIPCION_SERVICIO: String
-    CODIGO: String
-    COBERTURA: String
-    TIPO_DE_SERVICIO: String
+    DESCRIPCION_SERVICIO: string
+    CODIGO: string
+    COBERTURA: string
+    TIPO_DE_SERVICIO: string
     
 }

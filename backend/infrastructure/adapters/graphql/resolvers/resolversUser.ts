@@ -1,29 +1,49 @@
+import { ResponseCodes } from '../../../../domain/commons/enums/responseCodesEnum'
 import {
-  findAllUsers,
-  findAllUsersTuHistoria,
-  findUserById,
-  createUserTuHistoria,
-  createUser,
+  login,
+  verifyRoles,
+  loginAdmin,
+  verifyAccount,
 } from '../../mongo/mongoAdapterUser'
 
-export const resolversUsuario = {
+export const resolversUser = {
   Query: {
-    UsuariosTabla: async () => {
-      return await findAllUsers()
+    login: async (parent: any, args: any, context: any) => {
+      return await login(args, context)
     },
-    UsuariosTablaTuHistoria: async () => {
-      return await findAllUsersTuHistoria()
+    loginAdmin: async (parent: any, args: any, context: any) => {
+      return await loginAdmin(args, context)
     },
-    Usuario: async (parent: any, args: any) =>  {
-      return await findUserById(args.uid)
+    verifyRoles: async (parent: any, args: any, { payload }: any) => {
+      return await verifyRoles(payload)
     },
   },
+
   Mutation: {
-    crearUsuario: async (parent: any, args: any) => {
-      return await createUser(args)
+    verifyAccount: async (parent: any, args: any) => {
+      return await verifyAccount(args)
     },
-    tuHistoria: async (parent: any, args: any) => {
-      return await createUserTuHistoria(args)
+  },
+
+  UnionUser: {
+    __resolveType(obj: any) {
+      return obj.status.code === ResponseCodes.SUCCESS
+        ? 'ResponseUser'
+        : 'ResponseUserError'
+    },
+  },
+  UnionUserList: {
+    __resolveType(obj: any) {
+      return obj.status.code === ResponseCodes.SUCCESS
+        ? 'ResponseUserList'
+        : 'ResponseUserError'
+    },
+  },
+  UnionToken: {
+    __resolveType(obj: any) {
+      return obj.status.code === ResponseCodes.SUCCESS
+        ? 'TokenResponse'
+        : 'ResponseUserError'
     },
   },
 }

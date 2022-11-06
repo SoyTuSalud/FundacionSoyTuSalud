@@ -5,15 +5,13 @@ import Image from 'next/image'
 import { LayoutMain } from '../../components/layouts/LayoutMain'
 
 const Aliados = () => {
-
   const { t } = useTranslation()
 
   const propsImage = {
-      title:t('home:tituloHome'),
-      title2: t('home:titulohome2'),
-      image: "/promo_c1.png"
-    }
-
+    title: t('home:HOME_TITLE'),
+    title2: t('home:HOME_TITLE_2'),
+    image: '/promo_c1.png',
+  }
 
   return (
     <LayoutMain propsImage={propsImage} t={t}>
@@ -41,7 +39,7 @@ const Aliados = () => {
                   <div>
                     <div className="grid items-center space-y-0 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
                       <div className="group relative">
-                        <div className="flex justify-center w-auto h-auto overflow-hidden sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
+                        <div className="flex justify-center w-auto h-auto overflow-hidden sm:aspect-w-2 sm:aspect-h-1 sm:h-40 lg:aspect-w-1 lg:aspect-h-1">
                           <Image
                             src="/aliados/1.png"
                             alt="img"
@@ -52,7 +50,7 @@ const Aliados = () => {
                       </div>
 
                       <div className="group relative ">
-                        <div className="flex justify-center w-auto h-auto overflow-hidden sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
+                        <div className="flex justify-center w-auto h-auto overflow-hidden sm:aspect-w-2 sm:aspect-h-1 sm:h-28 lg:aspect-w-1 lg:aspect-h-1">
                           <Image
                             src="/aliados/2.png"
                             alt="img"
@@ -63,7 +61,7 @@ const Aliados = () => {
                       </div>
 
                       <div className="group relative">
-                        <div className="flex justify-center w-auto h-auto overflow-hidden sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
+                        <div className="flex justify-center w-auto h-auto overflow-hidden sm:aspect-w-2 sm:aspect-h-1 sm:h-44 lg:aspect-w-1 lg:aspect-h-1">
                           <Image
                             src="/aliados/3.png"
                             alt="img"
@@ -74,7 +72,7 @@ const Aliados = () => {
                       </div>
 
                       <div className="group relative">
-                        <div className="flex justify-center w-auto h-auto overflow-hidden sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
+                        <div className="flex justify-center w-auto h-auto overflow-hidden sm:aspect-w-2 sm:aspect-h-1 sm:h-36 lg:aspect-w-1 lg:aspect-h-1">
                           <Image
                             src="/aliados/4.png"
                             alt="img"
@@ -85,7 +83,7 @@ const Aliados = () => {
                       </div>
 
                       <div className="group relative">
-                        <div className="flex justify-center w-auto p-2 h-auto overflow-hidden sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
+                        <div className="flex justify-center w-auto p-2 h-auto overflow-hidden sm:aspect-w-2 sm:aspect-h-1 sm:h-32 lg:aspect-w-1 lg:aspect-h-1">
                           <Image
                             src="/aliados/5.png"
                             alt="img"
@@ -96,7 +94,7 @@ const Aliados = () => {
                       </div>
 
                       <div className="group relative">
-                        <div className="flex justify-center w-auto p-2 h-auto overflow-hidden sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
+                        <div className="flex justify-center w-auto p-2 h-auto overflow-hidden sm:aspect-w-2 sm:aspect-h-1 sm:h-32 lg:aspect-w-1 lg:aspect-h-1">
                           <Image
                             src="/aliados/6.png"
                             alt="img"
@@ -178,7 +176,12 @@ const Aliados = () => {
 export const getStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['navbar','home','registro'])),
+      ...(await serverSideTranslations(locale, [
+        'navbar',
+        'home',
+        'registro',
+        'footer',
+      ])),
     },
   }
 }

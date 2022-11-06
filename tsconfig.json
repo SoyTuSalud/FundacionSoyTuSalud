@@ -15,6 +15,25 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/trabajaNosotros.jsx", "pages/registro.jsx", "pages/login.jsx", "pages/index.jsx", "pages/_document.jsx", "pages/_app.jsx", "hooks/useFormData.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "pages/trabajaNosotros.jsx",
+    "pages/registro.jsx",
+    "pages/login.jsx",
+    "pages/index.jsx",
+    "pages/_document.jsx",
+    "pages/verifiedAccount/_app.jsx",
+    "hooks/useFormData.js",
+    "utils/validateUser.js",
+    "middleware.js",
+    "utils/validateRolPages.js",
+    "utils/validateRolPages.js",
+    "utils/enablePagesEnum.js",
+    "utils/validateRolPages.js",
+    "pages/loginAdmin.jsx",
+    "pages/api/verifiedAccountByToken/[token].js"
+  ],
   "exclude": ["node_modules"]
 }

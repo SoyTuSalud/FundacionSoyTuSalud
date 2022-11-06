@@ -4,137 +4,158 @@ import Image from 'next/image'
 import { LayoutMain } from '../components/layouts/LayoutMain'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
+import { useContext, useState } from 'react'
+import { Loading } from '../components/Ui/loading/Loading'
+import { PopUp } from '../components/Ui/popup/PopUp'
+import { PopupContext } from '../context/popup'
 
 export default function Home({ locale }) {
   const { t } = useTranslation()
 
+  const [loading, setLoading] = useState(false)
+
   const propsImage = {
-    title: t('home:tituloHome'),
-    title2: t('home:titulohome2'),
+    title: t('home:HOME_TITLE'),
+    title2: t('home:HOME_TITLE_2'),
     image: '/promo_c1.png',
   }
 
+  if (loading) return <Loading />
+
   return (
-    <LayoutMain t={t} propsImage={propsImage}>
-      <section className="" id="about">
-        <div className="container mt-12">
-          <div className="row align-items-center">
-            <div className="col-lg-6">
-              <div className="heading heading--primary">
-                <span className="heading__pre-title" data-lang="nostros">
-                  {t('home:sobreNotros')}
-                </span>
-                <h2 className="heading__title">
-                  <span>{t('home:fundacion')} Soy Tú Salud</span>
-                </h2>
-              </div>
-              <p>
-                {t('home:primerTexto')}{' '}
-                <a href="https://www.fundacionsoytusalud.org">
-                  {t('home:fundacion')} Soy Tú Salud
-                </a>{' '}
-                {t('home:segundoTexto')}.
-              </p>
-              <p className="pb-4">
-                {' '}
-                {t('home:EnLa')}{' '}
-                <a href="https://www.fundacionsoytusalud.org/">
-                  {t('home:fundacion')} Soy Tú Salud
-                </a>{' '}
-                {t('home:tercerTexto')} :{' '}
-              </p>
-              <div className="row">
-                <div className="col-md-6 col-lg-12">
-                  <ul className="unordered-list">
-                    <li>{t('home:lista1')}</li>
-                    <li>{t('home:lista2')}</li>
-                    <li>{t('home:lista3')}</li>
-                    <li>{t('home:lista4')}</li>
-                    <li>{t('home:lista5')}</li>
-                  </ul>
+    <>
+      <LayoutMain t={t} propsImage={propsImage}>
+        <Head> <title>FundacionSoyTu | Home</title> </Head>
+        <section className="">
+          <div className="container mt-12">
+            <div className="row align-items-center mt-4">
+              <div className="col-lg-6">
+                <div className="heading">
+                  <span className="heading__pre-title" data-lang="nostros">
+                    {t('home:ABOUT_US')}
+                  </span>
+                  <h2 className="heading__title">
+                    <span className="title-main-home">
+                      {t('common:FOUNDATION')}
+                    </span>{' '}
+                    Soy Tú Salud
+                  </h2>
                 </div>
-              </div>
-              <a className="button button--primary" href="#">
-                {t('home:masSobre')}
-              </a>
-            </div>
-            <div className="col-lg-6 col-xl-5 offset-xl-1">
-              <div className="info-box flex items-center">
-                <div className="absolute">
-                  <Image
-                    src="/about_layout.png"
-                    alt="img"
-                    width={700}
-                    height={700}
-                  />
+                <p>
+                  {t('home:FIRST_TEXT')}{' '}
+                  <a href="https://www.fundacionsoytusalud.org">
+                    {t('common:FOUNDATION')} Soy Tú Salud
+                  </a>{' '}
+                  {t('home:SECOND_TEXT')}.
+                </p>
+                <p className="pb-8">
+                  {' '}
+                  {t('home:ON_THE')}{' '}
+                  <a href="https://www.fundacionsoytusalud.org/">
+                    {t('common:FOUNDATION')} Soy Tú Salud
+                  </a>{' '}
+                  {t('home:THIRD_TEXT')} :{' '}
+                </p>
+                <div className="row">
+                  <div className="col-md-6 col-lg-12">
+                    <ul className="unordered-list">
+                      <li>{t('home:LIST_1')}</li>
+                      <li>{t('home:LIST_2')}</li>
+                      <li>{t('home:LIST_3')}</li>
+                      <li>{t('home:LIST_4')}</li>
+                      <li>{t('home:LIST_5')}</li>
+                    </ul>
+                  </div>
                 </div>
-                <div className="relative box-content m-auto">
-                  <Image
-                    src="/gallery_2.png"
-                    alt="img"
-                    width={350}
-                    height={350}
-                  />
-                </div>
+                <a className="button button--primary" href="#">
+                  {t('home:MORE_ABOUT_US')}
+                </a>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section icons-section no-padding-top">
-        <div className="container">
-          <div className="row margin-bottom">
-            <div className="col-12">
-              <div className="heading heading--center">
-                <span className="heading__pre-title">
-                  {t('home:servicios')}
-                </span>
-                <h2 className="heading__title">
-                  <span>{t('home:hacemos')}</span>{' '}
-                  <span>{t('home:personas')}</span>{' '}
-                </h2>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-12 col-lg-12">
-              <div className="icon-item">
-                <div className="icon-item__img">
-                  <div className="icon icon-item__icon icon--red">
+              <div className="col-lg-6 col-xl-5">
+                <div className="info-box flex items-center">
+                  <div className="absolute">
                     <Image
-                      src="/Logo_servicios1.png"
+                      src="/about_layout.png"
                       alt="img"
-                      width={300}
-                      height={300}
+                      width={700}
+                      height={700}
                     />
                   </div>
-
-                  <div className="img--layout">
+                  <div className="relative box-content m-auto">
                     <Image
-                      src="/icon_1-1.png"
+                      src="/gallery_2.png"
                       alt="img"
-                      width={200}
-                      height={200}
+                      width={350}
+                      height={350}
                     />
                   </div>
                 </div>
-                <div className="icon-item__text">
-                  <p>{t('home:ayudaMedica')}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="section icons-section pt-0">
+          <div className="container">
+            <div className="row margin-bottom">
+              <div className="col-12">
+                <div className="heading heading--center">
+                  <span className="heading__pre-title">
+                    {t('common:SERVICES')}
+                  </span>
+                  <h2 className="heading__title">
+                    <span>{t('home:WE_MAKE')}</span>{' '}
+                    <span>{t('home:PEOPLE')}</span>{' '}
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-12 col-lg-12">
+                <div className="icon-item">
+                  <div className="icon-item__img">
+                    <div className="icon icon-item__icon icon--red">
+                      <Image
+                        src="/Logo_servicios1.png"
+                        alt="img"
+                        width={150}
+                        height={150}
+                      />
+                    </div>
+
+                    <div className="img--layout">
+                      <Image
+                        src="/icon_1-1.png"
+                        alt="img"
+                        width={200}
+                        height={200}
+                      />
+                    </div>
+                  </div>
+                  <div className="icon-item__text">
+                    <p>{t('home:MEDICAL_HELP')}</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-    </LayoutMain>
+        </section>
+      </LayoutMain>
+
+      {/* <PopUp mssgError="Usuario o contraseña incorrecto" /> */}
+    </>
   )
 }
 
 export const getStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['home', 'footer', 'navbar'])),
+      ...(await serverSideTranslations(locale, [
+        'common',
+        'home',
+        'footer',
+        'navbar',
+      ])),
     },
   }
 }

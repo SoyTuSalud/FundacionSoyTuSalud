@@ -2,30 +2,35 @@ import { gql } from '@apollo/client'
 
 export const registrarFilantropo = gql`
   mutation Mutation(
-    $uid: ID!
+    $tipoDocumento: String!
     $identificacion: String!
     $nombre: String!
     $apellidos: String!
-    $tipoDocumento: String!
     $celular: String!
     $correo: String!
+    $contrasena: String!
   ) {
     crearFilantropo(
-      uid: $uid
       tipoDocumento: $tipoDocumento
       identificacion: $identificacion
       nombre: $nombre
+      apellidos: $apellidos
       celular: $celular
-      direccion: $direccion
       correo: $correo
+      contrasena: $contrasena
     ) {
-      uid
-      tipoDocumento
-      identificacion
-      nombre
-      celular
-      direccion
-      correo
+      ... on ResponseFilantropo {
+        status {
+          code
+          description
+        }
+      }
+      ... on ResponseFilantropoError {
+        status {
+          code
+          description
+        }
+      }
     }
   }
 `

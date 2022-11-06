@@ -1,24 +1,24 @@
 import { TipoDocumentoEnum } from "../commons/enums/tipoDocumentoEnum"
 
 export interface Representante {
-  identificacion: String
-  foto: String
-  nombreCompleto: String
-  celular: String
+  identificacion: string
+  foto: string
+  nombreCompleto: string
+  celular: string
   tipoDocumento: TipoDocumentoEnum
-  departamento: String
-  municipio: String
-  direccion: String
-  paginaWeb?: String
-  cuentaDeAhorros: String
-  distintivoHabilitacion: String
-  convalidacionIcfes?: String
-  fotoLogoPublicidad: String
-  hojaVida: String
-  resumenCurriculum: String
-  aceptaConvenio: Boolean
-  aceptaTratamientoDatos: Boolean
-  aceptaDocumentoSARLAFT: Boolean
-  aceptaCodigoEticaSoyTuSalud: Boolean
-  habilitado?: Boolean
+  departamento: string
+  municipio: string
+  direccion: string
+  paginaWeb?: string
+  cuentaDeAhorros: string
+  distintivoHabilitacion: string
+  convalidacionIcfes?: string
+  fotoLogoPublicidad: string
+  hojaVida: string
+  resumenCurriculum: string
+  aceptaConvenio: boolean
+  aceptaTratamientoDatos: boolean
+  aceptaDocumentoSARLAFT: boolean
+  aceptaCodigoEticaSoyTuSalud: boolean
+  habilitado?: boolean
 }

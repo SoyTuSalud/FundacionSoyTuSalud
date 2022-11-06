@@ -2,6 +2,9 @@ import { gql } from 'apollo-server-micro'
 
 export const typesRepresentate = gql`
 
+  union UnionRepresentante = ResponseRepresentante | ResponseRepresentanteError
+  union UnionRepresentanteList = ResponseRepresentanteList | ResponseRepresentanteError
+
   type Representante {
     _id: ID!
     identificacion: String!
@@ -24,25 +27,44 @@ export const typesRepresentate = gql`
     aceptaTratamientoDatos: String!
     aceptaDocumentoSARLAFT: String!
     aceptaCodigoEticaSoyTuSalud: String!
-    habilitado: Boolean!
+    habilitado: String!
   }
 
-  type Response{
+  input ServiciosCreate {
+    tipoServicio: String!
+    especialidad: String!
+    modalidad: String!
+    horaInicio: String!
+    horaFin: String!
+    celularServicio: String!
+    whatsAppServicio: String!
+    nombreResponsable: String!
+    direccionServicio: String!
+    dias: [String]!
+    valorServicio: String!
+  }
+
+  type ResponseRepresentante{
       body: Representante
-      status: Status
+      status: StatusRepresentante
   }
-  type ResponseList{
+
+  type ResponseRepresentanteError{
+      status: StatusRepresentante
+  }
+
+  type ResponseRepresentanteList{
       body: [Representante]
-      status: Status
+      status: StatusRepresentante
   }
-    type Status{
+    type StatusRepresentante{
       code: String!
       description: String!
   }
 
   type Query {
-    RepresentantesTabla: ResponseList
-    Representante(_id: String!): Response
+    RepresentantesTabla: UnionRepresentanteList
+    Representante(_id: String!): UnionRepresentante 
   }
   
   type Mutation {
@@ -56,16 +78,17 @@ export const typesRepresentate = gql`
       municipio: String!
       direccion: String!
       paginaWeb: String
+      servicios: [ServiciosCreate]!
       cuentaDeAhorros: String!
       distintivoHabilitacion: String!
       convalidacionIcfes: String
       fotoLogoPublicidad: String!
       hojaVida: String!
       resumenCurriculum: String!
-      aceptaConvenio: Boolean!
-      aceptaTratamientoDatos: Boolean!
-      aceptaDocumentoSARLAFT: Boolean!
-      aceptaCodigoEticaSoyTuSalud: Boolean!
-    ): Representante
+      aceptaConvenio: String!
+      aceptaTratamientoDatos: String!
+      aceptaDocumentoSARLAFT: String!
+      aceptaCodigoEticaSoyTuSalud: String!
+    ): UnionRepresentante
   }
 `

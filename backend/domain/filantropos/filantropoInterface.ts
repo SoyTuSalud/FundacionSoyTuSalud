@@ -1,10 +1,17 @@
-import { TipoDocumentoEnum } from "../commons/enums/tipoDocumentoEnum"
+import { Schema } from 'mongoose'
+import { ProfileTypeEnum } from '../commons/enums/profileTypeEnum'
+import { TipoDocumentoEnum } from '../commons/enums/tipoDocumentoEnum'
 
-export interface filantropo {
-  tipoDocumento: String
+export interface Filantropo {
+  tipoDocumento: string
   identificacion: TipoDocumentoEnum
-  nombre: String
-  celular: String
-  direccion: String
-  correo: String
+  nombre: string
+  apellidos: string
+  celular: string
+  direccion: string
+  correo: string
+  numeroDonaciones: number
+  totalDonado: number
+  pacientesApoyados: [Schema.Types.ObjectId]
+  profileType: ProfileTypeEnum
 }

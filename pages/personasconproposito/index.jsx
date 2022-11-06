@@ -5,14 +5,13 @@ import Image from 'next/image'
 import { LayoutMain } from '../../components/layouts/LayoutMain'
 
 const Aliados = () => {
-
   const { t } = useTranslation()
 
   const propsImage = {
-      title:t('home:tituloHome'),
-      title2: t('home:titulohome2'),
-      image: "/promo_c1.png"
-    }
+    title: t('home:HOME_TITLE'),
+    title2: t('home:HOME_TITLE_2'),
+    image: '/promo_c1.png',
+  }
 
   return (
     <LayoutMain propsImage={propsImage} t={t}>
@@ -29,38 +28,58 @@ const Aliados = () => {
               </div>
             </div>
 
-            <div className="row offset-margin pb-12 sm:w-full">
-              <div className=" col-lg-12">
-                <div className="icon-item">
-                  <table
-                    id="Tabla_EmpresasConPropositos"
-                    className="table table-hover "
-                  >
-                    <thead>
-                      <tr>
-                        <th>Nombre</th>
-                        <th>Fecha</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Persona 1</td>
-                        <td>2021-01-01</td>
-                      </tr>
-                      <tr>
-                        <td>Persona 2</td>
-                        <td>2021-05-23</td>
-                      </tr>
-                      <tr>
-                        <td>Persona 3</td>
-                        <td>2022-01-30</td>
-                      </tr>
-                      <tr>
-                        <td>Persona 4</td>
-                        <td>2022-02-13</td>
-                      </tr>
-                    </tbody>
-                  </table>
+            <div className="flex flex-col mb-14">
+              <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                  <div className="overflow-hidden">
+                    <table
+                      id="Tabla_EmpresasConPropositos"
+                      className="min-w-full"
+                    >
+                      <thead className="border-b">
+                        <tr>
+                          <th
+                            scope="col"
+                            className="text-lg font-medium text-gray-900 px-6 py-4 text-center"
+                          >
+                            Nombre
+                          </th>
+                          <th
+                            scope="col"
+                            className="text-lg font-medium text-gray-900 px-6 py-4 text-center"
+                          >
+                            Fecha
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr className="border-b">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-600 border-r">
+                            Empresa 1
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-600 border-r">
+                            2021-01-01
+                          </td>
+                        </tr>
+                        <tr className="border-b">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-600 border-r">
+                            Empresa 2
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-600 border-r">
+                            2021-05-23
+                          </td>
+                        </tr>
+                        <tr className="border-b">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-600 border-r">
+                            Empresa 3
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-600 border-r">
+                            2022-01-30
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
@@ -74,10 +93,14 @@ const Aliados = () => {
 export const getStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['navbar','home','registro'])),
+      ...(await serverSideTranslations(locale, [
+        'navbar',
+        'home',
+        'registro',
+        'footer',
+      ])),
     },
   }
 }
-
 
 export default Aliados

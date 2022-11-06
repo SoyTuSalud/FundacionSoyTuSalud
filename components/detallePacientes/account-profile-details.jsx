@@ -72,7 +72,7 @@ export const AccountProfileDetails = ({ user }) => {
                   {
                     departamentos.filter(
                       (dpto) => dpto.codigo === user.departamento,
-                    )[0].nombre
+                    )[0]?.nombre
                   }
                 </Typography>
               </Grid>
@@ -131,7 +131,7 @@ export const AccountProfileDetails = ({ user }) => {
                     grupoPoblacional.filter(
                       (valueFilter) =>
                         valueFilter.value === user.grupoPoblacional,
-                    )[0].grupo
+                    )[0]?.grupo
                   }
                 </Typography>
               </Grid>
@@ -241,7 +241,7 @@ export const AccountProfileDetails = ({ user }) => {
               </Typography>
               <Grid>
                 <Typography variant="outlined">
-                  {eps.filter((ep) => ep.value === user.EPS)[0].eps}
+                  {eps.filter((ep) => ep.value === user.EPS)[0]?.eps}
                 </Typography>
               </Grid>
             </Grid>
@@ -251,7 +251,7 @@ export const AccountProfileDetails = ({ user }) => {
               </Typography>
               <Grid>
                 <Typography variant="outlined">
-                  {user.serviciosSolicitado.toString()}
+                  {user.serviciosSolicitado?.toString()}
                 </Typography>
               </Grid>
             </Grid>

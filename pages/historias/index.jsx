@@ -5,120 +5,51 @@ import Image from 'next/image'
 import { LayoutMain } from '../../components/layouts/LayoutMain'
 
 const Historia = () => {
-
   const { t } = useTranslation()
 
   const propsImage = {
-      title:t('home:tituloHome'),
-      title2: t('home:titulohome2'),
-      image: "/promo_c1.png"
-    }
+    title: t('home:HOME_TITLE'),
+    title2: t('home:HOME_TITLE_2'),
+    image: '/promo_c1.png',
+  }
 
   return (
-    <LayoutMain propsImage={propsImage} t={t} >
-      <main className="main">
-        <section className="section causes-inner">
-          <div className="container">
-            <div className="row offset-margin">
-              <div className="col-md-8 offset-md-2 col-lg-12 offset-lg-0">
-                <div className="causes-item causes-item--style-3">
-                  <div className="causes-item__body">
-                    <div className="row align-items-center">
-                      <div className="col-lg-5 col-xl-4">
-                        <div className="causes-item__img">
-                          <div className="img--bg">
-                            <Image
-                              src="https://firebasestorage.googleapis.com/v0/b/quetions-app.appspot.com/o/1.JPG?alt=media&token=0864a1e7-ffbd-4446-a998-546c7d112fd7"
-                              alt="img"
-                              layout="fill"
-                              objectFit="cover"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-lg-7 col-xl-8">
-                        <div className="causes-item__action">
-                          <div className="causes-item__badge"></div>
-                          <a className="causes-item__link">Te Acompaño</a>
-                        </div>
-                        <div className="causes-item__top">
-                          <h6 className="causes-item__title">
-                            {' '}
-                            <a href="#">Paciente de prueba numero 1</a>
-                          </h6>
-                          <p>esta es una historia de prueba </p>
-                        </div>
-                        <div className="causes-item__lower">
-                          <div className="especialidad causes-item__badge">
-                            Consulta Otorrinonaringologia
-                          </div>
-                          <div className="causes-item__details-holder">
-                            <div className="causes-item__details-item">
-                              <span>Valor: </span>
-                              <span>$200.000</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+    <LayoutMain propsImage={propsImage} t={t}>
+      <div className="container-histories-page">
+        <div className="container-card">
+          <div className="container-header-card">
+            <p>img</p>
+            <p className="together-link">TE ACOMPAÑO</p>
           </div>
-        </section>
 
-        <section className="section causes-inner">
-          <div className="container">
-            <div className="row offset-margin">
-              <div className="col-md-8 offset-md-2 col-lg-12 offset-lg-0">
-                <div className="causes-item causes-item--style-3">
-                  <div className="causes-item__body">
-                    <div className="row align-items-center">
-                      <div className="col-lg-5 col-xl-4">
-                        <div className="causes-item__img">
-                          <div className="img--bg">
-                            <Image
-                              src="https://firebasestorage.googleapis.com/v0/b/quetions-app.appspot.com/o/2.JPG?alt=media&token=cd585020-3196-4cb5-a4f6-96a139e2cbf3"
-                              alt="img"
-                              layout="fill"
-                              objectFit="cover"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-lg-7 col-xl-8">
-                        <div className="causes-item__action">
-                          <div className="causes-item__badge"></div>
-                          <a className="causes-item__link">Te Acompaño</a>
-                        </div>
-                        <div className="causes-item__top">
-                          <h6 className="causes-item__title">
-                            {' '}
-                            <a href="#">Paciente de prueba numero 2</a>
-                          </h6>
-                          <p>esta es una historia de prueba </p>
-                        </div>
-                        <div className="causes-item__lower">
-                          <div className="especialidad causes-item__badge">
-                            Consulta Ginecologia
-                          </div>
-                          <div className="causes-item__details-holder">
-                            <div className="causes-item__details-item">
-                              <span>Valor: </span>
-                              <span>$160.000</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="container-content-card">
+            <h4 className="title-card">Paciente de prueba numero 1</h4>
+            <p>esta es una historia de prueba</p>
+            <button className="btn-search">
+              Consulta Otorrinonaringologia
+            </button>
+            <p className="value-text">
+              Valor: <span className="price-bold">$200.000</span>
+            </p>
           </div>
-        </section>
-      </main>
+        </div>
+
+        <div className="container-card">
+          <div className="container-header-card">
+            <p>img</p>
+            <p className="together-link">TE ACOMPAÑO</p>
+          </div>
+
+          <div className="container-content-card">
+            <h4 className="title-card">Paciente de prueba numero 2</h4>
+            <p>esta es una historia de prueba</p>
+            <button className="btn-search">Consulta Ginecologia</button>
+            <p className="value-text">
+              Valor: <span className="price-bold">$250.000</span>
+            </p>
+          </div>
+        </div>
+      </div>
     </LayoutMain>
   )
 }
@@ -126,7 +57,12 @@ const Historia = () => {
 export const getStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['navbar','home','registro'])),
+      ...(await serverSideTranslations(locale, [
+        'navbar',
+        'home',
+        'registro',
+        'footer',
+      ])),
     },
   }
 }

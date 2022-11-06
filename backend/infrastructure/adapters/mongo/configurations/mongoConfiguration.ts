@@ -5,7 +5,6 @@ const connectionString = process.env.ENV_DB_CONNECT || "hola"//me traigo la vari
 const conectarBD = async () => {
   return await connect(connectionString)
     .then(() => {
-      console.log('Conexion exitosa')
     })
     .catch((e) => {
       console.error('Error conectando a la bd', e)
