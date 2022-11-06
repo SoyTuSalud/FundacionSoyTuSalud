@@ -9,7 +9,7 @@ const LinkEmail = process.env.ENV_LINK_HOST || ''
 const transporter = nodemailer.createTransport({
   host: emailHost,
   port: Number(emialPort),
-  secure: false, // true for 465, false for other ports
+  secure: true, // true for 465, false for other ports
   auth: {
     user: emailDireccion, // generated ethereal user
     pass: emailPassword, // generated ethereal password
