@@ -23,7 +23,7 @@ const ServiciosPage = ({ serviciosData }) => {
         <Container maxWidth={false}>
           <ServiciosToolbar />
           <Box sx={{ mt: 3 }}>
-            <ServiciosTablas serviciosData={serviciosData} />
+            <ServiciosTablas serviciosData={serviciosData.body} />
           </Box>
         </Container>
       </Box>
@@ -35,10 +35,10 @@ export const getServerSideProps = async (ctx) => {
   const { data } = await client.query({
     query: serviciosTablaData,
   })
-  const { ServiciosTabla } = data
+  const { RepresentantesTabla } = data
   return {
     props: {
-      serviciosData: ServiciosTabla,
+      serviciosData: RepresentantesTabla,
     },
   }
 }

@@ -3,13 +3,27 @@ import { gql } from '@apollo/client'
 export const filantropos = gql`
   query Filantropos {
     Filantropos {
-      uid
-      tipoDocumento
-      identificacion
-      nombre
-      celular
-      direccion
-      correo
+      ... on ResponseFilantropoList {
+        body {
+          _id
+          apellidos
+          celular
+          correo
+          identificacion
+          nombre
+          tipoDocumento
+        }
+        status {
+          code
+          description
+        }
+      }
+      ... on ResponseFilantropoError {
+        status {
+          code
+          description
+        }
+      }
     }
   }
 `

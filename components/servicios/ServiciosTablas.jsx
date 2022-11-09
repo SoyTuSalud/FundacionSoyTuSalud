@@ -161,7 +161,7 @@ export const ServiciosTablas = ({ serviciosData, ...rest }) => {
                 </TableCell>
                 <TableCell>
                   <Link
-                    href={`/private/admin/servicios/detalleServicio/${service.identificacion}`}
+                    href={`/private/admin/servicios/detalleServicio/${service._id}`}
                   >
                     <a className="text-blue-500">Detalles</a>
                   </Link>

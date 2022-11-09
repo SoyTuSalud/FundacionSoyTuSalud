@@ -9,7 +9,7 @@ const DetalleServicio = ({ Servicio }) => {
   return (
     <NewPrivateLayout>
       <Head>
-        <title>Servicio {Servicio.nombreCompleto}</title>
+        <title>Servicio {Servicio.body.nombreCompleto}</title>
       </Head>
       <Box
         component="main"
@@ -21,7 +21,7 @@ const DetalleServicio = ({ Servicio }) => {
         <Container maxWidth="xl">
           <Grid container>
             <Grid item width={'100%'}>
-              <ServicioDetails servicio={Servicio} />
+              <ServicioDetails servicio={Servicio.body} />
             </Grid>
           </Grid>
         </Container>
@@ -34,12 +34,12 @@ export const getServerSideProps = async ({ params }) => {
   const { identificacion } = params
   const { data } = await client.query({
     query: servicioDetalle,
-    variables: { identificacion },
+    variables: { _id: identificacion },
   })
-  const { Servicio } = data
+  const { Representante } = data
   return {
     props: {
-      Servicio,
+      Servicio : Representante,
     },
   }
 }

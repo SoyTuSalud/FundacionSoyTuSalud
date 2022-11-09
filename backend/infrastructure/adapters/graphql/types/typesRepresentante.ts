@@ -27,7 +27,7 @@ export const typesRepresentate = gql`
     aceptaTratamientoDatos: String!
     aceptaDocumentoSARLAFT: String!
     aceptaCodigoEticaSoyTuSalud: String!
-    habilitado: String!
+    habilitado: Boolean
   }
 
   input ServiciosCreate {
