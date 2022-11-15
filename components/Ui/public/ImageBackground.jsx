@@ -80,12 +80,12 @@ export const ImageBackground = ({propsImage}) => {
         position="relative"
       >
         <Image
-          src={propsImage.image}
+          src="/ImagenP.jpg"
           alt="img"
           layout="fill"
           objectFit="cover"
           quality={100}
-          objectPosition="50% 25%"
+          objectPosition="10% 10%"
           priority={true}
         />
         <Container className="pt-32 max-w-screen-2xl">
@@ -95,9 +95,9 @@ export const ImageBackground = ({propsImage}) => {
               className="text-white mt-12 text-3xl md:text-4xl lg:text-6xl xl:text-6xl tracking-tight text-left"
             >
               <span className="font-bold" data-lang="eslogan1">
-                {propsImage?.title}{' '}
+              Acceso oportuno y contínuo a servicios médicos asistenciales gratuitos, a mujeres embarazadas en situación de vulnerabilidad{' '}
               </span>
-              <span className="font-light">{propsImage?.title2}</span>
+              <span className="font-light">con la generosidad de personas y organizaciones de propósito filantrópico</span>
             </Box>
           </div>
         </Container>
