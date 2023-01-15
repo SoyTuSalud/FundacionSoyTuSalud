@@ -6,12 +6,12 @@ class AuthValue implements Auth {
   role: roleEnum
   correo: string
   contrasena: string
-  statusAccount: StatusAccountEnum
+  statusAccount?: StatusAccountEnum = StatusAccountEnum.UNVERIFIED
   constructor(
     role: roleEnum,
     correo: string,
     contrasena: string,
-    statusAccount: StatusAccountEnum,
+    statusAccount?: StatusAccountEnum,
   ) {
     this.role = role
     this.correo = correo

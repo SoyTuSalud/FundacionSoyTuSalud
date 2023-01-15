@@ -6,7 +6,7 @@ export const ResponseCodes = {
   },
   FATA_ERROR: {
     code: 'ST_01',
-    message: 'Error en base de datos favor contactar con el administrador',
+    message: 'Error fatal favor contactar con el administrador',
     httpStatus: 400,
   },
   NO_DATA: {
@@ -48,6 +48,16 @@ export const ResponseCodes = {
     code: 'ST_09',
     message: 'Metodo no existe',
     httpStatus: 405,
+  },
+  LOGIN_ERROR: {
+    code: 'ST_10',
+    message: 'Error la iniciar sesion email o contraseña errorneo',
+    httpStatus: 400,
+  },  
+  USER_NO_EXIST: {
+    code: 'ST_11',
+    message: 'Usuario no existe',
+    httpStatus: 400,
   },
   
   

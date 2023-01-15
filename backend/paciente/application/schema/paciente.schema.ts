@@ -19,7 +19,7 @@ export const PacienteSchema = z.object({
     TipoDocumentoEnum.PERMISO_PROTECCION_TEMPORAL,
     TipoDocumentoEnum.ERROR,
   ]),
-  celular: z.number().positive().gte(1000000000).lte(9999999999),
+  celular: z.number().positive().gte(3000000000).lte(9999999999),
   correo: z.string().email(),
 })
 

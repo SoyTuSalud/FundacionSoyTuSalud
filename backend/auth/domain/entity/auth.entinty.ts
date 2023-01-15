@@ -6,7 +6,7 @@ export interface Auth {
   role: roleEnum
   correo: string
   contrasena: string
-  statusAccount: StatusAccountEnum
+  statusAccount?: StatusAccountEnum
 }
 
 
