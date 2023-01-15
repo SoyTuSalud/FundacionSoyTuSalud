@@ -1,0 +1,7 @@
+export enum roleEnum {
+  PACIENTE = 'PACIENTE',
+  FILANTROPO = 'FILANTROPO',
+  REPRESENTANTE = 'REPRESENTANTE',
+  ADMIN = 'ADMIN',
+  NO_AUTH = 'NO_AUTH'
+}

@@ -32,7 +32,6 @@ export const AccountProfileDetails = ({ user }) => {
             />
           }
         >
-          <Box></Box>
         </CardHeader>
         <Divider />
         <CardContent>

@@ -33,7 +33,8 @@
     "utils/enablePagesEnum.js",
     "utils/validateRolPages.js",
     "pages/loginAdmin.jsx",
-    "pages/api/verifiedAccountByToken/[token].js"
+    "pages/api/verifiedAccountByToken/[token].js",
+    "backend/infrastructure/servicesV2/pacientes/findAllPacientests"
   ],
   "exclude": ["node_modules"]
 }

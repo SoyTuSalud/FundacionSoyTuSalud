@@ -2,8 +2,7 @@ import { NextResponse } from 'next/server'
 import { validateUser } from './utils/validateUser'
 import { enablePages, redirect } from './utils/enablePages'
 import { verifyAccount } from './utils/verifyAccount'
-import { ResponseCodes } from './backend/domain/commons/enums/responseCodesEnum'
-import { NextRequest } from 'next/server'
+import { ResponseCodes } from './backend/deprecated/domain/commons/enums/responseCodesEnum'
 
 export async function middleware(request) {
   const path = request.nextUrl.pathname

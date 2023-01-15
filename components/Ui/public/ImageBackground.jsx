@@ -80,7 +80,7 @@ export const ImageBackground = ({propsImage}) => {
         position="relative"
       >
         <Image
-          src="/ImagenP.jpg"
+          src="/promo_c1.png"
           alt="img"
           layout="fill"
           objectFit="cover"
@@ -96,8 +96,9 @@ export const ImageBackground = ({propsImage}) => {
             >
               <span className="font-bold" data-lang="eslogan1">
               Acceso oportuno y contínuo a servicios médicos asistenciales gratuitos, a mujeres embarazadas en situación de vulnerabilidad{' '}
+              con la generosidad de personas y organizaciones de propósito filantrópico
               </span>
-              <span className="font-light">con la generosidad de personas y organizaciones de propósito filantrópico</span>
+              {/* <span className="font-light"></span> */}
             </Box>
           </div>
         </Container>

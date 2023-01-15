@@ -23,7 +23,6 @@ const PacientesTuHistoria = () => {
     getPacientes()
       .then(({ data }) => {
         const request = data.PacientesTablaTuHistoria
-        console.log(request)
         if (request.status.code === ResponseCodes.SUCCESS) {
           setData(request.body)
         } else {
