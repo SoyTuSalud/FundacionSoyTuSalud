@@ -16,24 +16,30 @@ import '../styles/trabajaNosotros.css'
 import '../components/Ui/loading/loading.css'
 import '../components/Ui/popup/popup.css'
 import { PopupProvider } from '../context/popup'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 function MyApp({ Component, pageProps }) {
   const [authUser, setAuthUser] = useState()
   const [componentStatus, setComponentStatus] = useState({})
+
+  const queryClient = new QueryClient()
+
   return (
-    <ApolloProvider client={client}>
-      <PopupProvider>
-        <ThemeProvider theme={lightTheme}>
-          <AuthContext.Provider value={{ authUser, setAuthUser }}>
-            <ComponentContext.Provider
-              value={{ componentStatus, setComponentStatus }}
-            >
-              <Component {...pageProps} />
-            </ComponentContext.Provider>
-          </AuthContext.Provider>
-        </ThemeProvider>
-      </PopupProvider>
-    </ApolloProvider>
+    <QueryClientProvider client={queryClient}>
+      <ApolloProvider client={client}>
+        <PopupProvider>
+          <ThemeProvider theme={lightTheme}>
+            <AuthContext.Provider value={{ authUser, setAuthUser }}>
+              <ComponentContext.Provider
+                value={{ componentStatus, setComponentStatus }}
+              >
+                <Component {...pageProps} />
+              </ComponentContext.Provider>
+            </AuthContext.Provider>
+          </ThemeProvider>
+        </PopupProvider>
+      </ApolloProvider>
+    </QueryClientProvider>
   )
 }
 

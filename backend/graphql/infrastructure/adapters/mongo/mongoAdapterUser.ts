@@ -110,13 +110,12 @@ export const verifyRoles = (payload: any) => {
 // }
 
 export const verifyAccount = async (args: any) => {
-  
-  const  { payload } : any = await validateToken(args.token)
+  const { payload }: any = await validateToken(args.token)
 
-  console.log("entre", payload)
+  console.log('entre', payload)
 
   return await UserModel.findOneAndUpdate(
-    { correo: payload?.correo , statusAccount: 'unverified'},
+    { correo: payload?.correo, statusAccount: 'unverified' },
     { statusAccount: 'verified' },
   )
     .then((user: any) => {
@@ -141,9 +140,11 @@ export const verifyAccount = async (args: any) => {
 export const validateToken = async (token: string) =>
   new Promise(async (resolve, reject) => {
     try {
-      resolve( verify(token, process.env.ENV_KEY_TOKEN!, {
-        complete: true,
-      }))
+      resolve(
+        verify(token, process.env.ENV_KEY_TOKEN!, {
+          complete: true,
+        }),
+      )
     } catch (error: any) {
       reject({
         message: error.message,

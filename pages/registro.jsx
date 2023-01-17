@@ -9,7 +9,6 @@ import CloseIcon from '@mui/icons-material/Close'
 
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { ResponseCodes } from '../backend/domain/commons/enums/responseCodesEnum'
 import Image from 'next/image'
 import Head from 'next/head'
 import { Field, Form, Formik } from 'formik'
@@ -17,6 +16,7 @@ import { basicSchema } from '../schema'
 import { useCookies } from 'react-cookie'
 import { Box } from '@mui/material'
 import { MenuFooter } from '../components/Ui/public'
+import { ResponseCodes } from '../backend/graphql/domain/commons/enums/responseCodesEnum'
 
 const Registro = () => {
   const { t } = useTranslation()

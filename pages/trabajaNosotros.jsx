@@ -212,7 +212,7 @@ const TrabajaNosotros = () => {
                   id="foto"
                   name="foto"
                   accept="image/*"
-                  // className="custom-file-input  "
+                  // className="custom-file-input "
                   required
                 />
                 <label className="upload-photo" htmlFor="logo">
@@ -727,7 +727,7 @@ const ListServices = ({ index, handleCheckBox, t }) => {
       </div>
       <div className="row">
         <div className="col-12">
-          {codigoServicios.length > 0? (
+          {codigoServicios.length > 0 ? (
             <>
               <laber>{t('common:RESULTS')}</laber>
               <select
