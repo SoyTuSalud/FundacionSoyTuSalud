@@ -1,8 +1,7 @@
-import { Schema, Document, models, model } from 'mongoose';
-import { Auth } from '../../domain/entity/auth.entinty';
-import { roleEnum } from '../../domain/enums/role.enum';
-import { StatusAccountEnum } from '../../domain/enums/statusAccount.enum';
-
+import {Document, model, Schema, models} from 'mongoose';
+import {Auth} from '../../domain/entity/auth.entinty';
+import {roleEnum} from '../../domain/enums/role.enum';
+import {StatusAccountEnum} from '../../domain/enums/statusAccount.enum';
 
 
 export interface AuthDoc extends Auth, Document {
@@ -34,6 +33,8 @@ const AuthSchema = new Schema<AuthDoc>({
         required: true
     }
   })
-  
-  export default models.Auth || model('Auth', AuthSchema)
+
+
+
+  export default models.Auth || model<AuthDoc>('Auth', AuthSchema)
   

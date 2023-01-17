@@ -1,5 +1,5 @@
-import { roleEnum } from "../enums/role.enum"
-import { StatusAccountEnum } from "../enums/statusAccount.enum"
+import {roleEnum} from "../enums/role.enum"
+import {StatusAccountEnum} from "../enums/statusAccount.enum"
 
 
 export interface Auth {

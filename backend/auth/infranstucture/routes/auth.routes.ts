@@ -4,7 +4,7 @@ import { roleEnum } from '../../../common/enums/role.enum'
 import { validateRol } from '../../../common/middleware/common.middleware'
 import HttpError from '../../../common/models/httpError.value'
 import { Status } from '../../../common/models/status.value'
-import AuthController from '../controller/paciente.controller'
+import AuthController from '../controller/auth.controller'
 
 export class AuthRoutes {
   constructor(private authController: AuthController) {}

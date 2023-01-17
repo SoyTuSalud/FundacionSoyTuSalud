@@ -1,5 +1,5 @@
-import { z } from 'zod'
-import { TipoDocumentoEnum } from '../../domain/enum/tipoDocumento.enum'
+import {z} from 'zod'
+import {TipoDocumentoEnum} from '../../domain/enum/tipoDocumento.enum'
 
 export const PacienteSchema = z.object({
   identificacion: z.number().positive().gte(10000).lte(9999999999),
@@ -16,8 +16,7 @@ export const PacienteSchema = z.object({
     TipoDocumentoEnum.CERTIFICADO_NACIDO_VIVO,
     TipoDocumentoEnum.ADULTO_SIN_IDENTIFICAR,
     TipoDocumentoEnum.MENOR_SIN_IDENTIFICAR,
-    TipoDocumentoEnum.PERMISO_PROTECCION_TEMPORAL,
-    TipoDocumentoEnum.ERROR,
+    TipoDocumentoEnum.PERMISO_PROTECCION_TEMPORAL
   ]),
   celular: z.number().positive().gte(3000000000).lte(9999999999),
   correo: z.string().email(),

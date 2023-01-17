@@ -1,10 +1,9 @@
 import jwt from 'jsonwebtoken'
-import { NextApiRequest } from 'next'
-import { ResponseCodes } from '../enums/responseCodes.Enum'
-import { roleEnum } from '../enums/role.enum'
+import {NextApiRequest} from 'next'
+import {ResponseCodes} from '../enums/responseCodes.Enum'
+import {roleEnum} from '../enums/role.enum'
 import HttpError from '../models/httpError.value'
-import { Status } from '../models/status.value'
-import z from 'zod'
+import {Status} from '../models/status.value'
 
 export const validateRol = (req: NextApiRequest, rolRequired: roleEnum[]) => {
   const authorization = req.cookies.token || ''

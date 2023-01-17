@@ -1,6 +1,3 @@
-import { string } from "zod"
-
-
 export class RequestEntity<T>{
     body: T
     cookies: string | undefined

@@ -1,15 +1,16 @@
-import { NextApiRequest, NextApiResponse } from 'next'
-import { ResponseCodes } from '../../../common/enums/responseCodes.Enum'
-import { validateRol } from '../../../common/middleware/common.middleware'
-import { Status } from '../../../common/models/status.value'
+import {NextApiRequest, NextApiResponse} from 'next'
+import {ResponseCodes} from '../../../common/enums/responseCodes.Enum'
+import {validateRol} from '../../../common/middleware/common.middleware'
+import {Status} from '../../../common/models/status.value'
 import PacienteController from '../controller/paciente.controller'
-import { roleEnum } from '../../../common/enums/role.enum'
+import {roleEnum} from '../../../common/enums/role.enum'
 import HttpError from '../../../common/models/httpError.value'
 
 export class PacientesRoutes {
   constructor(private pacienteController: PacienteController) {}
 
   public initRoute(request: NextApiRequest, response: NextApiResponse) {
+
     const { method } = request
     const { url } = request
     switch (method) {
@@ -30,11 +31,8 @@ export class PacientesRoutes {
     }
   }
 
-  private getRoutes(
-    request: NextApiRequest,
-    response: NextApiResponse,
-    url: string,
-  ) {
+  private getRoutes(request: NextApiRequest, response: NextApiResponse, url: string) {
+
     const { id } = request.query
 
     switch (url) {
@@ -61,11 +59,8 @@ export class PacientesRoutes {
     }
   }
 
-  private postRoutes(
-    request: NextApiRequest,
-    response: NextApiResponse,
-    url: string,
-  ) {
+  private postRoutes(request: NextApiRequest, response: NextApiResponse, url: string) {
+
     switch (url) {
       case '/api/v1/pacientes':
         validateRol(request, [roleEnum.NO_AUTH])
@@ -81,15 +76,11 @@ export class PacientesRoutes {
         )
     }
   }
-  private patchRoutes(
-    request: NextApiRequest,
-    response: NextApiResponse,
-    url: string,
-  ) {
+  private patchRoutes(request: NextApiRequest, response: NextApiResponse, url: string) {
     switch (url) {
       case '/api/v1/pacientes':
         validateRol(request, [roleEnum.NO_AUTH])
-        return this.pacienteController.postPacientes(request, response)
+        return this.pacienteController.patchPacientes(request, response)
 
       default:
         throw new HttpError(

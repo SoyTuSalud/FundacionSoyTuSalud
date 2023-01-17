@@ -1,11 +1,10 @@
-
-import { z } from "zod";
-import { ResponseCodes } from "../../../common/enums/responseCodes.Enum";
+import {z} from "zod";
+import {ResponseCodes} from "../../../common/enums/responseCodes.Enum";
 import HttpError from "../../../common/models/httpError.value";
-import { Status } from "../../../common/models/status.value";
-import { AuthDTO } from "../../domain/dtos/auth.dto";
-import { AuthDTOSchema, AuthSignInDTOSchema } from "../schemas/auth.schema";
-import { AuthSignInDTO } from '../../domain/dtos/authSignIn.dto';
+import {Status} from "../../../common/models/status.value";
+import {AuthDTO} from "../../domain/dtos/auth.dto";
+import {AuthDTOSchema, AuthSignInDTOSchema} from "../schemas/auth.schema";
+import {AuthSignInDTO} from '../../domain/dtos/authSignIn.dto';
 
 export const validateAuthDTO = (body: any): AuthDTO => {
   try {

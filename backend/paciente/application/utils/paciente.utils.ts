@@ -1,10 +1,10 @@
-import { ResponseCodes } from '../../../common/enums/responseCodes.Enum'
+import {ResponseCodes} from '../../../common/enums/responseCodes.Enum'
 import HttpError from '../../../common/models/httpError.value'
 import PacienteValue from '../../domain/model/paciente.value'
-import { PacienteSchema, PacienteUpdateSchema } from '../schema/paciente.schema'
-import { UpdatePacienteDTO } from '../../domain/dtos/updatePaciente.dto'
-import { Status } from '../../../common/models/status.value'
-import { z } from "zod";
+import {PacienteSchema, PacienteUpdateSchema} from '../schema/paciente.schema'
+import {UpdatePacienteDTO} from '../../domain/dtos/updatePaciente.dto'
+import {Status} from '../../../common/models/status.value'
+import {z} from "zod";
 
 export const validateBodyCreation = (body: any): PacienteValue => {
   try {

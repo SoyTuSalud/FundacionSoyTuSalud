@@ -1,7 +1,7 @@
-import { RequestEntity } from '../../../common/models/request.value';
-import { ResponseEntity } from '../../../common/models/response.value';
-import { UpdatePacienteDTO } from '../../domain/dtos/updatePaciente.dto';
-import { Paciente } from '../../domain/entity/paciente.entity';
+import {RequestEntity} from '../../../common/models/request.value';
+import {ResponseEntity} from '../../../common/models/response.value';
+import {UpdatePacienteDTO} from '../../domain/dtos/updatePaciente.dto';
+import {Paciente} from '../../domain/entity/paciente.entity';
 
 export interface PacienteService{
 

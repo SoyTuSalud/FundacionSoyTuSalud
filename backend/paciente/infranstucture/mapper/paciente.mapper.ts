@@ -1,4 +1,4 @@
-import { Paciente } from '../../domain/entity/paciente.entity'
+import {Paciente} from '../../domain/entity/paciente.entity'
 import PacienteValue from '../../domain/model/paciente.value'
 
 

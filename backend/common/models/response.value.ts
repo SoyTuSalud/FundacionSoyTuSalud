@@ -1,4 +1,4 @@
-import { Status } from "./status.value"
+import {Status} from "./status.value"
 
 export class ResponseEntity<T>{
     body: T

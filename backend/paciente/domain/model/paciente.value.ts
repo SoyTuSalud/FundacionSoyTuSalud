@@ -1,9 +1,9 @@
-import { Paciente } from "../entity/paciente.entity"
-import { GeneroEnum } from "../enum/genero.enum"
-import { IdentidadGeneroEnum } from "../enum/identidadGenero.enum"
-import { OrientacionSexualEnum } from "../enum/orientacionSexual.enum"
-import { TipoDiscapacidadEnum } from "../enum/tipoDiscapacida.enum"
-import { TipoDocumentoEnum } from "../enum/tipoDocumento.enum"
+import {Paciente} from "../entity/paciente.entity"
+import {GeneroEnum} from "../enum/genero.enum"
+import {IdentidadGeneroEnum} from "../enum/identidadGenero.enum"
+import {OrientacionSexualEnum} from "../enum/orientacionSexual.enum"
+import {TipoDiscapacidadEnum} from "../enum/tipoDiscapacida.enum"
+import {TipoDocumentoEnum} from "../enum/tipoDocumento.enum"
 
 class PacienteValue implements Paciente {
   identificacion: string

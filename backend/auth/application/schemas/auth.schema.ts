@@ -1,5 +1,5 @@
-import { z } from 'zod'
-import { roleEnum } from '../../../common/enums/role.enum'
+import {z} from 'zod'
+import {roleEnum} from '../../../common/enums/role.enum'
 
 const passwordRuler = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/
 

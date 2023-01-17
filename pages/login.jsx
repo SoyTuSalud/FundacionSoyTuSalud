@@ -9,7 +9,7 @@ import { LayoutMain } from '../components/layouts'
 import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 import { useLazyQuery } from '@apollo/client'
-import { ResponseCodes } from '../backend/deprecated/domain/commons/enums/responseCodesEnum'
+import { ResponseCodes } from '../backend/graphql/domain/commons/enums/responseCodesEnum'
 
 const Login = () => {
   const { t } = useTranslation()

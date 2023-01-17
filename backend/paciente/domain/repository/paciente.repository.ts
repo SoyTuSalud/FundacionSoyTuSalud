@@ -1,6 +1,5 @@
-import { UpdatePacienteDTO } from "../dtos/updatePaciente.dto"
-import { Paciente } from "../entity/paciente.entity"
-
+import {UpdatePacienteDTO} from "../dtos/updatePaciente.dto"
+import {Paciente} from "../entity/paciente.entity"
 
 
 export interface PacienteRepository {

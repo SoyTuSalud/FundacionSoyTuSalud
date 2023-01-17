@@ -1,10 +1,10 @@
-
-import { Auth } from '../../domain/entity/auth.entinty';
+import {Auth} from '../../domain/entity/auth.entinty';
 import AuthValue from '../../domain/model/auth.model';
+import {AuthDoc} from "../model/auth.mongo.model";
+import {Types} from "mongoose";
 
 
-
-export const modelToEntity = <T extends Auth>(auth: T): Auth => {
+export const modelToEntity = (auth:  (AuthDoc & {_id: Types.ObjectId}) ): Auth => {
   return new AuthValue(
     auth.role,
     auth.correo,

@@ -157,4 +157,4 @@ export const PacienteSchema = new Schema<PacienteDoc>(
   },
 )
 
-export default models.Paciente || model('Paciente', PacienteSchema)
+export default models.Paciente || model<PacienteDoc>('Paciente', PacienteSchema)

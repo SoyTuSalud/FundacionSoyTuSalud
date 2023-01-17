@@ -1,22 +1,19 @@
-import { NextApiRequest, NextApiResponse } from 'next'
+import {NextApiRequest, NextApiResponse} from 'next'
 import conectarBD from '../../../common/connections/mongo.config'
-import { validateError } from '../../../common/functions/functions.common'
-import { RequestEntity } from '../../../common/models/request.value'
-import { ResponseEntity } from '../../../common/models/response.value'
-import { AuthService } from '../../application/services/auth.interface.service'
-import { validateAuthDTO, validateBodySignIn, validateString } from '../../application/utils/auth.utils';
-import { AuthDTO } from '../../domain/dtos/auth.dto'
-import { UserDTO } from '../../domain/dtos/user.dto'
-import { AuthSignInDTO } from '../../domain/dtos/authSignIn.dto';
+import {validateError} from '../../../common/functions/functions.common'
+import {RequestEntity} from '../../../common/models/request.value'
+import {ResponseEntity} from '../../../common/models/response.value'
+import {AuthService} from '../../application/services/auth.interface.service'
+import {validateAuthDTO, validateBodySignIn, validateString} from '../../application/utils/auth.utils';
+import {AuthDTO} from '../../domain/dtos/auth.dto'
+import {UserDTO} from '../../domain/dtos/user.dto'
+import {AuthSignInDTO} from '../../domain/dtos/authSignIn.dto';
 
 class AuthController {
   constructor(private authService: AuthService) {
     conectarBD()
   }
-  public postAuthLogin = async (
-    request: NextApiRequest,
-    response: NextApiResponse,
-  ) => {
+  public postAuthLogin = async (request: NextApiRequest, response: NextApiResponse) => {
     try {
       const requestEntity = new RequestEntity<AuthDTO>(
         validateAuthDTO(request.body),
@@ -34,10 +31,7 @@ class AuthController {
     }
   }
 
-  public postAuthSignIn = async (
-    request: NextApiRequest,
-    response: NextApiResponse,
-  ) => {
+  public postAuthSignIn = async (request: NextApiRequest, response: NextApiResponse) => {
     try {
 
       const requestEntity = new RequestEntity<AuthSignInDTO>(
@@ -55,10 +49,7 @@ class AuthController {
     }
   }
 
-  public postAuthLoginAdmin = async (
-    request: NextApiRequest,
-    response: NextApiResponse,
-  ) => {
+  public postAuthLoginAdmin = async (request: NextApiRequest, response: NextApiResponse) => {
     try {
       const requestEntity = new RequestEntity<AuthDTO>(
         validateAuthDTO(request.body),
@@ -75,10 +66,8 @@ class AuthController {
     }
   }
 
-  public getAuthVerifyRole = async (
-    request: NextApiRequest,
-    response: NextApiResponse,
-  ) => {
+  public getAuthVerifyRole = async (request: NextApiRequest, response: NextApiResponse) => {
+
     const { id } = request.query
     try {
       const requestEntity = new RequestEntity<string>(

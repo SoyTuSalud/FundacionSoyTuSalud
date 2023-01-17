@@ -1,9 +1,9 @@
-import { RequestEntity } from '../../../common/models/request.value';
-import { ResponseEntity } from '../../../common/models/response.value';
-import { AuthDTO } from '../../domain/dtos/auth.dto';
-import { UserDTO } from '../../domain/dtos/user.dto';
-import { NextApiResponse } from 'next/types';
-import { AuthSignInDTO } from '../../domain/dtos/authSignIn.dto';
+import {RequestEntity} from '../../../common/models/request.value';
+import {ResponseEntity} from '../../../common/models/response.value';
+import {AuthDTO} from '../../domain/dtos/auth.dto';
+import {UserDTO} from '../../domain/dtos/user.dto';
+import {NextApiResponse} from 'next/types';
+import {AuthSignInDTO} from '../../domain/dtos/authSignIn.dto';
 
 export interface AuthService{
 

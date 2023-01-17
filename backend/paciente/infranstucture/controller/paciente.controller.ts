@@ -1,45 +1,33 @@
-import { NextApiRequest, NextApiResponse } from 'next'
+import {NextApiRequest, NextApiResponse} from 'next'
 import conectarBD from '../../../common/connections/mongo.config'
-import { ResponseEntity } from '../../../common/models/response.value'
-import { Paciente } from '../../domain/entity/paciente.entity'
-import { RequestEntity } from '../../../common/models/request.value'
-import {
-  validateBodyCreation,
-  validateString,
-  validateBodyUpdate,
-} from '../../application/utils/paciente.utils'
-import { PacienteService } from '../../application/service/paciente.inface.service'
-import { validateError } from '../../../common/functions/functions.common'
+import {ResponseEntity} from '../../../common/models/response.value'
+import {Paciente} from '../../domain/entity/paciente.entity'
+import {RequestEntity} from '../../../common/models/request.value'
+import {validateBodyCreation, validateBodyUpdate, validateString,} from '../../application/utils/paciente.utils'
+import {PacienteService} from '../../application/service/paciente.inface.service'
+import {validateError} from '../../../common/functions/functions.common'
 
 
 class PacienteController {
   constructor(private pacienteService: PacienteService) {
     conectarBD()
   }
-  public getPacientes = async (
-    request: NextApiRequest,
-    response: NextApiResponse,
-  ) => {
+  public getPacientes = async (request: NextApiRequest, response: NextApiResponse) => {
+
       const responseEntity: ResponseEntity<Paciente[] | null> =
         await this.pacienteService.fetchPacientes()
 
       response.status(responseEntity.status.httpStatus).json(responseEntity)
   }
 
-  public getPacientesTuHistoria = async (
-    request: NextApiRequest,
-    response: NextApiResponse,
-  ) => {
+  public getPacientesTuHistoria = async ( request: NextApiRequest, response: NextApiResponse) => {
     const responseEntity: ResponseEntity<Paciente[]> | ResponseEntity<null> =
       await this.pacienteService.fetchPacientesTuHistoria()
 
     response.status(responseEntity.status.httpStatus).json(responseEntity)
   }
 
-  public getPacientesById = async (
-    request: NextApiRequest,
-    response: NextApiResponse,
-  ) => {
+  public getPacientesById = async (request: NextApiRequest, response: NextApiResponse) => {
     const { id } = request.query
     try {
       const requestEntity = new RequestEntity<string>(
@@ -57,10 +45,7 @@ class PacienteController {
     }
   }
 
-  public postPacientes = async (
-    request: NextApiRequest,
-    response: NextApiResponse,
-  ) => {
+  public postPacientes = async (request: NextApiRequest, response: NextApiResponse) => {
     try {
       const requestEntity = new RequestEntity(
         validateBodyCreation(request.body),
@@ -78,10 +63,7 @@ class PacienteController {
     }
   }
 
-  public patchPacientes = async (
-    request: NextApiRequest,
-    response: NextApiResponse,
-  ) => {
+  public patchPacientes = async (request: NextApiRequest, response: NextApiResponse) => {
     try {
       const requestEntity = new RequestEntity(
         validateBodyUpdate(request.body),

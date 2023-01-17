@@ -1,5 +1,5 @@
-import { serialize, CookieSerializeOptions } from 'cookie'
-import { NextApiResponse } from 'next/types'
+import {CookieSerializeOptions, serialize} from 'cookie'
+import {NextApiResponse} from 'next/types'
 
 export const setCookie = (
   res: NextApiResponse,

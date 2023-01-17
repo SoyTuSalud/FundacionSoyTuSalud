@@ -1,5 +1,5 @@
-import { roleEnum } from "../../../common/enums/role.enum";
-import { StatusAccountEnum } from "../enums/statusAccount.enum";
+import {roleEnum} from "../../../common/enums/role.enum";
+import {StatusAccountEnum} from "../enums/statusAccount.enum";
 
 
 export class UserDTO {

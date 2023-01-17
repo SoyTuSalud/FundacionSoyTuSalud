@@ -1,7 +1,7 @@
-import { PacienteServiceImpl } from '../../application/service/paciente.impl.service'
+import {PacienteServiceImpl} from '../../application/service/paciente.impl.service'
 import PacienteController from '../controller/paciente.controller'
-import { MongoRepository } from '../repository/mongo.repository'
-import { PacientesRoutes } from '../routes/paciente.routes';
+import {MongoRepository} from '../repository/mongo.repository'
+import {PacientesRoutes} from '../routes/paciente.routes';
 
 const pacienteRepository = new MongoRepository()
 const pacienteService = new PacienteServiceImpl(pacienteRepository)

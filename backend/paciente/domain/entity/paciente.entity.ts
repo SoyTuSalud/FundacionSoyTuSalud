@@ -1,8 +1,8 @@
-import { GeneroEnum } from '../enum/genero.enum'
-import { IdentidadGeneroEnum } from '../enum/identidadGenero.enum'
-import { OrientacionSexualEnum } from '../enum/orientacionSexual.enum'
-import { TipoDiscapacidadEnum } from '../enum/tipoDiscapacida.enum'
-import { TipoDocumentoEnum } from '../enum/tipoDocumento.enum'
+import {GeneroEnum} from '../enum/genero.enum'
+import {IdentidadGeneroEnum} from '../enum/identidadGenero.enum'
+import {OrientacionSexualEnum} from '../enum/orientacionSexual.enum'
+import {TipoDiscapacidadEnum} from '../enum/tipoDiscapacida.enum'
+import {TipoDocumentoEnum} from '../enum/tipoDocumento.enum'
 
 export interface Paciente {
   identificacion: string

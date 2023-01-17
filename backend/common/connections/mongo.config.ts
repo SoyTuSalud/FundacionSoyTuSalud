@@ -1,4 +1,4 @@
-import { connect } from 'mongoose'
+import {connect} from 'mongoose'
 
 const connectionString = process.env.ENV_DB_CONNECT || 'hola' //me traigo la variable del env
 

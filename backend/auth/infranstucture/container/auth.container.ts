@@ -1,7 +1,7 @@
-import { authServiceImpl } from "../../application/services/auth.impl.service"
-import { MongoAuthRespostory } from "../repository/mongo.repository"
-import AuthController from '../controller/paciente.controller';
-import { AuthRoutes } from "../routes/auth.routes";
+import {authServiceImpl} from "../../application/services/auth.impl.service"
+import {MongoAuthRespostory} from "../repository/mongo.repository"
+import AuthController from '../controller/auth.controller';
+import {AuthRoutes} from "../routes/auth.routes";
 
 
 const authRepository = new MongoAuthRespostory()
