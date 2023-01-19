@@ -17,29 +17,32 @@ import '../components/Ui/loading/loading.css'
 import '../components/Ui/popup/popup.css'
 import { PopupProvider } from '../context/popup'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { SessionProvider } from 'next-auth/react'
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const [authUser, setAuthUser] = useState()
   const [componentStatus, setComponentStatus] = useState({})
 
   const queryClient = new QueryClient()
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <ApolloProvider client={client}>
-        <PopupProvider>
-          <ThemeProvider theme={lightTheme}>
-            <AuthContext.Provider value={{ authUser, setAuthUser }}>
-              <ComponentContext.Provider
-                value={{ componentStatus, setComponentStatus }}
-              >
-                <Component {...pageProps} />
-              </ComponentContext.Provider>
-            </AuthContext.Provider>
-          </ThemeProvider>
-        </PopupProvider>
-      </ApolloProvider>
-    </QueryClientProvider>
+    <SessionProvider session={session}>
+      <QueryClientProvider client={queryClient}>
+        <ApolloProvider client={client}>
+          <PopupProvider>
+            <ThemeProvider theme={lightTheme}>
+              <AuthContext.Provider value={{ authUser, setAuthUser }}>
+                <ComponentContext.Provider
+                  value={{ componentStatus, setComponentStatus }}
+                >
+                  <Component {...pageProps} />
+                </ComponentContext.Provider>
+              </AuthContext.Provider>
+            </ThemeProvider>
+          </PopupProvider>
+        </ApolloProvider>
+      </QueryClientProvider>
+    </SessionProvider>
   )
 }
 

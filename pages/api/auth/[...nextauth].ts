@@ -28,7 +28,8 @@ export default NextAuth({
       async authorize(credentials) {
         console.log({ credentials })
         // return { name: 'Juan', correo: 'juan@google.com', role: 'admin' };
-        return authService.login(new RequestEntity(credentials))
+        // return authService.login(new RequestEntity(credentials))
+        return null
       },
     }),
   ],
