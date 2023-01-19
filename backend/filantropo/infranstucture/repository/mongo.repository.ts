@@ -6,20 +6,30 @@ import {FilantropoRepository} from '../../domain/repository/filantropo.repositor
 import {ResponseCodes} from '../../../common/enums/responseCodes.Enum'
 import {Status} from '../../../common/models/status.value'
 import {CreateFilantropoDTO} from "../../domain/dtos/updateFilantropo.dto";
+import {Types} from "mongoose";
 
 export class MongoRepository implements FilantropoRepository {
 
     public async findFilantropoById(identificacion: string): Promise<Filantropo> {
         return await FilantropoModel.findOne({ identificacion })
-            .then((data: FilantropoDoc) => {
+            .then((data: (FilantropoDoc & {_id: Types.ObjectId}) | null) => {
+                if(data === null){
+                    throw new HttpError(
+                      new Status(
+                        ResponseCodes.USER_NO_EXIST.httpStatus,
+                        ResponseCodes.USER_NO_EXIST.code,
+                        ResponseCodes.USER_NO_EXIST.message,
+                      ),
+                    )
+                }
                 return modelToEntity(data)
             })
             .catch((e) => {
                 throw new HttpError(
                     new Status(
-                        ResponseCodes.PACIENTE_NO_EXIST.httpStatus,
-                        ResponseCodes.PACIENTE_NO_EXIST.code,
-                        ResponseCodes.PACIENTE_NO_EXIST.message,
+                      ResponseCodes.USER_NO_EXIST.httpStatus,
+                      ResponseCodes.USER_NO_EXIST.code,
+                      ResponseCodes.USER_NO_EXIST.message,
                     ),
                 )
             })

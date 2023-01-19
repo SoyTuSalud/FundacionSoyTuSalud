@@ -1,11 +1,11 @@
 import type {NextApiRequest, NextApiResponse} from 'next'
-import {validateError} from '../../../../../backend/common/functions/functions.common'
-import {pacientesRoutes} from '../../../../../backend/paciente/infranstucture/container/paciente.container'
+import {validateError} from '../../../../../../backend/common/functions/functions.common';
+import {filantropoRoutes} from "../../../../../../backend/filantropo/infranstucture/container/filantropo.container";
 
 export default function userHandler(req: NextApiRequest, res: NextApiResponse) {
 
   try{
-    return pacientesRoutes.initRoute(req, res)
+    return filantropoRoutes.initRoute(req, res)
   }
   catch (error: unknown) {
     const responseEntity = validateError(error)

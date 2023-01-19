@@ -2,12 +2,12 @@ import {NextApiRequest, NextApiResponse} from 'next'
 import {ResponseCodes} from '../../../common/enums/responseCodes.Enum'
 import {validateRol} from '../../../common/middleware/common.middleware'
 import {Status} from '../../../common/models/status.value'
-import FilantropoController from '../controller/filantropo.controller'
+import PacienteController from '../controller/paciente.controller'
 import {roleEnum} from '../../../common/enums/role.enum'
 import HttpError from '../../../common/models/httpError.value'
 
-export class FilantropoRoutes {
-  constructor(private fintropoController: FilantropoController) {}
+export class PacientesRoutes {
+  constructor(private pacienteController: PacienteController) {}
 
   public initRoute(request: NextApiRequest, response: NextApiResponse) {
 
@@ -19,7 +19,7 @@ export class FilantropoRoutes {
       case 'POST':
         return this.postRoutes(request, response, url || '')
       case 'PATCH':
-       // return this.patchRoutes(request, response, url || '')
+        return this.patchRoutes(request, response, url || '')
       default:
         throw new HttpError(
           new Status(
@@ -36,13 +36,17 @@ export class FilantropoRoutes {
     const { id } = request.query
 
     switch (url) {
-      case '/api/v1/filantropo':
-        validateRol(request, [roleEnum.NO_AUTH, roleEnum.ADMIN])
-        return this.fintropoController.getFilantropos(request, response)
+      case '/api/v1/pacientes':
+        validateRol(request, [roleEnum.ADMIN])
+        return this.pacienteController.getPacientes(request, response)
 
-      case `/api/v1/filantropo/find/${id}`:
+      case '/api/v1/pacientes/historia':
         validateRol(request, [roleEnum.NO_AUTH])
-        return this.fintropoController.getFilantropoById(request, response)
+        return this.pacienteController.getPacientesTuHistoria(request, response)
+
+      case `/api/v1/pacientes/find/${id}`:
+        validateRol(request, [roleEnum.NO_AUTH])
+        return this.pacienteController.getPacientesById(request, response)
 
       default:
         throw new HttpError(
@@ -58,9 +62,9 @@ export class FilantropoRoutes {
   private postRoutes(request: NextApiRequest, response: NextApiResponse, url: string) {
 
     switch (url) {
-      case '/api/v1/filantropo':
+      case '/api/v1/pacientes':
         validateRol(request, [roleEnum.NO_AUTH])
-        return this.fintropoController.postFilantropo(request, response)
+        return this.pacienteController.postPacientes(request, response)
 
       default:
         throw new HttpError(
@@ -72,7 +76,6 @@ export class FilantropoRoutes {
         )
     }
   }
-  /*
   private patchRoutes(request: NextApiRequest, response: NextApiResponse, url: string) {
     switch (url) {
       case '/api/v1/pacientes':
@@ -89,6 +92,4 @@ export class FilantropoRoutes {
         )
     }
   }
-
-   */
 }

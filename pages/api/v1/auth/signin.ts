@@ -1,6 +1,6 @@
 import type {NextApiRequest, NextApiResponse} from 'next'
-import {authRoutes} from '../../../../backend/auth/infranstucture/container/auth.container'
-import {validateError} from '../../../../backend/common/functions/functions.common'
+import {authRoutes} from '../../../../../backend/auth/infranstucture/container/auth.container'
+import {validateError} from '../../../../../backend/common/functions/functions.common'
 
 export default async function userHandler(req: NextApiRequest, res: NextApiResponse) {
   

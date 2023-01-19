@@ -4,8 +4,7 @@ import {
   typeDefs,
   resolvers,
 } from '../infrastructure/adapters/graphql/graphqlAdapter'
-import {validateToken} from "../infrastructure/helpers/validateToken";
-
+import { validateToken } from '../infrastructure/helpers/validateToken'
 
 export const execute = async (req: NextApiRequest, res: NextApiResponse) => {
   const apolloServer = new ApolloServer({
@@ -13,7 +12,7 @@ export const execute = async (req: NextApiRequest, res: NextApiResponse) => {
     resolvers,
     context: async () => {
       return await validateToken(req, res)
-    }
+    },
   })
 
   const startServer = apolloServer.start()

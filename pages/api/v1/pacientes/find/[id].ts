@@ -1,6 +1,6 @@
 import type {NextApiRequest, NextApiResponse} from 'next'
-import {pacientesRoutes} from '../../../../../backend/paciente/infranstucture/container/paciente.container'
-import {validateError} from '../../../../../backend/common/functions/functions.common';
+import {pacientesRoutes} from '../../../../../../backend/paciente/infranstucture/container/paciente.container'
+import {validateError} from '../../../../../../backend/common/functions/functions.common';
 
 export default function userHandler(req: NextApiRequest, res: NextApiResponse) {
 

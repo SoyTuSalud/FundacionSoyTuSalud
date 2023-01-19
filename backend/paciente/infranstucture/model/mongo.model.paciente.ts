@@ -1,4 +1,4 @@
-import { Document, model, models, Schema } from 'mongoose'
+import {Document, Model, model, models, Schema} from 'mongoose'
 import { GeneroEnum } from '../../domain/enum/genero.enum'
 import { Paciente } from '../../domain/entity/paciente.entity'
 import { TipoDiscapacidadEnum } from '../../domain/enum/tipoDiscapacida.enum'
@@ -157,4 +157,6 @@ export const PacienteSchema = new Schema<PacienteDoc>(
   },
 )
 
-export default models.Paciente || model<PacienteDoc>('Paciente', PacienteSchema)
+const PacienteModel = model<PacienteDoc>('Paciente', PacienteSchema)
+
+export default (models.Paciente as typeof PacienteModel) || PacienteModel

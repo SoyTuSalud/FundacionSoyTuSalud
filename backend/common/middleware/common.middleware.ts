@@ -8,7 +8,7 @@ import {Status} from '../models/status.value'
 export const validateRol = (req: NextApiRequest, rolRequired: roleEnum[]) => {
   const authorization = req.cookies.token || ''
 
-  if (!authorization || rolRequired.includes(roleEnum.NO_AUTH)) {
+  if (!authorization && rolRequired.includes(roleEnum.NO_AUTH)) {
     return 
   }
 

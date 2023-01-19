@@ -6,11 +6,21 @@ import {PacienteRepository} from '../../domain/repository/paciente.repository'
 import {ResponseCodes} from '../../../common/enums/responseCodes.Enum'
 import {UpdatePacienteDTO} from '../../domain/dtos/updatePaciente.dto'
 import {Status} from '../../../common/models/status.value'
+import {Types} from "mongoose";
 
 export class MongoRepository implements PacienteRepository {
     async findPacienteById(_id: string): Promise<Paciente> {
         return await PacienteModel.findOne({ identificacion: _id })
-            .then((data: PacienteDoc) => {
+            .then((data :(PacienteDoc & {_id: Types.ObjectId}) | null) => {
+                if(data === null){
+                    throw new HttpError(
+                      new Status(
+                        ResponseCodes.PACIENTE_NO_EXIST.httpStatus,
+                        ResponseCodes.PACIENTE_NO_EXIST.code,
+                        ResponseCodes.PACIENTE_NO_EXIST.message,
+                      ),
+                    )
+                }
                 return modelToEntity(data)
             })
             .catch((e) => {

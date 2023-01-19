@@ -7,13 +7,14 @@ import {Auth} from "../../domain/entity/auth.entinty";
 import {StatusAccountEnum} from "../../domain/enums/statusAccount.enum";
 import {AuthRepository} from "../../domain/repository/auth.repository";
 import {modelToEntity} from "../mapper/auth.mapper";
-import AuthModelMongo from '../model/auth.mongo.model'
+import AuthModelMongo, {AuthDoc} from '../model/auth.mongo.model'
+import {Types} from "mongoose";
 
 export class MongoAuthRespostory implements AuthRepository {
     
     async findByEmail(correo: string): Promise<Auth> {
         return await AuthModelMongo.findOne({ correo })
-        .then((data) => {
+        .then((data: (AuthDoc & {_id: Types.ObjectId}) | null) => {
             if(data === null){
                 throw new HttpError(
                     new Status(

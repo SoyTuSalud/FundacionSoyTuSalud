@@ -77,4 +77,6 @@ const FilantropoSchema = new Schema<FilantropoDoc>(
   },
 )
 
-export default models.Filantropo || model<FilantropoDoc>('Filantropo', FilantropoSchema)
+const filtranpoModel = model<FilantropoDoc>('Filantropo', FilantropoSchema)
+
+export default (models.Filantropo as typeof  filtranpoModel)|| filtranpoModel

@@ -34,7 +34,7 @@ const AuthSchema = new Schema<AuthDoc>({
     }
   })
 
+const authModel = model<AuthDoc>('User', AuthSchema)
 
-
-  export default models.Auth || model<AuthDoc>('Auth', AuthSchema)
+  export default (models.User as typeof  authModel) || authModel
   
