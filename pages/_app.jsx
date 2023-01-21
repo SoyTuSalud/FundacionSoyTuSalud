@@ -19,14 +19,14 @@ import { PopupProvider } from '../context/popup'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { SessionProvider } from 'next-auth/react'
 
-function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+function MyApp({ Component, pageProps }) {
   const [authUser, setAuthUser] = useState()
   const [componentStatus, setComponentStatus] = useState({})
 
   const queryClient = new QueryClient()
 
   return (
-    <SessionProvider session={session}>
+    <SessionProvider>
       <QueryClientProvider client={queryClient}>
         <ApolloProvider client={client}>
           <PopupProvider>

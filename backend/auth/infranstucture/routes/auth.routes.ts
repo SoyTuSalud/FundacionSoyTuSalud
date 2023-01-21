@@ -60,7 +60,7 @@ export class AuthRoutes {
   ) {
     switch (url) {
       case '/api/v1/auth/login':
-        validateRol(request, [roleEnum.NO_AUTH])
+        // validateRol(request, [roleEnum.NO_AUTH])
         return this.authController.postAuthLogin(request, response)
       case '/api/v1/auth/signin':
         validateRol(request, [roleEnum.NO_AUTH])
@@ -79,24 +79,24 @@ export class AuthRoutes {
         )
     }
   }
-//   private patchRoutes(
-//     request: NextApiRequest,
-//     response: NextApiResponse,
-//     url: string,
-//   ) {
-//     switch (url) {
-//       case '/api/v1/pacientes':
-//         validateRol(request, [roleEnum.NO_AUTH])
-//         return this.pacienteController.postPacientes(request, response)
+  //   private patchRoutes(
+  //     request: NextApiRequest,
+  //     response: NextApiResponse,
+  //     url: string,
+  //   ) {
+  //     switch (url) {
+  //       case '/api/v1/pacientes':
+  //         validateRol(request, [roleEnum.NO_AUTH])
+  //         return this.pacienteController.postPacientes(request, response)
 
-//       default:
-//         throw new HttpError(
-//           new Status(
-//             ResponseCodes.ROUTE_NOT_FOUND.httpStatus,
-//             ResponseCodes.ROUTE_NOT_FOUND.code,
-//             ResponseCodes.ROUTE_NOT_FOUND.message,
-//           ),
-//         )
-//     }
-//   }
+  //       default:
+  //         throw new HttpError(
+  //           new Status(
+  //             ResponseCodes.ROUTE_NOT_FOUND.httpStatus,
+  //             ResponseCodes.ROUTE_NOT_FOUND.code,
+  //             ResponseCodes.ROUTE_NOT_FOUND.message,
+  //           ),
+  //         )
+  //     }
+  //   }
 }

@@ -26,15 +26,15 @@ const Login = () => {
   }
 
   const handleSubmit = async (variables) => {
-    await loginUser({
-      variables,
-    }).then(({ data }) => {
-      if (data.login.status.code === ResponseCodes.SUCCESS) {
-        router.push('/')
-      } else {
-        setMssgError(data.login.status.description)
-      }
-    })
+    // await loginUser({
+    //   variables,
+    // }).then(({ data }) => {
+    //   if (data.login.status.code === ResponseCodes.SUCCESS) {
+    //     router.push('/')
+    //   } else {
+    //     setMssgError(data.login.status.description)
+    //   }
+    // })
   }
 
   return (
