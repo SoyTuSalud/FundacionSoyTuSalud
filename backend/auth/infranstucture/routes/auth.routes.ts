@@ -38,6 +38,8 @@ export class AuthRoutes {
     const { id } = request.query
 
     switch (url) {
+      case '/api/v1/auth/checkToken':
+        return this.authController.getCheckToken(request, response)
       case `/api/v1/auth/${id}`:
         validateRol(request, [roleEnum.NO_AUTH])
         return this.authController.getAuthVerifyRole(request, response)

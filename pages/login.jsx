@@ -10,6 +10,10 @@ import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 import { useLazyQuery } from '@apollo/client'
 import { ResponseCodes } from '../backend/graphql/domain/commons/enums/responseCodesEnum'
+import { useMutation } from '@tanstack/react-query'
+import { loginService } from '../services/auth'
+import { signInReducer } from '../redux/auth/authSlice'
+import { useDispatch } from 'react-redux'
 
 const Login = () => {
   const { t } = useTranslation()
@@ -18,6 +22,7 @@ const Login = () => {
     fetchPolicy: 'no-cache',
   })
   const router = useRouter()
+  const dispatch = useDispatch()
 
   const propsImage = {
     title: t('home:HOME_TITLE'),
@@ -25,16 +30,43 @@ const Login = () => {
     image: '/promo_c1.png',
   }
 
-  const handleSubmit = async (variables) => {
-    await loginUser({
-      variables,
-    }).then(({ data }) => {
-      if (data.login.status.code === ResponseCodes.SUCCESS) {
-        router.push('/')
-      } else {
-        setMssgError(data.login.status.description)
+  const mutation = useMutation({
+    mutationFn: (payload) => {
+      return loginService(payload)
+    },
+    onSuccess: ({ data }, variables, context) => {
+      // console.log({ data, variables, context })
+      // console.log('onSuccess: ', data.data.body)
+      const payload = {
+        user: {
+          correo: data.body.correo,
+          role: data.body.role,
+          statusAccount: data.statusAccount,
+        },
+        token: data.body.token,
       }
-    })
+      dispatch(signInReducer(payload))
+      localStorage.setItem('token', data.body.token)
+
+      router.push('/')
+    },
+    onError: (data, variables, context) => {
+      console.log({ data, variables, context })
+    },
+  })
+
+  const handleSubmit = async (variables) => {
+    mutation.mutate(variables)
+
+    // await loginUser({
+    //   variables,
+    // }).then(({ data }) => {
+    //   if (data.login.status.code === ResponseCodes.SUCCESS) {
+    //     router.push('/')
+    //   } else {
+    //     setMssgError(data.login.status.description)
+    //   }
+    // })
   }
 
   return (

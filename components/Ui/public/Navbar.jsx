@@ -16,6 +16,8 @@ import {
   OfficeBuildingIcon,
   XIcon,
 } from '@heroicons/react/outline'
+import { useDispatch, useSelector } from 'react-redux'
+import { logoutThunk } from '../../../redux/auth/thunks'
 
 export const Navbar = ({ t }) => {
   const solutions = [
@@ -81,6 +83,17 @@ export const Navbar = ({ t }) => {
   const { authUser, setAuthUser } = useAuth()
   const [navbar, setNavbar] = useState(false)
   const [cookies, setCookie, removeCookie] = useCookies(['token'])
+
+  const { status } = useSelector((state) => state.auth)
+  console.log('status: ', status)
+
+  const dispatch = useDispatch()
+
+  const onLogout = async () => {
+    dispatch(logoutThunk())
+
+    router.push('/')
+  }
 
   const handlerLogOut = async () => {
     setAuthUser(null)
@@ -354,10 +367,10 @@ export const Navbar = ({ t }) => {
                 </div>
                 <div className="py-6 px-5 space-y-6">
                   <div>
-                    {authUser ? (
+                    {status === 'authenticated' ? (
                       <>
                         <a
-                          onClick={handlerLogOut}
+                          onClick={onLogout}
                           className="main-menu__link whitespace-nowrap cursor-pointer "
                         >
                           <span className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 underline ">

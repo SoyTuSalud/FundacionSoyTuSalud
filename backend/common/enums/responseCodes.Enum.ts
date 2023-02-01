@@ -1,8 +1,8 @@
 export const ResponseCodes = {
-  SUCEESS: { 
-    code: 'ST_00', 
-    message: 'Exito en la operacion', 
-    httpStatus: 200 
+  SUCEESS: {
+    code: 'ST_00',
+    message: 'Exito en la operacion',
+    httpStatus: 200,
   },
   FATA_ERROR: {
     code: 'ST_01',
@@ -53,12 +53,15 @@ export const ResponseCodes = {
     code: 'ST_10',
     message: 'Error la iniciar sesion email o contraseña errorneo',
     httpStatus: 400,
-  },  
+  },
   USER_NO_EXIST: {
     code: 'ST_11',
     message: 'Usuario no existe',
     httpStatus: 400,
   },
-  
-  
+  EXPIRED_TOKEN: {
+    code: 'ST_12',
+    message: 'Se ha expirado tu sesión, por favor inicia sesión nuevamente.',
+    httpStatus: 401,
+  },
 }

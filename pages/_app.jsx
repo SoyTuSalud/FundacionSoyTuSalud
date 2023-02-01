@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { client } from '../graphql-front/initClientSide'
 import { ApolloProvider } from '@apollo/client'
 import { AuthContext } from '../context/useAuth'
@@ -18,6 +18,31 @@ import '../components/Ui/popup/popup.css'
 import { PopupProvider } from '../context/popup'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { SessionProvider } from 'next-auth/react'
+import { Provider as ReduxProvider, useDispatch } from 'react-redux'
+import { store } from '../redux/store'
+
+import { checkTokenThunk, logoutThunk } from '../redux/auth/thunks'
+import { checkingReducer } from '../redux/auth/authSlice'
+
+const CheckingToken = ({ children }) => {
+  const dispatch = useDispatch()
+  const checkToken = () => {
+    dispatch(checkingReducer())
+    const token = localStorage.getItem('token')
+
+    if (!token) {
+      dispatch(logoutThunk())
+    }
+
+    dispatch(checkTokenThunk(token))
+  }
+
+  useEffect(() => {
+    checkToken()
+  }, [])
+
+  return children
+}
 
 function MyApp({ Component, pageProps }) {
   const [authUser, setAuthUser] = useState()
@@ -26,23 +51,27 @@ function MyApp({ Component, pageProps }) {
   const queryClient = new QueryClient()
 
   return (
-    <SessionProvider>
-      <QueryClientProvider client={queryClient}>
-        <ApolloProvider client={client}>
-          <PopupProvider>
-            <ThemeProvider theme={lightTheme}>
-              <AuthContext.Provider value={{ authUser, setAuthUser }}>
-                <ComponentContext.Provider
-                  value={{ componentStatus, setComponentStatus }}
-                >
-                  <Component {...pageProps} />
-                </ComponentContext.Provider>
-              </AuthContext.Provider>
-            </ThemeProvider>
-          </PopupProvider>
-        </ApolloProvider>
-      </QueryClientProvider>
-    </SessionProvider>
+    <ReduxProvider store={store}>
+      <CheckingToken>
+        <SessionProvider>
+          <QueryClientProvider client={queryClient}>
+            <ApolloProvider client={client}>
+              <PopupProvider>
+                <ThemeProvider theme={lightTheme}>
+                  <AuthContext.Provider value={{ authUser, setAuthUser }}>
+                    <ComponentContext.Provider
+                      value={{ componentStatus, setComponentStatus }}
+                    >
+                      <Component {...pageProps} />
+                    </ComponentContext.Provider>
+                  </AuthContext.Provider>
+                </ThemeProvider>
+              </PopupProvider>
+            </ApolloProvider>
+          </QueryClientProvider>
+        </SessionProvider>
+      </CheckingToken>
+    </ReduxProvider>
   )
 }
 

@@ -110,7 +110,7 @@ export const NavbarSolid = ({ t }) => {
   }
 
   return (
-    <header className={'backgroundNav navbarTop1' }>
+    <header className={'backgroundNav navbarTop1'}>
       <Popover className="container-fluid popover  relative bg-transparent w-full ">
         <div className="max-w-screen-2xl mx-auto px-4">
           <div className="flex justify-between items-center py-6 lg:justify-start lg:space-x-12">
