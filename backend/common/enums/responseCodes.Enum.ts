@@ -64,4 +64,9 @@ export const ResponseCodes = {
     message: 'Se ha expirado tu sesión, por favor inicia sesión nuevamente.',
     httpStatus: 401,
   },
+  INTERNAL_ERROR: {
+    code: 'ST_13',
+    message: 'ERROR INTERNO.',
+    httpStatus: 500,
+  },
 }

@@ -1,11 +1,12 @@
 import {z} from 'zod'
-import {TipoDocumentoEnum} from '../../domain/enum/tipoDocumento.enum'
+
+import {TipoDocumentoEnum} from '@paciente/domain/enum/tipoDocumento.enum'
 
 export const PacienteSchema = z.object({
   identificacion: z.number().positive().gte(10000).lte(9999999999),
   nombre: z.string().regex(/^[a-zA-ZÀ-ú]'?([a-zA-ZÀ-ú]|\.| |-)+$/),
   apellidos: z.string().regex(/^[a-zA-ZÀ-ú]'?([a-zA-ZÀ-ú]|\.| |-)+$/),
-  TipoDocumentoEnum: z.enum([
+  tipoDocumento: z.enum([
     TipoDocumentoEnum.CEDULA_CIUDADANIA,
     TipoDocumentoEnum.CEDULA_EXTRANJERA,
     TipoDocumentoEnum.TARJETA_IDENTIDAD,

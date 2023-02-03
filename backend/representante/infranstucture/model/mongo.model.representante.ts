@@ -1,4 +1,4 @@
-import {Document, model, models, Schema} from 'mongoose'
+import {Document, Model, model, models, Schema} from 'mongoose'
 import {IRepresentante} from '../../domain/entity/representante.entity'
 import {TipoDocumentoEnum} from '../../domain/enum/tipoDocumento.enum'
 
@@ -126,6 +126,4 @@ RepresentanteSchema.virtual('servicios', {
   }
 )
 
-const representanteModel = model<RepresentanteDoc>('Representante', RepresentanteSchema)
-
-export default (models.Representante as typeof representanteModel) || representanteModel
+export default (models.Representante as Model<RepresentanteDoc, {}, {}, {}, any>) || model<RepresentanteDoc>('Representante', RepresentanteSchema)

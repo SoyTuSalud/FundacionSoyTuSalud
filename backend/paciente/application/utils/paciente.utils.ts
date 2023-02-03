@@ -1,25 +1,31 @@
-import {ResponseCodes} from '../../../common/enums/responseCodes.Enum'
-import HttpError from '../../../common/models/httpError.value'
-import PacienteValue from '../../domain/model/paciente.value'
-import {PacienteSchema, PacienteUpdateSchema} from '../schema/paciente.schema'
-import {UpdatePacienteDTO} from '../../domain/dtos/updatePaciente.dto'
-import {Status} from '../../../common/models/status.value'
 import {z} from "zod";
+
+import {ResponseCodes} from '@common/enums/responseCodes.Enum'
+import HttpError from '@common/models/httpError.value'
+import {Status} from '@common/models/status.value'
+
+import PacienteValue from '@paciente/domain/model/paciente.value'
+import {UpdatePacienteDTO} from '@paciente/domain/dtos/updatePaciente.dto'
+
+import {PacienteSchema, PacienteUpdateSchema} from '@paciente/application/schema/paciente.schema'
+import {logger} from "@common/logger/winston.config";
+
+
 
 export const validateBodyCreation = (body: any): PacienteValue => {
   try {
     PacienteSchema.parse(body)
-
     return new PacienteValue(
       body.identificacion,
       body.nombre,
       body.apellidos,
-      body.TipoDocumentoEnum,
+      body.tipoDocumento,
       body.celular,
-      body.correo,
+      body.correo
     )
   } catch (e) {
-
+    // @ts-ignore
+    logger.info(e.message)
     throw new HttpError(
       new Status(
         ResponseCodes.BAD_REQUEST.httpStatus,
@@ -50,6 +56,8 @@ export const validateBodyUpdate = (body: any): UpdatePacienteDTO => {
       body.recopilacionDatos,
     )
   } catch (e) {
+    // @ts-ignore
+    logger.info(e.message)
     throw new HttpError(
       new Status(
         ResponseCodes.BAD_REQUEST.httpStatus,
@@ -62,10 +70,10 @@ export const validateBodyUpdate = (body: any): UpdatePacienteDTO => {
 
 export const validateString = (id: any): string => {
   try {
-    
     return z.string().parse(id)
-
   } catch (e) {
+    // @ts-ignore
+    logger.info(e.message)
     throw new HttpError(
       new Status(
         ResponseCodes.BAD_REQUEST.httpStatus,

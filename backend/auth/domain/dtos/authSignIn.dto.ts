@@ -1,4 +1,4 @@
-import {roleEnum} from "../../../common/enums/role.enum"
+import {roleEnum} from "@common/enums/role.enum"
 
 
 export class AuthSignInDTO {

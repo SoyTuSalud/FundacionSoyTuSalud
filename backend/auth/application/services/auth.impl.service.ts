@@ -1,22 +1,25 @@
-import {
-  getStatusOk,
-  validateError,
-} from '../../../common/functions/functions.common'
-import { RequestEntity } from '../../../common/models/request.value'
-import { ResponseEntity } from '../../../common/models/response.value'
-import { AuthDTO } from '../../domain/dtos/auth.dto'
-import { AuthRepository } from '../../domain/repository/auth.repository'
-import { AuthService } from './auth.interface.service'
-import bcrypt from 'bcrypt'
-import HttpError from '../../../common/models/httpError.value'
-import { Status } from '../../../common/models/status.value'
-import { ResponseCodes } from '../../../common/enums/responseCodes.Enum'
+import {compare, hash} from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import { UserDTO } from '../../domain/dtos/user.dto'
 import { NextApiResponse } from 'next/types'
-import { setCookie } from '../utils/tokenSerialize.utils'
-import { AuthSignInDTO } from '../../domain/dtos/authSignIn.dto'
-import { Auth } from '../../domain/entity/auth.entinty'
+
+import {getStatusOk, validateError} from '@common/functions/functions.common'
+import {logger} from "@common/logger/winston.config";
+import {loggerMessage} from "@common/enums/logger.enum";
+import { RequestEntity } from '@common/models/request.value'
+import { ResponseEntity } from '@common/models/response.value'
+import HttpError from '@common/models/httpError.value'
+import { Status } from '@common/models/status.value'
+import { ResponseCodes } from '@common/enums/responseCodes.Enum'
+
+import { AuthDTO } from '@auth/domain/dtos/auth.dto'
+import { AuthRepository } from '@auth/domain/repository/auth.repository'
+import { AuthSignInDTO } from '@auth/domain/dtos/authSignIn.dto'
+import { Auth } from '@auth/domain/entity/auth.entinty'
+import { UserDTO } from '@auth/domain/dtos/user.dto'
+
+import { AuthService } from '@auth/application/services/auth.interface.service'
+import { setCookie } from '@auth/application/utils/tokenSerialize.utils'
+
 
 export class authServiceImpl implements AuthService {
   constructor(private readonly authRepository: AuthRepository) {}
@@ -25,6 +28,10 @@ export class authServiceImpl implements AuthService {
     request: RequestEntity<AuthDTO>,
     response: NextApiResponse,
   ): Promise<ResponseEntity<UserDTO | null>> {
+
+    const methodName = "login"
+    logger.info(loggerMessage.INICIO + methodName)
+
     try {
       const user: Auth = await this.authRepository.findByEmail(
         request.body.correo,
@@ -49,8 +56,10 @@ export class authServiceImpl implements AuthService {
 
       setCookie(response, 'token', token)
 
+      logger.info(loggerMessage.FIN + methodName)
       return new ResponseEntity(userDto, getStatusOk())
     } catch (error: unknown) {
+      logger.info(loggerMessage.ERROR + methodName)
       console.log(error)
       return validateError(error)
     }
@@ -59,13 +68,20 @@ export class authServiceImpl implements AuthService {
   public async signIn(
     request: RequestEntity<AuthSignInDTO>,
   ): Promise<ResponseEntity<null>> {
-    try {
-      const hash = await bcrypt.hash(request.body.contrasena, 10)
 
-      await this.authRepository.authSignInEmail(request.body, hash)
+    const methodName = "signIn"
+    logger.info(loggerMessage.INICIO + methodName)
+
+    try {
+      const hashPass = await hash(request.body.contrasena, 10)
+
+      await this.authRepository.authSignInEmail(request.body, hashPass)
+
+      logger.info(loggerMessage.FIN + methodName)
 
       return new ResponseEntity(null, getStatusOk())
     } catch (error: unknown) {
+      logger.info(loggerMessage.ERROR + methodName)
       return validateError(error)
     }
   }
@@ -74,20 +90,36 @@ export class authServiceImpl implements AuthService {
     request: RequestEntity<AuthDTO>,
     response: NextApiResponse,
   ): Promise<ResponseEntity<UserDTO | null>> {
-    try {
-      const user = await this.authRepository.findByEmail(request.body.correo)
 
+    const methodName = "loginAdmin"
+    logger.info(loggerMessage.INICIO + methodName)
+
+    try {
+      const user = await this.authRepository.authLoginAdmin(request.body.correo)
       await this.validatePass(user.contrasena, request.body.contrasena)
 
       const userDto = new UserDTO(user.role, user.correo, user.statusAccount)
 
-      const token = jwt.sign(userDto, process.env.ENV_KEY_TOKEN!, {
-        expiresIn: '6h',
-      })
+      const token = jwt.sign(
+        {
+          role: userDto.role,
+          correo: userDto.correo,
+          statusAccount: userDto.statusAccount,
+        },
+        process.env.ENV_KEY_TOKEN!,
+        {
+          expiresIn: '6h',
+        },
+      )
+      userDto.token = token
+
       setCookie(response, 'token', token)
+
+      logger.info(loggerMessage.FIN + methodName)
 
       return new ResponseEntity(userDto, getStatusOk())
     } catch (error: unknown) {
+      logger.info(loggerMessage.ERROR + methodName)
       return validateError(error)
     }
   }
@@ -106,7 +138,10 @@ export class authServiceImpl implements AuthService {
   public async checkToken(
     req: RequestEntity<null>,
   ): Promise<ResponseEntity<null>> {
-    // console.log('req: ', req)
+
+    const methodName = "checkToken"
+    logger.info(loggerMessage.INICIO + methodName)
+
     const token: string = req?.cookies || ''
 
     if (!token) {
@@ -126,12 +161,15 @@ export class authServiceImpl implements AuthService {
 
       await this.authRepository.findByEmail(correo)
 
+      logger.info(loggerMessage.FIN + methodName)
+
       return new ResponseEntity(null, getStatusOk())
     } catch (error) {
       if (error instanceof HttpError) {
+        logger.info(loggerMessage.ERROR + methodName)
         return new ResponseEntity(null, error.status)
       }
-
+      logger.info(loggerMessage.ERROR + methodName)
       return new ResponseEntity(
         null,
         new Status(
@@ -144,7 +182,13 @@ export class authServiceImpl implements AuthService {
   }
 
   private validatePass = async (userPass: string, requestPass: string) => {
-    return await bcrypt.compare(userPass, requestPass).catch((e) => {
+    const isPasswordMatching: boolean = await compare(requestPass, userPass)
+
+    const methodName = "validatePass"
+    logger.info(loggerMessage.INICIO + methodName)
+
+    if(!isPasswordMatching){
+      logger.info(loggerMessage.ERROR + methodName)
       throw new HttpError(
         new Status(
           ResponseCodes.LOGIN_ERROR.httpStatus,
@@ -152,6 +196,8 @@ export class authServiceImpl implements AuthService {
           ResponseCodes.LOGIN_ERROR.message,
         ),
       )
-    })
+
+    }
+    logger.info(loggerMessage.FIN + methodName)
   }
 }

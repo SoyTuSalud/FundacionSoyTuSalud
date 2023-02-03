@@ -15,7 +15,10 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["*"],
+      "@common/*": ["backend/common/*"],
+      "@auth/*": ["backend/auth/*"],
+      "@paciente/*": ["backend/paciente/*"],
     }
   },
   "include": [

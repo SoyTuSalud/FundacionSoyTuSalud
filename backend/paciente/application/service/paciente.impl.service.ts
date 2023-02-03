@@ -1,10 +1,12 @@
-import {Paciente} from '../../domain/entity/paciente.entity'
-import {PacienteRepository} from '../../domain/repository/paciente.repository'
-import {ResponseEntity} from '../../../common/models/response.value'
-import {PacienteService} from './paciente.inface.service'
-import {UpdatePacienteDTO} from '../../domain/dtos/updatePaciente.dto'
-import {RequestEntity} from '../../../common/models/request.value'
-import {getStatusOk, validateError,} from '../../../common/functions/functions.common'
+import {getStatusOk, validateError,} from '@common/functions/functions.common'
+import {ResponseEntity} from '@common/models/response.value'
+import {RequestEntity} from '@common/models/request.value'
+
+import {Paciente} from '@paciente/domain/entity/paciente.entity'
+import {PacienteRepository} from '@paciente/domain/repository/paciente.repository'
+import {UpdatePacienteDTO} from '@paciente/domain/dtos/updatePaciente.dto'
+
+import {PacienteService} from '@paciente/application/service/paciente.inface.service'
 
 export class PacienteServiceImpl implements PacienteService {
   constructor(private readonly pacienteRepository: PacienteRepository) {}

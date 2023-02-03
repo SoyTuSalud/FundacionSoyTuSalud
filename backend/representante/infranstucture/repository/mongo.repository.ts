@@ -1,5 +1,5 @@
 import {IRepresentante} from '../../domain/entity/representante.entity'
-import RepresentanteModel, {RepresentanteDoc} from '../model/mongo.model.paciente'
+import RepresentanteModel, {RepresentanteDoc} from '../model/mongo.model.representante'
 import HttpError from '../../../common/models/httpError.value'
 import {listModelToListEntity, modelToEntity} from '../mapper/paciente.mapper'
 import {RepresentanteRepository} from '../../domain/repository/representante.repository'

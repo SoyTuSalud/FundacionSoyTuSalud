@@ -1,5 +1,5 @@
-import {UpdatePacienteDTO} from "../dtos/updatePaciente.dto"
-import {Paciente} from "../entity/paciente.entity"
+import {UpdatePacienteDTO} from "@paciente/domain/dtos/updatePaciente.dto"
+import {Paciente} from "@paciente/domain/entity/paciente.entity"
 
 
 export interface PacienteRepository {

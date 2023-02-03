@@ -1,10 +1,11 @@
 import {Document, Model, model, models, Schema} from 'mongoose'
-import { GeneroEnum } from '../../domain/enum/genero.enum'
-import { Paciente } from '../../domain/entity/paciente.entity'
-import { TipoDiscapacidadEnum } from '../../domain/enum/tipoDiscapacida.enum'
-import { TipoDocumentoEnum } from '../../domain/enum/tipoDocumento.enum'
-import { IdentidadGeneroEnum } from '../../domain/enum/identidadGenero.enum'
-import { OrientacionSexualEnum } from '../../domain/enum/orientacionSexual.enum'
+
+import { GeneroEnum } from '@paciente/domain/enum/genero.enum'
+import { Paciente } from '@paciente/domain/entity/paciente.entity'
+import { TipoDiscapacidadEnum } from '@paciente/domain/enum/tipoDiscapacida.enum'
+import { TipoDocumentoEnum } from '@paciente/domain/enum/tipoDocumento.enum'
+import { IdentidadGeneroEnum } from '@paciente/domain/enum/identidadGenero.enum'
+import { OrientacionSexualEnum } from '@paciente/domain/enum/orientacionSexual.enum'
 
 export interface PacienteDoc extends Paciente, Document {
   identificacion: string
@@ -156,7 +157,4 @@ export const PacienteSchema = new Schema<PacienteDoc>(
     versionKey: false,
   },
 )
-
-const PacienteModel = model<PacienteDoc>('Paciente', PacienteSchema)
-
-export default (models.Paciente as typeof PacienteModel) || PacienteModel
+export default (models.Paciente as Model<PacienteDoc, {}, {}, {}, any>) || model<PacienteDoc>('Paciente', PacienteSchema)

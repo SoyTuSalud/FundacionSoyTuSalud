@@ -1,15 +1,13 @@
 import type {NextApiRequest, NextApiResponse} from 'next'
-import {validateError} from '../../../../../backend/common/functions/functions.common'
-import {pacientesRoutes} from '../../../../../backend/paciente/infranstucture/container/paciente.container'
 
-export default async function userHandler(req: NextApiRequest, res: NextApiResponse) {
-  
-  try{
-    return pacientesRoutes.initRoute(req, res)
-  }
-  catch (error: unknown) {
-    const responseEntity = validateError(error)
-    res.status(responseEntity.status.httpStatus).json(responseEntity)
-  }
+import {handler} from '@common/router/rounter.interface'
 
+import {pacientesRoutes} from '@paciente/infranstucture/container/paciente.container'
+
+export default async function userHandler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
+  await pacientesRoutes.runRouterPacientes()
+  await handler(req, res)
 }

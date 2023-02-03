@@ -1,10 +1,9 @@
-import {Auth} from '../entity/auth.entinty';
-import {AuthDTO} from '../dtos/auth.dto';
-import {AuthSignInDTO} from '../dtos/authSignIn.dto';
+import {Auth} from '@auth/domain/entity/auth.entinty';
+import {AuthSignInDTO} from '@auth/domain/dtos/authSignIn.dto';
 
 export interface AuthRepository {
     findByEmail(correo: string): Promise<Auth>
-    authLoginAdmin(authdto: AuthDTO): Promise<Auth>
+    authLoginAdmin(correo: string): Promise<Auth>
     authSignInEmail(auth: AuthSignInDTO, hash: string): Promise<void>
     authVerifyRoles(token: string): Promise<void>
 }

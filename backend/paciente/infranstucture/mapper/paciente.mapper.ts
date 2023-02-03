@@ -1,5 +1,5 @@
-import {Paciente} from '../../domain/entity/paciente.entity'
-import PacienteValue from '../../domain/model/paciente.value'
+import {Paciente} from '@paciente/domain/entity/paciente.entity'
+import PacienteValue from '@paciente/domain/model/paciente.value'
 
 
 export const listModelToListEntity = <T extends Paciente>(

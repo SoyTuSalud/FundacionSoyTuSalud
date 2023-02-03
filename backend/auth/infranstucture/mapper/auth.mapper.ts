@@ -1,6 +1,6 @@
-import {Auth} from '../../domain/entity/auth.entinty';
-import AuthValue from '../../domain/model/auth.model';
-import {AuthDoc} from "../model/auth.mongo.model";
+import {Auth} from '@auth/domain/entity/auth.entinty';
+import AuthValue from '@auth/domain/model/auth.model';
+import {AuthDoc} from "@auth/infranstucture/model/auth.mongo.model";
 import {Types} from "mongoose";
 
 

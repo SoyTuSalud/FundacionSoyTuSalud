@@ -1,7 +1,8 @@
-import { Document, model, models, Schema } from 'mongoose'
+import {Document, Model, model, models, Schema} from 'mongoose'
 import {Filantropo} from "../../domain/entity/filantropo.entity";
 import {TipoDocumentoEnum} from "../../domain/enum/tipoDocumento.enum";
 import {ProfileTypeEnum} from "../../domain/enum/profileTypeEnum";
+import {PacienteDoc, PacienteSchema} from "../../../paciente/infranstucture/model/mongo.model.paciente";
 
 
 
@@ -77,6 +78,4 @@ const FilantropoSchema = new Schema<FilantropoDoc>(
   },
 )
 
-const filtranpoModel = model<FilantropoDoc>('Filantropo', FilantropoSchema)
-
-export default (models.Filantropo as typeof  filtranpoModel)|| filtranpoModel
+export default (models.Filantropo as Model<FilantropoDoc, {}, {}, {}, any>) || model<FilantropoDoc>('Filantropo', FilantropoSchema)

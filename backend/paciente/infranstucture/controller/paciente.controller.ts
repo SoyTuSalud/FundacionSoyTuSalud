@@ -1,11 +1,15 @@
 import {NextApiRequest, NextApiResponse} from 'next'
-import conectarBD from '../../../common/connections/mongo.config'
-import {ResponseEntity} from '../../../common/models/response.value'
-import {Paciente} from '../../domain/entity/paciente.entity'
-import {RequestEntity} from '../../../common/models/request.value'
-import {validateBodyCreation, validateBodyUpdate, validateString,} from '../../application/utils/paciente.utils'
-import {PacienteService} from '../../application/service/paciente.inface.service'
-import {validateError} from '../../../common/functions/functions.common'
+
+import conectarBD from '@common/connections/mongo.config'
+import {ResponseEntity} from '@common/models/response.value'
+import {RequestEntity} from '@common/models/request.value'
+import {validateError} from '@common/functions/functions.common'
+
+import {Paciente} from '@paciente/domain/entity/paciente.entity'
+
+import {validateBodyCreation, validateBodyUpdate, validateString,} from '@paciente/application/utils/paciente.utils'
+import {PacienteService} from '@paciente/application/service/paciente.inface.service'
+
 
 
 class PacienteController {
@@ -47,6 +51,7 @@ class PacienteController {
 
   public postPacientes = async (request: NextApiRequest, response: NextApiResponse) => {
     try {
+
       const requestEntity = new RequestEntity(
         validateBodyCreation(request.body),
         request.cookies.Cookie,

@@ -1,6 +1,6 @@
-import {Auth} from '../entity/auth.entinty'
-import {roleEnum} from '../enums/role.enum'
-import {StatusAccountEnum} from '../enums/statusAccount.enum'
+import {Auth} from '@auth/domain/entity/auth.entinty'
+import {roleEnum} from '@auth/domain/enums/role.enum'
+import {StatusAccountEnum} from '@auth/domain/enums/statusAccount.enum'
 
 class AuthValue implements Auth {
   role: roleEnum

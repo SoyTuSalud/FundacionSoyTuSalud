@@ -1,4 +1,4 @@
-import {Status} from './status.value'
+import {Status} from '@common/models/status.value'
 
 class HttpError extends Error {
   status: Status

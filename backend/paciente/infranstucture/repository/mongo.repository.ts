@@ -1,12 +1,17 @@
-import {Paciente} from '../../domain/entity/paciente.entity'
-import PacienteModel, {PacienteDoc} from '../model/mongo.model.paciente'
-import HttpError from '../../../common/models/httpError.value'
-import {listModelToListEntity, modelToEntity} from '../mapper/paciente.mapper'
-import {PacienteRepository} from '../../domain/repository/paciente.repository'
-import {ResponseCodes} from '../../../common/enums/responseCodes.Enum'
-import {UpdatePacienteDTO} from '../../domain/dtos/updatePaciente.dto'
-import {Status} from '../../../common/models/status.value'
 import {Types} from "mongoose";
+
+import {ResponseCodes} from '@common/enums/responseCodes.Enum'
+import {Status} from '@common/models/status.value'
+import HttpError from '@common/models/httpError.value'
+
+import {Paciente} from '@paciente/domain/entity/paciente.entity'
+import {PacienteRepository} from '@paciente/domain/repository/paciente.repository'
+import {UpdatePacienteDTO} from '@paciente/domain/dtos/updatePaciente.dto'
+
+import PacienteModel, {PacienteDoc} from '@paciente/infranstucture/model/mongo.model.paciente'
+import {listModelToListEntity, modelToEntity} from '@paciente/infranstucture/mapper/paciente.mapper'
+import {logger} from "@common/logger/winston.config";
+
 
 export class MongoRepository implements PacienteRepository {
     async findPacienteById(_id: string): Promise<Paciente> {
@@ -93,6 +98,8 @@ export class MongoRepository implements PacienteRepository {
             celular: paciente.celular,
             correo: paciente.correo,
         }).catch((e) => {
+            // @ts-ignore
+            logger.info(e.message)
             throw new HttpError(
                 new Status(
                     ResponseCodes.USER_EXIST.httpStatus,

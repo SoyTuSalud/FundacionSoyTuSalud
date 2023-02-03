@@ -1,7 +1,7 @@
-import { ResponseCodes } from '../enums/responseCodes.Enum'
-import HttpError from '../models/httpError.value'
-import { ResponseEntity } from '../models/response.value'
-import { Status } from '../models/status.value'
+import { ResponseCodes } from '@common/enums/responseCodes.Enum'
+import HttpError from '@common/models/httpError.value'
+import { ResponseEntity } from '@common/models/response.value'
+import { Status } from '@common/models/status.value'
 
 export function validateError(error: unknown): ResponseEntity<null> {
   if (error instanceof HttpError) {
