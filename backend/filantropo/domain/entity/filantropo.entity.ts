@@ -1,5 +1,6 @@
-import {TipoDocumentoEnum} from "../enum/tipoDocumento.enum";
-import {ProfileTypeEnum} from "../enum/profileTypeEnum";
+import {TipoDocumentoEnum} from "@common/enums/tipoDocumento.enum";
+
+import {ProfileTypeEnum} from "@filantropo/domain/enum/profileTypeEnum";
 
 
 
@@ -9,7 +10,6 @@ export interface Filantropo {
   nombre: string
   apellidos: string
   celular: string
-  direccion: string
   correo: string
   numeroDonaciones: number
   totalDonado: number

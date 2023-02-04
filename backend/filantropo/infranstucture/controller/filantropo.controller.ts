@@ -1,11 +1,14 @@
 import {NextApiRequest, NextApiResponse} from 'next'
-import conectarBD from '../../../common/connections/mongo.config'
-import {ResponseEntity} from '../../../common/models/response.value'
-import {RequestEntity} from '../../../common/models/request.value'
-import {validateBodyCreation, validateString,} from '../../application/utils/filantropo.utils'
-import {FilantropoService} from '../../application/service/filantropo.inface.service'
-import {validateError} from '../../../common/functions/functions.common'
-import {Filantropo} from "../../domain/entity/filantropo.entity";
+
+import conectarBD from '@common/connections/mongo.config'
+import {ResponseEntity} from '@common/models/response.value'
+import {RequestEntity} from '@common/models/request.value'
+import {validateError} from '@common/functions/functions.common'
+
+import {validateBodyCreation, validateString,} from '@filantropo/application/utils/filantropo.utils'
+import {FilantropoService} from '@filantropo//application/service/filantropo.inface.service'
+
+import {Filantropo} from "@filantropo/domain/entity/filantropo.entity";
 
 
 class FilantropoController {

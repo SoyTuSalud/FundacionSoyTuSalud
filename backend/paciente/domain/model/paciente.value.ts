@@ -3,7 +3,7 @@ import {GeneroEnum} from "@paciente/domain/enum/genero.enum"
 import {IdentidadGeneroEnum} from "@paciente/domain/enum/identidadGenero.enum"
 import {OrientacionSexualEnum} from "@paciente/domain/enum/orientacionSexual.enum"
 import {TipoDiscapacidadEnum} from "@paciente/domain/enum/tipoDiscapacida.enum"
-import {TipoDocumentoEnum} from "@paciente/domain/enum/tipoDocumento.enum"
+import {TipoDocumentoEnum} from "@common/enums/tipoDocumento.enum"
 
 class PacienteValue implements Paciente {
   identificacion: string

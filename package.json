@@ -21,6 +21,7 @@
     "@mui/material": "^5.10.5",
     "@reduxjs/toolkit": "^1.9.2",
     "@tanstack/react-query": "^4.22.0",
+    "@tanstack/react-query-devtools": "^4.24.4",
     "apollo-server-micro": "^3.10.4",
     "axios": "^1.2.3",
     "bcrypt": "^5.0.1",

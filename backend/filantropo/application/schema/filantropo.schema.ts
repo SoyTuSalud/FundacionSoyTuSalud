@@ -1,10 +1,12 @@
 import {z} from 'zod'
-import {TipoDocumentoEnum} from '../../domain/enum/tipoDocumento.enum'
-import {ProfileTypeEnum} from "../../domain/enum/profileTypeEnum";
+
+import { TipoDocumentoEnum } from '@common/enums/tipoDocumento.enum';
+
+import {ProfileTypeEnum} from "@filantropo/domain/enum/profileTypeEnum";
 
 
 export const FilantropoDTOSchema = z.object({
-  identificacion: z.number().positive().gte(10000).lte(9999999999),
+  identificacion: z.string(),
   nombre: z.string().regex(/^[a-zA-ZÀ-ú]'?([a-zA-ZÀ-ú]|\.| |-)+$/),
   apellidos: z.string().regex(/^[a-zA-ZÀ-ú]'?([a-zA-ZÀ-ú]|\.| |-)+$/),
   TipoDocumento: z.enum([
@@ -20,9 +22,8 @@ export const FilantropoDTOSchema = z.object({
     TipoDocumentoEnum.MENOR_SIN_IDENTIFICAR,
     TipoDocumentoEnum.PERMISO_PROTECCION_TEMPORAL,
   ]),
-  celular: z.number().positive().gte(3000000000).lte(9999999999),
+  celular: z.string(),
   correo: z.string().email(),
-  direccion: z.string(),
   profileType: z.enum([
     ProfileTypeEnum.PRIVATE,
     ProfileTypeEnum.PUBLIC
@@ -30,10 +31,9 @@ export const FilantropoDTOSchema = z.object({
 })
 
 export const filntropoUpdateSchema = z.object({
-    identificacion: z.number().positive().gte(10000).lte(9999999999),
+    identificacion:z.string(),
     foto: z.string(),
     fechaNacimiento: z.string(),
-    direccion: z.string(),
     municipio: z.string(),
     departamento: z.string(),
     EPS: z.string(),

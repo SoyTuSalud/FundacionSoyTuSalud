@@ -1,7 +1,7 @@
-import {RequestEntity} from '../../../common/models/request.value';
-import {ResponseEntity} from '../../../common/models/response.value';
-import {Filantropo} from '../../domain/entity/filantropo.entity';
-import {CreateFilantropoDTO} from "../../domain/dtos/updateFilantropo.dto";
+import {RequestEntity} from '@common/models/request.value';
+import {ResponseEntity} from '@common/models/response.value';
+import {Filantropo} from '@filantropo/domain/entity/filantropo.entity';
+import {CreateFilantropoDTO} from "../../domain/dtos/createFilantropo.dto";
 
 export interface FilantropoService {
 

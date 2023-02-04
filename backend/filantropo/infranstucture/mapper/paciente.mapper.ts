@@ -1,5 +1,5 @@
-import {Filantropo} from '../../domain/entity/filantropo.entity'
-import FilantropoValue from '../../domain/model/filantropo.value'
+import {Filantropo} from '@filantropo/domain/entity/filantropo.entity'
+import FilantropoValue from '@filantropo/domain/model/filantropo.value'
 
 
 export const listModelToListEntity = <T extends Filantropo>(filantropos: T[],): Filantropo[] => {
@@ -8,7 +8,6 @@ export const listModelToListEntity = <T extends Filantropo>(filantropos: T[],): 
       filantropo.apellidos,
       filantropo.celular,
       filantropo.correo,
-      filantropo.direccion,
       filantropo.identificacion,
       filantropo.nombre,
       filantropo.numeroDonaciones,
@@ -25,7 +24,6 @@ export const modelToEntity = <T extends Filantropo>(filantropo: T): Filantropo =
     filantropo.apellidos,
     filantropo.celular,
     filantropo.correo,
-    filantropo.direccion,
     filantropo.identificacion,
     filantropo.nombre,
     filantropo.numeroDonaciones,

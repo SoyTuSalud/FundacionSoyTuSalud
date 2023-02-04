@@ -11,6 +11,8 @@ import HttpError from '@common/models/httpError.value'
 import { Status } from '@common/models/status.value'
 import { ResponseCodes } from '@common/enums/responseCodes.Enum'
 
+import {nextCreation} from "@/backend/crossMovements/authCross/auth.cross";
+
 import { AuthDTO } from '@auth/domain/dtos/auth.dto'
 import { AuthRepository } from '@auth/domain/repository/auth.repository'
 import { AuthSignInDTO } from '@auth/domain/dtos/authSignIn.dto'
@@ -19,6 +21,7 @@ import { UserDTO } from '@auth/domain/dtos/user.dto'
 
 import { AuthService } from '@auth/application/services/auth.interface.service'
 import { setCookie } from '@auth/application/utils/tokenSerialize.utils'
+
 
 
 export class authServiceImpl implements AuthService {
@@ -54,7 +57,9 @@ export class authServiceImpl implements AuthService {
       )
       userDto.token = token
 
-      setCookie(response, 'token', token)
+      setCookie(response, 'token', token,{
+        path: "/",
+      })
 
       logger.info(loggerMessage.FIN + methodName)
       return new ResponseEntity(userDto, getStatusOk())
@@ -77,6 +82,7 @@ export class authServiceImpl implements AuthService {
 
       await this.authRepository.authSignInEmail(request.body, hashPass)
 
+      await nextCreation(request)
       logger.info(loggerMessage.FIN + methodName)
 
       return new ResponseEntity(null, getStatusOk())
@@ -113,7 +119,9 @@ export class authServiceImpl implements AuthService {
       )
       userDto.token = token
 
-      setCookie(response, 'token', token)
+      setCookie(response, 'token', token,{
+        path: "/",
+      })
 
       logger.info(loggerMessage.FIN + methodName)
 

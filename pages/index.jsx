@@ -1,7 +1,7 @@
 import { Box, Container, Typography } from '@mui/material'
 import Head from 'next/head'
 import Image from 'next/image'
-import { LayoutMain } from '../components/layouts/LayoutMain'
+import { LayoutMain } from '@/components/layouts'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import { useContext, useState } from 'react'

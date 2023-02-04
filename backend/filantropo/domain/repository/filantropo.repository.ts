@@ -1,5 +1,5 @@
-import {Filantropo} from "../entity/filantropo.entity"
-import {CreateFilantropoDTO} from "../dtos/updateFilantropo.dto";
+import {Filantropo} from "@filantropo/domain/entity/filantropo.entity"
+import {CreateFilantropoDTO} from "@filantropo/domain/dtos/createFilantropo.dto";
 
 
 export interface FilantropoRepository {

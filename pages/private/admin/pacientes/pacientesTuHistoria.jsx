@@ -7,7 +7,7 @@ import { PacientesTablasTuHistoria } from '../../../../components/pacientes/Paci
 import { useLazyQuery } from '@apollo/client'
 import { useEffect, useState } from 'react'
 import Alert from '../../../../components/Ui/alert/Alert'
-import { ResponseCodes } from '../../../../backend/domain/commons/enums/responseCodesEnum'
+import {ResponseCodes} from "../../../../backend/common/enums/responseCodes.Enum";
 
 const PacientesTuHistoria = () => {
   

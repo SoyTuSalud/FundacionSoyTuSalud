@@ -1,29 +1,31 @@
-import { client } from '../graphql-front/initClientSide'
-import { loginUserAdmin } from '../graphql-front/paciente/queries'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { Formik } from 'formik'
-import { ResponseCodes } from '../backend/domain/commons/enums/responseCodesEnum'
 import { useState } from 'react'
+import {AuthDTO} from "@auth/domain/dtos/auth.dto";
+import {UserDTO} from "@auth/domain/dtos/user.dto";
+import {soyTuApi} from "@/services/auth";
+import {useMutation, useQuery} from "@tanstack/react-query";
+import {ResponseEntity} from "@common/models/response.value";
+
+
+const loginAdmin = async( authData:AuthDTO ): Promise<ResponseEntity<UserDTO>> => {
+  console.log(authData)
+  const {data} = await soyTuApi.post<ResponseEntity<UserDTO>>("/auth/loginAdmin", authData)
+  return data
+}
 
 const LoginAdmin = () => {
   const router = useRouter()
   const [error, setError] = useState('')
 
-  const handleSubmit = async (variables) => {
-    await client
-      .query({
-        query: loginUserAdmin,
+  const loginAdminQuery = useMutation({
+    mutationFn:(data:any)=> loginAdmin(data)
+  })
 
-        variables,
-      })
-      .then(({ data }) => {
-        if (data.loginAdmin.status.code === ResponseCodes.ERROR_AUTH) {
-          setError(data.loginAdmin.status.description)
-        } else {
-          router.push('/private/admin')
-        }
-      })
+  const handleSubmit = async (variables: any) => {
+    await loginAdminQuery.mutate(variables)
+    loginAdminQuery.isSuccess? await router.push("/private/admin"):null
   }
 
   return (

@@ -16,11 +16,11 @@ import {
 } from '@mui/material'
 import { getInitials } from '../../utils/get-initials'
 
-export const PacientesTablas = ({ UsuariosTabla, customers, ...rest }) => {
+export const PacientesTablas = ({ UsuariosTabla, ...rest }) => {
   const [selectedCustomerIds, setSelectedCustomerIds] = useState([])
   const [limit, setLimit] = useState(10)
   const [page, setPage] = useState(0)
-
+  console.log(UsuariosTabla)
   const handleSelectAll = (event) => {
     let newSelectedCustomerIds
 

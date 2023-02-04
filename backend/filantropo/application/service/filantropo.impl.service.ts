@@ -1,10 +1,13 @@
-import {Filantropo} from '../../domain/entity/filantropo.entity'
-import {FilantropoRepository} from '../../domain/repository/filantropo.repository'
-import {ResponseEntity} from '../../../common/models/response.value'
-import {FilantropoService} from './filantropo.inface.service'
-import {RequestEntity} from '../../../common/models/request.value'
-import {getStatusOk, validateError,} from '../../../common/functions/functions.common'
-import {CreateFilantropoDTO} from "../../domain/dtos/updateFilantropo.dto";
+import {ResponseEntity} from '@common/models/response.value'
+import {RequestEntity} from '@common/models/request.value'
+import {getStatusOk, validateError,} from '@common/functions/functions.common'
+
+import {Filantropo} from '@filantropo/domain/entity/filantropo.entity'
+import {FilantropoRepository} from '@filantropo/domain/repository/filantropo.repository'
+import {CreateFilantropoDTO} from "@filantropo/domain/dtos/createFilantropo.dto";
+
+import {FilantropoService} from '@filantropo/application/service/filantropo.inface.service'
+
 
 export class filantropoServiceImpl implements FilantropoService {
   constructor(private readonly filantropoRepository: FilantropoRepository) {}

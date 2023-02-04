@@ -1,14 +1,12 @@
-import {Filantropo} from "../entity/filantropo.entity";
-import {TipoDocumentoEnum} from "../enum/tipoDocumento.enum";
-import {ProfileTypeEnum} from "../enum/profileTypeEnum";
+import {TipoDocumentoEnum} from "@common/enums/tipoDocumento.enum";
 
-
+import {Filantropo} from "@filantropo/domain/entity/filantropo.entity";
+import {ProfileTypeEnum} from "@filantropo/domain/enum/profileTypeEnum";
 
 class FilantropoValue implements Filantropo {
   apellidos: string;
   celular: string;
   correo: string;
-  direccion: string;
   identificacion: string;
   nombre: string;
   numeroDonaciones: number;
@@ -18,14 +16,13 @@ class FilantropoValue implements Filantropo {
   totalDonado: number;
 
 
-  constructor(apellidos: string, celular: string, correo: string, direccion: string, identificacion: string,
+  constructor(apellidos: string, celular: string, correo: string, identificacion: string,
               nombre: string, numeroDonaciones: number, pacientesApoyados: string[], profileType: ProfileTypeEnum,
               tipoDocumento: TipoDocumentoEnum, totalDonado: number) {
 
     this.apellidos = apellidos;
     this.celular = celular;
     this.correo = correo;
-    this.direccion = direccion;
     this.identificacion = identificacion;
     this.nombre = nombre;
     this.numeroDonaciones = numeroDonaciones;

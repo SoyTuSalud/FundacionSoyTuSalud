@@ -1,26 +1,23 @@
 import Head from 'next/head'
 import { useAuth } from '../context/useAuth'
-import { authUser } from '../graphql-front/paciente/queries'
+import { authUser } from '@/graphql-front/paciente/queries'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
 import { Formik } from 'formik'
 import { Box, Container, Typography } from '@mui/material'
-import { LayoutMain } from '../components/layouts'
+import { LayoutMain } from '@/components/layouts'
 import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 import { useLazyQuery } from '@apollo/client'
 import { ResponseCodes } from '../backend/graphql/domain/commons/enums/responseCodesEnum'
 import { useMutation } from '@tanstack/react-query'
-import { loginService } from '../services/auth'
-import { signInReducer } from '../redux/auth/authSlice'
+import { loginService } from '@/services/auth'
+import { signInReducer } from '@/redux/auth/authSlice'
 import { useDispatch } from 'react-redux'
 
 const Login = () => {
   const { t } = useTranslation()
   const [mssgError, setMssgError] = useState('')
-  const [loginUser, { called, loading, data }] = useLazyQuery(authUser, {
-    fetchPolicy: 'no-cache',
-  })
   const router = useRouter()
   const dispatch = useDispatch()
 
@@ -35,8 +32,6 @@ const Login = () => {
       return loginService(payload)
     },
     onSuccess: ({ data }, variables, context) => {
-      // console.log({ data, variables, context })
-      // console.log('onSuccess: ', data.data.body)
       const payload = {
         user: {
           correo: data.body.correo,

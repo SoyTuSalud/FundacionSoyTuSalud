@@ -36,11 +36,11 @@ export class PacientesRoutes {
     const { id } = request.query
 
     switch (url) {
-      case '/api/v1/pacientes':
+      case '/services/v1/pacientes':
         validateRol(request, [roleEnum.ADMIN])
         return this.pacienteController.getPacientes(request, response)
 
-      case '/api/v1/pacientes/historia':
+      case '/services/v1/pacientes/historia':
         validateRol(request, [roleEnum.NO_AUTH])
         return this.pacienteController.getPacientesTuHistoria(request, response)
 
@@ -62,7 +62,7 @@ export class PacientesRoutes {
   private postRoutes(request: NextApiRequest, response: NextApiResponse, url: string) {
 
     switch (url) {
-      case '/api/v1/pacientes':
+      case '/services/v1/pacientes':
         validateRol(request, [roleEnum.NO_AUTH])
         return this.pacienteController.postPacientes(request, response)
 
@@ -78,7 +78,7 @@ export class PacientesRoutes {
   }
   private patchRoutes(request: NextApiRequest, response: NextApiResponse, url: string) {
     switch (url) {
-      case '/api/v1/pacientes':
+      case '/services/v1/pacientes':
         validateRol(request, [roleEnum.NO_AUTH])
         return this.pacienteController.patchPacientes(request, response)
 

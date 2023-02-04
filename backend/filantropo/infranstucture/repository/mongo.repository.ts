@@ -1,12 +1,15 @@
-import {Filantropo} from '../../domain/entity/filantropo.entity'
-import FilantropoModel, {FilantropoDoc} from '../model/mongo.model.filantropo'
-import HttpError from '../../../common/models/httpError.value'
-import {listModelToListEntity, modelToEntity} from '../mapper/paciente.mapper'
-import {FilantropoRepository} from '../../domain/repository/filantropo.repository'
-import {ResponseCodes} from '../../../common/enums/responseCodes.Enum'
-import {Status} from '../../../common/models/status.value'
-import {CreateFilantropoDTO} from "../../domain/dtos/updateFilantropo.dto";
 import {Types} from "mongoose";
+
+import {ResponseCodes} from '@common/enums/responseCodes.Enum'
+import {Status} from '@common/models/status.value'
+import HttpError from '@common/models/httpError.value'
+
+import {Filantropo} from '@filantropo/domain/entity/filantropo.entity'
+import {FilantropoRepository} from '@filantropo/domain/repository/filantropo.repository'
+import {CreateFilantropoDTO} from "@filantropo/domain/dtos/createFilantropo.dto";
+
+import FilantropoModel, {FilantropoDoc} from '@filantropo/infranstucture/model/mongo.model.filantropo'
+import {listModelToListEntity, modelToEntity} from '@filantropo/infranstucture/mapper/paciente.mapper'
 
 export class MongoRepository implements FilantropoRepository {
 
@@ -66,7 +69,6 @@ export class MongoRepository implements FilantropoRepository {
             apellidos: filantropo.apellidos,
             celular: filantropo.celular,
             correo: filantropo.correo,
-            direccion: filantropo.direccion,
             identificacion: filantropo.identificacion,
             nombre: filantropo.nombre,
             numeroDonaciones: 0,

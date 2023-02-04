@@ -29,6 +29,7 @@ export async function middleware(request) {
   else {
     const token = request.cookies.get('token') || ''
     const validate = await validateUser(token)
+    console.log(validate)
     const role = validate?.data?.verifyRoles || 'noAuth'
 
     if (enablePages[role].find((page) => path.includes(page))) {
@@ -53,7 +54,7 @@ export async function middleware(request) {
 export const config = {
   matcher: [
     '/private/:path*',
-    '/api/graqhql',
+    '/services/graqhql',
     '/tuhistoria',
     '/loginAdmin',
     '/login',

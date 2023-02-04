@@ -1,5 +1,5 @@
 export const ResponseCodes = {
-  SUCEESS: {
+  SUCCESS: {
     code: 'ST_00',
     message: 'Exito en la operacion',
     httpStatus: 200,

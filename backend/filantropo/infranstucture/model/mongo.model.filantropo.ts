@@ -1,8 +1,9 @@
 import {Document, Model, model, models, Schema} from 'mongoose'
-import {Filantropo} from "../../domain/entity/filantropo.entity";
-import {TipoDocumentoEnum} from "../../domain/enum/tipoDocumento.enum";
-import {ProfileTypeEnum} from "../../domain/enum/profileTypeEnum";
-import {PacienteDoc, PacienteSchema} from "../../../paciente/infranstucture/model/mongo.model.paciente";
+
+import {TipoDocumentoEnum} from "@common/enums/tipoDocumento.enum";
+
+import {Filantropo} from "@filantropo/domain/entity/filantropo.entity";
+import {ProfileTypeEnum} from "@filantropo/domain/enum/profileTypeEnum";
 
 
 
@@ -12,7 +13,6 @@ export interface FilantropoDoc extends Filantropo, Document {
   nombre: string
   apellidos: string
   celular: string
-  direccion: string
   correo: string
   numeroDonaciones: number
   totalDonado: number
@@ -50,10 +50,6 @@ const FilantropoSchema = new Schema<FilantropoDoc>(
       type: String,
       unique: true,
       validate: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-      required: true,
-    },
-    direccion:{
-      type: String,
       required: true,
     },
     numeroDonaciones: {

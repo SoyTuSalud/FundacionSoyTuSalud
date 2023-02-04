@@ -7,6 +7,6 @@ import {MongoRepository} from '@paciente/infranstucture/repository/mongo.reposit
 import {PacientesRoutes} from '@paciente/infranstucture/routes/paciente.routes';
 
 const pacienteRepository = new MongoRepository()
-const pacienteService = new PacienteServiceImpl(pacienteRepository)
+export const pacienteService = new PacienteServiceImpl(pacienteRepository)
 export const pacienteController = new PacienteController(pacienteService)
 export const pacientesRoutes = new PacientesRoutes(pacienteController, router)

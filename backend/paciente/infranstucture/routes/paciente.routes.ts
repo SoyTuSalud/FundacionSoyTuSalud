@@ -14,13 +14,13 @@ export class PacientesRoutes {
 
   public runRouterPacientes() {
 
+    const methodName = "runRouterPacientes"
+    logger.info(loggerMessage.INICIO + methodName)
+
     this.router.use(async (req, res, next)=>{
         loggerRequest(req)
         await next()
     });
-
-    const methodName = "runRouterPacientes"
-    logger.info(loggerMessage.INICIO + methodName)
 
     //POST methods
     this.router.post("/api/v1/pacientes", (req, res, next) => {

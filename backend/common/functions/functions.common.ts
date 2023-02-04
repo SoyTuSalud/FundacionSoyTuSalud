@@ -20,8 +20,8 @@ export function getFatalStatus(): Status {
 
 export function getStatusOk(): Status {
   return new Status(
-    ResponseCodes.SUCEESS.httpStatus,
-    ResponseCodes.SUCEESS.code,
-    ResponseCodes.SUCEESS.message,
+    ResponseCodes.SUCCESS.httpStatus,
+    ResponseCodes.SUCCESS.code,
+    ResponseCodes.SUCCESS.message,
   )
 }

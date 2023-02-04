@@ -5,41 +5,22 @@ import { PacientesToolbar } from '../../../../components/pacientes/PacientesTool
 import { pacientesTabla } from '../../../../graphql-front/paciente/queries'
 import { PacientesTablas } from '../../../../components/pacientes/PacientesTablas'
 import { useLazyQuery } from '@apollo/client'
-import { ResponseCodes } from '../../../../backend/domain/commons/enums/responseCodesEnum'
 import { useEffect, useState } from 'react'
 import Alert from '../../../../components/Ui/alert/Alert'
+import {useApi} from "@/hooks/useApi";
+
+
 
 const PacientesPage = () => {
-  const [error, setError] = useState({
-    type: '',
-    message: '',
-  })
-  const [data, setData] = useState()
 
-  const [getPacientes] = useLazyQuery(pacientesTabla)
-
-  useEffect(() => {
-    getPacientes()
-      .then(({ data }) => {
-        const request = data.PacientesTabla
-        if (request.status.code === ResponseCodes.SUCCESS) {
-          setData(request.body)
-        } else {
-          setError({ message: request.status.description, type: 'info' })
-        }
-      }).catch(() => {
-        setError({
-          message: 'Error en el Server, contacte el administrador',
-          type: 'error',
-        })
-      })
-  }, [])
+  const { pacientesQuery } = useApi()
 
   return (
     <NewPrivateLayout>
       <Head>
         <title>Pacientes</title>
       </Head>
+
       <Box
         component="main"
         sx={{
@@ -49,17 +30,19 @@ const PacientesPage = () => {
         }}
       >
         <Container maxWidth={false}>
-          {data && (
+          {pacientesQuery.data && (
             <>
               <PacientesToolbar tab={0} />
               <Box sx={{ mt: 3 }}>
-                <PacientesTablas UsuariosTabla={data} />
+                <PacientesTablas UsuariosTabla={pacientesQuery.data.body} customers={undefined} />
               </Box>
             </>
           )}
-          {error && <Alert config={error} />}
+          {pacientesQuery.isLoading && <h1>Cargando</h1>}
+          {pacientesQuery.isError && <Alert config={pacientesQuery.isError} />}
         </Container>
       </Box>
+
     </NewPrivateLayout>
   )
 }

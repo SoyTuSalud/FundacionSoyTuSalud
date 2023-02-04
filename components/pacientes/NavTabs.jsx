@@ -14,7 +14,7 @@ export default function NavTabs({ tab }) {
   return (
     <Box sx={{ width: '100%' }}>
       <div className="flex w-full justify-around">
-        <Link href="/private/admin/pacientes" passHref>
+        <Link href="/private/admin/index" passHref>
           <a className="no-underline ">Todos los Pacientes</a>
         </Link>
         <Link href="/private/admin/pacientes/pacientesTuHistoria" passHref>

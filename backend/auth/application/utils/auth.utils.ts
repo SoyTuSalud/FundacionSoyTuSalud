@@ -37,6 +37,11 @@ export const validateBodySignIn = (body: any): AuthSignInDTO => {
       body.role,
       body.correo,
       body.contrasena,
+      body.tipoDocumento,
+      body.nombre,
+      body.apellidos,
+      body.celular,
+      body.identificacion
     )
   } catch (e) {
     throw new HttpError(

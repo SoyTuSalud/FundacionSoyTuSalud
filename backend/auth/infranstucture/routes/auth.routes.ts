@@ -24,7 +24,7 @@ export class AuthRoutes {
       return this.authController.postAuthLoginAdmin(req, res)
     });
 
-    this.router.post("/api/v1/auth/signin", async (req, res, next) => {
+    this.router.post("/api/v1/auth/signing", async (req, res, next) => {
       return this.authController.postAuthSignIn(req, res)
     });
 

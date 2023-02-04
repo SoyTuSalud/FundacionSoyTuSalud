@@ -19,6 +19,7 @@
       "@common/*": ["backend/common/*"],
       "@auth/*": ["backend/auth/*"],
       "@paciente/*": ["backend/paciente/*"],
+      "@filantropo/*": ["backend/filantropo/*"],
     }
   },
   "include": [
@@ -26,7 +27,7 @@
     "**/*.ts",
     "**/*.tsx",
     "pages/trabajaNosotros.jsx",
-    "pages/registro.jsx",
+    "pages/registro",
     "pages/login.jsx",
     "pages/index.jsx",
     "pages/_document.jsx",
@@ -38,7 +39,7 @@
     "utils/validateRolPages.js",
     "utils/enablePagesEnum.js",
     "utils/validateRolPages.js",
-    "pages/loginAdmin.jsx",
+    "pages/loginAdmin",
     "pages/api/verifiedAccountByToken/[token].js",
     "backend/infrastructure/servicesV2/pacientes/findAllPacientests",
     "pages/api/auth/[...nextauth].js"

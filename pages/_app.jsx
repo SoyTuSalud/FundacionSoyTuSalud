@@ -6,6 +6,7 @@ import { ThemeProvider } from '@mui/material/styles'
 import { lightTheme } from '../components/Ui/themes/lightTheme'
 import { appWithTranslation } from 'next-i18next'
 import { ComponentContext } from '../context/useComponents'
+import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
 
 import '../styles/globals.css'
 import '../styles/SignInPage.css'
@@ -24,6 +25,8 @@ import { store } from '../redux/store'
 import { checkTokenThunk, logoutThunk } from '../redux/auth/thunks'
 import { checkingReducer } from '../redux/auth/authSlice'
 
+
+/*
 const CheckingToken = ({ children }) => {
   const dispatch = useDispatch()
   const checkToken = () => {
@@ -43,6 +46,9 @@ const CheckingToken = ({ children }) => {
 
   return children
 }
+ */
+
+
 
 function MyApp({ Component, pageProps }) {
   const [authUser, setAuthUser] = useState()
@@ -52,25 +58,22 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ReduxProvider store={store}>
-      <CheckingToken>
         <SessionProvider>
           <QueryClientProvider client={queryClient}>
+            <ReactQueryDevtools/>
             <ApolloProvider client={client}>
               <PopupProvider>
                 <ThemeProvider theme={lightTheme}>
-                  <AuthContext.Provider value={{ authUser, setAuthUser }}>
                     <ComponentContext.Provider
                       value={{ componentStatus, setComponentStatus }}
                     >
                       <Component {...pageProps} />
                     </ComponentContext.Provider>
-                  </AuthContext.Provider>
                 </ThemeProvider>
               </PopupProvider>
             </ApolloProvider>
           </QueryClientProvider>
         </SessionProvider>
-      </CheckingToken>
     </ReduxProvider>
   )
 }

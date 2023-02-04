@@ -1,14 +1,12 @@
-import type {NextApiRequest, NextApiResponse} from 'next'
-import {validateError} from '../../../../../../backend/common/functions/functions.common';
-import {filantropoRoutes} from "../../../../../../backend/filantropo/infranstucture/container/filantropo.container";
+import type { NextApiRequest, NextApiResponse } from 'next'
 
-export default function userHandler(req: NextApiRequest, res: NextApiResponse) {
+import {handler} from '@common/router/rounter.interface'
+import {filantropoRoutes} from "@filantropo/infranstucture/container/filantropo.container";
 
-  try{
-    return filantropoRoutes.initRoute(req, res)
-  }
-  catch (error: unknown) {
-    const responseEntity = validateError(error)
-    res.status(responseEntity.status.httpStatus).json(responseEntity)
-  }
+export default async function userHandler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
+  await filantropoRoutes.runFilantropoRoutes()
+  await handler(req, res)
 }

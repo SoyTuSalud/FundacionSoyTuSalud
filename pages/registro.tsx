@@ -1,32 +1,52 @@
-import { useMutation } from '@apollo/client'
-import { useState } from 'react'
-import { registrarPaciente } from '../graphql-front/paciente/mutations'
-import { registrarFilantropo } from '../graphql-front/filantropos/mutations'
+import {FC, useState} from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { LayoutMain } from '../components/layouts/LayoutMain'
-import CloseIcon from '@mui/icons-material/Close'
-
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Image from 'next/image'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
+import {useMutation} from "@tanstack/react-query";
 import { Field, Form, Formik } from 'formik'
-import { basicSchema } from '../schema'
-import { useCookies } from 'react-cookie'
+import { useTranslation } from 'next-i18next'
+import CloseIcon from '@mui/icons-material/Close'
 import { Box } from '@mui/material'
-import { MenuFooter } from '../components/Ui/public'
-import { ResponseCodes } from '../backend/graphql/domain/commons/enums/responseCodesEnum'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import axios from 'axios'
 
-const Registro = () => {
+
+import { basicSchema } from '@/schema'
+import { MenuFooter } from '@/components/Ui'
+import { ResponseCodes } from '@/backend/graphql/domain/commons/enums/responseCodesEnum'
+import {loginService, registerUser} from "@/services/auth";
+import {signInReducer} from "@/redux/auth/authSlice";
+
+const Registro:FC = () => {
   const { t } = useTranslation()
-  const [agregarPaciente, resultPaciente] = useMutation(registrarPaciente)
-  const [agregarFilantropo, resultFiltrantropo] =
-    useMutation(registrarFilantropo)
-  const [success, setSuccess] = useState(false)
+
+  const [success, setSuccess] = useState<boolean>(false)
   const [email, setEmail] = useState('')
-  const [cookies, setCookie, removeCookie] = useCookies(['access'])
   const [mssagError, setMssgError] = useState('')
+
+  const mutation = useMutation({
+    mutationFn: (payload) => {
+      return registerUser(payload)
+    },
+    onSuccess: ({ data }, variables, context) => {
+      const payload = {
+        user: {
+          correo: data.body.correo,
+          role: data.body.role,
+          statusAccount: data.statusAccount,
+        },
+        token: data.body.token,
+      }
+      dispatch(signInReducer(payload))
+      localStorage.setItem('token', data.body.token)
+
+      router.push('/')
+    },
+    onError: (data, variables, context) => {
+      console.log({ data, variables, context })
+    },
+  })
 
   const router = useRouter()
 
