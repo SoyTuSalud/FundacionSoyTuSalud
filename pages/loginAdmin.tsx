@@ -15,17 +15,30 @@ const loginAdmin = async( authData:AuthDTO ): Promise<ResponseEntity<UserDTO>> =
   return data
 }
 
+interface ILogin{
+  correo: string
+  contrasena: string
+}
+
 const LoginAdmin = () => {
   const router = useRouter()
-  const [error, setError] = useState('')
+  const [error, setError] = useState("");
 
   const loginAdminQuery = useMutation({
-    mutationFn:(data:any)=> loginAdmin(data)
-  })
+    mutationFn:(data:any)=> loginAdmin(data),
+    onSuccess:  () => {
+      router.push('/private/admin')
+    },
+    onError: (error, variables, context) => {
+      // @ts-ignore
+      setError(error?.response.data.status.description)
+      console.log({ error, variables, context })
+  }}
+  )
 
   const handleSubmit = async (variables: any) => {
     await loginAdminQuery.mutate(variables)
-    loginAdminQuery.isSuccess? await router.push("/private/admin"):null
+    console.log("data", loginAdminQuery)
   }
 
   return (
@@ -47,12 +60,12 @@ const LoginAdmin = () => {
             <p className="mt-2 text-center text-sm text-gray-600"></p>
           </div>
 
-          <span className="text-red-500">{error}</span>
+          {loginAdminQuery.isError?(<span className="text-red-500">{error}</span>):null}
 
           <Formik
             initialValues={{ correo: '', contrasena: '' }}
             validate={(values) => {
-              const errors = {}
+              let errors: Partial<ILogin> = {};
               if (!values.correo) {
                 errors.correo = 'Requerido'
               } else if (

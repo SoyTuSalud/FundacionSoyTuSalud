@@ -6,6 +6,7 @@ import { ResponseEntity } from '@common/models/response.value'
 import { AuthDTO } from '@auth/domain/dtos/auth.dto'
 import { UserDTO } from '@auth/domain/dtos/user.dto'
 import { AuthSignInDTO } from '@auth/domain/dtos/authSignIn.dto'
+import {VerifyRoleDto} from "@auth/domain/dtos/verifyRole.dto";
 
 export interface AuthService {
   login(
@@ -18,5 +19,5 @@ export interface AuthService {
     response: NextApiResponse,
   ): Promise<ResponseEntity<UserDTO | null>>
   verifyRoles(request: RequestEntity<string>): Promise<ResponseEntity<null>>
-  checkToken(request: RequestEntity<null>): Promise<ResponseEntity<null>>
+  checkToken(request: RequestEntity<null>): Promise<ResponseEntity<VerifyRoleDto | null>>
 }

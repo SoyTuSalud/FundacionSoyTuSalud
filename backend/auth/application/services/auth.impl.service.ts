@@ -21,6 +21,7 @@ import { UserDTO } from '@auth/domain/dtos/user.dto'
 
 import { AuthService } from '@auth/application/services/auth.interface.service'
 import { setCookie } from '@auth/application/utils/tokenSerialize.utils'
+import {VerifyRoleDto} from "@auth/domain/dtos/verifyRole.dto";
 
 
 
@@ -145,7 +146,7 @@ export class authServiceImpl implements AuthService {
 
   public async checkToken(
     req: RequestEntity<null>,
-  ): Promise<ResponseEntity<null>> {
+  ): Promise<ResponseEntity<VerifyRoleDto| null>> {
 
     const methodName = "checkToken"
     logger.info(loggerMessage.INICIO + methodName)
@@ -167,11 +168,12 @@ export class authServiceImpl implements AuthService {
     try {
       const { correo }: any = jwt.verify(token, envJWT)
 
-      await this.authRepository.findByEmail(correo)
+      const user =  await this.authRepository.findByEmail(correo)
 
       logger.info(loggerMessage.FIN + methodName)
 
-      return new ResponseEntity(null, getStatusOk())
+      return new ResponseEntity(new VerifyRoleDto(user.role), getStatusOk())
+
     } catch (error) {
       if (error instanceof HttpError) {
         logger.info(loggerMessage.ERROR + methodName)

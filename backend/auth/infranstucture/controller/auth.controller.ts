@@ -137,7 +137,7 @@ class AuthController {
     logger.info(loggerMessage.INICIO + methodName)
 
     try {
-      const requestEntity = new RequestEntity<null>(
+        const requestEntity = new RequestEntity<null>(
         null,
         request.cookies.token,
         request.headers,

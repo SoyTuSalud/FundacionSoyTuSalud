@@ -29,8 +29,7 @@ export async function middleware(request) {
   else {
     const token = request.cookies.get('token') || ''
     const validate = await validateUser(token)
-    console.log(validate)
-    const role = validate?.data?.verifyRoles || 'noAuth'
+    const role = validate?.body?.role || 'noAuth'
 
     if (enablePages[role].find((page) => path.includes(page))) {
       const response = NextResponse.next()

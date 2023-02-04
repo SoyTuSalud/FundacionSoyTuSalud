@@ -1,27 +1,22 @@
 export const validateUser = async (token: string) => {
-  var myHeaders = new Headers()
+  const myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/json')
   myHeaders.append('Cookie', `token=${token}`)
 
   const httpLink =
-    process.env.ENV_API_GRAPHQL || process.env.NEXT_PUBLIC_API_GRAPHQL || ''
+    process.env.ENV_FRONT_CALL || process.env.NEXT_PUBLIC_FRONT_CALL || ''
 
-  var graphql = JSON.stringify({
-    query: 'query Query {\n  verifyRoles\n}',
-    variables: {},
-  })
-
-  var requestOptions : RequestInit = {
-    method: 'POST',
+  const requestOptions: RequestInit = {
+    method: 'GET',
     headers: myHeaders,
-    body: graphql,
-    redirect: 'follow',
-  }
+    redirect: 'follow'
+  };
 
-  return await fetch(httpLink, requestOptions)
+  return await fetch(`${httpLink}/api/v1/auth/checkToken`, requestOptions)
     .then((response) => response.json())
     .then((result) => {
       return result
     })
     .catch((error) => console.log('error', error))
+
 }

@@ -27,6 +27,9 @@ export class AuthRoutes {
     this.router.post("/api/v1/auth/signing", async (req, res, next) => {
       return this.authController.postAuthSignIn(req, res)
     });
+    this.router.get("/api/v1/auth/checkToken", async (req, res, next) => {
+      return this.authController.getCheckToken(req, res)
+    });
 
     logger.info(loggerMessage.FIN + methodName)
   }

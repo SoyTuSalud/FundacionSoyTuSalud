@@ -1,12 +1,9 @@
 import { Box, Container } from '@mui/material'
 import Head from 'next/head'
-import NewPrivateLayout from '../../../../components/layouts/NewPrivateLayout/NewPrivateLayout'
-import { PacientesToolbar } from '../../../../components/pacientes/PacientesToolbar'
-import { pacientesTabla } from '../../../../graphql-front/paciente/queries'
-import { PacientesTablas } from '../../../../components/pacientes/PacientesTablas'
-import { useLazyQuery } from '@apollo/client'
-import { useEffect, useState } from 'react'
-import Alert from '../../../../components/Ui/alert/Alert'
+import NewPrivateLayout from '@/components/layouts/NewPrivateLayout/NewPrivateLayout'
+import { PacientesToolbar } from '@/components/pacientes/PacientesToolbar'
+import { PacientesTablas } from '@/components/pacientes/PacientesTablas'
+import Alert from '@/components/Ui/alert/Alert'
 import {useApi} from "@/hooks/useApi";
 
 
