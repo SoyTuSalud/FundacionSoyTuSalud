@@ -5,9 +5,13 @@ import { ServiciosToolbar } from '../../../../components/servicios/ServiciosTool
 import { serviciosTablaData } from '../../../../graphql-front/servicios/queries'
 import { client } from '../../../../graphql-front/initClientSide'
 import { ServiciosTablas } from '../../../../components/servicios/ServiciosTablas'
+import {useQuery} from "@tanstack/react-query";
+import {ResponseEntity} from "../../../../backend/common/models/response.value";
+import {Paciente} from "../../../../backend/paciente/domain/entity/paciente.entity";
+import {getPacientes} from "../../../../services/pacientes.api";
 
 const ServiciosPage = ({ serviciosData }) => {
-  console.log(serviciosData)
+
   return (
     <NewPrivateLayout>
       <Head>

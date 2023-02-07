@@ -11,6 +11,8 @@ import {UpdatePacienteDTO} from '@paciente/domain/dtos/updatePaciente.dto'
 import PacienteModel, {PacienteDoc} from '@paciente/infranstucture/model/mongo.model.paciente'
 import {listModelToListEntity, modelToEntity} from '@paciente/infranstucture/mapper/paciente.mapper'
 import {logger} from "@common/logger/winston.config";
+import {ResponseEntity} from "@common/models/response.value";
+import {getFatalStatus} from "@common/functions/functions.common";
 
 
 export class MongoRepository implements PacienteRepository {
@@ -29,6 +31,9 @@ export class MongoRepository implements PacienteRepository {
                 return modelToEntity(data)
             })
             .catch((e) => {
+                if (e instanceof HttpError) {
+                    throw e
+                }
                 throw new HttpError(
                     new Status(
                         ResponseCodes.PACIENTE_NO_EXIST.httpStatus,
@@ -54,6 +59,9 @@ export class MongoRepository implements PacienteRepository {
                 return listModelToListEntity(data)
             })
             .catch((e) => {
+                if (e instanceof HttpError) {
+                    throw e
+                }
                 throw new HttpError(
                     new Status(
                         ResponseCodes.DB_ERROR_CONNECTION.httpStatus,
@@ -79,6 +87,9 @@ export class MongoRepository implements PacienteRepository {
                 return listModelToListEntity(data)
             })
             .catch((e) => {
+                if (e instanceof HttpError) {
+                    throw e
+                }
                 throw new HttpError(
                     new Status(
                         ResponseCodes.DB_ERROR_CONNECTION.httpStatus,
@@ -100,6 +111,9 @@ export class MongoRepository implements PacienteRepository {
         }).catch((e) => {
             // @ts-ignore
             logger.info(e.message)
+            if (e instanceof HttpError) {
+                throw e
+            }
             throw new HttpError(
                 new Status(
                     ResponseCodes.USER_EXIST.httpStatus,
@@ -132,6 +146,9 @@ export class MongoRepository implements PacienteRepository {
                 fechaSolicitud: updatePaciente.fechaSolicitud,
             },
         ).catch((e) => {
+            if (e instanceof HttpError) {
+                throw e
+            }
             throw new HttpError(
                 new Status(
                     ResponseCodes.PACIENTE_NO_EXIST.httpStatus,

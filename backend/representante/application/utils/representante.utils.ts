@@ -1,22 +1,36 @@
-import {ResponseCodes} from '../../../common/enums/responseCodes.Enum'
-import HttpError from '../../../common/models/httpError.value'
+import {ResponseCodes} from '@common/enums/responseCodes.Enum'
+import HttpError from '@common/models/httpError.value'
 import RepresentanteValue from '../../domain/model/representante.value'
-import {PacienteSchema, PacienteUpdateSchema} from '../schema/paciente.schema'
+import {RepresentanteSchema, PacienteUpdateSchema} from '../schema/representante.schema'
 import {UpdatePacienteDTO} from '../../domain/dtos/updatePaciente.dto'
-import {Status} from '../../../common/models/status.value'
+import {Status} from '@common/models/status.value'
 import {z} from "zod";
 
 export const validateBodyCreation = (body: any): RepresentanteValue => {
   try {
-    PacienteSchema.parse(body)
+    RepresentanteSchema.parse(body)
 
     return new RepresentanteValue(
-      body.identificacion,
-      body.nombre,
-      body.apellidos,
-      body.TipoDocumentoEnum,
+      body.aceptaCodigoEticaSoyTuSalud,
+      body.aceptaConvenio,
+      body.aceptaDocumentoSARLAFT,
+      body.aceptaTratamientoDatos,
       body.celular,
-      body.correo,
+      body.convalidacionIcfes,
+      body.cuentaDeAhorros,
+      body.departamento,
+      body.direccion,
+      body.distintivoHabilitacion,
+      body.foto,
+      body.fotoLogoPublicidad,
+      body.habilitado,
+      body.hojaVida,
+      body.identificacion,
+      body.municipio,
+      body.nombreCompleto,
+      body.paginaWeb,
+      body.resumenCurriculum,
+      body.tipoDocumento,
     )
   } catch (e) {
 

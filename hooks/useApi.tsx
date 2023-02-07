@@ -1,23 +1,32 @@
-import {Paciente} from "@paciente/domain/entity/paciente.entity";
-import {soyTuApi} from "@/services/auth";
-import {useQuery} from "@tanstack/react-query";
-import {AuthDTO} from "@auth/domain/dtos/auth.dto";
-import {UserDTO} from "@auth/domain/dtos/user.dto";
-import {ResponseEntity} from "@common/models/response.value";
+import { Paciente } from '@paciente/domain/entity/paciente.entity'
+import { useQuery } from '@tanstack/react-query'
+import { ResponseEntity } from '@common/models/response.value'
+import { getPacientes, getPacientesHistoria, getPacienteInfo } from '@/services/pacientes.api'
 
-const getPacientes = async(): Promise<ResponseEntity<UserDTO[]>> => {
-  const {data} = await soyTuApi.get<ResponseEntity<UserDTO[]>>("/pacientes")
-  return data
+interface errorResponse {
+  response: {
+    data: ResponseEntity<Paciente[] | null>
+  }
 }
 
-
-export const useApi = () => {
-
-  const pacientesQuery = useQuery({
+export const useApiPacientes = (data: ResponseEntity<Paciente[] | null>) => {
+  const pacientesQuery = useQuery<
+    ResponseEntity<Paciente[] | null>,
+    errorResponse
+  >({
     queryKey: ['pacientes'],
-    queryFn: getPacientes
+    queryFn: () => getPacientes(),
+    initialData: data,
   })
 
+  const pacientesHistoriaQuery = useQuery<
+    ResponseEntity<Paciente[] | null>,
+    errorResponse
+  >({
+    queryKey: ['pacientesHistoria'],
+    queryFn: () => getPacientesHistoria(),
+    initialData: data,
+  })
 
-  return {pacientesQuery}
+  return { pacientesQuery, pacientesHistoriaQuery }
 }

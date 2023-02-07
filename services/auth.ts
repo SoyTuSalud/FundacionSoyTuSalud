@@ -3,10 +3,7 @@ import {AuthSignInDTO} from "@auth/domain/dtos/authSignIn.dto";
 
 
 
-export const soyTuApi = axios.create({
-  baseURL: "/api/v1",
-  withCredentials: true,
-})
+
 export const loginService = async (payload: any) => {
   // console.log('payload: ', payload)
   return await axios.post('/api/v1/auth/login', payload)

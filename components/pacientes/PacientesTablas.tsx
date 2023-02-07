@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import PropTypes from 'prop-types'
+import { useState, FC } from 'react'
 import {
   Avatar,
   Box,
@@ -15,14 +14,14 @@ import {
   TableContainer,
 } from '@mui/material'
 import { getInitials } from '../../utils/get-initials'
+import { Paciente } from '@paciente/domain/entity/paciente.entity'
 
-export const PacientesTablas = ({ UsuariosTabla, ...rest }) => {
-  const [selectedCustomerIds, setSelectedCustomerIds] = useState([])
+export const PacientesTablas:FC<{ UsuariosTabla: Paciente[] }> = ({ UsuariosTabla}) => {
+  const [selectedCustomerIds, setSelectedCustomerIds] = useState<string[]>([])
   const [limit, setLimit] = useState(10)
   const [page, setPage] = useState(0)
-  console.log(UsuariosTabla)
-  const handleSelectAll = (event) => {
-    let newSelectedCustomerIds
+  const handleSelectAll = (event: any) => {
+    let newSelectedCustomerIds:string[]= []
 
     if (event.target.checked) {
       newSelectedCustomerIds = UsuariosTabla.map(
@@ -35,9 +34,9 @@ export const PacientesTablas = ({ UsuariosTabla, ...rest }) => {
     setSelectedCustomerIds(newSelectedCustomerIds)
   }
 
-  const handleSelectOne = (event, identificacion) => {
+  const handleSelectOne = (event: any, identificacion:string) => {
     const selectedIndex = selectedCustomerIds.indexOf(identificacion)
-    let newSelectedCustomerIds = []
+    let newSelectedCustomerIds:string[] = []
 
     if (selectedIndex === -1) {
       newSelectedCustomerIds = newSelectedCustomerIds.concat(
@@ -62,16 +61,16 @@ export const PacientesTablas = ({ UsuariosTabla, ...rest }) => {
     setSelectedCustomerIds(newSelectedCustomerIds)
   }
 
-  const handleLimitChange = (event) => {
+  const handleLimitChange = (event: any) => {
     setLimit(event.target.value)
   }
 
-  const handlePageChange = (event, newPage) => {
+  const handlePageChange = (event: any, newPage:number) => {
     setPage(newPage)
   }
 
   return (
-    <Card {...rest}>
+    <Card>
       <TableContainer>
         <Table>
           <TableHead>
@@ -158,8 +157,4 @@ export const PacientesTablas = ({ UsuariosTabla, ...rest }) => {
       />
     </Card>
   )
-}
-
-PacientesTablas.propTypes = {
-  UsuariosTabla: PropTypes.array.isRequired,
 }

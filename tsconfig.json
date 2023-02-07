@@ -15,11 +15,12 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@/*": ["*"],
-      "@common/*": ["backend/common/*"],
-      "@auth/*": ["backend/auth/*"],
-      "@paciente/*": ["backend/paciente/*"],
-      "@filantropo/*": ["backend/filantropo/*"],
+      "@/*": ["./*"],
+      "@common/*": ["./backend/common/*"],
+      "@auth/*": ["./backend/auth/*"],
+      "@paciente/*": ["./backend/paciente/*"],
+      "@filantropo/*": ["./backend/filantropo/*"],
+      "@services/*": ["./services/*"],
     }
   },
   "include": [

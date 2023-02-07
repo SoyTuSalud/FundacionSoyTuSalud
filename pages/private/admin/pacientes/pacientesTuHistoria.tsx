@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { GetServerSideProps } from 'next'
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import Head from 'next/head'
 
 import { Box, Container } from '@mui/material'
@@ -8,48 +8,48 @@ import { ResponseEntity } from '@common/models/response.value'
 import { Paciente } from '@paciente/domain/entity/paciente.entity'
 
 import { useApiPacientes } from '@/hooks/useApi'
-import { getPacientesSSR } from '@/services/pacientes.api'
+import { getPacientesHistoriaSSR } from '@/services/pacientes.api'
 
 import NewPrivateLayout from '@/components/layouts/NewPrivateLayout/NewPrivateLayout'
 import { PacientesToolbar } from '@/components/pacientes/PacientesToolbar'
-import { PacientesTablas } from '@/components/pacientes/PacientesTablas'
+import { PacientesTablasTuHistoria } from '@/components/pacientes/PacientesTablasTuHistoria'
 import Alert from '@/components/Ui/alert/Alert'
+import { ParsedUrlQuery } from 'querystring'
 
-const PacientesPage: FC<{ pacientes: ResponseEntity<Paciente[]> }> = ({
+const PacientesTuHistoria: FC<{ pacientes: ResponseEntity<Paciente[]> }> = ({
   pacientes,
 }) => {
-  const { pacientesQuery } = useApiPacientes(pacientes)
+  const { pacientesHistoriaQuery } = useApiPacientes(pacientes)
 
   return (
     <NewPrivateLayout>
       <Head>
         <title>Pacientes</title>
       </Head>
-
       <Box
         component="main"
         sx={{
           flexGrow: 1,
           py: 8,
-          height: 100,
         }}
       >
         <Container maxWidth={false}>
-          {pacientesQuery.data.body && (
+          {pacientesHistoriaQuery.data.body && (
             <>
-              <PacientesToolbar tab={0} />
+              <PacientesToolbar tab={1} />
               <Box sx={{ mt: 3 }}>
-                <PacientesTablas
-                  UsuariosTabla={pacientesQuery.data.body}
+                <PacientesTablasTuHistoria
+                  UsuariosTablaTuHistoria={pacientesHistoriaQuery.data.body}
                 />
               </Box>
             </>
           )}
-          {pacientesQuery.isError && (
+          {pacientesHistoriaQuery.isError && (
             <Alert
               config={{
                 message:
-                  pacientesQuery?.error?.response?.data?.status?.description,
+                  pacientesHistoriaQuery?.error?.response?.data.status
+                    .description,
                 type: 'error',
               }}
             />
@@ -60,8 +60,12 @@ const PacientesPage: FC<{ pacientes: ResponseEntity<Paciente[]> }> = ({
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const pacientes = await getPacientesSSR(req)
+interface Params extends ParsedUrlQuery {
+  pid: string;
+}
+
+export const getServerSideProps: GetServerSideProps<{pacientes: ResponseEntity<Paciente[]>}> = async ({req}) => {
+  const pacientes = await getPacientesHistoriaSSR(req)
   return {
     props: {
       pacientes,
@@ -69,4 +73,4 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   }
 }
 
-export default PacientesPage
+export default PacientesTuHistoria

@@ -15,7 +15,7 @@ export class FilantropoRoutes {
 
   public runFilantropoRoutes() {
 
-    const methodName = "runRouterPacientes"
+    const methodName = "runFilantropoRoutes"
     logger.info(loggerMessage.INICIO + methodName)
 
     this.router.use(async (req, res, next)=>{

@@ -1,5 +1,5 @@
 import {RepresentanteServiceImpl} from '../../application/service/representante.impl.service'
-import PacienteController from '../controller/paciente.controller'
+import PacienteController from '../controller/representante.controller'
 import {MongoRepository} from '../repository/mongo.repository'
 import {PacientesRoutes} from '../routes/representante.routes';
 

@@ -4,13 +4,12 @@ import { Formik } from 'formik'
 import { useState } from 'react'
 import {AuthDTO} from "@auth/domain/dtos/auth.dto";
 import {UserDTO} from "@auth/domain/dtos/user.dto";
-import {soyTuApi} from "@/services/auth";
 import {useMutation, useQuery} from "@tanstack/react-query";
 import {ResponseEntity} from "@common/models/response.value";
+import { soyTuApi } from '@/services/axios.config';
 
 
 const loginAdmin = async( authData:AuthDTO ): Promise<ResponseEntity<UserDTO>> => {
-  console.log(authData)
   const {data} = await soyTuApi.post<ResponseEntity<UserDTO>>("/auth/loginAdmin", authData)
   return data
 }
@@ -38,7 +37,6 @@ const LoginAdmin = () => {
 
   const handleSubmit = async (variables: any) => {
     await loginAdminQuery.mutate(variables)
-    console.log("data", loginAdminQuery)
   }
 
   return (

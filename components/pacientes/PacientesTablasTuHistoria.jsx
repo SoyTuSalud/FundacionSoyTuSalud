@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
-import { grupoPoblacional } from '../../utils/grupoPoblacional'
 import {
   Avatar,
   Box,
@@ -20,7 +19,6 @@ import { getInitials } from '../../utils/get-initials'
 
 export const PacientesTablasTuHistoria = ({
   UsuariosTablaTuHistoria,
-  customers,
   ...rest
 }) => {
   const [selectedCustomerIds, setSelectedCustomerIds] = useState([])
@@ -99,7 +97,6 @@ export const PacientesTablasTuHistoria = ({
               <TableCell>Nombres</TableCell>
               <TableCell>Apellidos</TableCell>
               <TableCell>Comunidad</TableCell>
-              <TableCell>grupo Poblacional</TableCell>
               <TableCell>fecha Solicitud</TableCell>
               <TableCell>Acciones</TableCell>
             </TableRow>
@@ -144,19 +141,11 @@ export const PacientesTablasTuHistoria = ({
                 <TableCell>
                   {customer.comunidad ? customer.comunidad : 'N/A'}
                 </TableCell>
-                <TableCell>
-                  {
-                    grupoPoblacional.filter(
-                      (valueFilter) =>
-                        valueFilter.value === customer.grupoPoblacional,
-                    )[0].grupo
-                  }
-                </TableCell>
                 <TableCell>{customer.fechaSolicitud}</TableCell>
                 <TableCell>
                   <Link
                     passHref
-                    href={`/private/admin/pacientes/${customer._id}`}
+                    href={`/private/admin/pacientes/${customer.identificacion}`}
                   >
                     <a className="text-blue-500">Ver mas</a>
                   </Link>
