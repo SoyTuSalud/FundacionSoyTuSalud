@@ -31,4 +31,5 @@ router
       res.status(responseEntity.status.httpStatus).json(responseEntity)
     }
 })
+
 export {router, handler}
