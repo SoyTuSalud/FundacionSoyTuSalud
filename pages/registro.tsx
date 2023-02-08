@@ -14,7 +14,7 @@ import axios from 'axios'
 
 import { basicSchema } from '@/schema'
 import { MenuFooter } from '@/components/Ui'
-import { ResponseCodes } from '@/backend/graphql/domain/commons/enums/responseCodesEnum'
+import { ResponseCodes } from '@/backend/graphqlBack/domain/commons/enums/responseCodesEnum'
 import {loginService, registerUser} from "@/services/auth";
 import {signInReducer} from "@/redux/auth/authSlice";
 

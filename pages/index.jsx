@@ -1,13 +1,8 @@
-import { Box, Container, Typography } from '@mui/material'
 import Head from 'next/head'
 import Image from 'next/image'
-import { LayoutMain } from '@/components/layouts'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useTranslation } from 'next-i18next'
-import { useContext, useState } from 'react'
-import { Loading } from '../components/Ui/loading/Loading'
-import { PopUp } from '../components/Ui/popup/PopUp'
-import { PopupContext } from '../context/popup'
+import {LayoutMain} from '@/components/layouts'
+import {serverSideTranslations} from 'next-i18next/serverSideTranslations'
+import {useTranslation} from 'next-i18next'
 
 export default function Home({ locale }) {
   const { t } = useTranslation()

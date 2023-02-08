@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { stat } from 'fs'
 
 type UserState = 'checking' | 'authenticated' | 'not-authenticated'
 
@@ -27,7 +26,7 @@ export const authSlice = createSlice({
 
     signInReducer: (state, { payload }) => {
       state.status = 'authenticated'
-      state.user = payload.user
+      state.user = payload
       state.token = payload.token
       state.errorMessage = undefined
     },

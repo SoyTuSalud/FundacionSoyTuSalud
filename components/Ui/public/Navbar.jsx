@@ -1,25 +1,27 @@
-import { Fragment, useState, useEffect } from 'react'
-import { Popover, Transition } from '@headlessui/react'
+import {Fragment, useEffect, useState} from 'react'
+import {Popover, Transition} from '@headlessui/react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useAuth } from '../../../context/useAuth'
-import { useRouter } from 'next/router'
-import { useCookies } from 'react-cookie'
+import {useRouter} from 'next/router'
+import {useCookies} from 'react-cookie'
 import '../../../node_modules/flag-icons/css/flag-icons.min.css'
 
 import {
-  UserIcon,
-  MenuIcon,
-  HomeIcon,
   BriefcaseIcon,
-  UserGroupIcon,
+  HomeIcon,
+  MenuIcon,
   OfficeBuildingIcon,
+  UserGroupIcon,
+  UserIcon,
   XIcon,
 } from '@heroicons/react/outline'
-import { useDispatch, useSelector } from 'react-redux'
-import { logoutThunk } from '../../../redux/auth/thunks'
+import {useDispatch, useSelector} from 'react-redux'
+import {logoutThunk} from '../../../redux/auth/thunks'
 
 export const Navbar = ({ t }) => {
+
+  const [cookies, setCookie, removeCookie] = useCookies(['token'])
+
   const solutions = [
     {
       name: t('navbar:BEGINNING'),
@@ -80,23 +82,15 @@ export const Navbar = ({ t }) => {
   ]
 
   const router = useRouter()
-  const { authUser, setAuthUser } = useState()
   const [navbar, setNavbar] = useState(false)
-  const [cookies, setCookie, removeCookie] = useCookies(['token'])
 
-  const { status } = useSelector((state) => state.auth)
-  console.log('status: ', status)
+  const auth = useSelector((state) => state.auth)
+  console.log('status: ', auth)
 
   const dispatch = useDispatch()
 
   const onLogout = async () => {
     dispatch(logoutThunk())
-
-    router.push('/')
-  }
-
-  const handlerLogOut = async () => {
-    setAuthUser(null)
     removeCookie('token')
     router.push('/')
   }
@@ -146,7 +140,7 @@ export const Navbar = ({ t }) => {
                         </a>
                       </Link>
                     </li>
-                    {authUser ? (
+                    {auth.user ? (
                       <>
                         <li className="main-menu__item main-menu__item--has-child">
                           <Link href="/">
@@ -155,19 +149,16 @@ export const Navbar = ({ t }) => {
                             </a>
                           </Link>
                           <ul className="main-menu__sub-list">
-                            {authUser.formularioTuHistoria ? (
                               <li>
                                 <Link href="/miSolictud">
                                   <a>{t('navbar:MY_REQUEST')}</a>
                                 </Link>
                               </li>
-                            ) : (
                               <li>
                                 <Link href="/tuhistoria">
                                   <a>{t('navbar:YOUR_HISTORY')}</a>
                                 </Link>
                               </li>
-                            )}
                           </ul>
                         </li>
                       </>
@@ -250,7 +241,7 @@ export const Navbar = ({ t }) => {
                         </li>
                       </ul>
                     </li>
-                    {!authUser ? (
+                    {!auth.user ? (
                       <>
                         <li className="text-black main-menu__item main-menu__item">
                           <Link href="/trabajaNosotros">
@@ -266,7 +257,7 @@ export const Navbar = ({ t }) => {
               </div>
             </Popover.Group>
             <div className="hidden lg:flex space-x-6 lg:mt-3">
-              {!authUser ? (
+              {!auth.user ? (
                 <>
                   <Link href={'/registro'}>
                     <a className="main-menu__link whitespace-nowrap no-underline">
@@ -288,7 +279,7 @@ export const Navbar = ({ t }) => {
               ) : (
                 <>
                   <a
-                    onClick={handlerLogOut}
+                    onClick={onLogout}
                     className="main-menu__link whitespace-nowrap "
                   >
                     <span className="items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 cursor-pointer ">
@@ -367,7 +358,7 @@ export const Navbar = ({ t }) => {
                 </div>
                 <div className="py-6 px-5 space-y-6">
                   <div>
-                    {status === 'authenticated' ? (
+                    {auth.status === 'authenticated' ? (
                       <>
                         <a
                           onClick={onLogout}

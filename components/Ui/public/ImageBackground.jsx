@@ -1,9 +1,5 @@
-import { useState } from 'react'
-import { useRouter } from 'next/router'
 import Image from 'next/image'
-import { Box, Container } from '@mui/material'
-import { useEffect } from 'react'
-import { useComponent } from '../../../context/useComponents'
+import {Box, Container} from '@mui/material'
 
 const initialState = {
   title: 'Mejoramos la Salud de personas en situación de vulnerabilidad',

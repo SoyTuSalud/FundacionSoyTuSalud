@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { execute } from '@/backend/graphql/application/graphqlConfiguration'
+import { execute } from '@/backend/graphqlBack/application/graphqlConfiguration'
 
 export default async function handler(
   req: NextApiRequest,

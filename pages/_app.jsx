@@ -1,11 +1,7 @@
-import { useEffect, useState } from 'react'
-import { client } from '../graphql-front/initClientSide'
-import { ApolloProvider } from '@apollo/client'
-import { AuthContext } from '../context/useAuth'
-import { ThemeProvider } from '@mui/material/styles'
-import { lightTheme } from '../components/Ui/themes/lightTheme'
-import { appWithTranslation } from 'next-i18next'
-import { ComponentContext } from '../context/useComponents'
+import {useEffect, useState} from 'react'
+import {ThemeProvider} from '@mui/material/styles'
+import {lightTheme} from '../components/Ui/themes/lightTheme'
+import {appWithTranslation} from 'next-i18next'
 import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
 
 import '../styles/globals.css'
@@ -16,26 +12,34 @@ import '../styles/TuHistoria.css'
 import '../styles/trabajaNosotros.css'
 import '../components/Ui/loading/loading.css'
 import '../components/Ui/popup/popup.css'
-import { PopupProvider } from '../context/popup'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { Provider as ReduxProvider, useDispatch } from 'react-redux'
-import { store } from '../redux/store'
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
+import {Provider as ReduxProvider, useDispatch} from 'react-redux'
+import {store} from '../redux/store'
 
-import { checkTokenThunk, logoutThunk } from '../redux/auth/thunks'
-import { checkingReducer } from '../redux/auth/authSlice'
+import {checkTokenThunk, logoutThunk} from '../redux/auth/thunks'
+import {signInReducer} from '../redux/auth/authSlice'
+
+import {decode} from 'jsonwebtoken'
+import {useCookies} from "react-cookie";
 
 
 const CheckingToken = ({ children }) => {
+
+  const [cookies, setCookie, removeCookie] = useCookies(['token'])
+
   const dispatch = useDispatch()
   const checkToken = () => {
-    dispatch(checkingReducer())
-    const token = localStorage.getItem('token')
 
-    if (!token) {
-      dispatch(logoutThunk())
+    const user = decode(cookies.token)
+    if (user) {
+      return dispatch(signInReducer(user))
     }
 
-    dispatch(checkTokenThunk(token))
+    if (!user) {
+     return dispatch(logoutThunk())
+    }
+
+    return dispatch(checkTokenThunk(user))
   }
 
   useEffect(() => {
@@ -44,9 +48,6 @@ const CheckingToken = ({ children }) => {
 
   return children
 }
-
-
-
 
 function MyApp({ Component, pageProps }) {
   const [componentStatus, setComponentStatus] = useState({})
@@ -58,17 +59,9 @@ function MyApp({ Component, pageProps }) {
         <CheckingToken>
           <QueryClientProvider client={queryClient}>
             <ReactQueryDevtools/>
-            <ApolloProvider client={client}>
-              <PopupProvider>
                 <ThemeProvider theme={lightTheme}>
-                    <ComponentContext.Provider
-                      value={{ componentStatus, setComponentStatus }}
-                    >
                       <Component {...pageProps} />
-                    </ComponentContext.Provider>
                 </ThemeProvider>
-              </PopupProvider>
-            </ApolloProvider>
           </QueryClientProvider>
         </CheckingToken>
     </ReduxProvider>

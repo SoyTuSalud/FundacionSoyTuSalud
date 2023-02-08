@@ -2,8 +2,8 @@ import NewPrivateLayout from '../../../../components/layouts/NewPrivateLayout/Ne
 import Head from 'next/head'
 import { Box, Container } from '@mui/material'
 import { ServiciosToolbar } from '../../../../components/servicios/ServiciosToolbar'
-import { serviciosTablaData } from '../../../../graphql-front/servicios/queries'
-import { client } from '../../../../graphql-front/initClientSide'
+import { serviciosTablaData } from '../../../../graphqlBack-front/servicios/queries'
+import { client } from '../../../../graphqlBack-front/initClientSide'
 import { ServiciosTablas } from '../../../../components/servicios/ServiciosTablas'
 import {useQuery} from "@tanstack/react-query";
 import {ResponseEntity} from "../../../../backend/common/models/response.value";

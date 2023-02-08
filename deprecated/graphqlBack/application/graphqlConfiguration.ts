@@ -33,6 +33,6 @@ export const execute = async (req: NextApiRequest, res: NextApiResponse) => {
 
   await startServer
   await apolloServer.createHandler({
-    path: '/services/graphql',
+    path: '/services/graphqlBack',
   })(req, res)
 }

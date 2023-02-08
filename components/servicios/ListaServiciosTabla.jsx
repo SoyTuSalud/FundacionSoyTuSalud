@@ -1,25 +1,18 @@
-import { useState } from 'react'
-import { departamentos } from '../../utils/deparamentos'
-import Link from 'next/link'
+import {useState} from 'react'
 import {
-  Avatar,
-  Box,
   Card,
-  Checkbox,
+  FormControlLabel,
   Table,
   TableBody,
   TableCell,
+  TableContainer,
   TableHead,
   TablePagination,
   TableRow,
-  Typography,
-  TableContainer,
-  FormControlLabel,
 } from '@mui/material'
-import { IOSSwitch } from './ServiciosTabla.css'
-import { ActualizarEstadoServicio } from '../../graphql-front/servicios/mutations'
-import { useMutation } from '@apollo/client/react'
-import { getInitials } from '../../utils/get-initials'
+import {IOSSwitch} from './ServiciosTabla.css'
+import {ActualizarEstadoServicio} from '../../graphqlBack-front/servicios/mutations'
+import {useMutation} from '@apollo/client/react'
 
 export const ListaServiciosTabla = ({ ListaServicios, ...rest }) => {
   const [selectedCustomerIds, setSelectedCustomerIds] = useState([])

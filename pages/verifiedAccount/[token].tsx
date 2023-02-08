@@ -1,7 +1,7 @@
 import React from 'react'
 import { GetServerSideProps } from 'next'
-import { initClientSSRNoToken } from '../../graphql-front/initClientSSR'
-import { verifyAccount } from '../../graphql-front/users/mutationUser'
+import { initClientSSRNoToken } from '../../graphqlBack-front/initClientSSR'
+import { verifyAccount } from '../../graphqlBack-front/users/mutationUser'
 import { ResponseCodes } from '../../backend/domain/commons/enums/responseCodesEnum'
 import Link from 'next/link'
 
