@@ -7,5 +7,5 @@ export interface PacienteRepository {
   findPacientes(): Promise<Paciente[]>
   findPacientesTuHistoria(): Promise<Paciente[]>
   createPaciente(paciente: Paciente): Promise<void>
-  updateTuHistora(updatePaciente: UpdatePacienteDTO): Promise<void>
+  updateTuHistoria(updatePaciente: UpdatePacienteDTO): Promise<void>
 }

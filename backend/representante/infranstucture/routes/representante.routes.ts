@@ -34,8 +34,9 @@ export class RepresentanteRoutes {
     this.router.get("/api/v1/representante/:id", (req, res, next) => {
       validateRol(req, [roleEnum.ADMIN])
       return this.representanteController.getRepresentanteById(req, res)
-    });
+    })
 
     logger.info(loggerMessage.FIN + methodName)
+
   }
 }

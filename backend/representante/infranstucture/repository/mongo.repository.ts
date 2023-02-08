@@ -1,16 +1,16 @@
 import {IRepresentante} from '../../domain/entity/representante.entity'
 import RepresentanteModel, {RepresentanteDoc} from '../model/mongo.model.representante'
 import HttpError from '../../../common/models/httpError.value'
-import {listModelToListEntity, modelToEntity} from '../mapper/paciente.mapper'
+import {listModelToListEntity, modelToEntity} from '../mapper/representante.mapper'
 import {RepresentanteRepository} from '../../domain/repository/representante.repository'
-import {ResponseCodes} from '../../../common/enums/responseCodes.Enum'
-import {Status} from '../../../common/models/status.value'
+import {ResponseCodes} from '@common/enums/responseCodes.Enum'
+import {Status} from '@common/models/status.value'
 import {Types} from "mongoose";
-import {TipoDocumentoEnum} from "../../domain/enum/tipoDocumento.enum";
+import {logger} from "@common/logger/winston.config";
 
 export class MongoRepository implements RepresentanteRepository {
-    async findRepresentanteById(_id: string): Promise<IRepresentante> {
-        return await RepresentanteModel.findOne({ identificacion: _id })
+    async findRepresentanteById(identificacion: string): Promise<IRepresentante> {
+        return await RepresentanteModel.findOne({ identificacion })
             .then((data: (RepresentanteDoc & {_id: Types.ObjectId}) | null) => {
                 if(data === null){
                     throw new HttpError(
@@ -24,13 +24,17 @@ export class MongoRepository implements RepresentanteRepository {
                 return modelToEntity(data)
             })
           .catch((e) => {
-              throw new HttpError(
-                new Status(
-                  ResponseCodes.USER_NO_EXIST.httpStatus,
-                  ResponseCodes.USER_NO_EXIST.code,
-                  ResponseCodes.USER_NO_EXIST.message,
-                ),
-              )
+            logger.info(e.message)
+            if (e instanceof HttpError) {
+              throw e
+            }
+            throw new HttpError(
+              new Status(
+                ResponseCodes.DB_ERROR_CONNECTION.httpStatus,
+                ResponseCodes.DB_ERROR_CONNECTION.code,
+                ResponseCodes.DB_ERROR_CONNECTION.message,
+              ),
+            )
           })
     }
 
@@ -49,6 +53,10 @@ export class MongoRepository implements RepresentanteRepository {
                 return listModelToListEntity(data)
             })
             .catch((e) => {
+              logger.info(e.message)
+              if (e instanceof HttpError) {
+                throw e
+              }
                 throw new HttpError(
                     new Status(
                         ResponseCodes.DB_ERROR_CONNECTION.httpStatus,
@@ -83,6 +91,7 @@ export class MongoRepository implements RepresentanteRepository {
           aceptaCodigoEticaSoyTuSalud: representante.aceptaCodigoEticaSoyTuSalud,
           habilitado: false,
         }).catch((e) => {
+          logger.info(e.message)
             throw new HttpError(
                 new Status(
                     ResponseCodes.USER_EXIST.httpStatus,

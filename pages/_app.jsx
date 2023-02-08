@@ -18,7 +18,6 @@ import '../components/Ui/loading/loading.css'
 import '../components/Ui/popup/popup.css'
 import { PopupProvider } from '../context/popup'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { SessionProvider } from 'next-auth/react'
 import { Provider as ReduxProvider, useDispatch } from 'react-redux'
 import { store } from '../redux/store'
 
@@ -26,7 +25,6 @@ import { checkTokenThunk, logoutThunk } from '../redux/auth/thunks'
 import { checkingReducer } from '../redux/auth/authSlice'
 
 
-/*
 const CheckingToken = ({ children }) => {
   const dispatch = useDispatch()
   const checkToken = () => {
@@ -46,19 +44,18 @@ const CheckingToken = ({ children }) => {
 
   return children
 }
- */
+
 
 
 
 function MyApp({ Component, pageProps }) {
-  const [authUser, setAuthUser] = useState()
   const [componentStatus, setComponentStatus] = useState({})
 
   const queryClient = new QueryClient()
 
   return (
     <ReduxProvider store={store}>
-        <SessionProvider>
+        <CheckingToken>
           <QueryClientProvider client={queryClient}>
             <ReactQueryDevtools/>
             <ApolloProvider client={client}>
@@ -73,7 +70,7 @@ function MyApp({ Component, pageProps }) {
               </PopupProvider>
             </ApolloProvider>
           </QueryClientProvider>
-        </SessionProvider>
+        </CheckingToken>
     </ReduxProvider>
   )
 }

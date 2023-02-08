@@ -64,7 +64,7 @@ export class PacienteServiceImpl implements PacienteService {
 
   public async updatePacienteTuHistoria(request: RequestEntity<UpdatePacienteDTO>): Promise<ResponseEntity<null>> {
     try {
-      await this.pacienteRepository.updateTuHistora(request.body)
+      await this.pacienteRepository.updateTuHistoria(request.body)
       return new ResponseEntity(
         null,
         getStatusOk(),

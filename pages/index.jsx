@@ -12,15 +12,11 @@ import { PopupContext } from '../context/popup'
 export default function Home({ locale }) {
   const { t } = useTranslation()
 
-  const [loading, setLoading] = useState(false)
-
   const propsImage = {
     title: t('home:HOME_TITLE'),
     title2: t('home:HOME_TITLE_2'),
     image: '/promo_c1.png',
   }
-
-  if (loading) return <Loading />
 
   return (
     <>

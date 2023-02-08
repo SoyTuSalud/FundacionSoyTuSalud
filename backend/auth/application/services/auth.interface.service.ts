@@ -9,15 +9,9 @@ import { AuthSignInDTO } from '@auth/domain/dtos/authSignIn.dto'
 import {VerifyRoleDto} from "@auth/domain/dtos/verifyRole.dto";
 
 export interface AuthService {
-  login(
-    request: RequestEntity<AuthDTO>,
-    response: NextApiResponse,
-  ): Promise<ResponseEntity<UserDTO | null>>
+  login(request: RequestEntity<AuthDTO>, response: NextApiResponse): Promise<ResponseEntity<UserDTO | null>>
   signIn(request: RequestEntity<AuthSignInDTO>): Promise<ResponseEntity<null>>
-  loginAdmin(
-    request: RequestEntity<AuthDTO>,
-    response: NextApiResponse,
-  ): Promise<ResponseEntity<UserDTO | null>>
+  loginAdmin(request: RequestEntity<AuthDTO>, response: NextApiResponse): Promise<ResponseEntity<UserDTO | null>>
   verifyRoles(request: RequestEntity<string>): Promise<ResponseEntity<null>>
   checkToken(request: RequestEntity<null>): Promise<ResponseEntity<VerifyRoleDto | null>>
 }

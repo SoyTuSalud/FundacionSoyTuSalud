@@ -80,7 +80,7 @@ export const Navbar = ({ t }) => {
   ]
 
   const router = useRouter()
-  const { authUser, setAuthUser } = useAuth()
+  const { authUser, setAuthUser } = useState()
   const [navbar, setNavbar] = useState(false)
   const [cookies, setCookie, removeCookie] = useCookies(['token'])
 

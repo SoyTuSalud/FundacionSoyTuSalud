@@ -84,6 +84,7 @@ export class authServiceImpl implements AuthService {
       await this.authRepository.authSignInEmail(request.body, hashPass)
 
       await nextCreation(request)
+
       logger.info(loggerMessage.FIN + methodName)
 
       return new ResponseEntity(null, getStatusOk())

@@ -11,11 +11,13 @@ import {UpdatePacienteDTO} from '@paciente/domain/dtos/updatePaciente.dto'
 import PacienteModel, {PacienteDoc} from '@paciente/infranstucture/model/mongo.model.paciente'
 import {listModelToListEntity, modelToEntity} from '@paciente/infranstucture/mapper/paciente.mapper'
 import {logger} from "@common/logger/winston.config";
+import {ResponseEntity} from "@common/models/response.value";
+import {getFatalStatus} from "@common/functions/functions.common";
 
 
 export class MongoRepository implements PacienteRepository {
-    async findPacienteById(identificacion: string): Promise<Paciente> {
-        return await PacienteModel.findOne({ identificacion })
+    async findPacienteById(_id: string): Promise<Paciente> {
+        return await PacienteModel.findOne({ identificacion: _id })
             .then((data :(PacienteDoc & {_id: Types.ObjectId}) | null) => {
                 if(data === null){
                     throw new HttpError(

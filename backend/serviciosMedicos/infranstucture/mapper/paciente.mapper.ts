@@ -1,12 +1,12 @@
-import {Paciente} from '../../domain/entity/representante.entity'
-import RepresentanteValue from '../../domain/model/representante.value'
+import {Paciente} from '@paciente/domain/entity/paciente.entity'
+import PacienteValue from '@paciente/domain/model/paciente.value'
 
 
 export const listModelToListEntity = <T extends Paciente>(
   pacientes: T[],
 ): Paciente[] => {
   return pacientes.map((paciente) => {
-    return new RepresentanteValue(
+    return new PacienteValue(
       paciente.identificacion,
       paciente.nombre,
       paciente.apellidos,
@@ -42,7 +42,7 @@ export const listModelToListEntity = <T extends Paciente>(
 }
 
 export const modelToEntity = <T extends Paciente>(paciente: T): Paciente => {
-  return new RepresentanteValue(
+  return new PacienteValue(
     paciente.identificacion,
     paciente.nombre,
     paciente.apellidos,

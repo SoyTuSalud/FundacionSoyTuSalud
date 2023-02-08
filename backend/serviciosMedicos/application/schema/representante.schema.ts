@@ -1,12 +1,12 @@
 import {z} from 'zod'
-import {TipoDocumentoEnum} from '../../domain/enum/tipoDocumento.enum'
-import http from 'http'
+
+import {TipoDocumentoEnum} from '@common/enums/tipoDocumento.enum'
 
 export const RepresentanteSchema = z.object({
-  identificacion: z.number().positive().gte(10000).lte(9999999999),
+  identificacion: z.string(),
   nombre: z.string().regex(/^[a-zA-ZÀ-ú]'?([a-zA-ZÀ-ú]|\.| |-)+$/),
   apellidos: z.string().regex(/^[a-zA-ZÀ-ú]'?([a-zA-ZÀ-ú]|\.| |-)+$/),
-  TipoDocumentoEnum: z.enum([
+  tipoDocumento: z.enum([
     TipoDocumentoEnum.CEDULA_CIUDADANIA,
     TipoDocumentoEnum.CEDULA_EXTRANJERA,
     TipoDocumentoEnum.TARJETA_IDENTIDAD,
@@ -19,12 +19,12 @@ export const RepresentanteSchema = z.object({
     TipoDocumentoEnum.MENOR_SIN_IDENTIFICAR,
     TipoDocumentoEnum.PERMISO_PROTECCION_TEMPORAL
   ]),
-  celular: z.number().positive().gte(3000000000).lte(9999999999),
+  celular: z.string(),
   correo: z.string().email(),
 })
 
 export const PacienteUpdateSchema = z.object({
-    identificacion: z.number().positive().gte(10000).lte(9999999999),
+    identificacion: z.string(),
     foto: z.string(),
     fechaNacimiento: z.string(),
     direccion: z.string(),
