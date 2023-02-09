@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import { GetServerSideProps } from 'next';
 import Head from 'next/head'
 
 import { Box, Container } from '@mui/material'

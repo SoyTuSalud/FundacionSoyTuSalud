@@ -22,53 +22,45 @@ import { UserDTO } from '@auth/domain/dtos/user.dto'
 import { AuthService } from '@auth/application/services/auth.interface.service'
 import { setCookie } from '@auth/application/utils/tokenSerialize.utils'
 import {VerifyRoleDto} from "@auth/domain/dtos/verifyRole.dto";
+import {ServiceTemplate} from "@common/templates/service.template";
 
 
 
 export class authServiceImpl implements AuthService {
-  constructor(private readonly authRepository: AuthRepository) {}
+  constructor(private readonly authRepository: AuthRepository,
+              private  readonly  serviceTemplate: ServiceTemplate) {}
 
-  public async login(
-    request: RequestEntity<AuthDTO>,
-    response: NextApiResponse,
-  ): Promise<ResponseEntity<UserDTO | null>> {
+  public async login(request: RequestEntity<AuthDTO>, response: NextApiResponse):
+    Promise<ResponseEntity<UserDTO | null>> {
 
     const methodName = "login"
-    logger.info(loggerMessage.INICIO + methodName)
 
-    try {
-      const user: Auth = await this.authRepository.findByEmail(
-        request.body.correo,
-      )
+    return await this.serviceTemplate.handleService(methodName,
+      async () => {
+        const user: Auth = await this.authRepository.findByEmail(request.body.correo)
 
-      await this.validatePass(user.contrasena, request.body.contrasena)
+        await this.validatePass(user.contrasena, request.body.contrasena)
 
-      const userDto = new UserDTO(user.role, user.correo, user.statusAccount)
+        const userDto = new UserDTO(user.role, user.correo, user.statusAccount)
 
-      const token = jwt.sign(
-        {
-          role: userDto.role,
-          correo: userDto.correo,
-          statusAccount: userDto.statusAccount,
-        },
-        process.env.ENV_KEY_TOKEN!,
-        {
-          expiresIn: '6h',
-        },
-      )
-      userDto.token = token
+        const token = jwt.sign(
+          {
+            role: userDto.role,
+            correo: userDto.correo,
+            statusAccount: userDto.statusAccount,
+          },
+          process.env.ENV_KEY_TOKEN!,
+          {
+            expiresIn: '6h',
+          },
+        )
+        userDto.token = token
 
-      setCookie(response, 'token', token,{
-        path: "/",
+        setCookie(response, 'token', token, {
+          path: "/",
+        })
+        return new ResponseEntity(userDto, getStatusOk())
       })
-
-      logger.info(loggerMessage.FIN + methodName)
-      return new ResponseEntity(userDto, getStatusOk())
-    } catch (error: unknown) {
-      logger.info(loggerMessage.ERROR + methodName)
-      console.log(error)
-      return validateError(error)
-    }
   }
 
   public async signIn(
@@ -76,22 +68,18 @@ export class authServiceImpl implements AuthService {
   ): Promise<ResponseEntity<null>> {
 
     const methodName = "signIn"
-    logger.info(loggerMessage.INICIO + methodName)
 
-    try {
-      const hashPass = await hash(request.body.contrasena, 10)
+    return await this.serviceTemplate.handleService(methodName,
+      async () => {
+        const hashPass = await hash(request.body.contrasena, 10)
 
-      await this.authRepository.authSignInEmail(request.body, hashPass)
+        await this.authRepository.authSignInEmail(request.body, hashPass)
 
-      await nextCreation(request)
+        await nextCreation(request)
 
-      logger.info(loggerMessage.FIN + methodName)
-
-      return new ResponseEntity(null, getStatusOk())
-    } catch (error: unknown) {
-      logger.info(loggerMessage.ERROR + methodName)
-      return validateError(error)
-    }
+        return new ResponseEntity(null, getStatusOk())
+      }
+    )
   }
 
   public async loginAdmin(
@@ -100,38 +88,35 @@ export class authServiceImpl implements AuthService {
   ): Promise<ResponseEntity<UserDTO | null>> {
 
     const methodName = "loginAdmin"
-    logger.info(loggerMessage.INICIO + methodName)
 
-    try {
-      const user = await this.authRepository.authLoginAdmin(request.body.correo)
-      await this.validatePass(user.contrasena, request.body.contrasena)
+    return await this.serviceTemplate.handleService(methodName,
+      async () => {
 
-      const userDto = new UserDTO(user.role, user.correo, user.statusAccount)
+        const user = await this.authRepository.authLoginAdmin(request.body.correo)
+        await this.validatePass(user.contrasena, request.body.contrasena)
 
-      const token = jwt.sign(
-        {
-          role: userDto.role,
-          correo: userDto.correo,
-          statusAccount: userDto.statusAccount,
-        },
-        process.env.ENV_KEY_TOKEN!,
-        {
-          expiresIn: '6h',
-        },
-      )
-      userDto.token = token
+        const userDto = new UserDTO(user.role, user.correo, user.statusAccount)
 
-      setCookie(response, 'token', token,{
-        path: "/",
+        const token = jwt.sign(
+          {
+            role: userDto.role,
+            correo: userDto.correo,
+            statusAccount: userDto.statusAccount,
+          },
+          process.env.ENV_KEY_TOKEN!,
+          {
+            expiresIn: '6h',
+          },
+        )
+        userDto.token = token
+
+        setCookie(response, 'token', token,{
+          path: "/",
+        })
+
+        return new ResponseEntity(userDto, getStatusOk())
+
       })
-
-      logger.info(loggerMessage.FIN + methodName)
-
-      return new ResponseEntity(userDto, getStatusOk())
-    } catch (error: unknown) {
-      logger.info(loggerMessage.ERROR + methodName)
-      return validateError(error)
-    }
   }
 
   public async verifyRoles(
@@ -150,30 +135,38 @@ export class authServiceImpl implements AuthService {
   ): Promise<ResponseEntity<VerifyRoleDto| null>> {
 
     const methodName = "checkToken"
-    logger.info(loggerMessage.INICIO + methodName)
+    return await this.serviceTemplate.handleService(methodName,
+      async () => {
 
-    const token: string = req?.cookies || ''
+        const token: string = req?.cookies || ''
 
-    if (!token) {
-      throw new HttpError(
-        new Status(
-          ResponseCodes.BAD_REQUEST.httpStatus,
-          ResponseCodes.BAD_REQUEST.code,
-          ResponseCodes.BAD_REQUEST.message,
-        ),
-      )
-    }
+        if (!token) {
+          throw new HttpError(
+            new Status(
+              ResponseCodes.BAD_REQUEST.httpStatus,
+              ResponseCodes.BAD_REQUEST.code,
+              ResponseCodes.BAD_REQUEST.message,
+            ),
+          )
+        }
+        const envJWT: any = process.env.ENV_KEY_TOKEN
+        const {correo}: any = jwt.verify(token, envJWT)
 
-    const envJWT: any = process.env.ENV_KEY_TOKEN
+        const user = await this.authRepository.findByEmail(correo)
 
+        logger.info(loggerMessage.FIN + methodName)
+
+        return new ResponseEntity(new VerifyRoleDto(user.role), getStatusOk())
+
+      })
+  }
+
+
+
+
+/*
     try {
-      const { correo }: any = jwt.verify(token, envJWT)
 
-      const user =  await this.authRepository.findByEmail(correo)
-
-      logger.info(loggerMessage.FIN + methodName)
-
-      return new ResponseEntity(new VerifyRoleDto(user.role), getStatusOk())
 
     } catch (error) {
       if (error instanceof HttpError) {
@@ -191,6 +184,8 @@ export class authServiceImpl implements AuthService {
       )
     }
   }
+
+ */
 
   private validatePass = async (userPass: string, requestPass: string) => {
     const isPasswordMatching: boolean = await compare(requestPass, userPass)

@@ -1,5 +1,4 @@
 import {NextApiRequest, NextApiResponse} from 'next'
-import conectarBD from '@common/connections/mongo.config'
 import {ResponseEntity} from '@common/models/response.value'
 import {IRepresentante} from '../../domain/entity/representante.entity'
 import {RequestEntity} from '@common/models/request.value'
@@ -9,9 +8,7 @@ import {validateError} from '@common/functions/functions.common'
 
 
 class RepresenanteController {
-  constructor(private representanteService: RepresentanteService) {
-    conectarBD()
-  }
+  constructor(private representanteService: RepresentanteService) {}
   public getRepresentantes = async (request: NextApiRequest, response: NextApiResponse) => {
 
       const responseEntity: ResponseEntity<IRepresentante[] | null> =

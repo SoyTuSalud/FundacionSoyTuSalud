@@ -1,6 +1,4 @@
 import {NextApiRequest, NextApiResponse} from 'next'
-
-import conectarBD from '@common/connections/mongo.config'
 import {ResponseEntity} from '@common/models/response.value'
 import {RequestEntity} from '@common/models/request.value'
 import {validateError} from '@common/functions/functions.common'
@@ -11,10 +9,8 @@ import {validateBodyCreation, validateBodyUpdate, validateString,} from '@pacien
 import {PacienteService} from '@paciente/application/service/paciente.inface.service'
 
 
-
-class PacienteController {
+class ServiciosMedicosController {
   constructor(private pacienteService: PacienteService) {
-    conectarBD()
   }
   public getPacientes = async (request: NextApiRequest, response: NextApiResponse) => {
 
@@ -85,4 +81,4 @@ class PacienteController {
   }
 }
 
-export default PacienteController
+export default ServiciosMedicosController

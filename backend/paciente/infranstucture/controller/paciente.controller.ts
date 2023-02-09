@@ -1,9 +1,7 @@
 import {NextApiRequest, NextApiResponse} from 'next'
-
-import conectarBD from '@common/connections/mongo.config'
 import {ResponseEntity} from '@common/models/response.value'
 import {RequestEntity} from '@common/models/request.value'
-import {validateError} from '@common/functions/functions.common'
+import {ControllerTemplate} from "@common/templates/controller.template";
 
 import {Paciente} from '@paciente/domain/entity/paciente.entity'
 
@@ -11,77 +9,102 @@ import {validateBodyCreation, validateBodyUpdate, validateString,} from '@pacien
 import {PacienteService} from '@paciente/application/service/paciente.inface.service'
 
 
-
 class PacienteController {
-  constructor(private pacienteService: PacienteService) {
-    conectarBD()
-  }
+  constructor(private pacienteService: PacienteService,
+              private controllerTemplate: ControllerTemplate) {}
+
   public getPacientes = async (request: NextApiRequest, response: NextApiResponse) => {
 
-      const responseEntity: ResponseEntity<Paciente[] | null> =
-        await this.pacienteService.fetchPacientes()
+    const methodName = "getPacientes"
 
-      response.status(responseEntity.status.httpStatus).json(responseEntity)
+    await this.controllerTemplate.handleController(methodName,
+      response,
+      async () => {
+
+        const responseEntity: ResponseEntity<Paciente[] | null> =
+          await this.pacienteService.fetchPacientes()
+
+        response.status(responseEntity.status.httpStatus).json(responseEntity)
+      })
   }
 
   public getPacientesTuHistoria = async ( request: NextApiRequest, response: NextApiResponse) => {
-    const responseEntity: ResponseEntity<Paciente[]> | ResponseEntity<null> =
-      await this.pacienteService.fetchPacientesTuHistoria()
+    const methodName = "getPacientesTuHistoria"
 
-    response.status(responseEntity.status.httpStatus).json(responseEntity)
+    await this.controllerTemplate.handleController(methodName,
+      response,
+      async () => {
+
+        const responseEntity: ResponseEntity<Paciente[]> | ResponseEntity<null> =
+          await this.pacienteService.fetchPacientesTuHistoria()
+
+        response.status(responseEntity.status.httpStatus).json(responseEntity)
+      })
   }
 
   public getPacientesById = async (request: NextApiRequest, response: NextApiResponse) => {
-    const { id } = request.query
-    try {
-      const requestEntity = new RequestEntity<string>(
-        validateString(id),
-        request.cookies.Cookie,
-        request.headers,
-      )
-      const responseEntity: ResponseEntity<Paciente> | ResponseEntity<null> =
-        await this.pacienteService.fetchPacienteById(requestEntity)
 
-      response.status(responseEntity.status.httpStatus).json(responseEntity)
-    } catch (error: unknown) {
-      const responseEntity = validateError(error)
-      response.status(responseEntity.status.httpStatus).json(responseEntity)
-    }
+    const methodName = "getPacientesById"
+
+    await this.controllerTemplate.handleController(methodName,
+      response,
+      async () => {
+
+        const { id } = request.query
+
+        const requestEntity = new RequestEntity<string>(
+          validateString(id),
+          request.cookies.Cookie,
+          request.headers,
+        )
+        const responseEntity: ResponseEntity<Paciente> | ResponseEntity<null> =
+          await this.pacienteService.fetchPacienteById(requestEntity)
+
+        response.status(responseEntity.status.httpStatus).json(responseEntity)
+
+      })
   }
 
   public postPacientes = async (request: NextApiRequest, response: NextApiResponse) => {
-    try {
 
-      const requestEntity = new RequestEntity(
-        validateBodyCreation(request.body),
-        request.cookies.Cookie,
-        request.headers,
-      )
+    const methodName = "postPacientes"
 
-      const responseEntity: ResponseEntity<null> =
-        await this.pacienteService.createPaciente(requestEntity)
+    await this.controllerTemplate.handleController(methodName,
+      response,
+      async () => {
 
-      response.status(responseEntity.status.httpStatus).json(responseEntity)
-    } catch (error: unknown) {
-      const responseEntity = validateError(error)
-      response.status(responseEntity.status.httpStatus).json(responseEntity)
-    }
+        const requestEntity = new RequestEntity(
+          validateBodyCreation(request.body),
+          request.cookies.Cookie,
+          request.headers,
+        )
+
+        const responseEntity: ResponseEntity<null> =
+          await this.pacienteService.createPaciente(requestEntity)
+
+        response.status(responseEntity.status.httpStatus).json(responseEntity)
+
+      })
   }
 
   public patchPacientes = async (request: NextApiRequest, response: NextApiResponse) => {
-    try {
-      const requestEntity = new RequestEntity(
-        validateBodyUpdate(request.body),
-        request.cookies.Cookie,
-        request.headers,
-      )
-      const responseEntity: ResponseEntity<null> =
-        await this.pacienteService.updatePacienteTuHistoria(requestEntity)
-      response.status(responseEntity.status.httpStatus).json(responseEntity)
-    } catch (error: unknown) {
-      const responseEntity = validateError(error)
-      response.status(responseEntity.status.httpStatus).json(responseEntity)
-    }
+
+    const methodName = "patchPacientes"
+
+    await this.controllerTemplate.handleController(methodName,
+      response,
+      async () => {
+        const requestEntity = new RequestEntity(
+          validateBodyUpdate(request.body),
+          request.cookies.Cookie,
+          request.headers,
+        )
+        const responseEntity: ResponseEntity<null> =
+          await this.pacienteService.updatePacienteTuHistoria(requestEntity)
+
+        response.status(responseEntity.status.httpStatus).json(responseEntity)
+
+      })
   }
 }
 
