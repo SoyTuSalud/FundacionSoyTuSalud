@@ -6,7 +6,7 @@ const initialState = {
   title2: 'con recursos de Responsabilidad Social',
 }
 
-export const ImageBackground = ({propsImage}) => {
+export const ImageBackground = () => {
   
   // const router = useRouter()
   // useEffect(() => {

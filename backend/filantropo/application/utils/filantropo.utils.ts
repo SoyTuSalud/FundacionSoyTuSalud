@@ -1,8 +1,8 @@
-import {ResponseCodes} from '../../../common/enums/responseCodes.Enum'
+import {ResponseCodes} from '@common/enums/responseCodes.Enum'
 import HttpError from '../../../common/models/httpError.value'
 import FilantropoValue from '../../domain/model/filantropo.value'
 import {FilantropoDTOSchema, filntropoUpdateSchema} from '../schema/filantropo.schema'
-import {Status} from '../../../common/models/status.value'
+import {Status} from '@common/models/status.value'
 import {z} from "zod";
 
 export const validateBodyCreation = (body: any): FilantropoValue => {
@@ -13,7 +13,6 @@ export const validateBodyCreation = (body: any): FilantropoValue => {
       body.apellidos,
       body.celular,
       body.correo,
-      body.direccion,
       body.identificacion,
       body.nombre,
       body.numeroDonaciones,

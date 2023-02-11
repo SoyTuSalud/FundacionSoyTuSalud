@@ -1,5 +1,5 @@
 
-import {TipoDocumentoEnum} from "../enum/tipoDocumento.enum";
+import {TipoDocumentoEnum} from "@common/enums/tipoDocumento.enum"
 import {ProfileTypeEnum} from "../enum/profileTypeEnum";
 
 export class CreateFilantropoDTO {

@@ -1,22 +1,17 @@
 
 import Head from 'next/head'
 import Image from 'next/image'
-import {LayoutMain} from '@/components/layouts'
+import {LayoutMain} from '@/src/components/layouts'
 import {serverSideTranslations} from 'next-i18next/serverSideTranslations'
 import {useTranslation} from 'next-i18next'
+import {GetServerSideProps} from "next";
+import {ReactElement} from "react";
 
-export default function Home({ locale }) {
+export default function Home() {
   const { t } = useTranslation()
-
-  const propsImage = {
-    title: t('home:HOME_TITLE'),
-    title2: t('home:HOME_TITLE_2'),
-    image: '/promo_c1.png',
-  }
 
   return (
     <>
-      <LayoutMain t={t} propsImage={propsImage}>
         <Head> <title>FundacionSoyTu | Home</title> </Head>
         <section className="">
           <div className="container mt-12">
@@ -104,9 +99,8 @@ export default function Home({ locale }) {
             </div>
             <div className="row">
               <div className="col-12 col-lg-12">
-                <div className="icon-item">
-                  <div className="icon-item__img">
-                    <div className="icon icon-item__icon icon--red">
+                <div className="icon-item flex flex-col w-full">
+                    <div className="icon icon-item__icon icon--red absolute self-center ">
                       <Image
                         src="/Logo_servicios1.png"
                         alt="img"
@@ -115,7 +109,7 @@ export default function Home({ locale }) {
                       />
                     </div>
 
-                    <div className="img--layout">
+                    <div className="self-center">
                       <Image
                         src="/icon_1-1.png"
                         alt="img"
@@ -123,7 +117,6 @@ export default function Home({ locale }) {
                         height={200}
                       />
                     </div>
-                  </div>
                   <div className="icon-item__text">
                     <p>{t('home:MEDICAL_HELP')}</p>
                   </div>
@@ -132,22 +125,41 @@ export default function Home({ locale }) {
             </div>
           </div>
         </section>
-      </LayoutMain>
 
       {/* <PopUp mssgError="Usuario o contraseña incorrecto" /> */}
     </>
   )
 }
 
-export const getStaticProps = async ({ locale }) => {
+Home.getLayout = function getLayout(page: ReactElement , props: any) {
+  
+  return (
+
+    <LayoutMain  _nextI18Next = {props._nextI18Next}>
+      {page}
+    </LayoutMain>
+
+
+  )
+}
+
+export const getStaticProps:GetServerSideProps = async ({ locale }) => {
+
+  const propsImage = {
+    title: 'home:HOME_TITLE',
+    title2: 'home:HOME_TITLE_2',
+    image: '/promo_c1.png',
+  }
+
   return {
     props: {
-      ...(await serverSideTranslations(locale, [
+      ...(await serverSideTranslations(locale || '', [
         'common',
         'home',
         'footer',
         'navbar',
       ])),
+      propsImage
     },
   }
 }

@@ -62,7 +62,7 @@
     "pages/verifiedAccount/_app.jsx",
     "src/hooks/useFormData.js",
     "src/utils/validateUser.js",
-    "src/middleware2.js",
+    "src/middleware.js",
     "src/utils/validateRolPages.js",
     "src/utils/validateRolPages.js",
     "src/utils/enablePagesEnum.js",
@@ -72,7 +72,7 @@
     "backend/infrastructure/servicesV2/pacientes/findAllPacientests",
     "pages/api/auth/[...nextauth]",
     ".next/types/**/*.ts"
-  ],
+, "src/get-dictionary.ts", "src/components/layouts/LayoutMain.tsx"  ],
   "exclude": [
     "node_modules"
   ]

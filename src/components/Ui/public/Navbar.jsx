@@ -85,7 +85,6 @@ export const Navbar = ({ t }) => {
   const [navbar, setNavbar] = useState(false)
 
   const auth = useSelector((state) => state.auth)
-  console.log('status: ', auth)
 
   const dispatch = useDispatch()
 
@@ -124,8 +123,8 @@ export const Navbar = ({ t }) => {
             <div className="flex justify-start items-center sm:w-0 sm:flex-1">
               <Image
                 src="/logo_horizontal-white.png"
-                width={'180px'}
-                height={'50px'}
+                width={180}
+                height={50}
                 alt="logo"
               />
             </div>
@@ -134,29 +133,25 @@ export const Navbar = ({ t }) => {
                 <nav>
                   <ul className="main-menu">
                     <li className="text-black main-menu__item main-menu__item">
-                      <Link href="/">
-                        <a className="text-black main-menu__link font-black">
+                      <Link href="/" className="text-black main-menu__link font-black">
                           {t('navbar:BEGINNING')}
-                        </a>
                       </Link>
                     </li>
                     {auth.user ? (
                       <>
                         <li className="main-menu__item main-menu__item--has-child">
-                          <Link href="/">
-                            <a className="main-menu__link">
+                          <Link href="/" className="main-menu__link">
                               {t('navbar:PATIENTS')}
-                            </a>
                           </Link>
                           <ul className="main-menu__sub-list">
                               <li>
                                 <Link href="/miSolictud">
-                                  <a>{t('navbar:MY_REQUEST')}</a>
+                                  {t('navbar:MY_REQUEST')}
                                 </Link>
                               </li>
                               <li>
                                 <Link href="/tuhistoria">
-                                  <a>{t('navbar:YOUR_HISTORY')}</a>
+                                  {t('navbar:YOUR_HISTORY')}
                                 </Link>
                               </li>
                           </ul>
@@ -196,47 +191,45 @@ export const Navbar = ({ t }) => {
                                     </ul>
                                 </li> */}
                     <li className="main-menu__item main-menu__item--has-child">
-                      <Link href="/">
-                        <a className="main-menu__link">
+                      <Link href="/" className="main-menu__link">
                           {t('navbar:PHILANTHROPISTS')}
-                        </a>
                       </Link>
                       <ul className="main-menu__sub-list">
                         <li>
                           <Link href="/historias">
-                            <a>{t('navbar:CLASSIFIED')}</a>
+                            {t('navbar:CLASSIFIED')}
                           </Link>
                         </li>
                         <li>
                           <Link href="/trazabilidad">
-                            <a>{t('navbar:TRACEABILITY')}</a>
+                            {t('navbar:TRACEABILITY')}
                           </Link>
                         </li>
                         <li>
                           <Link href="/donaciones">
-                            <a>{t('navbar:DONATIONS')}</a>
+                            {t('navbar:DONATIONS')}
                           </Link>
                         </li>
                       </ul>
                     </li>
                     <li className="main-menu__item main-menu__item--has-child">
-                      <Link href="/">
-                        <a className="main-menu__link">{t('navbar:ALLIES')}</a>
+                      <Link href="/" className="main-menu__link">
+                        {t('navbar:ALLIES')}
                       </Link>
                       <ul className="main-menu__sub-list">
                         <li>
                           <Link href="/instituciones">
-                            <a>{t('navbar:INSTITUTIONS')}</a>
+                            {t('navbar:INSTITUTIONS')}
                           </Link>
                         </li>
                         <li>
                           <Link href="/empresasconproposito">
-                            <a>{t('navbar:COMPANIES_PURPOSE')}</a>
+                            {t('navbar:COMPANIES_PURPOSE')}
                           </Link>
                         </li>
                         <li>
                           <Link href="/personasconproposito">
-                            <a>{t('navbar:PURPOSEFUL_PEOPLE')}</a>
+                            {t('navbar:PURPOSEFUL_PEOPLE')}
                           </Link>
                         </li>
                       </ul>
@@ -244,10 +237,8 @@ export const Navbar = ({ t }) => {
                     {!auth.user ? (
                       <>
                         <li className="text-black main-menu__item main-menu__item">
-                          <Link href="/trabajaNosotros">
-                            <a className="text-black main-menu__link font-black">
+                          <Link href="/trabajaNosotros" className="text-black main-menu__link font-black">
                               {t('navbar:WORK_WITH_US')}
-                            </a>
                           </Link>
                         </li>
                       </>
@@ -259,21 +250,17 @@ export const Navbar = ({ t }) => {
             <div className="hidden lg:flex space-x-6 lg:mt-3">
               {!auth.user ? (
                 <>
-                  <Link href={'/registro'}>
-                    <a className="main-menu__link whitespace-nowrap no-underline">
+                  <Link href={'/registro'} className="main-menu__link whitespace-nowrap no-underline">
                       <span className="px-4 py-1.5 items-center no-underlinejustify-center border rounded-md shadow-sm text-base font-medium text-white border-white cursor-pointer hover:bg-white hover:bg-opacity-10">
                         {' '}
                         {t('navbar:SIGN_IN')}{' '}
                       </span>
-                    </a>
                   </Link>
-                  <Link href={'/login'}>
-                    <a className="main-menu__link whitespace-nowrap no-underline">
+                  <Link href={'/login'} className="main-menu__link whitespace-nowrap no-underline">
                       <span className="px-3 py-1.5 items-center no-underlinejustify-center border rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 cursor-pointer ">
                         {' '}
                         {t('navbar:LOG_IN')}{' '}
                       </span>
-                    </a>
                   </Link>
                 </>
               ) : (
@@ -331,8 +318,8 @@ export const Navbar = ({ t }) => {
                   <div>
                     <Image
                       src="/logo_horizontal-black.png"
-                      width={'190px'}
-                      height={'50px'}
+                      width={190}
+                      height={50}
                       alt="logo"
                     />
                   </div>
@@ -372,17 +359,13 @@ export const Navbar = ({ t }) => {
                       </>
                     ) : (
                       <>
-                        <Link href={'/login'}>
-                          <a className="w-full flex items-center justify-center px-4 py-2 border rounded-md shadow-sm text-base text-gray-700 font-semibold">
+                        <Link href={'/login'} className="w-full flex items-center justify-center px-4 py-2 border rounded-md shadow-sm text-base text-gray-700 font-semibold">
                             {t('navbar:LOG_IN')}
-                          </a>
                         </Link>
 
                         <div className="mt-3 flex justify-center">
-                          <Link href={'/registro'}>
-                            <a className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                          <Link href={'/registro'} className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
                               {t('navbar:SIGN_IN')}
-                            </a>
                           </Link>
                         </div>
                       </>
@@ -441,9 +424,7 @@ const SubMenu = ({ item }) => {
           <ul className={open ? 'ml-5' : 'ml-5 hidden'}>
             {item.subNav.map((sub) => (
               <li key={sub.link}>
-                <Link href={sub.link}>
-                  <a className="text-blue-500">{sub.label}</a>
-                </Link>
+                <Link href={sub.link} className="text-blue-500"/>
               </li>
             ))}
           </ul>
