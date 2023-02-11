@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { grupoPoblacional } from '../../utils/grupoPoblacional'
-import { departamentos } from '../../utils/deparamentos'
-import { eps } from '../../utils/eps'
+import { grupoPoblacional } from '../../src/utils/grupoPoblacional'
+import { departamentos } from '../../src/utils/deparamentos'
+import { eps } from '../../src/utils/eps'
 import {
   Avatar,
   Box,

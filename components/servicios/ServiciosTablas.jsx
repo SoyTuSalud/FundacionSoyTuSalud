@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { departamentos } from '../../utils/deparamentos'
+import { departamentos } from '../../src/utils/deparamentos'
 import Link from 'next/link'
 import {
   Avatar,
@@ -19,7 +19,7 @@ import {
 import { IOSSwitch } from './ServiciosTabla.css'
 import { ActualizarEstadoServicio } from '../../graphqlBack-front/servicios/mutations'
 import { useMutation } from '@apollo/client/react'
-import { getInitials } from '../../utils/get-initials'
+import { getInitials } from '../../src/utils/get-initials'
 
 export const ServiciosTablas = ({ serviciosData, ...rest }) => {
   const [selectedCustomerIds, setSelectedCustomerIds] = useState([])

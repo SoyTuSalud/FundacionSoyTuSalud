@@ -1,4 +1,4 @@
-import { departamentos } from '../../utils/deparamentos'
+import { departamentos } from '../../src/utils/deparamentos'
 import {
   Avatar,
   Box,

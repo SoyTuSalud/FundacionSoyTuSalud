@@ -13,7 +13,7 @@ import {
   Typography,
   TableContainer,
 } from '@mui/material'
-import { getInitials } from '../../utils/get-initials'
+import { getInitials } from '../../src/utils/get-initials'
 import { Paciente } from '@paciente/domain/entity/paciente.entity'
 
 export const PacientesTablas:FC<{ UsuariosTabla: Paciente[] }> = ({ UsuariosTabla}) => {

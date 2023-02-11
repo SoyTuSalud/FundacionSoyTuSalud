@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import { validateUser } from './utils/validateUser'
 import { enablePages, redirect } from './utils/enablePages'
 import { verifyAccount } from './utils/verifyAccount'
-import { ResponseCodes } from '@common/enums/responseCodes.Enum'
+import { ResponseCodes } from 'backend/common/enums/responseCodes.Enum'
 export async function middleware(request) {
   const path = request.nextUrl.pathname
   const access = request.cookies.get('access') || ''
@@ -62,10 +62,4 @@ export const config = {
   ],
 }
 
-export const deleteCookie = (request, response, cookie) => {
-  const { value, options } = request.cookies.getWithOptions(cookie)
-  if (value) {
-    response.cookies.set(cookie, value, options)
-    response.cookies.delete(cookie)
-  }
-}
+
