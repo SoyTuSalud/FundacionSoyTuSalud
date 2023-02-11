@@ -60,7 +60,7 @@
     "pages/index.jsx",
     "pages/_document.jsx",
     "pages/verifiedAccount/_app.jsx",
-    "hooks/useFormData.js",
+    "src/hooks/useFormData.js",
     "src/utils/validateUser.js",
     "src/middleware2.js",
     "src/utils/validateRolPages.js",

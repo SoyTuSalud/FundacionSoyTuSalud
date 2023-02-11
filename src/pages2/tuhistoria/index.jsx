@@ -1,18 +1,18 @@
-import Head from 'next/head'
-import { useState } from 'react'
+import {useState} from 'react'
 import Image from 'next/image'
-import { storage } from '../../src/firebase/initConfig'
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
-import { useMutation } from '@apollo/client'
-import { tuHistoriaUpdate } from '../../graphqlBack-front/paciente/mutations'
-import { departamentos } from '../../src/utils/deparamentos'
-import { municipios } from '../../src/utils/municipios'
+import {storage} from '../../firebase/initConfig'
+import {getDownloadURL, ref, uploadBytes} from 'firebase/storage'
+import {useMutation} from '@apollo/client'
+import {tuHistoriaUpdate} from '../../graphqlBack-front/paciente/mutations'
+import {departamentos} from '../../utils/deparamentos'
+import {municipios} from '../../utils/municipios'
 
-import useFormData from '../../src/hooks/useFormData'
-import { useAuth } from '../../context/useAuth'
-import { LayoutMain } from '../../src/components/layouts/LayoutMain'
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import useFormData from '../../hooks/useFormData'
+import {useAuth} from '../../context/useAuth'
+import {LayoutMain} from '../../components/layouts/LayoutMain'
+import {useTranslation} from 'next-i18next'
+import {serverSideTranslations} from 'next-i18next/serverSideTranslations'
+import {Button} from '@mui/material'
 
 const Tuhistoria = () => {
   const { t } = useTranslation()
@@ -28,7 +28,6 @@ const Tuhistoria = () => {
   const [filterMunicipios, setFilterMunicipios] = useState([])
   const { authUser } = useAuth()
   const [photo, setPhoto] = useState('/Foto.png')
-  const [discapacitado, setDiscapacitado] = useState(false)
   const [servicios, setServicios] = useState([])
   const { form, formData, updateFormData } = useFormData()
   let municipiosFiltrado
@@ -71,10 +70,6 @@ const Tuhistoria = () => {
     }
   }
 
-  const handlerDiscapacitado = (e) => {
-    setDiscapacitado(e.target.value)
-  }
-
   const handleDpto = (e) => {
     console.log(e)
     municipiosFiltrado = municipios.filter(
@@ -95,20 +90,21 @@ const Tuhistoria = () => {
   return (
     <>
       <LayoutMain propsImage={propsImage} t={t}>
-        <section className="container-general-page">
-          <div className="col-xl-12">
+        <section className="">
+          <div className="">
             <form
-              className="form message-form"
+              className="m"
               ref={form}
               onChange={updateFormData}
               onSubmit={handleSubmit}
               id="Form_TuHistoria"
             >
               <h6 className="general-titles">
-                Si consideras que eres una persona en situación de
-                vulnerabilidad, que padece una enfermedad y necesita servicios
-                médicos, diligencia este formulario y te pondremos en contacto
-                con un especialista que te ayude a mejorar su estado de salud.
+                Si estás embarazada, necesitas cualquier servicio o no lo has
+                recibido oportunamente, no dudes en registrarte, solo necesitas
+                un número de teléfono y un correo electrónico válido, nosotros
+                nos encargamos que obtengas el servicio que necesitas, de manera
+                gratuita antes de 5 días
               </h6>
 
               <label className="control-label mb-1">
@@ -131,49 +127,22 @@ const Tuhistoria = () => {
                     <span className="badge badge-primary r-3">Subir Foto</span>
                   </label>
 
-                  <input
-                    type="file"
-                    onChange={handlePhoto}
-                    id="foto"
-                    name="foto"
-                    accept="image/*"
-                    // className="custom-file-input"
-                    required
-                  />
-                  <p className="upload-photo">Subir Foto</p>
+                  <Button variant="contained" component="label">
+                    Seleccionar Foto
+                    <input
+                      type="file"
+                      onChange={handlePhoto}
+                      id="foto"
+                      name="foto"
+                      accept="image/*"
+                      required
+                      hidden
+                    />
+                  </Button>
                 </div>
               </div>
 
               <div className="container-inputs-general">
-                <div className="container-inputs">
-                  <div className="container-label-input-pequeno">
-                    <label>Genero *</label>
-                    <select
-                      className="general-selects"
-                      name="genero"
-                      id="genero"
-                      required
-                    >
-                      <option value="">Seleccionar</option>
-                      <option value="FEMENINO">Femenino</option>
-                      <option value="MASCULINO">Masculino</option>
-                    </select>
-                  </div>
-
-                  <div className="container-label-input-pequeno">
-                    <label>Fecha Nacimiento *</label>
-                    <input
-                      required
-                      type="date"
-                      min="1920-01-01"
-                      max={datePick}
-                      name="fechaNacimiento"
-                      id="fechaNacimiento"
-                      className="general-inputs"
-                    />
-                  </div>
-                </div>
-
                 <div className="container-inputs">
                   <div className="container-label-input">
                     <label>Direccion *</label>
@@ -229,182 +198,31 @@ const Tuhistoria = () => {
                     </select>
                   </div>
                 </div>
-              </div>
-
-              <div className="container-columns">
                 <div className="container-inputs">
-                  <div className="container-label-input">
-                    <label>Discapacitado *</label>
-                    <select
-                      onChange={handlerDiscapacitado}
-                      className="general-selects-95"
-                      name="discapacitado"
-                      id="discapacitado"
-                    >
-                      <option value="">Seleccionar</option>
-                      <option value={false}>No</option>
-                      <option value={true}>Si</option>
-                    </select>
-                  </div>
-                  {discapacitado ? (
-                    <div className="">
-                      <label>Tipo Discapacidad</label>
-                      <select
-                        className="general-selects-5"
-                        name="tipoDiscapacidad"
-                        id="tipoDiscapacidad"
-                        required
-                      >
-                        <option value="">Seleccionar</option>
-                        <option>Permanente</option>
-                        <option>Temporal</option>
-                        <option>Auditiva</option>
-                        <option>Cognitiva</option>
-                        <option>Física</option>
-                        <option>Mental</option>
-                        <option>Visual</option>
-                        <option>Múltiple</option>
-                      </select>
-                    </div>
-                  ) : null}
-                </div>
-
-                <div className="container-inputs">
-                  <div className="container-label-input">
-                    <label>Victima de Violencia *</label>
-                    <select
-                      className="general-selects-95"
-                      name="victimaViolencia"
-                      id="victimaViolencia"
+                  <div className="container-label-input-pequeno">
+                    <label>Barrio *</label>
+                    <input
+                      className="general-selects"
+                      name="barrio"
+                      id="barrio"
                       required
-                    >
-                      <option value="">Seleccionar</option>
-                      <option value={true}>Si</option>
-                      <option value={false}>No</option>
-                    </select>
+                      type="text"
+                    ></input>
+                  </div>
+                  <div className="container-label-input-pequeno">
+                    <label>Fecha Nacimiento *</label>
+                    <input
+                      required
+                      type="date"
+                      min="1920-01-01"
+                      max={datePick}
+                      name="fechaNacimiento"
+                      id="fechaNacimiento"
+                      className="general-inputs"
+                    />
                   </div>
                 </div>
               </div>
-
-              <div className="container-columns">
-                <div className="container-inputs">
-                  <div className="container-label-input">
-                    <label>Identidad de Genero *</label>
-                    <select
-                      className="general-selects-95"
-                      name="identidadGenero"
-                      id="identidadGenero"
-                      required
-                    >
-                      <option value="">Seleccionar</option>
-                      <option value={'MASCULINO'}>Masculino</option>
-                      <option value={'FEMENINO'}>Femenino</option>
-                      <option value={'TRAVESTI'}>Travesti</option>
-                      <option value={'TRANSEXUAL'}>Transexual</option>
-                      <option value={'TRANSGENERO'}>Transgénero</option>
-                      <option value={'NINGUNA'}>Ninguna</option>
-                      <option value={'NO BINARIO'}>No Binario</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="container-inputs">
-                  <div className="container-label-input">
-                    <label>Orientacion Sexual *</label>
-                    <select
-                      className="general-selects-95"
-                      name="orientacionSexual"
-                      id="orientacionSexual"
-                      required
-                    >
-                      <option value="">Seleccionar</option>
-                      <option value={'HETEROSEXUAL'}>Heterosexual</option>
-                      <option value={'LESBIANA'}>Lesbiana</option>
-                      <option value={'BISEXUAL'}>Bisexual</option>
-                      <option value={'GAY'}>Gay</option>
-                      <option value={'ASEXUAL'}>Asexual</option>
-                      <option value={'NINGUNA'}>Ninguna</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="container-inputs">
-                  <div className="container-label-input">
-                    <label>Grupo Poblacional *</label>
-
-                    <select
-                      className="general-selects-95"
-                      name="grupoPoblacional"
-                      id="grupoPoblacional"
-                      required
-                    >
-                      <option value="">Seleccionar</option>
-                      <option value="1">Habitantes de la calle</option>
-                      <option value="2">
-                        Creador o gestor cultural decreto 2283 de 2010
-                      </option>
-                      <option value="3">Población sisbenizada</option>
-                      <option value="4">
-                        Menores desvinculados del conflicto armado, a cargo del
-                        ICBF (subsidiado)
-                      </option>
-                      <option value="5">
-                        Población desmovilizada (subsidiado)
-                      </option>
-                      <option value="6">
-                        Víctima del conflicto armado interno ley 1448 de 2011
-                      </option>
-                      <option value="7">
-                        Población infantil vulnerable bajo protección de
-                        instituciones diferentes al ICBF (Subsidiado)
-                      </option>
-                      <option value="8">
-                        Población en programas de protección a testigos
-                        (subsidiado)
-                      </option>
-                      <option value="9">
-                        Población en centros psiquiátricos
-                      </option>
-                      <option value="10">Población rural migratoria</option>
-                      <option value="11">Población reclusa</option>
-                      <option value="12">Población rural migratoria</option>
-                      <option value="13">
-                        Población tercera edad en protección de ancianatos
-                      </option>
-                      <option value="14">Comunidades indígenas</option>
-                      <option value="15">Comunidad ROM (Gitanos)</option>
-                      <option value="16">
-                        Población carcelaria del INPEC decreto 277 de 2010
-                      </option>
-                      <option value="17">
-                        Personas que dejen de ser madres comunitarias y sean
-                        beneficiarias del subsidio de la Subcuenta de
-                        Subsistencia del Fondo de Solidaridad Pensional
-                        (subsidiado)
-                      </option>
-                      <option value="18">
-                        Personas damnificadas por deportación expulsión
-                        repatriación desde Venezuela (subsidiado)
-                      </option>
-                      <option value="19">
-                        Población infantil vulnerable bajo protección en
-                        instituciones diferentes al ICBF (subsidiado)
-                      </option>
-                      <option value="20">
-                        Adultos mayores en centros de protección (subsidiado)
-                      </option>
-                      <option value="21">
-                        Miembros de los grupos armados al margen de la ley que
-                        celebren acuerdos de paz con el Gobierno
-                      </option>
-                      <option value="22">
-                        Migrante Venezolano con PEP e hijos menores de edad con
-                        documento válido
-                      </option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
               <div className="container-label-input-eps">
                 <label>EPS*</label>
                 <select
@@ -811,7 +629,7 @@ const Tuhistoria = () => {
               </div>
 
               <div className="container-textarea-input">
-                <h6 className="general-titles">Cuentanos tu Historia</h6>
+                <h6 className="general-titles">Explicanos tu necesidad</h6>
                 <textarea
                   required
                   className="textarea-input"
@@ -966,7 +784,7 @@ const Tuhistoria = () => {
                           id="cb9"
                         />
                         <span className="label-checkbox">
-                          Cirugia Ambulatoria Y Otros Servicios
+                          Transporte y Otros Servicios
                         </span>
                         <span className="form__checkbox-mask"></span>
                       </label>
@@ -1013,7 +831,7 @@ const Tuhistoria = () => {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <p>Consulta Tu Sisben</p>
+                    <p className='text-blue-500' >Consulta Tu Sisben</p>
                   </a>
                 </div>
               </div>

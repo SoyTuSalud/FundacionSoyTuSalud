@@ -1,6 +1,6 @@
 'use client'
 
-import './globals.css';
+import '../styles/globals.css'
 
 import { i18n } from '@/i18n-config'
 import {QueryClient , QueryClientProvider} from "@tanstack/react-query";

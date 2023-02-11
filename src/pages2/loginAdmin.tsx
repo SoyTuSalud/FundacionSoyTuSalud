@@ -1,6 +1,4 @@
-'use client'
-
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { Formik } from 'formik'
 import { useState } from 'react'
@@ -34,7 +32,7 @@ const LoginAdmin = () => {
       // @ts-ignore
       setError(error?.response.data.status.description)
       console.log({ error, variables, context })
-    }}
+  }}
   )
 
   const handleSubmit = async (variables: any) => {
@@ -49,8 +47,8 @@ const LoginAdmin = () => {
             <div className="text-center">
               <Image
                 src="/logo_horizontal-black.png"
-                width={230}
-                height={63}
+                width={'230px'}
+                height={'63px'}
                 alt="logo"
               />
             </div>
@@ -83,14 +81,14 @@ const LoginAdmin = () => {
             }}
           >
             {({
-                values,
-                errors,
-                touched,
-                handleChange,
-                handleBlur,
-                handleSubmit,
-                isSubmitting,
-              }) => (
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              isSubmitting,
+            }) => (
               <form onSubmit={handleSubmit} className="mt-8 space-y-6">
                 <input
                   type="email"
