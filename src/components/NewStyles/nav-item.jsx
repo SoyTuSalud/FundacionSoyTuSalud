@@ -21,7 +21,6 @@ export const NavItem = (props) => {
     >
       <Link href={href} passHref>
         <Button
-          component="a"
           startIcon={icon}
           disableRipple
           sx={{

@@ -4,7 +4,7 @@ import { Formik } from 'formik'
 import { useState } from 'react'
 import {AuthDTO} from "@auth/domain/dtos/auth.dto";
 import {UserDTO} from "@auth/domain/dtos/user.dto";
-import {useMutation, useQuery} from "@tanstack/react-query";
+import {useMutation} from "@tanstack/react-query";
 import {ResponseEntity} from "@common/models/response.value";
 import { soyTuApi } from '@/src/services/axios.config';
 

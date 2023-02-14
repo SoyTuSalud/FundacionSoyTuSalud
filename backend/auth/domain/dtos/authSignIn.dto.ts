@@ -2,7 +2,7 @@ import {roleEnum} from "@common/enums/role.enum"
 import {TipoDocumentoEnum} from "@common/enums/tipoDocumento.enum";
 
 
-export class AuthSignInDTO {
+export class AuthSignInDTO implements  IAuthSignInDTO{
     
     constructor(public role: roleEnum,
                 public correo: string,
@@ -12,4 +12,16 @@ export class AuthSignInDTO {
                 public apellidos: string,
                 public celular: string,
                 public identificacion: string){}
+}
+
+export interface IAuthSignInDTO {
+
+    role: roleEnum,
+    correo: string,
+    contrasena: string,
+    tipoDocumento: TipoDocumentoEnum,
+    nombre: string,
+    apellidos: string,
+    celular: string,
+    identificacion: string
 }

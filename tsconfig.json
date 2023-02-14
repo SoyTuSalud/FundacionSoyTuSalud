@@ -72,7 +72,7 @@
     "backend/infrastructure/servicesV2/pacientes/findAllPacientests",
     "pages/api/auth/[...nextauth]",
     ".next/types/**/*.ts"
-, "src/get-dictionary.ts", "src/components/layouts/LayoutMain.tsx"  ],
+, "src/get-dictionary.ts", "src/components/layouts/LayoutMain.tsx", "src/pages/tu-historia/index.jsx"  ],
   "exclude": [
     "node_modules"
   ]

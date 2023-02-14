@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {AuthSignInDTO} from "@auth/domain/dtos/authSignIn.dto";
+import {AuthSignInDTO, IAuthSignInDTO} from "@auth/domain/dtos/authSignIn.dto";
 
 
 
@@ -9,9 +9,9 @@ export const loginService = async (payload: any) => {
   return await axios.post('/api/v1/auth/login', payload)
 }
 
-export const registerUser = async (payload: AuthSignInDTO) => {
+export const registerUser = async (payload: IAuthSignInDTO) => {
   // console.log('payload: ', payload)
-  return await axios.post<AuthSignInDTO>('/api/v1/auth/signing', payload)
+  return await axios.post<IAuthSignInDTO>('/api/v1/auth/signing', payload)
 }
 
 export const checkTokenService = async (token: string) => {

@@ -24,6 +24,6 @@ export const basicSchema = yup.object().shape({
     .string()
     .oneOf([yup.ref('contrasena'), null], 'Las contraseñas deben Coincidir')
     .required('Requerido'),
-    tipoUsuario: yup.string().required('Requerido'),
-    tipoDocumento: yup.string().required('Requerido')
+  role: yup.string().required('Requerido'),
+  tipoDocumento: yup.string().required('Requerido')
 })

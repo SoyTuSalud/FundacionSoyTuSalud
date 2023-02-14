@@ -83,7 +83,6 @@ export const DashboardSidebar = (props) => {
         <div>
           <Box sx={{ p: 6 }}>
             <Link href="/" passHref>
-              <a>
                 <Image
                   src={'/logo_vertical-white.png'}
                   alt="soyTuLogo"
@@ -91,7 +90,6 @@ export const DashboardSidebar = (props) => {
                   height={156.25}
                   quality={'100'}
                 />
-              </a>
             </Link>
           </Box>
         </div>

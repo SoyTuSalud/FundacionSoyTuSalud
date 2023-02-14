@@ -165,7 +165,7 @@ export const Navbar = ({ t }) => {
                                     <ul className="main-menu__sub-list">
                                         <li>
                                             <Link href="/" >
-                                                <a>Registro</a>
+                                                <a>SignIn</a>
                                             </Link>
                                         </li>
                                         <li>
