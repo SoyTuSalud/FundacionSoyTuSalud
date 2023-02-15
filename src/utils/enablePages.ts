@@ -1,12 +1,11 @@
-
 export const enablePages = {
-  noAuth: ['/registro', '/login', '/loginAdmin'],
-  ADMIN: ['/private/',],
-  PACIENTE: ['/tuhistoria'],
-}
+  noAuth: ["/registro", "/login", "/login-admin"],
+  ADMIN: ["/private/"],
+  PACIENTE: ["/tuhistoria"],
+};
 
 export const redirect = {
-  noAuth: ['/'],
-  ADMIN: ['/private/admin'],
-  PACIENTE: ['/'],
-}
+  noAuth: ["/"],
+  ADMIN: ["/private/admin"],
+  PACIENTE: ["/"],
+};
