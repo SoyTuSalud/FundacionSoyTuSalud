@@ -1,4 +1,4 @@
-import {ImageBackground, MenuFooter, Navbar} from '../Ui/public'
+import {ImageBackground, MenuFooter, Navbar} from './components'
 import {Box} from '@mui/material'
 import {SSRConfig, useTranslation} from 'next-i18next'
 import {FC} from 'react'

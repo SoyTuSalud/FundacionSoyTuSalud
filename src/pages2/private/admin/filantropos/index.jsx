@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import NewPrivateLayout from '../../../../components/layouts/NewPrivateLayout/NewPrivateLayout'
+import PrivateLayout from '../../../../components/layouts/private/PrivateLayout'
 import { client } from '../../../../graphqlBack-front/initClientSide'
 import { filantropos } from '../../../../graphqlBack-front/filantropos/queries'
 import Head from 'next/head'
@@ -38,7 +38,7 @@ const FilantroposPage = () => {
       })
   }, [])
   return (
-    <NewPrivateLayout>
+    <PrivateLayout>
       <Head>
         <title>Filantropos</title>
       </Head>
@@ -61,7 +61,7 @@ const FilantroposPage = () => {
           {error && <Alert config={error} />}
         </Container>
       </Box>
-    </NewPrivateLayout>
+    </PrivateLayout>
   )
 }
 

@@ -3,7 +3,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Head from 'next/head'
 import Image from 'next/image'
 import { ReactElement } from 'react'
-import { LayoutMain } from '../../components/layouts/LayoutMain'
+import { LayoutMain } from '../../components/layouts/public/LayoutMain'
 import { GetStaticProps } from 'next';
 
 const Historia = () => {

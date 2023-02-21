@@ -9,7 +9,7 @@ import {municipios} from '../../utils/municipios'
 
 import useFormData from '../../hooks/useFormData'
 import {useAuth} from '../../context/useAuth'
-import {LayoutMain} from '../../components/layouts/LayoutMain'
+import {LayoutMain} from '../../components/layouts/public/LayoutMain'
 import {useTranslation} from 'next-i18next'
 import {serverSideTranslations} from 'next-i18next/serverSideTranslations'
 import {Button} from '@mui/material'

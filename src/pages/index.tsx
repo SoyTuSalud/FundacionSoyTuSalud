@@ -1,7 +1,7 @@
 
 import Head from 'next/head'
 import Image from 'next/image'
-import {LayoutMain} from '@/src/components/layouts'
+import {LayoutMain} from '@/src/components/layouts/public/LayoutMain'
 import {serverSideTranslations} from 'next-i18next/serverSideTranslations'
 import {useTranslation} from 'next-i18next'
 import {GetServerSideProps} from "next";
@@ -18,22 +18,6 @@ export default function Home() {
             <div className="row align-items-center mt-4">
               <div className="col-lg-6">
                 <div className="heading">
-                  <form method="post" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/">
-                      <input name="merchantId"      type="hidden"  value="508029" />
-                      <input name="accountId"       type="hidden"  value="512321" />
-                      <input name="description"     type="hidden"  value="Test PAYU"/>
-                      <input name="referenceCode"   type="hidden"  value="SX86A0djNEPMlGLvUhC3lrPRG1UtbDdqwnqXqXpJ" />
-                      <input name="amount"          type="hidden"  value="20000"   />
-                      <input name="tax"             type="hidden"  value="3193"  />
-                      <input name="taxReturnBase"   type="hidden"  value="16806" />
-                      <input name="currency"        type="hidden"  value="COP" />
-                      <input name="signature"       type="hidden"  value="98ccb49e0370ee1736d0ff1975e6dbb0"/>
-                      <input name="test"            type="hidden"  value="0"/>
-                      <input name="buyerEmail"      type="hidden"  value="test@test.com"/>
-                      <input name="responseUrl"     type="hidden"  value="http://www.test.com/response"/>
-                      <input name="confirmationUrl" type="hidden"  value="http://www.test.com/confirmation"/>
-                      <input name="Submit"          type="submit"  value="Enviar"/>
-                  </form>
                   <span className="heading__pre-title" data-lang="nosotros">
                     {t('home:ABOUT_US')}
                   </span>

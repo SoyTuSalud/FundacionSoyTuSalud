@@ -13,7 +13,7 @@ import { getPacienteInfo, getPacienteSSR } from '@/src/services/pacientes.api'
 import { useQuery } from '@tanstack/react-query'
 
 import { AccountProfileDetails } from '@/src/components/detallePacientes/account-profile-details'
-import NewPrivateLayout from '@/src/components/layouts/NewPrivateLayout/NewPrivateLayout'
+import PrivateLayout from '@/src/components/layouts/private/PrivateLayout'
 import Alert from '@/src/components/Ui/alert/Alert';
 
 
@@ -53,7 +53,7 @@ const DetallePaciente: FC<{paciente: ResponseEntity<Paciente>}> = ({paciente}) =
 })
  
   return (
-    <NewPrivateLayout>
+    <PrivateLayout>
       <Head>
         <title>Paciente</title>
       </Head>
@@ -85,7 +85,7 @@ const DetallePaciente: FC<{paciente: ResponseEntity<Paciente>}> = ({paciente}) =
             />
           )}
       </Box>
-    </NewPrivateLayout>
+    </PrivateLayout>
   )
 }
 

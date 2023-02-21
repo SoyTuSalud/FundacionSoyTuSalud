@@ -10,7 +10,7 @@ import { Paciente } from '@paciente/domain/entity/paciente.entity'
 import { useApiPacientes } from '@/src/hooks/useApi'
 import { getPacientesSSR } from '@/src/services/pacientes.api'
 
-import NewPrivateLayout from '@/src/components/layouts/NewPrivateLayout/NewPrivateLayout'
+import PrivateLayout from '@/src/components/layouts/private/PrivateLayout'
 import { PacientesToolbar } from '@/src/components/pacientes/PacientesToolbar'
 import { PacientesTablas } from '@/src/components/pacientes/PacientesTablas'
 import Alert from '@/src/components/Ui/alert/Alert'
@@ -21,7 +21,7 @@ const PacientesPage: FC<{ pacientes: ResponseEntity<Paciente[]> }> = ({
   const { pacientesQuery } = useApiPacientes(pacientes)
 
   return (
-    <NewPrivateLayout>
+    <PrivateLayout>
       <Head>
         <title>Pacientes</title>
       </Head>
@@ -56,7 +56,7 @@ const PacientesPage: FC<{ pacientes: ResponseEntity<Paciente[]> }> = ({
           )}
         </Container>
       </Box>
-    </NewPrivateLayout>
+    </PrivateLayout>
   )
 }
 

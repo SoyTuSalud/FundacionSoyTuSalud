@@ -16,7 +16,7 @@ import {
   XIcon,
 } from '@heroicons/react/outline'
 import {useDispatch, useSelector} from 'react-redux'
-import {logoutThunk} from '../../../redux/auth/thunks'
+import {logoutThunk} from '../../../../redux/auth/thunks'
 
 export const Navbar = ({ t }) => {
 

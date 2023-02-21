@@ -1,6 +1,6 @@
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { LayoutMain } from '../../components/layouts/LayoutMain'
+import { LayoutMain } from '../../components/layouts/public/LayoutMain'
 
 const Historia = () => {
   const { t } = useTranslation()

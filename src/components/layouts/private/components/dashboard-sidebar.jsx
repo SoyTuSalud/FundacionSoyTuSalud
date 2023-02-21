@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import PropTypes from 'prop-types'
 import {
   Box,
   Button,
@@ -12,10 +11,10 @@ import {
   useMediaQuery,
 } from '@mui/material'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
-import { ChartBar as ChartBarIcon } from '../icons/chart-bar'
-import { ShoppingBag as ShoppingBagIcon } from '../icons/shopping-bag'
-import { User as UserIcon } from '../icons/user'
-import { Users as UsersIcon } from '../icons/users'
+import { ChartBar as ChartBarIcon } from '../../../icons/chart-bar'
+import { ShoppingBag as ShoppingBagIcon } from '../../../icons/shopping-bag'
+import { User as UserIcon } from '../../../icons/user'
+import { Users as UsersIcon } from '../../../icons/users'
 import { NavItem } from './nav-item'
 import { useCookies } from 'react-cookie'
 
@@ -171,7 +170,3 @@ export const DashboardSidebar = (props) => {
   )
 }
 
-DashboardSidebar.propTypes = {
-  onClose: PropTypes.func,
-  open: PropTypes.bool,
-}

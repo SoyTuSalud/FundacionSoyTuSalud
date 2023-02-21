@@ -1,4 +1,4 @@
-import NewPrivateLayout from '../../../../../components/layouts/NewPrivateLayout/NewPrivateLayout'
+import PrivateLayout from '../../../../../components/layouts/private/PrivateLayout'
 import { client } from '../../../../../graphqlBack-front/initClientSide'
 import { servicioDetalle } from '../../../../../graphqlBack-front/servicios/queries'
 import Head from 'next/head'
@@ -7,7 +7,7 @@ import { ServicioDetails } from '../../../../../components/servicios/ServiceDeta
 
 const DetalleServicio = ({ Servicio }) => {
   return (
-    <NewPrivateLayout>
+    <PrivateLayout>
       <Head>
         <title>Servicio {Servicio.body.nombreCompleto}</title>
       </Head>
@@ -26,7 +26,7 @@ const DetalleServicio = ({ Servicio }) => {
           </Grid>
         </Container>
       </Box>
-    </NewPrivateLayout>
+    </PrivateLayout>
   )
 }
 

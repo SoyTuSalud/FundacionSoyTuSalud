@@ -15,7 +15,7 @@ const Test = () => {
     return (
         <div>
             <form method="post" action={urlPayU}>
-                <input name="merchantId"      type="hidden"  value={merchantId}  / >
+                <input name="merchantId"      type="hidden"  value={merchantId}  />
                 <input name="accountId"       type="hidden"  value={accountId} />
                 <input name="description"     type="hidden"  value="Test Soy Tu SALUD"  />
                 <input name="referenceCode"   type="hidden"  value={`test_SoyTu_${reference}`} />
@@ -28,7 +28,7 @@ const Test = () => {
                 <input name="buyerEmail"      type="hidden"  value="test@test.com" />
                 <input name="responseUrl"     type="hidden"  value={responseUrl} />
                 <input name="confirmationUrl" type="hidden"  value={`${responseUrl}/api/v1/confirmation`}/>
-                <input name="Submit"          type="submit"  value="Enviar" />
+                <input name="Submit"          type="submit"  value="Enviar"/>
             </form>
         </div>
     )

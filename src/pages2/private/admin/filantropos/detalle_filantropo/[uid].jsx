@@ -1,11 +1,11 @@
 import React from 'react'
-import NewPrivateLayout from '../../../../../components/layouts/NewPrivateLayout/NewPrivateLayout'
+import PrivateLayout from '../../../../../components/layouts/private/PrivateLayout'
 
 const DetalleFilantropo = () => {
   return (
-    <NewPrivateLayout>
+    <PrivateLayout>
       <div>oe</div>
-    </NewPrivateLayout>
+    </PrivateLayout>
   )
 }
 

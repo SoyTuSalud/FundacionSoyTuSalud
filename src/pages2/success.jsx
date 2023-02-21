@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 import Head from 'next/head'
-import { MenuFooter } from '../components/Ui/public/MenuFooter'
+import { MenuFooter } from '../components/layouts/public/components/MenuFooter'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'

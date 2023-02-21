@@ -1,4 +1,4 @@
-import NewPrivateLayout from '../../../../components/layouts/NewPrivateLayout/NewPrivateLayout'
+import PrivateLayout from '../../../../components/layouts/private/PrivateLayout'
 import Head from 'next/head'
 import { Box, Container } from '@mui/material'
 import { ServiciosToolbar } from '../../../../components/servicios/ServiciosToolbar'
@@ -13,7 +13,7 @@ import {getPacientes} from "../../../../services/pacientes.api";
 const ServiciosPage = ({ serviciosData }) => {
 
   return (
-    <NewPrivateLayout>
+    <PrivateLayout>
       <Head>
         <title>Servicios</title>
       </Head>
@@ -31,7 +31,7 @@ const ServiciosPage = ({ serviciosData }) => {
           </Box>
         </Container>
       </Box>
-    </NewPrivateLayout>
+    </PrivateLayout>
   )
 }
 

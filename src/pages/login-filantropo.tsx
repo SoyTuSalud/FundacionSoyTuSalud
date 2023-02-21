@@ -6,11 +6,11 @@ import {
   CardActionArea,
   CardContent,
   Typography,
-  CardActions,
+  CardActions, Input, InputBase, InputLabel,
 } from "@mui/material";
 import womanPregnant from "@/public/ImagenP.jpg";
 
-export const LoginFilantropos = () => {
+export const LoginFilantropo = () => {
   return (
     <>
       <Box
@@ -49,11 +49,12 @@ export const LoginFilantropos = () => {
           <Box position={"relative"} className="flex w-full">
             <Card
               sx={{
+                minWidth: 275,
                 margin: "10px",
                 backgroundColor: "rgba(255,255,255, 0.180)",
                 border: "1px solid rgba(255,255,255, 0.26)",
               }}
-              className="w-1/3 "
+              className="w-1/3"
             >
               <CardActionArea>
                 <CardContent>
@@ -67,12 +68,14 @@ export const LoginFilantropos = () => {
                     Ingreso
                   </Typography>
                 </CardContent>
-                <CardActions className="flex flex-col w-full items-start">
-                  <label className="text-white font-bold">Email</label>
+                <CardActions className="flex flex-col w-full ">
+                  <div className="flex self-start">
+                    <label className="text-white font-semibold">Email</label>
+                  </div>
                   <input
                     type="email"
                     placeholder="usuario@correo.com"
-                    className="pl-5 pr-10 rounded-lg py-2"
+                    className="pl-5 pr-10 rounded-xl py-2 mt-3 w-full"
                   />
                 </CardActions>
               </CardActionArea>
@@ -84,4 +87,4 @@ export const LoginFilantropos = () => {
   );
 };
 
-export default LoginFilantropos;
+export default LoginFilantropo;

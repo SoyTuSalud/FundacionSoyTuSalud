@@ -10,7 +10,7 @@ import { Paciente } from '@paciente/domain/entity/paciente.entity'
 import { useApiPacientes } from '@/src/hooks/useApi'
 import { getPacientesHistoriaSSR } from '@/src/services/pacientes.api'
 
-import NewPrivateLayout from '@/src/components/layouts/NewPrivateLayout/NewPrivateLayout'
+import PrivateLayout from '@/src/components/layouts/private/PrivateLayout'
 import { PacientesToolbar } from '@/src/components/pacientes/PacientesToolbar'
 import { PacientesTablasTuHistoria } from '@/src/components/pacientes/PacientesTablasTuHistoria'
 import Alert from '@/src/components/Ui/alert/Alert'
@@ -22,7 +22,7 @@ const PacientesTuHistoria: FC<{ pacientes: ResponseEntity<Paciente[]> }> = ({
   const { pacientesHistoriaQuery } = useApiPacientes(pacientes)
 
   return (
-    <NewPrivateLayout>
+    <PrivateLayout>
       <Head>
         <title>Pacientes</title>
       </Head>
@@ -56,7 +56,7 @@ const PacientesTuHistoria: FC<{ pacientes: ResponseEntity<Paciente[]> }> = ({
           )}
         </Container>
       </Box>
-    </NewPrivateLayout>
+    </PrivateLayout>
   )
 }
 

@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { DashboardLayoutRoot } from './NewPrivateLayout.css';
+import { DashboardLayoutRoot } from './PrivateLayout.css';
 import { Box } from '@mui/material';
 
 
 
 import React from 'react'
-import { DashboardNavbar } from '../../NewStyles/dashboard-navbar';
-import { DashboardSidebar } from '../../NewStyles/dashboard-sidebar';
+import { DashboardNavbar } from './components/dashboard-navbar';
+import { DashboardSidebar } from './components/dashboard-sidebar';
 
-const NewPrivateLayout = ({children}) => {
+const PrivateLayout = ({children}) => {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
 
 
@@ -36,4 +36,4 @@ const NewPrivateLayout = ({children}) => {
   )
 }
 
-export default NewPrivateLayout
+export default PrivateLayout

@@ -188,7 +188,10 @@ export class authServiceImpl implements AuthService {
  */
 
   private validatePass = async (userPass: string, requestPass: string) => {
+    console.log(userPass, requestPass);
+    
     const isPasswordMatching: boolean = await compare(requestPass, userPass)
+    console.log(isPasswordMatching);
 
     const methodName = "validatePass"
     logger.info(loggerMessage.INICIO + methodName)
