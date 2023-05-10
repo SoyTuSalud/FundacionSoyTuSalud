@@ -1,11 +1,13 @@
 import { ReactElement } from "react";
-import { LayoutFilantropo } from "@/src/components/layouts/filantropo/LayoutFilantropo";
+import { LayoutFilantropo, getLayout } from "@/src/components/layouts/filantropo/LayoutFilantropo";
 import heart from "@/public/heart2.png";
 import Image from "next/image";
 import RestoreIcon from "@mui/icons-material/Restore";
 import FemaleIcon from "@mui/icons-material/Female";
 import SimCardDownloadOutlinedIcon from "@mui/icons-material/SimCardDownloadOutlined";
 import pregnantWoman from "@/public/PregnantWoman.jpg";
+import { Card } from "../../components/filantropos/Card";
+import { MiniCard } from "../../components/filantropos/MiniCard";
 
 const Filantropo = () => {
   return (
@@ -29,81 +31,23 @@ const Filantropo = () => {
               className=" items-center flex space-x-5 "
               style={{ display: "-webkit-box", paddingRight: "61px" }}
             >
-              <ul
-                style={{ backgroundColor: "#616AC5" }}
-                className="rounded-xl py-5 px-4 w-1/4 flex items-center space-x-3"
-              >
-                <li className="text-white font-bold text-4xl">3</li>
-                <li className="text-white font-semibold">Madres que apoyo</li>
-              </ul>
-              <ul
-                style={{ backgroundColor: "#616AC5" }}
-                className="rounded-xl py-5 px-4 w-1/4 flex items-center space-x-3"
-              >
-                <li className="text-white font-bold text-4xl">5</li>
-                <li className="text-white font-semibold">Tratamientos</li>
-              </ul>
-              <ul
-                style={{ backgroundColor: "#616AC5" }}
-                className="rounded-xl py-5 px-4 w-1/4 flex items-center space-x-3"
-              >
-                <li className="text-white font-bold text-4xl">2</li>
-                <li className="text-white font-semibold">
-                  Reportes nuevos de salud
-                </li>
-              </ul>
-              <ul
-                style={{ backgroundColor: "#616AC5" }}
-                className="rounded-xl py-5 px-4 w-1/4 flex items-center space-x-3"
-              >
-                <li className="text-white font-bold text-4xl">3</li>
-                <li className="text-white font-semibold">Madres que apoyo</li>
-              </ul>
+              <MiniCard title={"Madres que apoyo"} startAdornment={3} />
+              <MiniCard title={"Tratamientos"} startAdornment={5} />
+              <MiniCard title={"Reportes nuevos de salud"} startAdornment={2} />
             </div>
           </div>
         </div>
         <div className="space-y-5 px-5 text-sm ">
           <h1 className="text-black font-semibold text-2xl ">
-            {" "}
             ¿Qué deseas hacer hoy?
           </h1>
           <div
-            className=" items-center flex space-x-5 "
+            className="items-center flex flex-row space-x-5"
             style={{ display: "-webkit-box", paddingRight: "61px" }}
           >
-            <ul
-              style={{ backgroundColor: "#616AC5" }}
-              className="rounded-xl py-5 px-3 w-1/4 flex items-center"
-            >
-              <li className="text-white font-bold text-4xl self-center">
-                <FemaleIcon sx={{ fontSize: "50px" }} />
-              </li>
-              <li className="text-white font-semibold">
-                Ver madres que necesitan apoyo
-              </li>
-            </ul>
-            <ul
-              style={{ backgroundColor: "#616AC5" }}
-              className="rounded-xl py-5 px-3 w-1/4 flex items-center space-x-2"
-            >
-              <li className="text-white font-bold text-4xl">
-                <RestoreIcon sx={{ fontSize: "50px" }} />
-              </li>
-              <li className="text-white font-semibold">
-                Historial de apoyos de la cuenta
-              </li>
-            </ul>
-            <ul
-              style={{ backgroundColor: "#616AC5" }}
-              className="rounded-xl py-5 px-3 w-1/4 flex items-center space-x-2"
-            >
-              <li className="text-white font-bold text-4xl">
-                <SimCardDownloadOutlinedIcon sx={{ fontSize: "50px" }} />
-              </li>
-              <li className="text-white font-semibold">
-                Descargar certificado de donación
-              </li>
-            </ul>
+            <MiniCard title={"Ver madres que necesitan apoyo"} startAdornment={<FemaleIcon sx={{ fontSize: "50px" }} />} />
+            <MiniCard title={"Historial de apoyos de la cuenta"} startAdornment={<RestoreIcon sx={{ fontSize: "50px" }} />} />
+            <MiniCard title={"Descargar certificado de donación"} startAdornment={<SimCardDownloadOutlinedIcon sx={{ fontSize: "50px" }} />} />
           </div>
         </div>
         <div className="space-y-5 px-5 text-sm ">
@@ -111,105 +55,15 @@ const Filantropo = () => {
             Madres que apoyo
           </h1>
           <div
-            className=" items-center flex space-x-5 "
-            style={{ display: "-webkit-box", paddingRight: "61px" }}
+            className="items-center flex "
           >
-            <ul
-              style={{ backgroundColor: "#EFF2FB" }}
-              className="rounded-xl py-5 px-3 w-1/4 flex items-center justify-center"
-            >
-              <div className="text-black font-semibold flex flex-col space-y-3">
-                <div className="h-32 w-32 relative">
-                  <Image
-                    src={pregnantWoman}
-                    alt="pregnantWoman"
-                    layout="fill"
-                    objectFit="cover"
-                    className="rounded-full"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <h1>Paula Andrea Rojas</h1>
-                  <span className="self-center">21 años</span>
-                </div>
-                <div  className="flex flex-col" >
-                  <li style={{ backgroundColor: "#616AC5" }} className="text-white font-semibold rounded-full self-center px-5 py-2">Ver mis apoyos</li>
-                </div>
-               
-              </div>
-            </ul>
-            <ul
-              style={{ backgroundColor: "#EFF2FB" }}
-              className="rounded-xl py-5 px-3 w-1/4 flex items-center justify-center"
-            >
-              <div className="text-black font-semibold flex flex-col space-y-3">
-                <div className="h-32 w-32 relative">
-                  <Image
-                    src={pregnantWoman}
-                    alt="pregnantWoman"
-                    layout="fill"
-                    objectFit="cover"
-                    className="rounded-full"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <h1>Paula Andrea Rojas</h1>
-                  <span className="self-center">21 años</span>
-                </div>
-                <div  className="flex flex-col" >
-                  <li style={{ backgroundColor: "#616AC5" }} className="text-white font-semibold rounded-full self-center px-5 py-2">Ver mis apoyos</li>
-                </div>
-               
-              </div>
-            </ul>
-            <ul
-              style={{ backgroundColor: "#EFF2FB" }}
-              className="rounded-xl py-5 px-3 w-1/4 flex items-center justify-center"
-            >
-              <div className="text-black font-semibold flex flex-col space-y-3">
-                <div className="h-32 w-32 relative">
-                  <Image
-                    src={pregnantWoman}
-                    alt="pregnantWoman"
-                    layout="fill"
-                    objectFit="cover"
-                    className="rounded-full"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <h1>Paula Andrea Rojas</h1>
-                  <span className="self-center">21 años</span>
-                </div>
-                <div  className="flex flex-col" >
-                  <li style={{ backgroundColor: "#616AC5" }} className="text-white font-semibold rounded-full self-center px-5 py-2">Ver mis apoyos</li>
-                </div>
-               
-              </div>
-            </ul>
-            <ul
-              style={{ backgroundColor: "#EFF2FB" }}
-              className="rounded-xl py-5 px-3 w-1/4 flex items-center justify-center"
-            >
-              <div className="text-black font-semibold flex flex-col space-y-3">
-                <div className="h-32 w-32 relative">
-                  <Image
-                    src={pregnantWoman}
-                    alt="pregnantWoman"
-                    layout="fill"
-                    objectFit="cover"
-                    className="rounded-full"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <h1>Paula Andrea Rojas</h1>
-                  <span className="self-center">21 años</span>
-                </div>
-                <div  className="flex flex-col" >
-                  <li style={{ backgroundColor: "#616AC5" }} className="text-white font-semibold rounded-full self-center px-5 py-2">Ver mis apoyos</li>
-                </div>
-               
-              </div>
-            </ul>
+            <div className="space-x-5 lg:space-x-20 inline-flex overflow-x-scroll scroll-smooth">
+
+            <Card img={pregnantWoman} title={"Paula Andrea Rojas"} sub={"21 años"} />
+            <Card img={pregnantWoman} title={"Paula Andrea Rojas"} sub={"21 años"} />
+            <Card img={pregnantWoman} title={"Paula Andrea Rojas"} sub={"21 años"} />
+            <Card img={pregnantWoman} title={"Paula Andrea Rojas"} sub={"21 años"} />
+            </div>
           </div>
         </div>
       </div>
@@ -217,12 +71,6 @@ const Filantropo = () => {
   );
 };
 
-Filantropo.getLayout = function getLayout(page: ReactElement, props: any) {
-  return (
-    <LayoutFilantropo _nextI18Next={props._nextI18Next}>
-      {page}
-    </LayoutFilantropo>
-  );
-};
+Filantropo.getLayout = getLayout
 
 export default Filantropo;

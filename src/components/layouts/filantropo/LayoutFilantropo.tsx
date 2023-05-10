@@ -1,6 +1,6 @@
 import {Box} from '@mui/material'
 import {SSRConfig, useTranslation} from 'next-i18next'
-import {FC} from 'react'
+import {FC, ReactElement} from 'react'
 import {ReactJSXElement} from "@emotion/react/types/jsx-namespace";
 import Navbar from "@/src/components/layouts/filantropo/components/Navbar";
 
@@ -20,3 +20,11 @@ export const LayoutFilantropo:FC<propsLayout> =({children, _nextI18Next}) => {
     </Box>
   )
 }
+
+export const getLayout = (page: ReactElement, props: any) => {
+  return (
+    <LayoutFilantropo _nextI18Next={props._nextI18Next}>
+      {page}
+    </LayoutFilantropo>
+  );
+};
