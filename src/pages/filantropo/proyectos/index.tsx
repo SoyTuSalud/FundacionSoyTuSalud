@@ -4,6 +4,7 @@ import { FormControl, InputLabel, MenuItem } from '@mui/material'
 import Select from '@mui/material/Select'
 import ProjectCard from '@/src/components/filantropos/DetailedCard'
 import SoyTuButton from '@/src/components/filantropos/SoyTuButton'
+import Box from '@mui/material/Box'
 
 const Proyectos = () => {
   return (
@@ -60,11 +61,17 @@ const Proyectos = () => {
           </div>
         </div>
         <div className="px-5 flex">
-          <div className="space-x-5 lg:space-x-20 inline-flex overflow-x-scroll scroll-smooth">
+          <Box
+            className="space-x-5 lg:space-x-20 inline-flex overflow-x-auto scroll-smooth px-5"
+            sx={{
+              WebkitOverflowScrolling: 'touch',
+              '&::-webkit-scrollbar': { display: 'none' },
+            }}
+          >
             <ProjectCard img={pregnantWoman} />
             <ProjectCard img={pregnantWoman} />
             <ProjectCard img={pregnantWoman} />
-          </div>
+          </Box>
         </div>
       </div>
     </div>

@@ -11,6 +11,7 @@ import SimCardDownloadOutlinedIcon from '@mui/icons-material/SimCardDownloadOutl
 import pregnantWoman from '@/public/PregnantWoman.jpg'
 import { Card } from '../../components/filantropos/SimpleCard'
 import { MiniCard } from '../../components/filantropos/MiniCard'
+import { Box } from '@mui/material'
 
 const Filantropo = () => {
   return (
@@ -75,7 +76,13 @@ const Filantropo = () => {
           <h1 className="text-black font-semibold text-2xl ">
             Madres que apoyo
           </h1>
-          <div className="overflow-x-auto scroll-smooth px-5">
+          <Box
+            className="overflow-x-auto scroll-smooth px-5"
+            sx={{
+              WebkitOverflowScrolling: 'touch',
+              '&::-webkit-scrollbar': { display: 'none' },
+            }}
+          >
             <div className="flex flex-nowrap gap-5">
               <Card
                 img={pregnantWoman}
@@ -93,7 +100,7 @@ const Filantropo = () => {
                 sub={'21 años'}
               />
             </div>
-          </div>
+          </Box>
         </div>
       </div>
     </div>
