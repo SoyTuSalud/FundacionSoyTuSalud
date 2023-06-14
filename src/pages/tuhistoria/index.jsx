@@ -2,13 +2,10 @@ import {useState} from 'react'
 import Image from 'next/image'
 import {storage} from '../../firebase/initConfig'
 import {getDownloadURL, ref, uploadBytes} from 'firebase/storage'
-import {useMutation} from '@apollo/client'
-import {tuHistoriaUpdate} from '../../graphqlBack-front/paciente/mutations'
 import {departamentos} from '../../utils/deparamentos'
 import {municipios} from '../../utils/municipios'
 
 import useFormData from '../../hooks/useFormData'
-import {useAuth} from '../../context/useAuth'
 import {LayoutMain} from '../../components/layouts/public/LayoutMain'
 import {useTranslation} from 'next-i18next'
 import {serverSideTranslations} from 'next-i18next/serverSideTranslations'
@@ -23,25 +20,24 @@ const Tuhistoria = () => {
     image: '/promo_c1.png',
   }
 
-  const [tuHistoria] = useMutation(tuHistoriaUpdate)
   const datePick = new Date().toISOString().split('T')[0]
   const [filterMunicipios, setFilterMunicipios] = useState([])
-  const { authUser } = useAuth()
   const [photo, setPhoto] = useState('/Foto.png')
   const [servicios, setServicios] = useState([])
   const { form, formData, updateFormData } = useFormData()
   let municipiosFiltrado
-  const imagRef = ref(storage, `pacientes/${authUser?._id}/perfil.jpg`)
-  const historiaClinicaRef = ref(
-    storage,
-    `pacientes/${authUser?._id}/historiaClinica.pdf`,
-  )
-  const sisbenRef = ref(storage, `pacientes/${authUser?._id}/sisben.pdf`)
+  // const imagRef = ref(storage, `pacientes/${authUser?._id}/perfil.jpg`)
+  // const historiaClinicaRef = ref(
+  //   storage,
+  //   `pacientes/${authUser?._id}/historiaClinica.pdf`,
+  // )
+  const sisbenRef = ref(storage, `pacientes/sisben.pdf`)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    formData['correo'] = authUser.correo
     formData['serviciosSolicitado'] = servicios
+
+    console.log(formData);
 
     await uploadBytes(imagRef, formData.foto)
     await getDownloadURL(imagRef).then((url) => {
@@ -57,7 +53,6 @@ const Tuhistoria = () => {
     await getDownloadURL(historiaClinicaRef).then((url) => {
       formData.historiaClinica = url
     })
-    tuHistoria({ variables: formData })
   }
 
   const handlePhoto = async (e) => {

@@ -16,11 +16,11 @@ export class ServiceTemplate {
       return await fn()
     }
     catch (error: unknown){
+      console.log("error serio", error)
       logger.info(loggerMessage.ERROR + methodName)
       return validateError(error)
     }finally {
       logger.info(loggerMessage.FIN + methodName)
-      await this.dbConnection.disconnectedDb()
     }
   }
 

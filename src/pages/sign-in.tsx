@@ -43,9 +43,6 @@ const SignIn:FC = () => {
     },
   })
 
-
-
-
   return (
     <Box height="100vh" display="flex" flexDirection="column" className="">
       <Head>

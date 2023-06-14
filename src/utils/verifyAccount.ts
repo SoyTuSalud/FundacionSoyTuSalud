@@ -1,4 +1,4 @@
-export const verifyAccount = async (token: string) => {
+  export const verifyAccount = async (token: string) => {
   var myHeaders = new Headers()
   myHeaders.append('Content-Type', 'application/json')
 

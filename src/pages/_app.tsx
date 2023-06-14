@@ -28,6 +28,7 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
+
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   

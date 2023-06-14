@@ -58,7 +58,7 @@ const LoginAdmin = () => {
             <p className="mt-2 text-center text-sm text-gray-600"></p>
           </div>
 
-          {loginAdminQuery.isError?(<span className="text-red-500">{error}</span>):null}
+            {loginAdminQuery.isError?(<span className="text-red-500">{error}</span>):null}
 
           <Formik
             initialValues={{ correo: '', contrasena: '' }}

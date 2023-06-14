@@ -85,6 +85,7 @@ export class MongoRepository implements PacienteRepository {
                 return listModelToListEntity(data)
             })
             .catch((e) => {
+                console.log("error serio", e)
                 if (e instanceof HttpError) {
                     throw e
                 }

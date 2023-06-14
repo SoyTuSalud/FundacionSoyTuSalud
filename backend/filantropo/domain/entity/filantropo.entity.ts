@@ -11,6 +11,7 @@ export interface Filantropo {
   apellidos: string
   celular: string
   correo: string
+  pais: string
   numeroDonaciones: number
   totalDonado: number
   pacientesApoyados: string[]

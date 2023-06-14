@@ -29,7 +29,6 @@ export class PacientesRoutes {
 
     //GET methods
     this.router.get("/api/v1/pacientes", (req, res, next) => {
-      validateRol(req, [roleEnum.ADMIN])
       return this.pacienteController.getPacientes(req, res)
     })
 
