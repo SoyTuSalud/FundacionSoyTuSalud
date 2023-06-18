@@ -22,7 +22,7 @@ const Proyectos = () => {
           </p>
         </div>
         <div className="space-y-5 px-5">
-          <div className="grid grid-cols-1 gap-5">
+          <div className="grid grid-cols-1 gap-3 lg:grid-cols-4">
             <FormControl fullWidth>
               <InputLabel id="edad">Edad</InputLabel>
               <Select labelId="edad" id="simple-select">
@@ -39,7 +39,7 @@ const Proyectos = () => {
                 <MenuItem value={30}>Thirty</MenuItem>
               </Select>
             </FormControl>
-            <div className="grid grid-cols-2 gap-5">
+            <div className="grid grid-cols-2 gap-3">
               <FormControl fullWidth>
                 <InputLabel id="minimo">Valor mínimo</InputLabel>
                 <Select labelId="minimo" id="simple-select">
@@ -60,9 +60,9 @@ const Proyectos = () => {
             <SoyTuButton className="w-auto">Filtrar</SoyTuButton>
           </div>
         </div>
-        <div className="px-5 flex">
+        <div className="space-y-5 px-5 text-sm flex flex-col">
           <Box
-            className="space-x-5 lg:space-x-20 inline-flex overflow-x-auto scroll-smooth px-5"
+            className="space-x-5 inline-flex overflow-x-auto scroll-smooth px-5 md:px-0"
             sx={{
               WebkitOverflowScrolling: 'touch',
               '&::-webkit-scrollbar': { display: 'none' },
@@ -72,6 +72,9 @@ const Proyectos = () => {
             <ProjectCard img={pregnantWoman} />
             <ProjectCard img={pregnantWoman} />
           </Box>
+          <SoyTuButton className="self-center w-1/2 sm:w-1/3 md:w-1/5">
+            Cargar más
+          </SoyTuButton>
         </div>
       </div>
     </div>

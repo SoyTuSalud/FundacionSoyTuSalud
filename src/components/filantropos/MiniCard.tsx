@@ -1,24 +1,22 @@
+import { ReactElement } from 'react'
 
 interface MiniCardProps {
-  title: string,
-  startAdornment?: any
+  title: string
+  startAdornment?: string | number | ReactElement
 }
 
 export const MiniCard = (props: MiniCardProps) => {
-
-  const { startAdornment, title } = props;
+  const { startAdornment, title } = props
 
   return (
-    <ul
-      style={{ backgroundColor: "#616AC5" }}
-      className="rounded-xl py-3 px-3 flex items-center space-x-3"
+    <div
+      style={{ backgroundColor: '#616AC5' }}
+      className="rounded-xl p-3 flex flex-row items-center space-x-3 w-full"
     >
-      <li className="text-white font-bold text-4xl self-center">
+      <span className="text-white font-bold text-4xl flex justify-center w-9 h-9">
         {startAdornment}
-      </li>
-      <li className="text-white font-semibold">
-        {title}
-      </li>
-    </ul>
+      </span>
+      <span className="text-white font-semibold">{title}</span>
+    </div>
   )
 }
