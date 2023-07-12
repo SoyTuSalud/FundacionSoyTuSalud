@@ -1,0 +1,9 @@
+export const loggerMessage = {
+  INICIO: "INICIO DE METODO: ",
+  FIN: "FIN DE METODO: ",
+  ERROR: "ERROR EN METODO: ",
+  REQUEST: "REQUEST: ",
+  RESPONSE: "RESPONSE: ",
+  HEADERS: "HEADERS: ",
+  COOKIES: "COOKIES: "
+}

@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -13,27 +17,64 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "paths": {
+      "@/*": [
+        "./*"
+      ],
+      "@common/*": [
+        "./backend/common/*"
+      ],
+      "@auth/*": [
+        "./backend/auth/*"
+      ],
+      "@paciente/*": [
+        "./backend/paciente/*"
+      ],
+      "@filantropo/*": [
+        "./backend/filantropo/*"
+      ],
+      "@representante/*": [
+        "./backend/representante/*"
+      ],
+      "@serviciosMedicos/*": [
+        "./backend/serviciosMedicos/*"
+      ],
+      "@services/*": [
+        "./src/services/*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "pages/trabajaNosotros.jsx",
-    "pages/registro.jsx",
+    "pages/registro",
     "pages/login.jsx",
     "pages/index.jsx",
     "pages/_document.jsx",
     "pages/verifiedAccount/_app.jsx",
-    "hooks/useFormData.js",
-    "utils/validateUser.js",
-    "middleware.js",
-    "utils/validateRolPages.js",
-    "utils/validateRolPages.js",
-    "utils/enablePagesEnum.js",
-    "utils/validateRolPages.js",
-    "pages/loginAdmin.jsx",
-    "pages/api/verifiedAccountByToken/[token].js"
-  ],
-  "exclude": ["node_modules"]
+    "src/hooks/useFormData.js",
+    "src/utils/validateUser.js",
+    "src/middleware.js",
+    "src/utils/validateRolPages.js",
+    "src/utils/validateRolPages.js",
+    "src/utils/enablePagesEnum.js",
+    "src/utils/validateRolPages.js",
+    "pages/loginAdmin",
+    "pages/api/verifiedAccountByToken/[token].js",
+    "backend/infrastructure/servicesV2/pacientes/findAllPacientests",
+    "pages/api/auth/[...nextauth]",
+    ".next/types/**/*.ts"
+, "src/get-dictionary.ts",
+    "src/components/layouts/public/LayoutMain.tsx", "src/pages/tu-historia/index.jsx", "test.ts"  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
