@@ -1,14 +1,8 @@
 import PrivateLayout from '../../../../components/layouts/private/PrivateLayout'
 import Head from 'next/head'
-import { Box, Container } from '@mui/material'
-import { ServiciosToolbar } from '../../../../components/servicios/ServiciosToolbar'
-import { serviciosTablaData } from '../../../../graphqlBack-front/servicios/queries'
-import { client } from '../../../../graphqlBack-front/initClientSide'
-import { ServiciosTablas } from '../../../../components/servicios/ServiciosTablas'
-import {useQuery} from "@tanstack/react-query";
-import {ResponseEntity} from "../../../../../backend/common/models/response.value";
-import {Paciente} from "../../../../../backend/paciente/domain/entity/paciente.entity";
-import {getPacientes} from "../../../../services/pacientes.api";
+import {Box, Container} from '@mui/material'
+import {ServiciosToolbar} from '../../../../components/servicios/ServiciosToolbar'
+import {ServiciosTablas} from '../../../../components/servicios/ServiciosTablas'
 
 const ServiciosPage = ({ serviciosData }) => {
 

@@ -15,6 +15,7 @@ export const listModelToListEntity = <T extends Filantropo>(filantropos: T[],): 
       filantropo.profileType,
       filantropo.tipoDocumento,
       filantropo.totalDonado,
+        filantropo.pais
     )
   })
 }
@@ -31,5 +32,6 @@ export const modelToEntity = <T extends Filantropo>(filantropo: T): Filantropo =
     filantropo.profileType,
     filantropo.tipoDocumento,
     filantropo.totalDonado,
+      filantropo.pais
   )
 }

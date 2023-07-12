@@ -20,6 +20,7 @@ export const validateBodyCreation = (body: any): FilantropoValue => {
       body.profileType,
       body.tipoDocumento,
       body.totalDonado,
+        body.pais
     )
   } catch (e) {
 

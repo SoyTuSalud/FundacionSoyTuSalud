@@ -9,9 +9,7 @@ import {
   Grid,
   Typography,
 } from '@mui/material'
-import { ActualizarEstadoServicio } from '../../graphqlBack-front/servicios/mutations'
 import { departamentos } from '../../utils/deparamentos'
-import { useMutation } from '@apollo/client/react'
 import { ListaServiciosTabla } from './ListaServiciosTabla'
 import { IOSSwitch } from './ServiciosTabla.css'
 

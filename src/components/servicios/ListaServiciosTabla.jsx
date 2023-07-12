@@ -11,8 +11,6 @@ import {
   TableRow,
 } from '@mui/material'
 import {IOSSwitch} from './ServiciosTabla.css'
-import {ActualizarEstadoServicio} from '../../graphqlBack-front/servicios/mutations'
-import {useMutation} from '@apollo/client/react'
 
 export const ListaServiciosTabla = ({ ListaServicios, ...rest }) => {
   const [selectedCustomerIds, setSelectedCustomerIds] = useState([])

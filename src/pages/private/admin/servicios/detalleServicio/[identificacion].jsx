@@ -1,6 +1,4 @@
 import PrivateLayout from '../../../../../components/layouts/private/PrivateLayout'
-import { client } from '../../../../../graphqlBack-front/initClientSide'
-import { servicioDetalle } from '../../../../../graphqlBack-front/servicios/queries'
 import Head from 'next/head'
 import { Box, Container, Grid } from '@mui/material'
 import { ServicioDetails } from '../../../../../components/servicios/ServiceDetails'

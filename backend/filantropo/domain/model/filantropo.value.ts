@@ -14,11 +14,13 @@ class FilantropoValue implements Filantropo {
   profileType: ProfileTypeEnum;
   tipoDocumento: TipoDocumentoEnum;
   totalDonado: number;
+  pais: string;
+
 
 
   constructor(apellidos: string, celular: string, correo: string, identificacion: string,
               nombre: string, numeroDonaciones: number, pacientesApoyados: string[], profileType: ProfileTypeEnum,
-              tipoDocumento: TipoDocumentoEnum, totalDonado: number) {
+              tipoDocumento: TipoDocumentoEnum, totalDonado: number, pais: string) {
 
     this.apellidos = apellidos;
     this.celular = celular;
@@ -30,7 +32,9 @@ class FilantropoValue implements Filantropo {
     this.profileType = profileType;
     this.tipoDocumento = tipoDocumento;
     this.totalDonado = totalDonado;
+    this.pais = pais;
   }
+
 
 
 }
