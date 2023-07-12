@@ -1,11 +1,14 @@
-import { Container } from "@mui/material";
-import Image from "next/image";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import ArrowDropDownOutlinedIcon from "@mui/icons-material/ArrowDropDownOutlined";
+import { Container } from '@mui/material'
+import Image from 'next/image'
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
+import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined'
 
 const Navbar = () => {
   return (
-    <div style={{ backgroundColor: "#616AC5" }} className="sticky flex top-0 left-0 z-20">
+    <div
+      style={{ backgroundColor: '#616AC5' }}
+      className="sticky flex top-0 left-0 z-20"
+    >
       <div className="relative container  w-full ">
         <div className="w-full  flex py-3 max-w-screen-2xl justify-between items-center">
           <div className="flex items-center space-x-10  ">
@@ -18,12 +21,12 @@ const Navbar = () => {
             />
             <span
               className="text-white back px-8 rounded-xl font-semibold "
-              style={{ backgroundColor: "#E26D83" }}
+              style={{ backgroundColor: '#E26D83' }}
             >
               Filántropo
             </span>
           </div>
-          <div className="flex space-x-9">
+          <div className="hidden md:flex space-x-9">
             <ul>
               <li className="text-white font-semibold ">Inicio</li>
             </ul>
@@ -46,7 +49,7 @@ const Navbar = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
