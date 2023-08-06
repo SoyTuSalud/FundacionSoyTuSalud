@@ -1,53 +1,55 @@
-import { Container } from '@mui/material'
 import Image from 'next/image'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
 import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined'
 
 const Navbar = () => {
   return (
-    <div
-      style={{ backgroundColor: '#616AC5' }}
-      className="sticky flex top-0 left-0 z-20"
-    >
-      <div className="relative container  w-full ">
-        <div className="w-full  flex py-3 max-w-screen-2xl justify-between items-center">
-          <div className="flex items-center space-x-10  ">
+    <div className="sticky top-0 z-50 bg-primary text-white">
+      <nav className="relative px-3">
+        <div className="w-full flex py-3 justify-between items-center">
+          <div className="flex justify-evenly items-center gap-3 sm:gap-9">
             <Image
               src="/logo_horizontal-white.png"
               width={180}
-              height={50}
+              height={48}
               alt="logo"
               quality={100}
             />
-            <span
-              className="text-white back px-8 rounded-xl font-semibold "
-              style={{ backgroundColor: '#E26D83' }}
-            >
+            <span className="px-3 md:px-6 rounded-xl font-semibold bg-pink-bright">
               Filántropo
             </span>
           </div>
-          <div className="hidden md:flex space-x-9">
-            <ul>
-              <li className="text-white font-semibold ">Inicio</li>
-            </ul>
-            <ul>
-              <li className="text-white font-semibold">
+          <div className="hidden lg:block">
+            <div className="flex gap-9">
+              <a
+                href="/filantropo"
+                className="flex flex-col items-center font-semibold hover:after:w-full after:h-[3px] after:bg-pink-bright"
+              >
+                Inicio
+              </a>
+              <a
+                href="/filantropo/proyectos"
+                className="flex flex-col items-center font-semibold hover:after:w-full after:h-[3px] after:bg-pink-bright"
+              >
                 Proyectos de Maternidad
-              </li>
-            </ul>
-            <ul>
-              <li className="text-white  font-semibold">Apoyos</li>
-            </ul>
-            <ul>
-              <li className="text-white font-semibold items-center flex ">
-                <PersonOutlineOutlinedIcon fontSize="medium" className="mr-3" />
-                Bienvenido, Usuario
-                <ArrowDropDownOutlinedIcon fontSize="medium" />
-              </li>
-            </ul>
+              </a>
+              <a
+                href="/filantropo/apoyos"
+                className="flex flex-col items-center font-semibold hover:after:w-full after:h-[3px] after:bg-pink-bright"
+              >
+                Apoyos
+              </a>
+              <button className="flex flex-col font-semibold hover:after:w-full after:h-[3px] after:bg-pink-bright">
+                <div className="flex items-center">
+                  <PersonOutlineOutlinedIcon fontSize="medium" />
+                  Bienvenido, Usuario
+                  <ArrowDropDownOutlinedIcon fontSize="medium" />
+                </div>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </nav>
     </div>
   )
 }

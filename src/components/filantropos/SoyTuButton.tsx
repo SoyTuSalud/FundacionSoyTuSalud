@@ -6,21 +6,19 @@ interface ButtonProps {
 }
 
 const SoyTuButton = (props: ButtonProps) => {
-  const { variant, className, children, onClick } = props
+  const { variant = 'contained', className, children, onClick } = props
 
   return (
     <button
-      style={
-        !variant || variant == 'contained'
-          ? { backgroundColor: '#616AC5', color: '#FFFFFF' }
-          : {
-              backgroundColor: '#FFFFFF',
-              color: '#616AC5',
-              borderColor: '#616AC5',
-              borderWidth: 2,
-            }
+      className={
+        'font-semibold rounded-full w-full min-h-[2.5rem] min-w-[4rem] ' +
+        `${
+          variant === 'contained'
+            ? 'p-2 bg-primary text-white '
+            : 'p-[6px] bg-white text-primary border-primary border-2 '
+        }` +
+        className
       }
-      className={'font-semibold rounded-full p-2 h-12 w-full ' + className}
       onClick={onClick}
     >
       {children}

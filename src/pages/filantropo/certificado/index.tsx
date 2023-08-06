@@ -17,45 +17,46 @@ const Certificado = () => {
           </p>
         </div>
         <div className="space-y-5 px-5">
-          <div className="grid grid-cols-1 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <FormControl fullWidth>
-              <InputLabel id="tipo-persona">Tipo de persona</InputLabel>
-              <Select labelId="tipo-persona" id="simple-select">
+              <InputLabel id="person-type">Tipo de persona</InputLabel>
+              <Select labelId="person-type" id="simple-select">
                 <MenuItem value={1}>Natural</MenuItem>
                 <MenuItem value={2}>Jurídica </MenuItem>
               </Select>
             </FormControl>
             <FormControl fullWidth>
-              <InputLabel id="tipo-documento">Tipo de documento</InputLabel>
-              <Select labelId="tipo-documento" id="simple-select">
+              <InputLabel id="document-type">Tipo de documento</InputLabel>
+              <Select labelId="document-type" id="simple-select">
                 <MenuItem value={1}>Cédula</MenuItem>
                 <MenuItem value={2}>Extranjera</MenuItem>
                 <MenuItem value={3}>Otro</MenuItem>
               </Select>
             </FormControl>
             <FormControl fullWidth>
-              <InputLabel htmlFor="n-documento">Número de documento</InputLabel>
-              <OutlinedInput id="n-documento" />
+              <InputLabel htmlFor="document-number">
+                Número de documento
+              </InputLabel>
+              <OutlinedInput id="document-number" />
             </FormControl>
             <FormControl fullWidth>
-              <InputLabel htmlFor="nombre">Nombre</InputLabel>
-              <OutlinedInput id="nombre" />
+              <InputLabel htmlFor="name">Nombre</InputLabel>
+              <OutlinedInput id="name" />
             </FormControl>
             <FormControl fullWidth>
-              <InputLabel htmlFor="apellidos">Apellidos</InputLabel>
-              <OutlinedInput id="apellidos" />
+              <InputLabel htmlFor="last-name">Apellidos</InputLabel>
+              <OutlinedInput id="last-name" />
             </FormControl>
-            {
-              //<DatePicker
-              //label="Fecha"
-              //>
-            }
-            <div className="flex flex-col items-center gap-5">
-              <SoyTuButton className="w-1/2">Generar</SoyTuButton>
-              <SoyTuButton variant="outlined" className="w-1/2">
-                Cancelar
-              </SoyTuButton>
-            </div>
+            <FormControl fullWidth>
+              <InputLabel htmlFor="date">Fecha</InputLabel>
+              <OutlinedInput id="date" />
+            </FormControl>
+          </div>
+          <div className="flex max-md:flex-col justify-center items-center gap-6">
+            <SoyTuButton className="w-64">Generar</SoyTuButton>
+            <SoyTuButton variant="outlined" className="w-64">
+              Cancelar
+            </SoyTuButton>
           </div>
         </div>
       </div>

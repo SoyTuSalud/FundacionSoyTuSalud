@@ -13,10 +13,7 @@ export const Card = (props: CardProps) => {
   const { img, title, sub } = props
 
   return (
-    <ul
-      style={{ backgroundColor: '#EFF2FB' }}
-      className="rounded-xl py-5 px-3 flex flex-none md:flex-auto justify-center w-4/5 md:w-1/4"
-    >
+    <ul className="relative snap-center min-w-[16rem] rounded-xl py-5 px-3 flex shrink-0 md:grow justify-center bg-white-ghost">
       <div className="text-black flex flex-col items-center text-center space-y-3">
         <div className="h-32 w-32 relative">
           <Image
