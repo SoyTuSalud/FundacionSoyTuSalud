@@ -1,15 +1,15 @@
-import { getLayout } from '@/src/components/layouts/filantropo/LayoutFilantropo'
+import { getLayout } from '@/src/components/layouts/philanthropist/PhilanthropistLayout'
 import heart from '@/public/heart2.png'
 import Image from 'next/image'
 import RestoreIcon from '@mui/icons-material/Restore'
 import FemaleIcon from '@mui/icons-material/Female'
 import SimCardDownloadOutlinedIcon from '@mui/icons-material/SimCardDownloadOutlined'
 import pregnantWoman from '@/public/PregnantWoman.jpg'
-import { Card } from '../../components/filantropos/SimpleCard'
-import { MiniCard } from '../../components/filantropos/MiniCard'
-import SoyTuButton from '@/src/components/filantropos/SoyTuButton'
+import { Card } from '../../components/philanthropists/SimpleCard'
+import { MiniCard } from '../../components/philanthropists/MiniCard'
+import SoyTuButton from '@/src/components/philanthropists/SoyTuButton'
 
-const Filantropo = () => {
+const Philanthropist = () => {
   return (
     <>
       <div className="rounded-xl flex flex-col bg-white-ghost">
@@ -89,6 +89,6 @@ const Filantropo = () => {
   )
 }
 
-Filantropo.getLayout = getLayout
+Philanthropist.getLayout = getLayout
 
-export default Filantropo
+export default Philanthropist

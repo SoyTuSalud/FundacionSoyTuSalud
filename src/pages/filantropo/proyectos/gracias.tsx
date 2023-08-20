@@ -1,7 +1,7 @@
 import medical from '@/public/medical.png'
-import { getLayout } from '@/src/components/layouts/filantropo/LayoutFilantropo'
 import Image from 'next/image'
-import SoyTuButton from '@/src/components/filantropos/SoyTuButton'
+import SoyTuButton from '@/src/components/philanthropists/SoyTuButton'
+import { getLayout } from '@/src/components/layouts/philanthropist/PhilanthropistLayout'
 
 const Thanks = () => {
   return (

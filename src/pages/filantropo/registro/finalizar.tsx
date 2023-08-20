@@ -1,5 +1,5 @@
-import { getLayout } from '@/src/components/layouts/filantropo/LayoutFilantropo'
-import SoyTuButton from '@/src/components/filantropos/SoyTuButton'
+import { getLayout } from '@/src/components/layouts/philanthropist/PhilanthropistLayout'
+import SoyTuButton from '@/src/components/philanthropists/SoyTuButton'
 
 const Finalizar = () => {
   return (

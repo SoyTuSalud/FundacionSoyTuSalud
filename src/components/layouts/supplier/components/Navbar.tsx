@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <div className="sticky top-0 z-50 bg-primary text-white">
       <nav className="relative px-3">
-        <div className="w-full flex py-3 justify-between items-center">
+        <div className="w-full flex py-3 justify-around items-center">
           <div className="flex justify-evenly items-center gap-3 sm:gap-9">
             <Image
               src="/logo_horizontal-white.png"
@@ -16,31 +16,31 @@ const Navbar = () => {
               quality={100}
             />
             <span className="px-3 md:px-6 rounded-xl font-semibold bg-pink-bright">
-              Filántropo
+              Proveedor
             </span>
           </div>
           <div className="hidden lg:block">
             <div className="flex gap-9">
               <a
-                href="/filantropo"
+                href="/proveedor"
                 className="flex flex-col items-center font-semibold hover:after:w-full after:h-[3px] after:bg-pink-bright"
               >
                 Inicio
               </a>
               <a
-                href="/filantropo/proyectos"
+                href="/proveedor/historial"
                 className="flex flex-col items-center font-semibold hover:after:w-full after:h-[3px] after:bg-pink-bright"
               >
-                Proyectos de Maternidad
+                Historial de servicios
               </a>
               <a
-                href="/filantropo/apoyos"
+                href="/proveedor/servicios"
                 className="flex flex-col items-center font-semibold hover:after:w-full after:h-[3px] after:bg-pink-bright"
               >
-                Apoyos
+                Servicios en curso
               </a>
               <button className="flex flex-col font-semibold hover:after:w-full after:h-[3px] after:bg-pink-bright">
-                <div className="flex items-center">
+                <div className="flex items-center gap-3">
                   <PersonOutlineOutlinedIcon fontSize="medium" />
                   Bienvenido, Usuario
                   <ArrowDropDownOutlinedIcon fontSize="medium" />

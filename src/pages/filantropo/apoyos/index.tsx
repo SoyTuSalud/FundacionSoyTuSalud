@@ -1,13 +1,15 @@
-import { getLayout } from '@/src/components/layouts/filantropo/LayoutFilantropo'
 import pregnantWoman from '@/public/PregnantWoman.jpg'
-import { Card } from '@/src/components/filantropos/SimpleCard'
-import SoyTuButton from '@/src/components/filantropos/SoyTuButton'
+import { getLayout } from '@/src/components/layouts/philanthropist/PhilanthropistLayout'
+import { Card } from '@/src/components/philanthropists/SimpleCard'
+import SoyTuButton from '@/src/components/philanthropists/SoyTuButton'
 
 const Historial = () => {
   return (
     <>
       <div className="space-y-5 px-5">
-        <h1 className="font-bold text-3xl text-primary">Historial de apoyos</h1>
+        <h1 className="text-2xl sm:text-3xl text-primary">
+          Historial de apoyos
+        </h1>
         <p>
           Aquí podras ver los proyectos de maternidad que estás apoyando, o que
           apoyaste y ya llegaron a feliz término, dentro de cada uno verás la

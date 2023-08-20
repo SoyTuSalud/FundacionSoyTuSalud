@@ -1,16 +1,14 @@
 import { SSRConfig, useTranslation } from 'next-i18next'
 import { ReactElement } from 'react'
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace'
-import Navbar from '@/src/components/layouts/filantropo/components/Navbar'
-import { MenuFooter } from '../public/components/MenuFooter'
-import Image from 'next/image'
+import Navbar from '@/src/components/layouts/supplier/components/Navbar'
 
 interface propsLayout {
   _nextI18Next: SSRConfig
   children: ReactJSXElement
 }
 
-export const LayoutFilantropo = ({ children, _nextI18Next }: propsLayout) => {
+export const SupplierLayout = ({ children, _nextI18Next }: propsLayout) => {
   const { t } = useTranslation()
   return (
     <>
@@ -29,8 +27,6 @@ export const LayoutFilantropo = ({ children, _nextI18Next }: propsLayout) => {
 
 export const getLayout = (page: ReactElement, props: any) => {
   return (
-    <LayoutFilantropo _nextI18Next={props._nextI18Next}>
-      {page}
-    </LayoutFilantropo>
+    <SupplierLayout _nextI18Next={props._nextI18Next}>{page}</SupplierLayout>
   )
 }
