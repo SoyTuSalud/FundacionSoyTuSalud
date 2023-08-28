@@ -1,14 +1,11 @@
 import { getLayout } from '@/src/components/layouts/philanthropist/PhilanthropistLayout'
-import SoyTuButton from '@/src/components/philanthropists/SoyTuButton'
+import SoyTuButton from '@/src/components/soytu/SoyTuButton'
 
 const Finalizar = () => {
   return (
     <div style={{ backgroundColor: '#FEFEFE' }}>
       <div className="container space-y-6">
-        <div
-          style={{ backgroundColor: '#EFF2FB' }}
-          className="rounded-xl box-border flex flex-col mx-6 py-6 space-y-6"
-        >
+        <div className="rounded-xl box-border flex flex-col mx-6 py-6 space-y-6 bg-white-ghost">
           <p className="px-3 text-center">
             Deseamos informarnos sobre tu bienestar y suministrar los remedios
             necesarios, para ello recuerda finalizar la evaluación.

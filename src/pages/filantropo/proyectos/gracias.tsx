@@ -1,6 +1,6 @@
 import medical from '@/public/medical.png'
 import Image from 'next/image'
-import SoyTuButton from '@/src/components/philanthropists/SoyTuButton'
+import SoyTuButton from '@/src/components/soytu/SoyTuButton'
 import { getLayout } from '@/src/components/layouts/philanthropist/PhilanthropistLayout'
 
 const Thanks = () => {
@@ -23,8 +23,8 @@ const Thanks = () => {
           <h3>$250.000</h3>
         </div>
         <div className="flex max-md:flex-col justify-center items-center my-6 gap-3">
-          <SoyTuButton className="w-64">Apoyar</SoyTuButton>
-          <SoyTuButton className="w-64" variant="outlined">
+          <SoyTuButton className="w-3/4">Apoyar</SoyTuButton>
+          <SoyTuButton className="w-3/4" variant="outlined">
             Atrás
           </SoyTuButton>
         </div>
@@ -48,10 +48,8 @@ const Thanks = () => {
               </p>
             </div>
             <div className="flex max-md:flex-col justify-center md:justify-start items-center my-6 gap-3 max-w">
-              <SoyTuButton className="max-w-[16rem]">
-                Ver mis apoyos
-              </SoyTuButton>
-              <SoyTuButton className="max-w-[16rem]" variant="outlined">
+              <SoyTuButton className="w-3/4">Ver mis apoyos</SoyTuButton>
+              <SoyTuButton className="w-3/4" variant="outlined">
                 Ver otras madres
               </SoyTuButton>
             </div>

@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import SoyTuButton from './SoyTuButton'
+import SoyTuButton from '../soytu/SoyTuButton'
 
 interface CardProps {
   img?: any

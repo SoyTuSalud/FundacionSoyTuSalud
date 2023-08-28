@@ -1,7 +1,7 @@
 import pregnantWoman from '@/public/PregnantWoman.jpg'
 import { getLayout } from '@/src/components/layouts/philanthropist/PhilanthropistLayout'
 import { Card } from '@/src/components/philanthropists/SimpleCard'
-import SoyTuButton from '@/src/components/philanthropists/SoyTuButton'
+import SoyTuButton from '@/src/components/soytu/SoyTuButton'
 
 const Historial = () => {
   return (

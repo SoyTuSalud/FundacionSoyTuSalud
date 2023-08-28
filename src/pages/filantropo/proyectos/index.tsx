@@ -3,7 +3,7 @@ import pregnantWoman from '@/public/PregnantWoman.jpg'
 import { FormControl, InputLabel, MenuItem } from '@mui/material'
 import Select from '@mui/material/Select'
 import ProjectCard from '@/src/components/philanthropists/DetailedCard'
-import SoyTuButton from '@/src/components/philanthropists/SoyTuButton'
+import SoyTuButton from '@/src/components/soytu/SoyTuButton'
 
 const Proyectos = () => {
   return (

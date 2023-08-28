@@ -7,7 +7,7 @@ import SimCardDownloadOutlinedIcon from '@mui/icons-material/SimCardDownloadOutl
 import pregnantWoman from '@/public/PregnantWoman.jpg'
 import { Card } from '../../components/philanthropists/SimpleCard'
 import { MiniCard } from '../../components/philanthropists/MiniCard'
-import SoyTuButton from '@/src/components/philanthropists/SoyTuButton'
+import SoyTuButton from '@/src/components/soytu/SoyTuButton'
 
 const Philanthropist = () => {
   return (

@@ -1,6 +1,6 @@
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace'
 import Image, { StaticImageData } from 'next/image'
-import SoyTuButton from './SoyTuButton'
+import SoyTuButton from '../soytu/SoyTuButton'
 
 interface CardProps {
   img: any

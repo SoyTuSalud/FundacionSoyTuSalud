@@ -1,6 +1,6 @@
 import pregnantWoman from '@/public/PregnantWoman.jpg'
 import Image from 'next/image'
-import SoyTuButton from '@/src/components/philanthropists/SoyTuButton'
+import SoyTuButton from '@/src/components/soytu/SoyTuButton'
 import { getLayout } from '@/src/components/layouts/philanthropist/PhilanthropistLayout'
 
 const Detail = () => {
