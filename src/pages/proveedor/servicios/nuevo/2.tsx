@@ -6,7 +6,7 @@ const NewServiceTwo = () => {
     <div style={{ backgroundColor: '#FEFEFE' }}>
       <div className="container space-y-9 text-center md:text-left">
         <div className="space-y-5 px-5">
-          <h1 className="font-black text-2xl sm:text-3xl text-primary">
+          <h1 className="text-2xl font-black text-primary sm:text-3xl">
             Añadir servicio
           </h1>
           <p className="font-bold text-[#3B3B3B]">
@@ -16,9 +16,11 @@ const NewServiceTwo = () => {
         </div>
         <div className="space-y-5 px-5"></div>
         <div className="space-y-5 px-5">
-          <div className="flex max-md:flex-col justify-center items-center gap-x-6 gap-y-4">
-            <SoyTuButton>Siguiente</SoyTuButton>
-            <SoyTuButton variant="outlined">Cancelar</SoyTuButton>
+          <div className="flex items-center justify-center gap-x-6 gap-y-4 max-md:flex-col">
+            <SoyTuButton className="w-40">Siguiente</SoyTuButton>
+            <SoyTuButton variant="outlined" className="w-40">
+              Cancelar
+            </SoyTuButton>
           </div>
         </div>
       </div>

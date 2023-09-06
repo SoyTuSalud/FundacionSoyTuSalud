@@ -21,7 +21,7 @@ const SoyTuInput = (props: InputProps) => {
     <div className={classes}>
       {adornment}
       <input
-        className="bg-inherit placeholder:font-semibold placeholder:text-[#3B3B3B] focus:outline-none"
+        className="w-full min-w-0 bg-inherit placeholder:font-semibold placeholder:text-[#3B3B3B] focus:outline-none"
         type={type}
         placeholder={placeholder}
       />

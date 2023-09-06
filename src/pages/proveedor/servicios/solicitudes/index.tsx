@@ -1,6 +1,6 @@
 import { getLayout } from '@/src/components/layouts/supplier/SupplierLayout'
 import SoyTuInput from '@/src/components/soytu/SoyTuInput'
-import { SearchIcon } from '@heroicons/react/outline'
+import { EyeIcon, SearchIcon } from '@heroicons/react/outline'
 import { requests } from './requests.data'
 
 type RequestsData = {
@@ -26,12 +26,15 @@ const History = () => {
           </p>
         </div>
         <div className="space-y-5 px-5">
-          <div className="flex items-center gap-3">
-            <SoyTuInput
-              type="text"
-              placeholder="Buscar servicio"
-              adornment={<SearchIcon className="w-6 text-primary" />}
-            />
+          <div className="flex items-center justify-center">
+            <div className="flex w-full max-w-screen-lg justify-end">
+              <SoyTuInput
+                type="text"
+                placeholder="Buscar solicitud"
+                adornment={<SearchIcon className="w-6 text-primary" />}
+                className="lg:w-96"
+              />
+            </div>
           </div>
           <div className="flex w-full overflow-x-auto xl:justify-center">
             <table className="mb-3 w-full min-w-[60rem] max-w-screen-lg overflow-hidden rounded-t-lg text-sm">
@@ -68,9 +71,10 @@ const History = () => {
                         <td>{state}</td>
                         <td>{priority}</td>
                         <td>
-                          <a href={`#${ref}`} className="text-primary">
+                          <button className="flex w-fit flex-col items-center justify-center text-primary">
+                            <EyeIcon className="w-5" />
                             Detalle
-                          </a>
+                          </button>
                         </td>
                       </tr>
                     )
