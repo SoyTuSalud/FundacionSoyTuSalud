@@ -13,7 +13,7 @@ type HistoryData = {
 
 const History = () => {
   return (
-    <div style={{ backgroundColor: '#FEFEFE' }}>
+    <div className="bg-[#FEFEFE]">
       <div className="container space-y-9 text-center md:text-left">
         <div className="space-y-5 px-5">
           <h1 className="text-2xl font-black text-primary sm:text-3xl">

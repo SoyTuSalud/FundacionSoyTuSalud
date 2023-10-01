@@ -1,12 +1,10 @@
 import { getLayout } from '@/src/components/layouts/supplier/SupplierLayout'
 import SoyTuButton from '@/src/components/soytu/SoyTuButton'
-import SoyTuInput from '@/src/components/soytu/SoyTuInput'
 import SoyTuSelect from '@/src/components/soytu/SoyTuSelect'
-import clsx from 'clsx'
 
 const Request = () => {
   return (
-    <div style={{ backgroundColor: '#FEFEFE' }}>
+    <div className="bg-[#FEFEFE]">
       <div className="container space-y-9 text-center text-base md:text-left">
         <div className="flex flex-col gap-y-6 px-5">
           <h1 className="text-2xl font-black text-primary sm:text-3xl">

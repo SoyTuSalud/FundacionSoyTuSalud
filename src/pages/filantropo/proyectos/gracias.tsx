@@ -6,37 +6,37 @@ import { getLayout } from '@/src/components/layouts/philanthropist/Philanthropis
 const Thanks = () => {
   return (
     <>
-      <div className="rounded-xl flex flex-col mx-6 p-9 bg-white-ghost max-w-xl">
-        <h3 className="font-black text-2xl text-center text-primary">
+      <div className="mx-6 flex max-w-xl flex-col rounded-xl bg-white-ghost p-9">
+        <h3 className="text-center text-2xl font-black text-primary">
           Nombre del tratamiento
         </h3>
         <div className="text-left">
-          <h6 className="text-black font-semibold">Descripción</h6>
+          <h6 className="font-semibold text-black">Descripción</h6>
           <p>
             Sed ud perspiciatis unde omnis ise natus error sit voluptatem
             accusantium Sed ud perspiciatis unde omnis ise natus error sit
             voluptatem accusantium.
           </p>
         </div>
-        <div className="mt-3 font-black text-center text-2xl text-primary">
+        <div className="mt-3 text-center text-2xl font-black text-primary">
           <h3>Valor:</h3>
           <h3>$250.000</h3>
         </div>
-        <div className="flex max-md:flex-col justify-center items-center my-6 gap-3">
-          <SoyTuButton className="w-3/4">Apoyar</SoyTuButton>
-          <SoyTuButton className="w-3/4" variant="outlined">
+        <div className="mt-6 flex items-center justify-center gap-x-6 gap-y-4 max-md:flex-col">
+          <SoyTuButton className="w-64">Apoyar</SoyTuButton>
+          <SoyTuButton variant="outlined" className="w-64">
             Atrás
           </SoyTuButton>
         </div>
       </div>
-      <div className="rounded-xl mx-6 p-9 bg-white-ghost">
-        <div className="flex flex-col justify-between items-center lg:flex-row-reverse gap-6 lg:gap-9">
+      <div className="mx-6 rounded-xl bg-white-ghost p-9">
+        <div className="flex flex-col items-center justify-between gap-6 lg:flex-row-reverse lg:gap-9">
           <div className="max-lg:max-w-sm lg:min-w-[24rem] lg:max-w-xl">
             <Image src={medical} alt="img" />
           </div>
-          <div className="flex flex-col max-w-xl">
-            <div className="text-center lg:text-left space-y-3">
-              <h3 className="font-black text-2xl text-primary">
+          <div className="flex max-w-xl flex-col">
+            <div className="space-y-3 text-center lg:text-left">
+              <h3 className="text-2xl font-black text-primary">
                 Gracias por tu apoyo
               </h3>
               <p>
@@ -47,9 +47,9 @@ const Thanks = () => {
                 por ser parte de esta causa importante!
               </p>
             </div>
-            <div className="flex max-md:flex-col justify-center md:justify-start items-center my-6 gap-3 max-w">
-              <SoyTuButton className="w-3/4">Ver mis apoyos</SoyTuButton>
-              <SoyTuButton className="w-3/4" variant="outlined">
+            <div className="max-w mt-6 flex items-center justify-center gap-x-6 gap-y-4 max-md:flex-col md:justify-start">
+              <SoyTuButton className="w-64">Ver mis apoyos</SoyTuButton>
+              <SoyTuButton variant="outlined" className="w-64">
                 Ver otras madres
               </SoyTuButton>
             </div>

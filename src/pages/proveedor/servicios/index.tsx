@@ -9,7 +9,7 @@ import { HeartIcon as HeartIconSolid } from '@heroicons/react/solid'
 
 const Services = () => {
   return (
-    <div style={{ backgroundColor: '#FEFEFE' }}>
+    <div className="bg-[#FEFEFE]">
       <div className="container space-y-9 text-center md:text-left">
         <div className="space-y-5 px-5">
           <h1 className="text-2xl font-black text-primary sm:text-3xl">
@@ -90,7 +90,7 @@ const Services = () => {
               </tbody>
             </table>
           </div>
-          <div className="flex flex-col items-center justify-center gap-6">
+          <div className="flex flex-col items-center justify-center gap-y-4">
             <SoyTuButton color="secondary" className="w-40">
               Añadir servicio
             </SoyTuButton>

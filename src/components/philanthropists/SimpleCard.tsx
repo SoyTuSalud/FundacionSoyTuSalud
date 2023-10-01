@@ -13,9 +13,9 @@ export const Card = (props: CardProps) => {
   const { img, title, sub } = props
 
   return (
-    <ul className="relative snap-center min-w-[16rem] rounded-xl py-5 px-3 flex shrink-0 md:grow justify-center bg-white-ghost">
-      <div className="text-black flex flex-col items-center text-center space-y-3">
-        <div className="h-32 w-32 relative">
+    <ul className="relative flex min-w-[16rem] shrink-0 snap-center justify-center rounded-xl bg-white-ghost px-3 py-5 md:grow">
+      <div className="flex flex-col items-center space-y-3 text-center text-black">
+        <div className="relative h-32 w-32">
           <Image
             src={img}
             alt="pregnantWoman"
@@ -27,8 +27,8 @@ export const Card = (props: CardProps) => {
           <h1 className="font-bold">{title}</h1>
           <span className="font-semibold">{sub}</span>
         </div>
-        <div className="flex flex-col w-full">
-          <SoyTuButton>Ver mis apoyos</SoyTuButton>
+        <div className="flex w-full justify-center">
+          <SoyTuButton className="w-40">Ver mis apoyos</SoyTuButton>
         </div>
       </div>
     </ul>

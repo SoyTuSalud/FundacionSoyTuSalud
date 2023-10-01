@@ -10,8 +10,8 @@ const InfoModal = () => {
     <>
       <div
         className={clsx(
-          !show && 'hidden',
-          show && 'fixed inset-0 h-full w-full',
+          { hidden: !show },
+          { 'fixed inset-0 h-full w-full': show },
           'bg-black bg-opacity-60 backdrop-blur-sm'
         )}
       >

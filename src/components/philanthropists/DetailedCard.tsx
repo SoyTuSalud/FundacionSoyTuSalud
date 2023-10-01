@@ -20,30 +20,30 @@ const ProjectCard = (props: CardProps) => {
       <Image
         src={img}
         alt="pregnantWoman"
-        className="bg-cover bg-top object-cover min-h-[13rem] max-h-[16rem] rounded-t-xl"
+        className="max-h-[16rem] min-h-[13rem] rounded-t-xl bg-cover bg-top object-cover"
       />
-      <div className="p-3 pt-1">
-        <h1 className="text-black font-semibold text-center">
+      <div className="p-3">
+        <h1 className="text-center font-semibold text-black">
           Paula Andrea Cáceres
         </h1>
         <ul className="flex flex-col gap-1">
-          <li className="flex justify-between items-center gap-3">
+          <li className="flex items-center justify-between gap-3">
             <span className="text-left">Edad:</span>
             <span className="text-right">21 años</span>
           </li>
-          <li className="flex justify-between items-center gap-3">
+          <li className="flex items-center justify-between gap-3">
             <span className="text-left">Meses de gestación:</span>
             <span className="text-right">5</span>
           </li>
-          <li className="flex justify-between items-center gap-3">
+          <li className="flex items-center justify-between gap-3">
             <span className="text-left">Tratamiento:</span>
             <span className="text-right">Ecografía</span>
           </li>
-          <li className="flex justify-between items-center gap-3">
+          <li className="flex items-center justify-between gap-3">
             <span className="text-left">IPS:</span>
             <span className="text-right">Radioimagen SAS</span>
           </li>
-          <li className="flex justify-between items-center gap-3">
+          <li className="flex items-center justify-between gap-3">
             <span className="text-left">Aporte mínimo:</span>
             <span className="text-right">$300.000</span>
           </li>
@@ -52,9 +52,11 @@ const ProjectCard = (props: CardProps) => {
             <span className="text-right">Medio</span>
           </li>
         </ul>
-        <div className="pt-3 flex justify-between gap-6">
-          <SoyTuButton variant="outlined">Detalle</SoyTuButton>
-          <SoyTuButton variant="contained">Apoyar</SoyTuButton>
+        <div className="mt-3 flex items-center justify-center gap-x-6">
+          <SoyTuButton variant="outlined" className="w-40">
+            Detalle
+          </SoyTuButton>
+          <SoyTuButton className="w-40">Apoyar</SoyTuButton>
         </div>
       </div>
     </div>
