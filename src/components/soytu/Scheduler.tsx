@@ -107,10 +107,70 @@ const Scheduler = () => {
                   <span className="relative -top-3 block">1 AM</span>
                 </div>
                 <div className="relative h-16 pr-2 text-right">
-                  <span className="relative -top-3 block">1 AM</span>
+                  <span className="relative -top-3 block">2 AM</span>
                 </div>
                 <div className="relative h-16 pr-2 text-right">
-                  <span className="relative -top-3 block">1 AM</span>
+                  <span className="relative -top-3 block">3 AM</span>
+                </div>
+                <div className="relative h-16 pr-2 text-right">
+                  <span className="relative -top-3 block">4 AM</span>
+                </div>
+                <div className="relative h-16 pr-2 text-right">
+                  <span className="relative -top-3 block">5 AM</span>
+                </div>
+                <div className="relative h-16 pr-2 text-right">
+                  <span className="relative -top-3 block">6 AM</span>
+                </div>
+                <div className="relative h-16 pr-2 text-right">
+                  <span className="relative -top-3 block">7 AM</span>
+                </div>
+                <div className="relative h-16 pr-2 text-right">
+                  <span className="relative -top-3 block">8 AM</span>
+                </div>
+                <div className="relative h-16 pr-2 text-right">
+                  <span className="relative -top-3 block">9 AM</span>
+                </div>
+                <div className="relative h-16 pr-2 text-right">
+                  <span className="relative -top-3 block">10 AM</span>
+                </div>
+                <div className="relative h-16 pr-2 text-right">
+                  <span className="relative -top-3 block">11 AM</span>
+                </div>
+                <div className="relative h-16 pr-2 text-right">
+                  <span className="relative -top-3 block">12 PM</span>
+                </div>
+                <div className="relative h-16 pr-2 text-right">
+                  <span className="relative -top-3 block">1 PM</span>
+                </div>
+                <div className="relative h-16 pr-2 text-right">
+                  <span className="relative -top-3 block">2 PM</span>
+                </div>
+                <div className="relative h-16 pr-2 text-right">
+                  <span className="relative -top-3 block">3 PM</span>
+                </div>
+                <div className="relative h-16 pr-2 text-right">
+                  <span className="relative -top-3 block">4 PM</span>
+                </div>
+                <div className="relative h-16 pr-2 text-right">
+                  <span className="relative -top-3 block">5 PM</span>
+                </div>
+                <div className="relative h-16 pr-2 text-right">
+                  <span className="relative -top-3 block">6 PM</span>
+                </div>
+                <div className="relative h-16 pr-2 text-right">
+                  <span className="relative -top-3 block">7 PM</span>
+                </div>
+                <div className="relative h-16 pr-2 text-right">
+                  <span className="relative -top-3 block">8 PM</span>
+                </div>
+                <div className="relative h-16 pr-2 text-right">
+                  <span className="relative -top-3 block">9 PM</span>
+                </div>
+                <div className="relative h-16 pr-2 text-right">
+                  <span className="relative -top-3 block">10 PM</span>
+                </div>
+                <div className="relative h-16 pr-2 text-right">
+                  <span className="relative -top-3 block">11 PM</span>
                 </div>
               </div>
             </div>
